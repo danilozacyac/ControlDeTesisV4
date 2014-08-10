@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ControlDeTesisV4.Turno.CargaPorabogado"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Grid>
+        <telerik:ChartDataSource x:Name="ChartDataSource1" ItemsSource="{Binding }" />
+
+        <telerik:RadPieChart x:Name="Pie" Palette="Windows8">
+            <telerik:PieSeries ItemsSource="{Binding ElementName=ChartDataSource1}"
+                               ShowLabels="True"
+                               ValueBinding="Total">
+                <telerik:PieSeries.LabelDefinitions>
+                    <telerik:ChartSeriesLabelDefinition>
+                        <telerik:ChartSeriesLabelDefinition.Template>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding DisplayName}" />
+                                    <TextBlock Text="{Binding Value, StringFormat='Núm. Páginas: {0:0} '}" />
+                                    <TextBlock Text="{Binding Percent, StringFormat=' {0:F2} %'}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:ChartSeriesLabelDefinition.Template>
+                    </telerik:ChartSeriesLabelDefinition>
+                </telerik:PieSeries.LabelDefinitions>
+            </telerik:PieSeries>
+        </telerik:RadPieChart>
+
+    </Grid>
+</UserControl>
