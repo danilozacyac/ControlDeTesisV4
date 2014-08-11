@@ -135,7 +135,7 @@
 
         <Grid Name="ObsPanel"
               Grid.Row="2"
-              Visibility="Visible">
+              Visibility="Collapsed">
             <Label Margin="10,13,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -290,14 +290,28 @@
                      TextWrapping="Wrap" />
         </Grid>
 
-        <Button x:Name="BtnGuardar"
+        <telerik:RadButton x:Name="BtnGuardar"
+                           Grid.Row="4"
+                           Width="75"
+                           Height="30"
+                           Margin="0,0,21,10"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Click="BtnGuardar_Click"
+                           Content="Guardar" />
+        <CheckBox x:Name="ChkVotos"
+                  Grid.Row="4"
+                  Margin="10,10,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Content="  ¿ Votos ?" />
+        <Button x:Name="BtnVotos"
                 Grid.Row="4"
-                Width="75"
-                Height="30"
-                Margin="0,0,21,10"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Click="BtnGuardar_Click"
-                Content="Guardar" />
+                Width="88"
+                Height="28"
+                Margin="108,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Votos" />
     </Grid>
 </telerik:RadWindow>

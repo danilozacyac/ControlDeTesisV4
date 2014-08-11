@@ -9,6 +9,7 @@ namespace ControlDeTesisV4.Dao
     {
         int idEjecutoria;
         int idTesis;
+        int forObservaciones;
         string oficioRecepcion;
         string provFilePathOrigen;
         string provFilePathConten;
@@ -31,6 +32,18 @@ namespace ControlDeTesisV4.Dao
         ObservableCollection<Observaciones> observaciones;
         PrecedentesTesis precedente;
         int estadoEjecutoria;
+
+        public int ForObservaciones
+        {
+            get
+            {
+                return this.forObservaciones;
+            }
+            set
+            {
+                this.forObservaciones = value;
+            }
+        }
 
         public string OficioRecepcion
         {

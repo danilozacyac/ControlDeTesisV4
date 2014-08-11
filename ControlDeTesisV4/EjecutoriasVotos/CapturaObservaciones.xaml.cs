@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using ControlDeTesisV4.Models;
 using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
@@ -78,12 +79,22 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            Observaciones observ = GObserv.SelectedItem as Observaciones;
 
+            observaciones.Remove(observ);
+
+            if (observ.IdEjecutoria != -1)
+            {
+                new EjecutoriasModel().DeleteObservaciones(observ);
+            }
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            Observaciones observ = GObserv.SelectedItem as Observaciones;
 
+            DiceSugiere sugiere = new DiceSugiere(observ, observ.IdEjecutoria);
+            sugiere.ShowDialog();
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)

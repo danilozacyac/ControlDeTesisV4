@@ -237,7 +237,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Tipo jurisprudencia:"
-               Visibility="Hidden" />
+               Visibility="Visible" />
         <ComboBox x:Name="CbxTipoJuris"
                   Width="216"
                   Margin="376,160,0,0"
@@ -246,7 +246,7 @@
                   DisplayMemberPath="Descripcion"
                   ItemsSource="{Binding}"
                   SelectedValuePath="IdDato"
-                  Visibility="Hidden" />
+                  Visibility="Visible" />
         <RichTextBox x:Name="TxtVistaPrevia"
                      Width="778"
                      Height="113"

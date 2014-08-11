@@ -102,6 +102,9 @@
     <Compile Include="ProyectosCcstFolder\ListaProyectosCcst.xaml.cs">
       <DependentUpon>ListaProyectosCcst.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProyectosCcstFolder\TesisPublicar.xaml.cs">
+      <DependentUpon>TesisPublicar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProyectosSalasFolder\CapturaAprobacion.xaml.cs">
       <DependentUpon>CapturaAprobacion.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,7 @@
     <Compile Include="Turno\TurnarWin.xaml.cs">
       <DependentUpon>TurnarWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UtilitiesFolder\Constants.cs" />
     <Compile Include="VisualComparition\CcstCompare.xaml.cs">
       <DependentUpon>CcstCompare.xaml</DependentUpon>
     </Compile>
@@ -198,6 +202,10 @@
     <Page Include="ProyectosCcstFolder\ListaProyectosCcst.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProyectosCcstFolder\TesisPublicar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ProyectosSalasFolder\CapturaAprobacion.xaml">
       <Generator>MSBuild:Compile</Generator>

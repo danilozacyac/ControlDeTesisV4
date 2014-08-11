@@ -32,6 +32,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             this.listaObservaciones = listaObservaciones;
             observacion = new Observaciones();
             idEjecutoria = -1;
+            observacion.IdEjecutoria = idEjecutoria;
         }
 
         public DiceSugiere(Observaciones observacion, int idEjecutoria)

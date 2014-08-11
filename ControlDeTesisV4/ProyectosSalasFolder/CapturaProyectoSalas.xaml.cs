@@ -11,7 +11,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
-using Microsoft.Win32;
+using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
@@ -141,21 +141,10 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         private void BtnLoadOficioRecibido_Click(object sender, RoutedEventArgs e)
         {
-            TxtArchivoPath.Text = this.GetFilePath();
+            TxtArchivoPath.Text = DocumentConversion.GetFilePath();
         }
 
-        private String GetFilePath()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-
-            dialog.Filter = "Office Documents|*.doc;*.docx| RichTextFiles |*.rtf";
-
-            dialog.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\Documents";
-            dialog.Title = "Selecciona el archivo del proyecto";
-            dialog.ShowDialog();
-
-            return dialog.FileName;
-        }
+        
 
         private void TxtArchivoPath_TextChanged(object sender, TextChangedEventArgs e)
         {

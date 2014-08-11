@@ -8,3 +8,8 @@ C:\Users\Luis\Documents\GitHub\ControlDeTesis\ModuloInterconexionCommonApi\obj\D
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.pdb
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\ModuloInterconexionCommonApi\bin\Debug\ModuloInterconexionCommonApi.dll.CodeAnalysisLog.xml
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\ModuloInterconexionCommonApi\bin\Debug\ModuloInterconexionCommonApi.dll.lastcodeanalysissucceeded
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\bin\Debug\ModuloInterconexionCommonApi.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\bin\Debug\ModuloInterconexionCommonApi.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.csprojResolveAssemblyReference.cache
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.pdb

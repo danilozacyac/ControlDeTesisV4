@@ -27,12 +27,15 @@ namespace ControlDeTesisV4.Dao
         private int idSubInstancia;
         private TesisCompara comparaTesis;
         private PrecedentesTesis precedente;
+        private Ejecutorias ejecutoria;
         private int estadoTesis;
        
         
         
 
        
+
+        
 
         public int IdTesis
         {
@@ -295,6 +298,18 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.precedente = value;
+            }
+        }
+
+        public Ejecutorias Ejecutoria
+        {
+            get
+            {
+                return this.ejecutoria;
+            }
+            set
+            {
+                this.ejecutoria = value;
             }
         }
 

@@ -81,7 +81,7 @@ namespace ControlDeTesisV4
 
         private void BtnNuevaEjecProv_Click(object sender, RoutedEventArgs e)
         {
-            CapturaEjecutoria ejec = new CapturaEjecutoria();
+            CapturaEjecutoria ejec = new CapturaEjecutoria(1);
             ejec.ShowDialog();
         }
 
@@ -92,6 +92,18 @@ namespace ControlDeTesisV4
             pane.Content = new ListaTurnadas();
 
             PanelCentral.AddItem(pane, DockPosition.Center);
+        }
+
+        private void BtnEjecPublica_Click(object sender, RoutedEventArgs e)
+        {
+            CapturaEjecutoria ejec = new CapturaEjecutoria(0);
+            ejec.ShowDialog();
+        }
+
+        private void BtnTesisPublica_Click(object sender, RoutedEventArgs e)
+        {
+            TesisPublicar publicar = new TesisPublicar();
+            publicar.ShowDialog();
         }
     }
 }

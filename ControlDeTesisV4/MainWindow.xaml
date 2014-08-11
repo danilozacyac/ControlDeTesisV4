@@ -16,10 +16,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <telerik:RadRibbonView ApplicationName=" Módulo de Interconexión de la CCST"
-                               Grid.Row="0"
+        <telerik:RadRibbonView Grid.Row="0"
                                Height="140"
-                               VerticalAlignment="Top">
+                               VerticalAlignment="Top"
+                               ApplicationName=" Módulo de Interconexión de la CCST">
             <telerik:RadRibbonTab Header="General">
                 <telerik:RadRibbonGroup Header="Proyectos para Observaciones">
                     <telerik:RadRibbonButton x:Name="BtnNuevaTesis"
@@ -47,6 +47,27 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="  Nuevo" />
                             <TextBlock Text="Proyecto" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Llegan para publicar">
+                    <telerik:RadRibbonButton x:Name="BtnTesisPublica"
+                                             Click="BtnTesisPublica_Click"
+                                             LargeImage="Resources/tesis.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="      Tesis" />
+                            <TextBlock Text="para publicar" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnEjecPublica"
+                                             Click="BtnEjecPublica_Click"
+                                             LargeImage="Resources/ejecutoria.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="  Ejecutoria" />
+                            <TextBlock Text="para publicar" />
                         </StackPanel>
                     </telerik:RadRibbonButton>
 
@@ -79,13 +100,13 @@
                     <telerik:RadPaneGroup x:Name="PanelCentral">
                         <telerik:RadPane Header="Proyectos Observaciones">
                             <Grid>
-                                <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                <!--  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
 
                             </Grid>
                         </telerik:RadPane>
                         <telerik:RadPane Header="Proyectos de la CCST">
                             <Grid>
-                                <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                <!--  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
                             </Grid>
                         </telerik:RadPane>
 

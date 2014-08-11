@@ -23,10 +23,17 @@ namespace ControlDeTesisV4.Dao
         private DateTime? fTentSesion;
         private int fTentSesionInt;
         private ObservableCollection<ProyectosTesis> proyectos;
+        
+        /// <summary>
+        /// Atributo utilizado cuando la tesis se turnara directamente
+        /// </summary>
+        private ProyectosTesis proyecto;
         private int totalProyectos = 0;
         
 
         
+        
+
         
 
         public int IdProyecto
@@ -216,6 +223,18 @@ namespace ControlDeTesisV4.Dao
             {
                 this.proyectos = value;
                 this.OnPropertyChanged("Proyectos");
+            }
+        }
+
+        public ProyectosTesis Proyecto
+        {
+            get
+            {
+                return this.proyecto;
+            }
+            set
+            {
+                this.proyecto = value;
             }
         }
 

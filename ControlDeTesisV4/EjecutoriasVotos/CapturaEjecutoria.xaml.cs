@@ -24,14 +24,28 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         private readonly bool isUpdating;
         private int estadoEjecutoria;
 
-        public CapturaEjecutoria()
+        /// <summary>
+        /// La ejecutoria es nueva, ya sea que llegue para observaciones o que 
+        /// llegue directamente para publicar
+        /// </summary>
+        public CapturaEjecutoria(int forObservaciones)
         {
             InitializeComponent();
             this.ejecutoria = new Ejecutorias();
             this.ejecutoria.Precedente = new PrecedentesTesis();
-            estadoEjecutoria = 1;
+            this.ejecutoria.ForObservaciones = forObservaciones;
+
+            if (forObservaciones == 0)
+                estadoEjecutoria = 4;
+            else
+                estadoEjecutoria = 1;
         }
 
+        /// <summary>
+        /// Actualización de la ejecutoria, actualización de los detalles de la misma, también funciona
+        /// para las ejecutorias que serán asociadas a una tesis
+        /// </summary>
+        /// <param name="ejecutoria"></param>
         public CapturaEjecutoria(Ejecutorias ejecutoria)
         {
             InitializeComponent();
@@ -47,6 +61,9 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
             CbxPonentes.DataContext = FuncionariosSingleton.Ponentes;
             CbxTipoAsunto.DataContext = OtrosDatosSingleton.TipoAsuntos;
+
+            if (ejecutoria.ForObservaciones == 1)
+                ObsPanel.Visibility = Visibility.Visible;
         }
 
         private void Numeric_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -99,11 +116,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            //if (RadObsSi.IsChecked == true && (ejecutoria.Observaciones.Count == 0 || ejecutoria.Observaciones == null))
-            //{
-            //    MessageBox.Show("Debe agregar al menos una observación o seleccionar la casilla de No");
-            //    return;
-            //}
+            
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
             ejecutoria.FRecepcionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FRecepcion));

@@ -39,6 +39,7 @@ namespace ControlDeTesisV4.Models
                 dr = dataSet.Tables["Ejecutorias"].NewRow();
                 dr["IdEjecutoria"] = ejecutoria.IdEjecutoria;
                 dr["IdTesis"] = ejecutoria.IdTesis;
+                dr["ForObservaciones"] = ejecutoria.ForObservaciones;
                 dr["ProvFilePathOrigen"] = ejecutoria.ProvFilePathOrigen;
                 dr["ProvFilePathConten"] = ejecutoria.ProvFilePathConten;
                 dr["ProvNumFojas"] = ejecutoria.ProvNumFojas;
@@ -91,15 +92,16 @@ namespace ControlDeTesisV4.Models
 
                 dataAdapter.InsertCommand = connection.CreateCommand();
 
-                sSql = "INSERT INTO Ejecutorias (IdEjecutoria,IdTesis,ProvFilePathOrigen,ProvFilePathConten,ProvNumFojas,Obs,ObsFilePathOrigen,ObsFilePathConten," +
+                sSql = "INSERT INTO Ejecutorias (IdEjecutoria,IdTesis,ForObservaciones,ProvFilePathOrigen,ProvFilePathConten,ProvNumFojas,Obs,ObsFilePathOrigen,ObsFilePathConten," +
                        "FRecepcion,FRecepcionInt,FEnvioObs,FEnvioObsInt,FDevolucion,FDevolucionInt,CCFilePathOrigen,CCFilePathConten,CCNumFojas,VPFilePathOrigen,VPFilePathConten,VPNumFojas,EstadoEjecutoria) " +
-                       " VALUES (@IdEjecutoria,@IdTesis,@ProvFilePathOrigen,@ProvFilePathConten,@ProvNumFojas,@Obs,@ObsFilePathOrigen,@ObsFilePathConten," +
+                       " VALUES (@IdEjecutoria,@IdTesis,@ForObservaciones,@ProvFilePathOrigen,@ProvFilePathConten,@ProvNumFojas,@Obs,@ObsFilePathOrigen,@ObsFilePathConten," +
                        "@FRecepcion,@FRecepccionInt,@FEnvioObs,@FEnvioObsInt,@FDevolucion,@FDevolucionInt,@CCFilePathOrigen,@CCFilePathConten,@CCNumFojas,@VPFilePathOrigen,@VPFilePathConten,@VPNumFojas,@EstadoEjecutoria)";
 
                 dataAdapter.InsertCommand.CommandText = sSql;
 
                 dataAdapter.InsertCommand.Parameters.Add("@IdEjecutoria", OleDbType.Numeric, 0, "IdEjecutoria");
                 dataAdapter.InsertCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
+                dataAdapter.InsertCommand.Parameters.Add("@ForObservaciones", OleDbType.Numeric, 0, "ForObservaciones");
                 dataAdapter.InsertCommand.Parameters.Add("@ProvFilePathOrigen", OleDbType.VarChar, 0, "ProvFilePathOrigen");
                 dataAdapter.InsertCommand.Parameters.Add("@ProvFilePathConten", OleDbType.VarChar, 0, "ProvFilePathConten");
                 dataAdapter.InsertCommand.Parameters.Add("@ProvNumFojas", OleDbType.Numeric, 0, "ProvNumFojas");
@@ -771,6 +773,42 @@ namespace ControlDeTesisV4.Models
 
             return precedente;
         }
+
+
+        public int DeleteObservaciones(Observaciones observacion)
+        {
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+
+            String sqlCadena = "DELETE FROM ObservacionesEjecutoria WHERE IdObservacion = @IdObservacion";
+            int affectedRows = 0;
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdObservacion", observacion.IdObservacion);
+                affectedRows = cmd.ExecuteNonQuery();
+                
+                cmd.Dispose();
+            }
+            catch (OleDbException sql)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return affectedRows;
+        }
+
 
         public int GetLastId(string tabla, string columna)
         {
