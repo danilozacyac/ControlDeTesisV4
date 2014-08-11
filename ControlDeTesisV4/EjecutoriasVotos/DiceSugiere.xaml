@@ -16,9 +16,10 @@
                  Width="259"
                  Height="23"
                  Margin="114,23,0,0"
-                 Text="{Binding Foja,Mode=TwoWay}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 Text="{Binding Foja,
+                                Mode=TwoWay}"
                  TextWrapping="Wrap" />
         <Label Margin="46,100,0,0"
                HorizontalAlignment="Left"
@@ -28,9 +29,10 @@
                  Width="259"
                  Height="23"
                  Margin="114,93,0,0"
-                 Text="{Binding Parrafo,Mode=TwoWay}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 Text="{Binding Parrafo,
+                                Mode=TwoWay}"
                  TextWrapping="Wrap" />
         <Label Margin="46,172,0,0"
                HorizontalAlignment="Left"
@@ -40,9 +42,10 @@
                  Width="259"
                  Height="23"
                  Margin="114,165,0,0"
-                 Text="{Binding Renglon,Mode=TwoWay}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 Text="{Binding Renglon,
+                                Mode=TwoWay}"
                  TextWrapping="Wrap" />
         <Label Margin="47,210,0,0"
                HorizontalAlignment="Left"
@@ -54,10 +57,11 @@
                  Width="387"
                  Height="101"
                  Margin="47,231,0,0"
-                 Text="{Binding Dice,Mode=TwoWay}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  AcceptsReturn="True"
+                 Text="{Binding Dice,
+                                Mode=TwoWay}"
                  TextWrapping="Wrap" />
         <Label Margin="47,359,0,0"
                HorizontalAlignment="Left"
@@ -69,10 +73,11 @@
                  Width="387"
                  Height="101"
                  Margin="47,380,0,0"
-                 Text="{Binding Sugiere,Mode=TwoWay}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  AcceptsReturn="True"
+                 Text="{Binding Sugiere,
+                                Mode=TwoWay}"
                  TextWrapping="Wrap" />
         <telerik:RadButton x:Name="RadGuardar"
                            Width="97"
@@ -80,7 +85,8 @@
                            Margin="337,505,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Guardar" Click="RadGuardar_Click" />
+                           Click="RadGuardar_Click"
+                           Content="Guardar" />
         <telerik:RadButton x:Name="BtnCancelar"
                            Width="89"
                            Height="45"

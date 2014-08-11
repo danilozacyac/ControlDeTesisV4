@@ -81,19 +81,23 @@ namespace DocumentMgmtApi
             return observ;
         }
 
-        private static int GetFojaNumber(string text)
+        private static string GetFojaNumber(string text)
         {
             string foja = "";
 
+            int caractIndex = 0;
             foreach (char caract in text.ToList())
             {
                 if (StringUtilities.IsTextAllowed(caract))
                 {
-                    foja += caract;
+                    foja = text.Substring(caractIndex);
+                    break;
                 }
+
+                caractIndex++;
             }
 
-            return Convert.ToInt32(foja);
+            return foja;
         }
     }
 }

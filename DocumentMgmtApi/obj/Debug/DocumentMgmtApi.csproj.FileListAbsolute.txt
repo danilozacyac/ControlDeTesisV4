@@ -14,3 +14,10 @@ C:\Users\Luis\Documents\GitHub\ControlDeTesis\DocumentMgmtApi\obj\Debug\Document
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.pdb
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.dll.CodeAnalysisLog.xml
 C:\Users\Luis\Documents\GitHub\ControlDeTesis\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.dll.lastcodeanalysissucceeded
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.csprojResolveAssemblyReference.cache
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.dll
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.dll
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.pdb
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\bin\Debug\ModuloInterconexionCommonApi.dll
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\bin\Debug\ModuloInterconexionCommonApi.pdb
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.pdb

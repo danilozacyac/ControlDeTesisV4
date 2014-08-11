@@ -24,8 +24,62 @@
                              Margin="10,75,10,50"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"
+                             AutoGenerateColumns="False"
                              ItemsSource="{Binding}"
-                             ShowGroupPanel="False" />
+                             ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn Width="0"
+                                            DataMemberBinding="{Binding IdObservacion}"
+                                            IsReadOnly="True"
+                                            IsVisible="False" />
+                <telerik:GridViewDataColumn Width="0"
+                                            DataMemberBinding="{Binding IdEjecutoria}"
+                                            IsReadOnly="True"
+                                            IsVisible="False" />
+                <telerik:GridViewDataColumn Width="100"
+                                            DataMemberBinding="{Binding Foja}"
+                                            Header="Foja(s)"
+                                            IsFilterable="False"
+                                            IsReadOnly="True" />
+                <telerik:GridViewDataColumn Width="150"
+                                            DataMemberBinding="{Binding Parrafo}"
+                                            Header="Párrafo"
+                                            IsFilterable="False"
+                                            IsReadOnly="True" />
+                <telerik:GridViewDataColumn Width="*"
+                                            Header="Dice"
+                                            IsFilterable="False"
+                                            IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="12"
+                                       Text="{Binding Dice}"
+                                       TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Width="*"
+                                            Header="Se Sugiere"
+                                            IsFilterable="False"
+                                            IsReadOnly="True">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="12"
+                                       Text="{Binding Sugiere}"
+                                       TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewCheckBoxColumn Width="80"
+                                                DataMemberBinding="{Binding IsAcepted}"
+                                                Header="¿Aceptada?"
+                                                IsReadOnly="False" />
+
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
         <Button x:Name="BtnLoadFilePath_Copy"
                 Width="30"
                 Margin="447,14,0,0"

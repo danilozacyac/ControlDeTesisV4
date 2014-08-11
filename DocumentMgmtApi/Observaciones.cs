@@ -7,7 +7,7 @@ namespace DocumentMgmtApi
     {
         private int idObservacion;
         private int idEjecutoria;
-        private int foja;
+        private string foja;
         private string parrafo;
         private string renglon;
         private string dice;
@@ -39,7 +39,7 @@ namespace DocumentMgmtApi
             }
         }
 
-        public int Foja
+        public string Foja
         {
             get
             {

@@ -689,7 +689,7 @@ namespace ControlDeTesisV4.Models
                         Observaciones observacion = new Observaciones();
                         observacion.IdEjecutoria = reader["IdEjecutoria"] as int? ?? -1;
                         observacion.IdObservacion = reader["IdObservacion"] as int? ?? -1;
-                        observacion.Foja = reader["Foja"] as int? ?? -1;
+                        observacion.Foja = reader["Foja"].ToString();
                         observacion.Parrafo = reader["Parrafo"].ToString();
                         observacion.Renglon = reader["Renglon"].ToString();
                         observacion.Dice = reader["Dice"].ToString();
