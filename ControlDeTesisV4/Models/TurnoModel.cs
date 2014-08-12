@@ -39,8 +39,8 @@ namespace ControlDeTesisV4.Models
                 dr["NumPaginas"] = turno.NumPaginas;
                 dr["FTurno"] = turno.FTurno;
                 dr["FTurnoInt"] = StringUtilities.DateToInt(turno.FTurno);
-                dr["FSugerida"] = turno.FTurno.AddDays(5);
-                dr["FSugeridaInt"] = StringUtilities.DateToInt(turno.FTurno.AddDays(5));
+                dr["FSugerida"] = turno.FSugerida;
+                dr["FSugeridaInt"] = StringUtilities.DateToInt(turno.FSugerida);
                 dr["EnTiempo"] = 1;
                 dr["DiasAtraso"] = 0;
                 dr["Returno"] = 0;

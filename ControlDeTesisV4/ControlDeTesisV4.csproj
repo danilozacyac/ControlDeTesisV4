@@ -394,6 +394,18 @@
   <ItemGroup>
     <Resource Include="Resources\login2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reportes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tesisTurno.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\reload.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -108,6 +108,12 @@ namespace ControlDeTesisV4.Turno {
             return;
             case 2:
             this.GListadoTurno = ((Telerik.Windows.Controls.RadGridView)(target));
+            
+            #line 33 "..\..\..\Turno\ListaTurnadas.xaml"
+            this.GListadoTurno.SelectionChanged += new System.EventHandler<Telerik.Windows.Controls.SelectionChangeEventArgs>(this.GListadoTurno_SelectionChanged);
+            
+            #line default
+            #line hidden
             return;
             }
             this._contentLoaded = true;

@@ -30,7 +30,7 @@
                              AutoGenerateColumns="False"
                              ItemsSource="{Binding}"
                              RowHeight="100"
-                             ShowGroupPanel="False">
+                             ShowGroupPanel="False" SelectionChanged="GListadoTurno_SelectionChanged">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Width="100"
                                             DataMemberBinding="{Binding IdTesis}"

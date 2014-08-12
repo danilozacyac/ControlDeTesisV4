@@ -33,8 +33,9 @@
                            Margin="319,194,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
+                           Click="BtnIngresar_Click"
                            Content="Ingresar"
-                           IsDefault="True" Click="BtnIngresar_Click" />
+                           IsDefault="True" />
         <telerik:RadButton x:Name="BtnSalir"
                            Width="70"
                            Height="37"

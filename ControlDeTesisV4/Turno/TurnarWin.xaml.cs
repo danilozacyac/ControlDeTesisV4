@@ -13,6 +13,7 @@ namespace ControlDeTesisV4.Turno
     public partial class TurnarWin
     {
         private ProyectosTesis proyecto;
+        private Ejecutorias ejecutoria;
         private int idTipoDocumento;
 
         public TurnarWin(ProyectosTesis proyecto, int idTipoDocumento)
@@ -20,6 +21,15 @@ namespace ControlDeTesisV4.Turno
             InitializeComponent();
             this.proyecto = proyecto;
             this.idTipoDocumento = idTipoDocumento;
+            this.Header = "Turnar tesis";
+        }
+
+        public TurnarWin(Ejecutorias ejecutoria)
+        {
+            InitializeComponent();
+            this.ejecutoria = ejecutoria;
+            this.idTipoDocumento = 3;
+            this.Header = "Turnar ejecutoria";
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -28,6 +38,11 @@ namespace ControlDeTesisV4.Turno
                                       where n.Nivel == 1
                                       orderby n.NombreCompleto
                                       select n);
+
+            DtpFTurno.SelectedDate = DateTime.Now;
+            DtpSugerida.SelectedDate = DateTime.Now.AddDays(5);
+            TxtNumPaginas.Text = (proyecto.NumPaginas + proyecto.Ejecutoria.CcNumFojas).ToString();
+
         }
 
         private void BtnTurno_Click(object sender, RoutedEventArgs e)
@@ -35,7 +50,9 @@ namespace ControlDeTesisV4.Turno
             TurnoDao turno = new TurnoDao();
             turno.IdAbogado = Convert.ToInt16(CbxAbogado.SelectedValue);
             turno.IdTipoDocto = idTipoDocumento;
-            turno.NumPaginas = proyecto.NumPaginas;
+            turno.NumPaginas = Convert.ToInt32(TxtNumPaginas.Text);
+            turno.FTurno = DtpFTurno.SelectedDate;
+            turno.FSugerida = DtpSugerida.SelectedDate;
             turno.FTurno = DateTime.Now;
 
             if (idTipoDocumento == 1 || idTipoDocumento == 2)

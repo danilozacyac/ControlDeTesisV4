@@ -3,28 +3,28 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:local="clr-namespace:ControlDeTesisV4.Turno"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-                   Width="700"
-                   Height="600"
+                   Width="750"
+                   Height="650"
                    Header="Turnar"
                    Loaded="RadWindow_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="130" />
+            <RowDefinition Height="160" />
         </Grid.RowDefinitions>
 
         <telerik:RadTabControl>
             <telerik:RadTabItem Header="Carga de Trabajo por Abogado">
-                <local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <!--<local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
             </telerik:RadTabItem>
             <telerik:RadTabItem Header="Carga de Trabajo por Documento">
-                <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <!--<local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
             </telerik:RadTabItem>
         </telerik:RadTabControl>
 
 
         <Label Grid.Row="1"
-               Margin="0,21,256,0"
+               Margin="0,48,256,0"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Content="Abogado Responsable" />
@@ -32,21 +32,21 @@
                  Grid.Row="1"
                  Width="239"
                  Height="23"
-                 Margin="0,14,10,0"
+                 Margin="0,41,10,0"
                  HorizontalAlignment="Right"
                  VerticalAlignment="Top"
                  IsEnabled="False"
                  Text=""
                  TextWrapping="Wrap" />
         <Label Grid.Row="1"
-               Margin="0,55,273,0"
+               Margin="0,82,273,0"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Content="Turnar a:" />
         <ComboBox x:Name="CbxAbogado"
                   Grid.Row="1"
                   Width="239"
-                  Margin="0,49,10,0"
+                  Margin="0,76,10,0"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Top"
                   DisplayMemberPath="NombreCompleto"
@@ -56,11 +56,18 @@
                 Grid.Row="1"
                 Width="75"
                 Height="29"
-                Margin="0,90,10,0"
+                Margin="0,121,10,0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Click="BtnTurno_Click"
                 Content="Turnar" />
+        <Label Content="F. de Turno" HorizontalAlignment="Left" Margin="19,21,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <telerik:RadDatePicker x:Name="DtpFTurno" IsEnabled="False" HorizontalAlignment="Left" Margin="93,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
+        <Label Content="F. Sugerida " HorizontalAlignment="Left" Margin="19,55,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="de entrega" HorizontalAlignment="Left" Margin="19,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <telerik:RadDatePicker x:Name="DtpSugerida" HorizontalAlignment="Left" IsEnabled="False" Margin="93,70,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
+        <Label Content="Núm. página por turnar" HorizontalAlignment="Left" Margin="349,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtNumPaginas" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="481,14,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="66"/>
 
 
     </Grid>

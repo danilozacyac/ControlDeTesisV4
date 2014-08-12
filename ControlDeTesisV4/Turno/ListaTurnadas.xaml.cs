@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 
 namespace ControlDeTesisV4.Turno
@@ -21,6 +22,7 @@ namespace ControlDeTesisV4.Turno
     /// </summary>
     public partial class ListaTurnadas : UserControl
     {
+        public static TesisTurnadaPreview TesisTurnada;
         public ListaTurnadas()
         {
             InitializeComponent();
@@ -28,7 +30,13 @@ namespace ControlDeTesisV4.Turno
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             GListadoTurno.DataContext = new TesisTurnadasModel().GetPreviewTesisTurnadas();
+        }
+
+        private void GListadoTurno_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+            TesisTurnada = GListadoTurno.SelectedItem as TesisTurnadaPreview;
         }
     }
 }

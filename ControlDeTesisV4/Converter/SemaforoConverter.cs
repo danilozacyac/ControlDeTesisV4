@@ -21,11 +21,12 @@ namespace ControlDeTesisV4.Converter
 
                 switch (semaforo)
                 {
-                    case 1:
-                    case 2: return "/ControlDeTesisV4;component/Resources/semVerde.png";
+                    case 5:
+                    case 4: return "/ControlDeTesisV4;component/Resources/semVerde.png";
                     case 3:
-                    case 4: return "/ControlDeTesisV4;component/Resources/semAmarillo.png";
-                    case 5: return "/ControlDeTesisV4;component/Resources/semRojo.png";
+                    case 2: return "/ControlDeTesisV4;component/Resources/semAmarillo.png";
+                    case 1: 
+                    case 0: return "/ControlDeTesisV4;component/Resources/semRojo.png";
                 }
             }
 

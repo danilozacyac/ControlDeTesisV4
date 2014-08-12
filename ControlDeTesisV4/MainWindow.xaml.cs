@@ -32,6 +32,12 @@ namespace ControlDeTesisV4
             {
                 Close();
             }
+
+            if (AccesoUsuarios.Perfil != 5 && AccesoUsuarios.Perfil != 0)
+            {
+                RibbonHeader.SelectedIndex = 1;
+                Proyectos.IsEnabled = false;
+            }
             
         }
 
@@ -107,6 +113,11 @@ namespace ControlDeTesisV4
         {
             TesisPublicar publicar = new TesisPublicar();
             publicar.ShowDialog();
+        }
+
+        private void TurnaTesis_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

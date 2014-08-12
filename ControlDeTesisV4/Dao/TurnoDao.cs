@@ -13,9 +13,9 @@ namespace ControlDeTesisV4.Dao
         private int idTipoDocto;
         private int idDocto;
         private int numPaginas;
-        private DateTime fTurno;
-        private DateTime fSugerida;
-        private DateTime fEntrega;
+        private DateTime? fTurno;
+        private DateTime? fSugerida;
+        private DateTime? fEntrega;
         private int enTiempo;
         private int diasAtraso;
         private int isReturn;
@@ -81,7 +81,7 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
-        public DateTime FTurno
+        public DateTime? FTurno
         {
             get
             {
@@ -93,7 +93,7 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
-        public DateTime FSugerida
+        public DateTime? FSugerida
         {
             get
             {
@@ -105,7 +105,7 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
-        public DateTime FEntrega
+        public DateTime? FEntrega
         {
             get
             {

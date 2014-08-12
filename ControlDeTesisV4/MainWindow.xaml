@@ -16,11 +16,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <telerik:RadRibbonView Grid.Row="0"
+        <telerik:RadRibbonView x:Name="RibbonHeader"
+                               Grid.Row="0"
                                Height="140"
                                VerticalAlignment="Top"
                                ApplicationName=" Módulo de Interconexión de la CCST">
-            <telerik:RadRibbonTab Header="General">
+            <telerik:RadRibbonTab x:Name="Proyectos" Header="Proyectos">
                 <telerik:RadRibbonGroup Header="Proyectos para Observaciones">
                     <telerik:RadRibbonButton x:Name="BtnNuevaTesis"
                                              Click="BtnNuevoPS_Click"
@@ -51,6 +52,9 @@
                     </telerik:RadRibbonButton>
 
                 </telerik:RadRibbonGroup>
+
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab x:Name="Publicar" Header="Para publicar">
                 <telerik:RadRibbonGroup Header="Llegan para publicar">
                     <telerik:RadRibbonButton x:Name="BtnTesisPublica"
                                              Click="BtnTesisPublica_Click"
@@ -74,18 +78,46 @@
                 </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Turno">
-                <telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Tesis">
+
+                    <telerik:RadRibbonButton x:Name="BtnPorTurnar"
+                                             LargeImage="Resources/wait.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Tesis" />
+                            <TextBlock Text="por turnar" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+
+                    <StackPanel Orientation="Vertical">
+                        <telerik:RadRibbonButton x:Name="TurnaTesis"
+                                                 Click="TurnaTesis_Click"
+                                                 Content="Turnar tesis"
+                                                 LargeImage="Resources/tesisTurno.png"
+                                                 Size="Medium" />
+                        <telerik:RadRibbonButton x:Name="ReturnaTesis"
+                                                 Content="Returnar tesis"
+                                                 LargeImage="Resources/reload.png"
+                                                 Size="Medium" />
+                        <telerik:RadRibbonButton x:Name="BtnListaTurnadas"
+                                                 Click="BtnListaTurnadas_Click"
+                                                 Content="Tesis turnadas"
+                                                 LargeImage="Resources/Turnadas.png"
+                                                 Size="Medium" />
+                    </StackPanel>
+
+
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Ejecutorias" />
+                <telerik:RadRibbonGroup Header="Votos" />
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Estadísticas">
+                <telerik:RadRibbonGroup Header="">
                     <telerik:RadRibbonRadioButton x:Name="BtnCargas"
                                                   Click="BtnCargas_Click"
                                                   Content="Carga de trabajo"
                                                   LargeImage="Resources/char.png"
                                                   Size="Large" />
-                    <telerik:RadRibbonButton x:Name="BtnListaTurnadas"
-                                             Click="BtnListaTurnadas_Click"
-                                             Content="Tesis turnadas"
-                                             LargeImage="Resources/Turnadas.png"
-                                             Size="Large" />
-
                 </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
         </telerik:RadRibbonView>

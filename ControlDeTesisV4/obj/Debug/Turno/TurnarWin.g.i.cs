@@ -84,6 +84,30 @@ namespace ControlDeTesisV4.Turno {
         #line default
         #line hidden
         
+        
+        #line 65 "..\..\..\Turno\TurnarWin.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal Telerik.Windows.Controls.RadDatePicker DtpFTurno;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 68 "..\..\..\Turno\TurnarWin.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal Telerik.Windows.Controls.RadDatePicker DtpSugerida;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 70 "..\..\..\Turno\TurnarWin.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox TxtNumPaginas;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -103,13 +127,6 @@ namespace ControlDeTesisV4.Turno {
             
             #line default
             #line hidden
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal System.Delegate _CreateDelegate(System.Type delegateType, string handler) {
-            return System.Delegate.CreateDelegate(delegateType, this, handler);
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -143,6 +160,15 @@ namespace ControlDeTesisV4.Turno {
             
             #line default
             #line hidden
+            return;
+            case 5:
+            this.DtpFTurno = ((Telerik.Windows.Controls.RadDatePicker)(target));
+            return;
+            case 6:
+            this.DtpSugerida = ((Telerik.Windows.Controls.RadDatePicker)(target));
+            return;
+            case 7:
+            this.TxtNumPaginas = ((System.Windows.Controls.TextBox)(target));
             return;
             }
             this._contentLoaded = true;
