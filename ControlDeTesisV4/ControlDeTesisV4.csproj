@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dao\AccesoUsuarios.cs" />
     <Compile Include="EjecutoriasVotos\CapturaEjecutoria.xaml.cs">
       <DependentUpon>CapturaEjecutoria.xaml</DependentUpon>
     </Compile>
@@ -89,6 +90,10 @@
     <Compile Include="EjecutoriasVotos\DiceSugiere.xaml.cs">
       <DependentUpon>DiceSugiere.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogIn.xaml.cs">
+      <DependentUpon>LogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccesoUsuariosModel.cs" />
     <Compile Include="Models\EjecutoriasModel.cs" />
     <Compile Include="ProyectosCcstFolder\CapturaAprobacionCcst.xaml.cs">
       <DependentUpon>CapturaAprobacionCcst.xaml</DependentUpon>
@@ -155,6 +160,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EjecutoriasVotos\DiceSugiere.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -381,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Turnadas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\login2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

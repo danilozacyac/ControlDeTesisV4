@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.ProyectosCcstFolder;
 using ControlDeTesisV4.ProyectosSalasFolder;
@@ -24,12 +25,14 @@ namespace ControlDeTesisV4
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            LogIn log = new LogIn();
+            log.ShowDialog();
 
-            //CapturaEjecutorias ejecuto = new CapturaEjecutorias();
-            //ejecuto.ShowDialog();
-
-            //Turnar turno = new Turnar();
-            //turno.ShowDialog();
+            if (AccesoUsuarios.Llave == 0 || AccesoUsuarios.Llave == -1)
+            {
+                Close();
+            }
+            
         }
 
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)

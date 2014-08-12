@@ -1,0 +1,48 @@
+﻿<telerik:RadWindow x:Class="ControlDeTesisV4.LogIn"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   Width="433"
+                   Height="300"
+                   Header="LogIn"
+                   WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Image Width="127"
+               Height="138"
+               Margin="31,48,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="Resources/login2.png" />
+        <telerik:RadWatermarkTextBox x:Name="TxtUsuario"
+                                     Width="207"
+                                     Margin="187,57,0,0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     TextWrapping="Wrap"
+                                     WatermarkContent="Usuario" />
+        <PasswordBox x:Name="Passtext"
+                     Width="207"
+                     Height="25"
+                     Margin="187,114,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PasswordChar="*" />
+        <telerik:RadButton x:Name="BtnIngresar"
+                           Width="75"
+                           Height="37"
+                           Margin="319,194,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Content="Ingresar"
+                           IsDefault="True" Click="BtnIngresar_Click" />
+        <telerik:RadButton x:Name="BtnSalir"
+                           Width="70"
+                           Height="37"
+                           Margin="217,194,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Click="BtnSalir_Click"
+                           Content="Salir" />
+
+    </Grid>
+</telerik:RadWindow>

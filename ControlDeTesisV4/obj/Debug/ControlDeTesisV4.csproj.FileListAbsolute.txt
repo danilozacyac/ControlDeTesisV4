@@ -344,3 +344,5 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInt
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ControlDeTesisV4.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\TesisPublicar.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\TesisPublicar.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\LogIn.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\LogIn.g.cs
