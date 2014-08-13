@@ -1,0 +1,231 @@
+﻿<telerik:RadWindow x:Class="ControlDeTesisV4.EjecutoriasVotos.DetalleVotos"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   Width="800"
+                   Height="Auto"
+                   Header="Detalle del Voto" Loaded="RadWindow_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220" Name="GridMinistros" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label Margin="38,31,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Tipo de Voto:" />
+            <telerik:RadComboBox x:Name="CbxTipoVoto"
+                                 Width="250"
+                                 Margin="38,52,0,0"
+                                 ItemsSource="{Binding}"
+                                 DisplayMemberPath="Descripcion"
+                                 SelectedValuePath="IdDato"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top" SelectionChanged="CbxTipoVoto_SelectionChanged" />
+
+            <StackPanel Grid.Row="0" Margin="432,31,10,10" Orientation="Vertical" Height="Auto">
+                <Label Content="Ministro(s):" />
+                <telerik:RadComboBox x:Name="CbxMinistros"
+                                     Margin="0,5,0,0" ItemsSource="{Binding}"
+                                     DisplayMemberPath="NombreCompleto"
+                                     SelectedValuePath="IdFuncionario"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Top" />
+
+                <ListBox Name="LstMinistros"
+                         Height="115"
+                         Visibility="Collapsed"
+                         ItemsSource="{Binding }">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="CheckBoxZone"
+                                      Margin="0,5,0,0"
+                                      Checked="CheckBoxZone_Checked"
+                                      Content="{Binding NombreCompleto}"
+                                      Tag="{Binding IdFuncionario}" Unchecked="CheckBoxZone_Unchecked" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Name="ObsPanel"
+              Grid.Row="1"
+              Visibility="Visible">
+            <Label Margin="10,13,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Provisional:" />
+            <TextBox x:Name="TxtProvisional"
+                     Width="293"
+                     Height="23"
+                     Margin="143,10,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewDragOver="TxtDrag_PreviewDragOver"
+                     PreviewDrop="TxtDrop_PreviewDrop"
+                     Text="{Binding ProvFilePathOrigen,
+                                    Mode=TwoWay}"
+                     TextChanged="TxtProvisional_TextChanged" />
+            <Button x:Name="BtnLoadProvisional"
+                    Width="30"
+                    Margin="441,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="BtnLoadProvisional_Click">
+                <Image Width="22"
+                       Height="19"
+                       Source="/ControlDeTesisV4;component/Resources/browse.png" />
+            </Button>
+            <DatePicker x:Name="DtpEnvioObserv"
+                        Margin="143,53,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        SelectedDate="{Binding FEnvioObs,
+                                               Mode=TwoWay}" />
+            <Label Margin="13,57,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="F. de Envio Observ:" />
+            <DatePicker x:Name="DtpFDevolucion"
+                        Margin="143,91,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        SelectedDate="{Binding FDevolucion,
+                                               Mode=TwoWay}" />
+            <Label Margin="13,95,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="F. de Devolución:" />
+            <Label Margin="532,74,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Observaciones aceptadas:" />
+            <RadioButton x:Name="RadNoAcept"
+                         Margin="444,95,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Content="No Aceptadas" />
+            <RadioButton x:Name="RadParcial"
+                         Margin="565,95,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Content=" Parcialmente" />
+            <RadioButton x:Name="RadCompleta"
+                         Margin="668,95,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Content="Completamente" />
+            <Button x:Name="BtnObservaciones"
+                    Width="162"
+                    Height="26"
+                    Margin="607,5,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="BtnObservaciones_Click"
+                    Content="Capturar Observaciones" />
+            <Label Content="Núm. Fojas" HorizontalAlignment="Left" Margin="475,53,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TxtFojasProv"
+            	Width="53"
+            	Height="23"
+            	Margin="549,46,0,0"
+            	HorizontalAlignment="Left"
+            	VerticalAlignment="Top"
+            	PreviewTextInput="Numeric_PreviewTextInput"
+            	Text="{Binding CcNumFojas, Mode=TwoWay}"
+            	TextWrapping="Wrap" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Label Margin="10,15,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Copia Certificada:" />
+            <Label Margin="10,50,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Versión Pública:" />
+            <TextBox x:Name="TxtCertificada"
+                     Width="293"
+                     Height="23"
+                     Margin="143,12,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewDragOver="TxtDrag_PreviewDragOver"
+                     PreviewDrop="TxtDrop_PreviewDrop"
+                     Text="{Binding CcFilePathOrigen,
+                                    Mode=TwoWay}" />
+            <TextBox x:Name="TxtPublica"
+                     Width="293"
+                     Height="23"
+                     Margin="143,50,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewDragOver="TxtDrag_PreviewDragOver"
+                     PreviewDrop="TxtDrop_PreviewDrop"
+                     Text="{Binding VpFilePathOrigen,
+                                    Mode=TwoWay}" />
+
+            <Button x:Name="BtnLoadCCPath"
+                    Width="30"
+                    Margin="441,12,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="BtnLoadCCPath_Click">
+                <Image Width="22"
+                       Height="19"
+                       Source="/ControlDeTesisV4;component/Resources/browse.png" />
+            </Button>
+            <Button x:Name="BtnLoadVPPath"
+                    Width="30"
+                    Margin="441,50,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="BtnLoadVPPath_Click">
+                <Image Width="22"
+                       Height="19"
+                       Source="/ControlDeTesisV4;component/Resources/browse.png" />
+            </Button>
+            <Label Margin="545,12,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Núm. Fojas" />
+            <TextBox x:Name="TxtFojasCc"
+                     Width="53"
+                     Height="23"
+                     Margin="609,10,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewTextInput="Numeric_PreviewTextInput"
+                     Text="{Binding CcNumFojas,
+                                    Mode=TwoWay}"
+                     TextWrapping="Wrap" />
+            <Label Margin="545,50,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Núm. Fojas" />
+            <TextBox x:Name="TxtFojasVp"
+                     Width="53"
+                     Height="23"
+                     Margin="609,48,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewTextInput="Numeric_PreviewTextInput"
+                     Text="{Binding VpNumFojas,
+                                    Mode=TwoWay}"
+                     TextWrapping="Wrap" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <telerik:RadButton x:Name="BtnGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Height="40" Width="72"/>
+            <telerik:RadButton x:Name="BtnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="622,10,0,0" VerticalAlignment="Top" Height="40" Width="71" IsCancel="True"/>
+
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

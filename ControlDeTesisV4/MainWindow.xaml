@@ -33,7 +33,9 @@
                                                  Click="BtnNuevaEjecProv_Click"
                                                  Content="Ejecutoria"
                                                  LargeImage="Resources/ejecutoria.png" />
-                        <telerik:RadRibbonButton Content="Votos"
+                        <telerik:RadRibbonButton x:Name="BtnNuevoVotoProv"
+                                                 Click="BtnNuevoVotoProv_Click"
+                                                 Content="Votos"
                                                  Cursor="Hand"
                                                  LargeImage="Resources/juez48.png" />
                         <telerik:RadRibbonButton />

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
+using ControlDeTesisV4.UtilitiesFolder;
 
 namespace ControlDeTesisV4.Turno
 {
@@ -36,7 +37,12 @@ namespace ControlDeTesisV4.Turno
 
         private void GListadoTurno_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
+
+
             TesisTurnada = GListadoTurno.SelectedItem as TesisTurnadaPreview;
+
+            Constants.TesisPorTurnar = new ProyectoTesisSalasModel().GetProyectoTesis(TesisTurnada.IdTesis);
+
         }
     }
 }

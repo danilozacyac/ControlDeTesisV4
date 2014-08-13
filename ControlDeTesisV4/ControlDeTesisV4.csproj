@@ -81,11 +81,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Dao\AccesoUsuarios.cs" />
+    <Compile Include="Dao\Votos.cs" />
     <Compile Include="EjecutoriasVotos\CapturaEjecutoria.xaml.cs">
       <DependentUpon>CapturaEjecutoria.xaml</DependentUpon>
     </Compile>
     <Compile Include="EjecutoriasVotos\CapturaObservaciones.xaml.cs">
       <DependentUpon>CapturaObservaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EjecutoriasVotos\CapturaVotos.xaml.cs">
+      <DependentUpon>CapturaVotos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EjecutoriasVotos\DetalleVotos.xaml.cs">
+      <DependentUpon>DetalleVotos.xaml</DependentUpon>
     </Compile>
     <Compile Include="EjecutoriasVotos\DiceSugiere.xaml.cs">
       <DependentUpon>DiceSugiere.xaml</DependentUpon>
@@ -156,6 +163,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EjecutoriasVotos\CapturaObservaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EjecutoriasVotos\CapturaVotos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EjecutoriasVotos\DetalleVotos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

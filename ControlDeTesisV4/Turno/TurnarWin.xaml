@@ -15,10 +15,10 @@
 
         <telerik:RadTabControl>
             <telerik:RadTabItem Header="Carga de Trabajo por Abogado">
-                <!--<local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                <!--  <local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
             </telerik:RadTabItem>
             <telerik:RadTabItem Header="Carga de Trabajo por Documento">
-                <!--<local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                <!--  <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
             </telerik:RadTabItem>
         </telerik:RadTabControl>
 
@@ -61,13 +61,49 @@
                 VerticalAlignment="Top"
                 Click="BtnTurno_Click"
                 Content="Turnar" />
-        <Label Content="F. de Turno" HorizontalAlignment="Left" Margin="19,21,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <telerik:RadDatePicker x:Name="DtpFTurno" IsEnabled="False" HorizontalAlignment="Left" Margin="93,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
-        <Label Content="F. Sugerida " HorizontalAlignment="Left" Margin="19,55,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="de entrega" HorizontalAlignment="Left" Margin="19,76,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <telerik:RadDatePicker x:Name="DtpSugerida" HorizontalAlignment="Left" IsEnabled="False" Margin="93,70,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Núm. página por turnar" HorizontalAlignment="Left" Margin="349,17,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtNumPaginas" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="481,14,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="66"/>
+        <Label Grid.Row="1"
+               Margin="19,21,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="F. de Turno" />
+        <telerik:RadDatePicker x:Name="DtpFTurno"
+                               Grid.Row="1"
+                               Width="114"
+                               Margin="93,14,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               IsEnabled="False" />
+        <Label Grid.Row="1"
+               Margin="19,55,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="F. Sugerida " />
+        <Label Grid.Row="1"
+               Margin="19,76,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="de entrega" />
+        <telerik:RadDatePicker x:Name="DtpSugerida"
+                               Grid.Row="1"
+                               Width="114"
+                               Margin="93,70,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               IsEnabled="False" />
+        <Label Grid.Row="1"
+               Margin="349,17,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Núm. página por turnar" />
+        <TextBox x:Name="TxtNumPaginas"
+                 Grid.Row="1"
+                 Width="66"
+                 Height="23"
+                 Margin="481,14,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 IsEnabled="False"
+                 TextWrapping="Wrap" />
 
 
     </Grid>

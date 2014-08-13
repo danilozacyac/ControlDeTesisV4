@@ -599,6 +599,148 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de la ejecutoria dentro del proceso de publicacion
+        /// 1. Recepcion
+        /// 2. ENvio de Observaciones o envío del proyecto
+        /// 3. Aprobación
+        /// 4. Espera de Turno
+        /// 5. Turno
+        /// 6. Publicación
+        /// </summary>
+        /// <param name="idTesis"></param>
+        /// <param name="estadoTesis"></param>
+        public void UpdateEstadoEjecutoria(int idEjecutoria, int estadoEjecutoria)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM Ejecutorias WHERE IdEjecutoria = " + idEjecutoria;
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "Ejecutorias");
+
+                dr = dataSet.Tables["Ejecutorias"].Rows[0];
+                dr.BeginEdit();
+
+                dr["EstadoEjecutoria"] = estadoEjecutoria;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE Ejecutorias SET  EstadoEjecutoria = @EstadoEjecutoria " +
+                       " WHERE IdEjecutoria = @IdEjecutoria";
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@EstadoEjecutoria", OleDbType.Numeric, 0, "EstadoEjecutoria");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdEjecutoria", OleDbType.Numeric, 0, "IdEjecutoria");
+
+                dataAdapter.Update(dataSet, "Ejecutorias");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Devuelve la ejecutoria relacionada a una tesis
+        /// </summary>
+        /// <param name="idTesis"></param>
+        /// <returns></returns>
+        public Ejecutorias GetEjecutorias(int idTesis)
+        {
+            Ejecutorias ejecutoria = null;
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT * FROM Ejecutorias WHERE IdTesis = @idTesis";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@idTesis", idTesis);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ejecutoria = new Ejecutorias();
+                        ejecutoria.IdEjecutoria = reader["IdEjecutoria"] as int? ?? -1;
+                        ejecutoria.IdTesis = reader["IdTesis"] as int? ?? -1;
+                        ejecutoria.ProvFilePathOrigen = reader["ProvFilePathOrigen"].ToString();
+                        ejecutoria.ProvFilePathConten = reader["ProvFilePathConten"].ToString();
+                        ejecutoria.ProvNumFojas = reader["Provnumfojas"] as int? ?? -1;
+                        ejecutoria.ObsFilePathOrigen = reader["ObsFilePathOrigen"].ToString();
+                        ejecutoria.ObsFilePathConten = reader["ObsFilePathConten"].ToString();
+                        ejecutoria.FRecepcion = StringUtilities.GetDateFromReader(reader, "FRecepcion");
+                        ejecutoria.FRecepcionInt = reader["FRecepcionInt"] as int? ?? -1;
+                        ejecutoria.FEnvioObs = StringUtilities.GetDateFromReader(reader, "FEnvioObs");
+                        ejecutoria.FEnvioObsInt = reader["FEnvioObsInt"] as int? ?? -1;
+                        ejecutoria.FDevolucion = StringUtilities.GetDateFromReader(reader, "FDevolucion");
+                        ejecutoria.FDevolucionInt = reader["FDevolucionInt"] as int? ?? -1;
+                        ejecutoria.CcFilePathOrigen = reader["CcFilePathOrigen"].ToString();
+                        ejecutoria.CcFilePathConten = reader["CcFilePathConten"].ToString();
+                        ejecutoria.CcNumFojas = reader["CcNumFojas"] as int? ?? -1;
+
+                        ejecutoria.VpFilePathOrigen = reader["VpFilePathOrigen"].ToString();
+                        ejecutoria.VpFilePathConten = reader["VpFilePathConten"].ToString();
+                        ejecutoria.VpNumFojas = reader["CcNumFojas"] as int? ?? -1;
+                        ejecutoria.EstadoEjecutoria = reader["EstadoEjecutoria"] as int? ?? -1;
+                        ejecutoria.Observaciones = this.GetObservaciones(ejecutoria.IdEjecutoria);
+                        ejecutoria.Precedente = this.GetPrecedenteEjecutoria(ejecutoria.IdEjecutoria);
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException sql)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return ejecutoria;
+        }
+
         public ObservableCollection<Ejecutorias> GetEjecutorias()
         {
             ObservableCollection<Ejecutorias> listadoEjecutorias = new ObservableCollection<Ejecutorias>();

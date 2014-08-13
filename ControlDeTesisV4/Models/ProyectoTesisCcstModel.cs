@@ -610,8 +610,9 @@ namespace ControlDeTesisV4.Models
         /// 1. Recepcion
         /// 2. ENvio de Observaciones o envío del proyecto
         /// 3. Aprobación
-        /// 4. Turno
-        /// 5. Publicación
+        /// 4. Espera de Turno
+        /// 5. Turno
+        /// 6. Publicación
         /// </summary>
         /// <param name="idTesis"></param>
         /// <param name="estadoTesis"></param>

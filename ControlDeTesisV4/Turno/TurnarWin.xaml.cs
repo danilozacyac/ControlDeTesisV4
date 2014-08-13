@@ -15,6 +15,7 @@ namespace ControlDeTesisV4.Turno
         private ProyectosTesis proyecto;
         private Ejecutorias ejecutoria;
         private int idTipoDocumento;
+        private int numPaginas = 0;
 
         public TurnarWin(ProyectosTesis proyecto, int idTipoDocumento)
         {
@@ -41,7 +42,19 @@ namespace ControlDeTesisV4.Turno
 
             DtpFTurno.SelectedDate = DateTime.Now;
             DtpSugerida.SelectedDate = DateTime.Now.AddDays(5);
-            TxtNumPaginas.Text = (proyecto.NumPaginas + proyecto.Ejecutoria.CcNumFojas).ToString();
+
+            if (idTipoDocumento == 1 || idTipoDocumento == 2)
+            {
+                numPaginas += proyecto.NumPaginas;
+                numPaginas += (proyecto.Ejecutoria != null) ? proyecto.Ejecutoria.CcNumFojas : 0;
+
+            }
+            else if (idTipoDocumento == 3)
+            {
+                numPaginas += ejecutoria.CcNumFojas;
+            }
+            
+            
 
         }
 
@@ -56,7 +69,20 @@ namespace ControlDeTesisV4.Turno
             turno.FTurno = DateTime.Now;
 
             if (idTipoDocumento == 1 || idTipoDocumento == 2)
-                new ProyectoTesisCcstModel().UpdateEstadoTesis(proyecto.IdTesis, 4);
+            {
+                turno.IdDocto = proyecto.IdTesis;
+                new ProyectoTesisCcstModel().UpdateEstadoTesis(proyecto.IdTesis, 5);
+            }
+            else if (idTipoDocumento == 3)
+            {
+                turno.IdDocto = ejecutoria.IdEjecutoria;
+                new EjecutoriasModel().UpdateEstadoEjecutoria(ejecutoria.IdEjecutoria, 5);
+            }
+            else if (idTipoDocumento == 4)
+            {
+                //turno.IdDocto = votos.IdVoto
+                //Actualizar estado del voto
+            }
 
             new TurnoModel().SetNewTurno(turno);
             this.Close();

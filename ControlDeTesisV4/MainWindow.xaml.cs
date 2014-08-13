@@ -119,5 +119,11 @@ namespace ControlDeTesisV4
         {
 
         }
+
+        private void BtnNuevoVotoProv_Click(object sender, RoutedEventArgs e)
+        {
+            DetalleVotos votos = new DetalleVotos();
+            votos.ShowDialog();
+        }
     }
 }
