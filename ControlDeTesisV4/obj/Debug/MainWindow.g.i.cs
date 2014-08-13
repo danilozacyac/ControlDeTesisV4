@@ -134,7 +134,15 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 85 "..\..\MainWindow.xaml"
+        #line 80 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal Telerik.Windows.Controls.RadRibbonButton BtnVotoPublica;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 94 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadRibbonButton BtnPorTurnar;
         
@@ -142,7 +150,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 95 "..\..\MainWindow.xaml"
+        #line 102 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadRibbonButton TurnaTesis;
         
@@ -150,7 +158,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 100 "..\..\MainWindow.xaml"
+        #line 110 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadRibbonButton ReturnaTesis;
         
@@ -158,7 +166,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 104 "..\..\MainWindow.xaml"
+        #line 114 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadRibbonButton BtnListaTurnadas;
         
@@ -166,7 +174,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 118 "..\..\MainWindow.xaml"
+        #line 128 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadRibbonRadioButton BtnCargas;
         
@@ -174,7 +182,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 127 "..\..\MainWindow.xaml"
+        #line 137 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadDocking Docking;
         
@@ -182,7 +190,7 @@ namespace ControlDeTesisV4 {
         #line hidden
         
         
-        #line 134 "..\..\MainWindow.xaml"
+        #line 144 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadPaneGroup PanelCentral;
         
@@ -291,48 +299,51 @@ namespace ControlDeTesisV4 {
             #line hidden
             return;
             case 11:
-            this.BtnPorTurnar = ((Telerik.Windows.Controls.RadRibbonButton)(target));
+            this.BtnVotoPublica = ((Telerik.Windows.Controls.RadRibbonButton)(target));
             return;
             case 12:
+            this.BtnPorTurnar = ((Telerik.Windows.Controls.RadRibbonButton)(target));
+            return;
+            case 13:
             this.TurnaTesis = ((Telerik.Windows.Controls.RadRibbonButton)(target));
             
-            #line 96 "..\..\MainWindow.xaml"
+            #line 103 "..\..\MainWindow.xaml"
             this.TurnaTesis.Click += new System.Windows.RoutedEventHandler(this.TurnaTesis_Click);
             
             #line default
             #line hidden
             return;
-            case 13:
+            case 14:
             this.ReturnaTesis = ((Telerik.Windows.Controls.RadRibbonButton)(target));
             return;
-            case 14:
+            case 15:
             this.BtnListaTurnadas = ((Telerik.Windows.Controls.RadRibbonButton)(target));
             
-            #line 105 "..\..\MainWindow.xaml"
+            #line 115 "..\..\MainWindow.xaml"
             this.BtnListaTurnadas.Click += new System.Windows.RoutedEventHandler(this.BtnListaTurnadas_Click);
             
             #line default
             #line hidden
             return;
-            case 15:
+            case 16:
             this.BtnCargas = ((Telerik.Windows.Controls.RadRibbonRadioButton)(target));
             
-            #line 119 "..\..\MainWindow.xaml"
+            #line 129 "..\..\MainWindow.xaml"
             this.BtnCargas.Click += new System.Windows.RoutedEventHandler(this.BtnCargas_Click);
             
             #line default
             #line hidden
             return;
-            case 16:
+            case 17:
             this.Docking = ((Telerik.Windows.Controls.RadDocking)(target));
             
-            #line 131 "..\..\MainWindow.xaml"
+            #line 141 "..\..\MainWindow.xaml"
             this.Docking.PreviewClose += new System.EventHandler<Telerik.Windows.Controls.Docking.StateChangeEventArgs>(this.Docking_PreviewClose);
             
             #line default
             #line hidden
             return;
-            case 17:
+            case 18:
             this.PanelCentral = ((Telerik.Windows.Controls.RadPaneGroup)(target));
             return;
             }

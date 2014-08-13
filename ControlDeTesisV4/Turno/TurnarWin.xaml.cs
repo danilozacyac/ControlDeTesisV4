@@ -56,11 +56,26 @@ namespace ControlDeTesisV4.Turno
             {
                 numPaginas += proyecto.NumPaginas;
                 numPaginas += (proyecto.Ejecutoria != null) ? proyecto.Ejecutoria.CcNumFojas : 0;
+                if (proyecto.Ejecutoria != null)
+                {
+                    numPaginas += proyecto.Ejecutoria.CcNumFojas;
+
+                    if (proyecto.Ejecutoria.Votos != null)
+                    {
+                        foreach (Votos voto in proyecto.Ejecutoria.Votos)
+                            numPaginas += voto.CcNumFojas;
+                    }
+                }
+                
 
             }
             else if (idTipoDocumento == 3)
             {
                 numPaginas += ejecutoria.CcNumFojas;
+            }
+            else if (idTipoDocumento == 4)
+            {
+                numPaginas += votos.ProvNumFojas;
             }
             
             

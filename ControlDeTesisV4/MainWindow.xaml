@@ -77,6 +77,15 @@
                         </StackPanel>
                     </telerik:RadRibbonButton>
 
+                    <telerik:RadRibbonButton x:Name="BtnVotoPublica"
+                                             LargeImage="Resources/juez256.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="       Voto" />
+                            <TextBlock Text="para publicar" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+
                 </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Turno">
@@ -90,13 +99,14 @@
                             <TextBlock Text="por turnar" />
                         </StackPanel>
                     </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="TurnaTesis"
+                                             Click="TurnaTesis_Click"
+                                             Content="Turnar tesis"
+                                             LargeImage="Resources/tesisTurno.png"
+                                             Size="Large" />
 
                     <StackPanel Orientation="Vertical">
-                        <telerik:RadRibbonButton x:Name="TurnaTesis"
-                                                 Click="TurnaTesis_Click"
-                                                 Content="Turnar tesis"
-                                                 LargeImage="Resources/tesisTurno.png"
-                                                 Size="Medium" />
+
                         <telerik:RadRibbonButton x:Name="ReturnaTesis"
                                                  Content="Returnar tesis"
                                                  LargeImage="Resources/reload.png"

@@ -30,56 +30,9 @@ namespace ControlDeTesisV4.Dao
         string vpFilePathConten;
         int vpNumFojas;
         ObservableCollection<Observaciones> observaciones;
+        ObservableCollection<Votos> votos;
         PrecedentesTesis precedente;
         int estadoEjecutoria;
-
-        public int ForObservaciones
-        {
-            get
-            {
-                return this.forObservaciones;
-            }
-            set
-            {
-                this.forObservaciones = value;
-            }
-        }
-
-        public string OficioRecepcion
-        {
-            get
-            {
-                return this.oficioRecepcion;
-            }
-            set
-            {
-                this.oficioRecepcion = value;
-            }
-        }
-
-        public PrecedentesTesis Precedente
-        {
-            get
-            {
-                return this.precedente;
-            }
-            set
-            {
-                this.precedente = value;
-            }
-        }
-
-        public int EstadoEjecutoria
-        {
-            get
-            {
-                return this.estadoEjecutoria;
-            }
-            set
-            {
-                this.estadoEjecutoria = value;
-            }
-        }
 
         public int IdEjecutoria
         {
@@ -102,6 +55,30 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.idTesis = value;
+            }
+        }
+
+        public int ForObservaciones
+        {
+            get
+            {
+                return this.forObservaciones;
+            }
+            set
+            {
+                this.forObservaciones = value;
+            }
+        }
+
+        public string OficioRecepcion
+        {
+            get
+            {
+                return this.oficioRecepcion;
+            }
+            set
+            {
+                this.oficioRecepcion = value;
             }
         }
 
@@ -330,6 +307,42 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.observaciones = value;
+            }
+        }
+
+        public ObservableCollection<Votos> Votos
+        {
+            get
+            {
+                return this.votos;
+            }
+            set
+            {
+                this.votos = value;
+            }
+        }
+
+        public PrecedentesTesis Precedente
+        {
+            get
+            {
+                return this.precedente;
+            }
+            set
+            {
+                this.precedente = value;
+            }
+        }
+
+        public int EstadoEjecutoria
+        {
+            get
+            {
+                return this.estadoEjecutoria;
+            }
+            set
+            {
+                this.estadoEjecutoria = value;
             }
         }
     }
