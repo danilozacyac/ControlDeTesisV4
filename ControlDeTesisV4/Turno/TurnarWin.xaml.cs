@@ -14,6 +14,7 @@ namespace ControlDeTesisV4.Turno
     {
         private ProyectosTesis proyecto;
         private Ejecutorias ejecutoria;
+        private Votos votos;
         private int idTipoDocumento;
         private int numPaginas = 0;
 
@@ -31,6 +32,14 @@ namespace ControlDeTesisV4.Turno
             this.ejecutoria = ejecutoria;
             this.idTipoDocumento = 3;
             this.Header = "Turnar ejecutoria";
+        }
+
+        public TurnarWin(Votos votos)
+        {
+            InitializeComponent();
+            this.votos = votos;
+            this.idTipoDocumento = 4;
+            this.Header = "Turnar Voto";
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -71,17 +80,17 @@ namespace ControlDeTesisV4.Turno
             if (idTipoDocumento == 1 || idTipoDocumento == 2)
             {
                 turno.IdDocto = proyecto.IdTesis;
-                new ProyectoTesisCcstModel().UpdateEstadoTesis(proyecto.IdTesis, 5);
+                new AuxiliarModel().UpdateEstadoDocumento(proyecto.IdTesis, 5,"ProyectosTesis","IdTesis","EstadoTesis");
             }
             else if (idTipoDocumento == 3)
             {
                 turno.IdDocto = ejecutoria.IdEjecutoria;
-                new EjecutoriasModel().UpdateEstadoEjecutoria(ejecutoria.IdEjecutoria, 5);
+                new AuxiliarModel().UpdateEstadoDocumento(ejecutoria.IdEjecutoria, 5, "Ejecutorias", "IdEjecutoria", "EstadoEjecutoria");
             }
             else if (idTipoDocumento == 4)
             {
-                //turno.IdDocto = votos.IdVoto
-                //Actualizar estado del voto
+                turno.IdDocto = votos.IdVoto;
+                new AuxiliarModel().UpdateEstadoDocumento(votos.IdVoto, 5, "Votos", "IdVoto", "EstadoVoto");
             }
 
             new TurnoModel().SetNewTurno(turno);

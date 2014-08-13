@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Dao\AccesoUsuarios.cs" />
+    <Compile Include="Dao\AuxiliarModel.cs" />
     <Compile Include="Dao\Votos.cs" />
     <Compile Include="EjecutoriasVotos\CapturaEjecutoria.xaml.cs">
       <DependentUpon>CapturaEjecutoria.xaml</DependentUpon>
@@ -102,6 +103,7 @@
     </Compile>
     <Compile Include="Models\AccesoUsuariosModel.cs" />
     <Compile Include="Models\EjecutoriasModel.cs" />
+    <Compile Include="Models\VotosModel.cs" />
     <Compile Include="ProyectosCcstFolder\CapturaAprobacionCcst.xaml.cs">
       <DependentUpon>CapturaAprobacionCcst.xaml</DependentUpon>
     </Compile>

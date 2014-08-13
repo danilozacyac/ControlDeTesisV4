@@ -38,7 +38,7 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                proyectoSalas.IdProyecto = this.GetLastId("Proyectos", "IdProyecto");
+                proyectoSalas.IdProyecto = AuxiliarModel.GetLastId("Proyectos", "IdProyecto");
 
                 string sqlCadena = "SELECT * FROM Proyectos WHERE IdProyecto = 0";
 
@@ -162,7 +162,7 @@ namespace ControlDeTesisV4.Models
             {
                 foreach (ProyectosTesis tesis in listaProyectos)
                 {
-                    tesis.IdTesis = this.GetLastId("ProyectosTesis", "IdTesis");
+                    tesis.IdTesis = AuxiliarModel.GetLastId("ProyectosTesis", "IdTesis");
 
                     string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdProyecto = 0";
 
@@ -623,53 +623,6 @@ namespace ControlDeTesisV4.Models
 
         #endregion
 
-        public int GetLastId(string tabla, string columna)
-        {
-            OleDbConnection connection = new OleDbConnection(connectionString);
-            OleDbCommand cmd;
-            OleDbDataReader reader = null;
-
-            int id = 0;
-
-            try
-            {
-                connection.Open();
-
-                string sqlCadena = "SELECT MAX(" + columna + " ) AS ID FROM " + tabla;
-
-                cmd = new OleDbCommand(sqlCadena, connection);
-                //cmd.Parameters.AddWithValue("@columna", columna);
-                //cmd.Parameters.AddWithValue("@tabla", tabla);
-                reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    id = reader["ID"] as int? ?? -1;
-                }
-            }
-            catch (OleDbException ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            catch (Exception ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            finally
-            {
-                reader.Close();
-                connection.Close();
-            }
-
-            return id + 1;
-        }
+        
     }
 }

@@ -19,7 +19,6 @@ namespace ControlDeTesisV4.Models
 
 
 
-        int GetLastId(string tabla, string columna);
       
 
     }

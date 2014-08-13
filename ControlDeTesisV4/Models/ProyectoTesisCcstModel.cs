@@ -34,7 +34,7 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                tesisCcst.IdProyecto = this.GetLastId("ProyectosCCST", "IdProyecto");
+                tesisCcst.IdProyecto = AuxiliarModel.GetLastId("ProyectosCCST", "IdProyecto");
                     
                 string sqlCadena = "SELECT * FROM ProyectosCcst WHERE IdProyecto = 0";
 
@@ -123,7 +123,7 @@ namespace ControlDeTesisV4.Models
             {
                 foreach (ProyectosTesis tesis in listaProyectos)
                 {
-                    tesis.IdTesis = this.GetLastId("ProyectosTesis", "IdTesis");
+                    tesis.IdTesis = AuxiliarModel.GetLastId("ProyectosTesis", "IdTesis");
 
                     string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdProyecto = 0";
 
@@ -342,7 +342,7 @@ namespace ControlDeTesisV4.Models
             try
             {
                 string sqlCadena = "SELECT * FROM PrecedentesTesis WHERE IdPrecedente = 0";
-                precedente.IdPrecedente = this.GetLastId("PrecedentesTesis", "IdPrecedente");
+                precedente.IdPrecedente = AuxiliarModel.GetLastId("PrecedentesTesis", "IdPrecedente");
 
                 dataAdapter = new OleDbDataAdapter();
                 dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
@@ -416,13 +416,13 @@ namespace ControlDeTesisV4.Models
         }
 
         /// <summary>
-        /// Actualiza la información de las tesis en proceso de publicación, los estados en los que se puede encontrar la tesis son
-        /// los siguientes:
+        /// Actualiza el estado de la tesis dentro del proceso de publicacion
         /// 1. Recepcion
         /// 2. ENvio de Observaciones o envío del proyecto
         /// 3. Aprobación
-        /// 4. Turno
-        /// 5. Publicación
+        /// 4. Espera de Turno
+        /// 5. Turno
+        /// 6. Publicación
         /// </summary>
         /// <param name="tesis"></param>
         public void UpdateProyectoTesis(ProyectosTesis tesis)
@@ -605,124 +605,11 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        /// <summary>
-        /// Actualiza el estado de la tesis dentro del proceso de publicacion
-        /// 1. Recepcion
-        /// 2. ENvio de Observaciones o envío del proyecto
-        /// 3. Aprobación
-        /// 4. Espera de Turno
-        /// 5. Turno
-        /// 6. Publicación
-        /// </summary>
-        /// <param name="idTesis"></param>
-        /// <param name="estadoTesis"></param>
-        public void UpdateEstadoTesis(int idTesis, int estadoTesis)
-        {
-            OleDbConnection connection = new OleDbConnection(connectionString);
-
-            string sSql;
-            OleDbDataAdapter dataAdapter;
-
-            DataSet dataSet = new DataSet();
-            DataRow dr;
-
-            try
-            {
-                string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdTesis = " + idTesis;
-
-                dataAdapter = new OleDbDataAdapter();
-                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
-
-                dataAdapter.Fill(dataSet, "ProyectosTesis");
-
-                dr = dataSet.Tables["ProyectosTesis"].Rows[0];
-                dr.BeginEdit();
-
-                dr["EstadoTesis"] = estadoTesis;
-
-                dr.EndEdit();
-
-                dataAdapter.UpdateCommand = connection.CreateCommand();
-
-                sSql = "UPDATE ProyectosTesis SET  EstadoTesis = @EstadoTesis " +
-                       " WHERE IdTesis = @IdTesis";
-                dataAdapter.UpdateCommand.CommandText = sSql;
-
-                dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
-                dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
-
-                dataAdapter.Update(dataSet, "ProyectosTesis");
-                dataSet.Dispose();
-                dataAdapter.Dispose();
-            }
-            catch (OleDbException ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            catch (Exception ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+        
 
         #endregion
 
 
-        public int GetLastId(string tabla, string columna)
-        {
-            OleDbConnection connection = new OleDbConnection(connectionString);
-            OleDbCommand cmd;
-            OleDbDataReader reader = null;
-
-            int id = 0;
-
-            try
-            {
-                connection.Open();
-
-                string sqlCadena = "SELECT MAX(" + columna + ") AS ID FROM " + tabla;// +tabla;
-
-                cmd = new OleDbCommand(sqlCadena, connection);
-                reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    id = reader["ID"] as int? ?? -1;
-                }
-            }
-            catch (OleDbException ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            catch (Exception ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            finally
-            {
-                reader.Close();
-                connection.Close();
-            }
-
-            return id + 1;
-        }
+        
     }
 }
