@@ -6,6 +6,7 @@ using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.ProyectosCcstFolder;
 using ControlDeTesisV4.ProyectosSalasFolder;
 using ControlDeTesisV4.Turno;
+using ControlDeTesisV4.UtilitiesFolder;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
@@ -98,7 +99,7 @@ namespace ControlDeTesisV4
         {
             RadPane pane = new RadPane();
             pane.Header = "Tesis turnadas";
-            pane.Content = new ListaTurnadas();
+            pane.Content = new ListaTurnadas(5);
 
             PanelCentral.AddItem(pane, DockPosition.Center);
         }
@@ -117,13 +118,23 @@ namespace ControlDeTesisV4
 
         private void TurnaTesis_Click(object sender, RoutedEventArgs e)
         {
-
+            TurnarWin turnar = new TurnarWin(Constants.TesisPorTurnar, Constants.TesisPorTurnar.Tatj + 1);
+            turnar.ShowDialog();
         }
 
         private void BtnNuevoVotoProv_Click(object sender, RoutedEventArgs e)
         {
             DetalleVotos votos = new DetalleVotos();
             votos.ShowDialog();
+        }
+
+        private void BtnPorTurnar_Click(object sender, RoutedEventArgs e)
+        {
+            RadPane pane = new RadPane();
+            pane.Header = "Tesis turnadas";
+            pane.Content = new ListaTurnadas(4);
+
+            PanelCentral.AddItem(pane, DockPosition.Center);
         }
     }
 }

@@ -277,6 +277,12 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+
+        /// <summary>
+        /// Devueleve el proyecto de tesis completo de la tesis seleccionada
+        /// </summary>
+        /// <param name="idTesis"></param>
+        /// <returns></returns>
         public ProyectosTesis GetProyectoTesis(int idTesis)
         {
             ProyectosTesis tesis = new ProyectosTesis();

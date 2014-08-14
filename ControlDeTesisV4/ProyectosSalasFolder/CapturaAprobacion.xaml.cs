@@ -103,7 +103,6 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             comparer.Compare();
 
             TxtVistaPrevia.Document = DocumentComparer.LoadDocumentRevision(xmlResult, 2);
-
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -126,6 +125,15 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
             model.UpdateProyectoTesis(tesis);
+
+            MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (MessageBoxResult.Yes == qResult)
+            {
+                tesis.EstadoTesis = 4;
+                new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            }
+
             this.Close();
         }
 
@@ -133,14 +141,13 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             BtnGuardar_Click(null, null);
 
-           // this.Hide();
+            // this.Hide();
             int tipoDocto = (tesis.Tatj == 0) ? 1 : 2;
 
             TurnarWin turno = new TurnarWin(tesis, tipoDocto);
             turno.ShowDialog();
             this.Close();
         }
-
 
         private void LoadRichTextBoxContent(RichTextBox rtb, string contentString)
         {

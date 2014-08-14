@@ -4,7 +4,8 @@
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="843"
                    Height="577"
-                   Background="LightGoldenrodYellow"
+                   WindowStartupLocation="CenterScreen"
+                   ResizeMode="NoResize"
                    Header="Datos de la tesis aprobada"
                    Loaded="Window_Loaded">
     <Grid>
@@ -99,18 +100,10 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Vista previa:" />
-        <Button x:Name="BtnGuardarTurn"
-                Width="116"
-                Height="38"
-                Margin="693,499,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="BtnGuardarTurn_Click"
-                Content="Guardar y turnar" />
-        <Button x:Name="BtnGuardar"
+        <telerik:RadButton x:Name="BtnGuardar"
                 Width="97"
                 Height="38"
-                Margin="576,499,0,0"
+                Margin="712,497,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="BtnGuardar_Click"

@@ -12,6 +12,7 @@ namespace ControlDeTesisV4.Singletons
         private static ObservableCollection<OtrosDatos> tipoJurisprudencia;
         private static ObservableCollection<OtrosDatos> areasEmisoras;
         private static ObservableCollection<OtrosDatos> instancias;
+        private static ObservableCollection<OtrosDatos> tipoVotos;
 
         private OtrosDatosSingleton()
         {
@@ -58,6 +59,17 @@ namespace ControlDeTesisV4.Singletons
                     instancias = new OtrosDatosModel().GetInstancias();
 
                 return instancias;
+            }
+        }
+
+        public static ObservableCollection<OtrosDatos> TipoVotos
+        {
+            get
+            {
+                if (tipoVotos == null)
+                    tipoVotos = new OtrosDatosModel().GetTipoDeVotos();
+
+                return tipoVotos;
             }
         }
     }

@@ -38,6 +38,10 @@
                                             Header=""
                                             IsReadOnly="True"
                                             IsVisible="False" />
+                <telerik:GridViewDataColumn Width="100"
+                                            DataMemberBinding="{Binding ClaveTesis}"
+                                            Header=""
+                                            IsReadOnly="True" />
 
                 <telerik:GridViewDataColumn Width="100"
                                             DataMemberBinding="{Binding IdAbogado,

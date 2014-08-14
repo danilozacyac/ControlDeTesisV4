@@ -128,21 +128,19 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
             ProyectoTesisCcstModel model = new ProyectoTesisCcstModel();
             model.UpdateProyectoTesis(tesis);
+
+            MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (MessageBoxResult.Yes == qResult)
+            {
+                tesis.EstadoTesis = 4;
+                new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            }
+
             this.Close();
         }
 
-        private void BtnGuardarTurn_Click(object sender, RoutedEventArgs e)
-        {
-            BtnGuardar_Click(null, null);
-
-           // this.Hide();
-            int tipoDocto = (tesis.Tatj == 0) ? 1 : 2;
-            
-            TurnarWin turno = new TurnarWin(tesis, tipoDocto);
-            turno.ShowDialog();
-            
-            this.Close();
-        }
+        
 
         private void LoadRichTextBoxContent(RichTextBox rtb, string contentString)
         {

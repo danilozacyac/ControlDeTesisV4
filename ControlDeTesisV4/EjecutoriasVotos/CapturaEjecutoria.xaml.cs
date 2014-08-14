@@ -9,6 +9,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
+using ControlDeTesisV4.Turno;
 using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
@@ -116,7 +117,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            
+            ejecutoria.EstadoEjecutoria = estadoEjecutoria;
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
             ejecutoria.FRecepcionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FRecepcion));
@@ -124,6 +125,10 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             ejecutoria.FDevolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FDevolucion));
 
             new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria);
+
+            TurnarWin turnar = new TurnarWin(ejecutoria);
+            turnar.ShowDialog();
+
 
             this.Close();
         }
@@ -145,16 +150,24 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void RadObsNo_Checked(object sender, RoutedEventArgs e)
         {
-            ObsPanel.Visibility = Visibility.Collapsed;
-            TxtProvisional.Text = String.Empty;
-            DtpEnvioObserv.SelectedDate = null;
-            DtpFDevolucion.SelectedDate = null;
-            RadCompleta.IsChecked = false;
-            RadParcial.IsChecked = false;
-            RadNoAcept.IsChecked = false;
-            //this.Height = originalWindowHeight;
+            MessageBoxResult result = MessageBox.Show("Al seleccionar esta opción eliminará todas las observaciones asociadas a este documento. ¿Desea continuar?",
+                "ATENCIÓN:", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            //Eliminar todas las observaciones que esten asociadas, enviar mensaje de confimarción
+            if (result == MessageBoxResult.Yes)
+            {
+                ObsPanel.Visibility = Visibility.Collapsed;
+                TxtProvisional.Text = String.Empty;
+                DtpEnvioObserv.SelectedDate = null;
+                DtpFDevolucion.SelectedDate = null;
+                RadCompleta.IsChecked = false;
+                RadParcial.IsChecked = false;
+                RadNoAcept.IsChecked = false;
+                ejecutoria.Observaciones = new ObservableCollection<Observaciones>();
+
+                //Eliminar todas las observaciones que esten asociadas, enviar mensaje de confimarción
+
+                //this.Height = originalWindowHeight;
+            }
         }
 
         private void BtnLoadProvisional_Click(object sender, RoutedEventArgs e)
@@ -165,6 +178,17 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         private void TxtProvisional_TextChanged(object sender, TextChangedEventArgs e)
         {
           
+        }
+
+        private void ChkVotos_Checked(object sender, RoutedEventArgs e)
+        {
+            BtnVotos.Visibility = Visibility.Visible;
+        }
+
+        private void ChkVotos_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            BtnVotos.Visibility = Visibility.Collapsed;
         }
 
     }

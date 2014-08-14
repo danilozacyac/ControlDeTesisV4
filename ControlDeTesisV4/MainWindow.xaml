@@ -93,7 +93,7 @@
 
                     <telerik:RadRibbonButton x:Name="BtnPorTurnar"
                                              LargeImage="Resources/wait.png"
-                                             Size="Large">
+                                             Size="Large" Click="BtnPorTurnar_Click">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="    Tesis" />
                             <TextBlock Text="por turnar" />

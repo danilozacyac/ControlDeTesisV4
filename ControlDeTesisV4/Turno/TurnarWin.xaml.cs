@@ -77,8 +77,8 @@ namespace ControlDeTesisV4.Turno
             {
                 numPaginas += votos.ProvNumFojas;
             }
-            
-            
+
+            TxtNumPaginas.Text = numPaginas.ToString();
 
         }
 

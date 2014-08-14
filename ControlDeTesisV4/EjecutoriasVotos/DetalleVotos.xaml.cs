@@ -35,6 +35,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         {
             CbxMinistros.DataContext = FuncionariosSingleton.Ponentes;
             LstMinistros.DataContext = FuncionariosSingleton.Ponentes;
+            CbxTipoVoto.DataContext = OtrosDatosSingleton.TipoVotos;
         }
 
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)

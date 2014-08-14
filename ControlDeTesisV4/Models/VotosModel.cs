@@ -128,6 +128,8 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Update(dataSet, "Votos");
                 dataSet.Dispose();
                 dataAdapter.Dispose();
+
+                this.SetPrecedentes(voto.Precedente, voto.IdVoto);
             }
             catch (OleDbException ex)
             {
@@ -232,7 +234,7 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        public void SetPrecedentes(PrecedentesTesis precedente, int idTesis)
+        public void SetPrecedentes(PrecedentesTesis precedente, int idVoto)
         {
             OleDbConnection connection = new OleDbConnection(connectionString);
 
@@ -255,7 +257,7 @@ namespace ControlDeTesisV4.Models
 
                 dr = dataSet.Tables["PrecedentesVotos"].NewRow();
                 dr["IdPrecedente"] = precedente.IdPrecedente;
-                dr["IdVoto"] = idTesis;
+                dr["IdVoto"] = idVoto;
                 dr["IdTipoAsunto"] = precedente.TipoAsunto;
                 dr["NumAsunto"] = precedente.NumAsunto;
                 dr["YearAsunto"] = precedente.YearAsunto;

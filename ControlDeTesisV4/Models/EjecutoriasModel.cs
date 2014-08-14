@@ -43,7 +43,7 @@ namespace ControlDeTesisV4.Models
                 dr["ProvFilePathOrigen"] = ejecutoria.ProvFilePathOrigen;
                 dr["ProvFilePathConten"] = ejecutoria.ProvFilePathConten;
                 dr["ProvNumFojas"] = ejecutoria.ProvNumFojas;
-                dr["Obs"] = (ejecutoria.Observaciones.Count > 0) ? 1 : 0;
+                dr["Obs"] = (ejecutoria.Observaciones != null && ejecutoria.Observaciones.Count > 0) ? 1 : 0;
                 dr["ObsFilePathOrigen"] = ejecutoria.ObsFilePathOrigen;
                 dr["ObsFilePathConten"] = ejecutoria.ObsFilePathConten;
 
@@ -125,6 +125,13 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Update(dataSet, "Ejecutorias");
                 dataSet.Dispose();
                 dataAdapter.Dispose();
+
+                this.SetPrecedentes(ejecutoria.Precedente, ejecutoria.IdEjecutoria);
+
+                if (ejecutoria.Observaciones != null)
+                    this.SetNewObservacion(ejecutoria.Observaciones, ejecutoria.IdEjecutoria);
+
+                
             }
             catch (OleDbException ex)
             {
@@ -866,6 +873,21 @@ namespace ControlDeTesisV4.Models
         }
 
 
+        /// <summary>
+        /// Elimina todas las observaciones asociadas al documento seleccionado
+        /// </summary>
+        /// <param name="observaciones">Colección de observaciones</param>
+        public void DeleteObservaciones(ObservableCollection<Observaciones> observaciones)
+        {
+            foreach (Observaciones observ in observaciones)
+                this.DeleteObservaciones(observ);
+        }
+
+        /// <summary>
+        /// Elimina la observación seleccionada
+        /// </summary>
+        /// <param name="observacion">Observación que se va a eliminar</param>
+        /// <returns></returns>
         public int DeleteObservaciones(Observaciones observacion)
         {
 

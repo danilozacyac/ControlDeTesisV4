@@ -13,7 +13,7 @@ namespace ControlDeTesisV4.Models
     {
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public ObservableCollection<TesisTurnadaPreview> GetPreviewTesisTurnadas()
+        public ObservableCollection<TesisTurnadaPreview> GetPreviewTesisTurnadas(int estadoTesis)
         {
             ObservableCollection<TesisTurnadaPreview> tesisTurnadas = new ObservableCollection<TesisTurnadaPreview>();
 
@@ -23,13 +23,14 @@ namespace ControlDeTesisV4.Models
 
             String sqlCadena = "SELECT T.IdDocto, T.IdAbogado, PT.ClaveTesis, PT.Rubro, PrT.IdTipoAsunto, PrT.NumAsunto, PrT.YearAsunto, PT.IdInstancia, PrT.FResolucion, T.FTurno, T.FSugerida, T.FEntrega, PT.EstadoTesis,T.EnTiempo,T.DiasAtraso " +
                                " FROM (PrecedentesTesis PrT INNER JOIN ProyectosTesis PT ON PrT.IdTesis = PT.IdTesis) INNER JOIN Turno T ON PT.IdTesis = T.IdDocto " +
-                               " WHERE (((PT.EstadoTesis)>=4)); ";
+                               " WHERE (((PT.EstadoTesis) = @EstadoTesis)); ";
 
             try
             {
                 oleConne.Open();
 
                 cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@EstadoTesis", estadoTesis);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)

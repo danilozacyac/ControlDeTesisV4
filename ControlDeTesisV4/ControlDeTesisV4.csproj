@@ -141,9 +141,6 @@
     </Compile>
     <Compile Include="Turno\CargaTrabajo.cs" />
     <Compile Include="Turno\CargaTrabajoModel.cs" />
-    <Compile Include="Turno\ListadoTesisTurnadas.xaml.cs">
-      <DependentUpon>ListadoTesisTurnadas.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Turno\ListaTurnadas.xaml.cs">
       <DependentUpon>ListaTurnadas.xaml</DependentUpon>
     </Compile>
@@ -266,10 +263,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Turno\CargaPorabogado.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Turno\ListadoTesisTurnadas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

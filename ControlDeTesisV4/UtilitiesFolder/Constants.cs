@@ -18,6 +18,7 @@ namespace ControlDeTesisV4.UtilitiesFolder
         #region Variables UserControls
 
         public static ProyectosTesis TesisPorTurnar = null;
+        public static ProyectosTesis TesisTurnada = null;
 
         #endregion
 

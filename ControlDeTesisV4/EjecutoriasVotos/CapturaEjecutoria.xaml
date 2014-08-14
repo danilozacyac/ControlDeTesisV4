@@ -5,7 +5,9 @@
                    Width="800"
                    Height="Auto"
                    Header="CapturaEjecutoria"
-                   Loaded="RadWindow_Loaded">
+                   Loaded="RadWindow_Loaded"
+                   ResizeMode="NoResize"
+                   WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -304,7 +306,9 @@
                   Margin="10,10,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  Content="  ¿ Votos ?" />
+                  Checked="ChkVotos_Checked"
+                  Content="  ¿ Votos ?"
+                  Unchecked="ChkVotos_Unchecked" />
         <Button x:Name="BtnVotos"
                 Grid.Row="4"
                 Width="88"
@@ -312,6 +316,7 @@
                 Margin="108,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Content="Votos" />
+                Content="Votos"
+                Visibility="Collapsed" />
     </Grid>
 </telerik:RadWindow>
