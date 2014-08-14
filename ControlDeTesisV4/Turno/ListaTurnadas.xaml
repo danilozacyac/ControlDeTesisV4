@@ -14,6 +14,7 @@
         <converter:TipoTesisConverter x:Key="TipoTesis" />
         <converter:SemaforoConverter x:Key="SemaforoK" />
         <converter:InstanciaConverter x:Key="InstanciaK" />
+        <converter:EstadoTesisConverter x:Key="EstadoK" />
     </UserControl.Resources>
 
     <Grid>
@@ -106,7 +107,7 @@
 
             <telerik:RadGridView.RowStyle>
                 <Style TargetType="telerik:GridViewRow">
-                    <Setter Property="Background" Value="{Binding Tatj, Converter={StaticResource TipoTesis}}" />
+                    <Setter Property="Background" Value="{Binding Idabogado, Converter={StaticResource EstadoK}}" />
                 </Style>
             </telerik:RadGridView.RowStyle>
 

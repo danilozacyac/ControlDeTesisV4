@@ -83,7 +83,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         private void BtnLoadPath_Click(object sender, RoutedEventArgs e)
         {
-            TxtOficioEnvioPath.Text = DocumentConversion.GetFilePath();
+            TxtOficioPathOrigen.Text = DocumentConversion.GetFilePath();
         }
 
         private void TxtProyFilePath_TextChanged(object sender, TextChangedEventArgs e)

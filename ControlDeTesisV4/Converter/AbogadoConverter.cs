@@ -12,9 +12,13 @@ namespace ControlDeTesisV4.Converter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value != null)
+
+            if (value != null )
             {
                 int idAbogado = (Int32)value;
+
+                if (idAbogado == 0)
+                    return " Sin turnar";
 
                 return (from n in FuncionariosSingleton.AbogResp
                         where n.IdFuncionario == idAbogado

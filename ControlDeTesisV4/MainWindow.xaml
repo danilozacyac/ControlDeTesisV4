@@ -92,8 +92,9 @@
                 <telerik:RadRibbonGroup Header="Tesis">
 
                     <telerik:RadRibbonButton x:Name="BtnPorTurnar"
+                                             Click="BtnPorTurnar_Click"
                                              LargeImage="Resources/wait.png"
-                                             Size="Large" Click="BtnPorTurnar_Click">
+                                             Size="Large">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="    Tesis" />
                             <TextBlock Text="por turnar" />
@@ -120,7 +121,16 @@
 
 
                 </telerik:RadRibbonGroup>
-                <telerik:RadRibbonGroup Header="Ejecutorias" />
+                <telerik:RadRibbonGroup Header="Ejecutorias" >
+                    <telerik:RadRibbonButton x:Name="BtnListaEjecutoria"
+                                             LargeImage="Resources/ejecutoria.png"
+                                             Size="Large" Click="BtnListaEjecutoria_Click">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Listado" />
+                            <TextBlock Text="de ejecutorias" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                </telerik:RadRibbonGroup>
                 <telerik:RadRibbonGroup Header="Votos" />
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Estadísticas">
@@ -144,13 +154,13 @@
                     <telerik:RadPaneGroup x:Name="PanelCentral">
                         <telerik:RadPane Header="Proyectos Observaciones">
                             <Grid>
-                                <!--  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                                <!--<ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
 
                             </Grid>
                         </telerik:RadPane>
                         <telerik:RadPane Header="Proyectos de la CCST">
                             <Grid>
-                                <!--  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                                <!--<ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
                             </Grid>
                         </telerik:RadPane>
 

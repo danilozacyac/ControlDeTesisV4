@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
+using ControlDeTesisV4.UtilitiesFolder;
 using ControlDeTesisV4.VisualComparition;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
@@ -20,7 +21,9 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            GListado.DataContext = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
+            Constants.ProyectosSalas = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
+
+            GListado.DataContext = Constants.ProyectosSalas;
         }
 
         private void ComparaButton_Click(object sender, RoutedEventArgs e)

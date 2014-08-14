@@ -26,29 +26,22 @@ namespace ControlDeTesisV4.Turno
         public static TesisTurnadaPreview TesisTurnada;
         private int estadoTesis;
 
-        public ListaTurnadas(int estadoTesis)
+        public ListaTurnadas()
         {
             InitializeComponent();
-            this.estadoTesis = estadoTesis;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            GListadoTurno.DataContext = new TesisTurnadasModel().GetPreviewTesisTurnadas(estadoTesis);
+            Constants.ListadoDeTesis = new TesisTurnadasModel().GetPreviewTesisTurnadas();
+            GListadoTurno.DataContext = Constants.ListadoDeTesis;
         }
 
         private void GListadoTurno_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
-
-
             TesisTurnada = GListadoTurno.SelectedItem as TesisTurnadaPreview;
 
-            if (estadoTesis == 4)
-                Constants.TesisPorTurnar = new ProyectoTesisSalasModel().GetProyectoTesis(TesisTurnada.IdTesis);
-            else if (estadoTesis == 5)
-                Constants.TesisTurnada = new ProyectoTesisSalasModel().GetProyectoTesis(TesisTurnada.IdTesis);
-
+            Constants.TesisTurno = new ProyectoTesisSalasModel().GetProyectoTesis(TesisTurnada.IdTesis);
         }
     }
 }

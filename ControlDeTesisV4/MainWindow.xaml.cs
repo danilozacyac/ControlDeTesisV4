@@ -99,7 +99,7 @@ namespace ControlDeTesisV4
         {
             RadPane pane = new RadPane();
             pane.Header = "Tesis turnadas";
-            pane.Content = new ListaTurnadas(5);
+            pane.Content = new ListaTurnadas();
 
             PanelCentral.AddItem(pane, DockPosition.Center);
         }
@@ -118,7 +118,7 @@ namespace ControlDeTesisV4
 
         private void TurnaTesis_Click(object sender, RoutedEventArgs e)
         {
-            TurnarWin turnar = new TurnarWin(Constants.TesisPorTurnar, Constants.TesisPorTurnar.Tatj + 1);
+            TurnarWin turnar = new TurnarWin(Constants.TesisTurno, Constants.TesisTurno.Tatj + 1);
             turnar.ShowDialog();
         }
 
@@ -132,7 +132,16 @@ namespace ControlDeTesisV4
         {
             RadPane pane = new RadPane();
             pane.Header = "Tesis turnadas";
-            pane.Content = new ListaTurnadas(4);
+            pane.Content = new ListaTurnadas();
+
+            PanelCentral.AddItem(pane, DockPosition.Center);
+        }
+
+        private void BtnListaEjecutoria_Click(object sender, RoutedEventArgs e)
+        {
+            RadPane pane = new RadPane();
+            pane.Header = "Listado de ejecutorias";
+            pane.Content = new ListadoEjecutorias();
 
             PanelCentral.AddItem(pane, DockPosition.Center);
         }

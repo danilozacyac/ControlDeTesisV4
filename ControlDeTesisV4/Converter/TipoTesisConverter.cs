@@ -17,7 +17,7 @@ namespace ControlDeTesisV4.Converter
             }
             else if (date == 1)
             {
-                return new SolidColorBrush(Colors.OrangeRed);
+                return new SolidColorBrush(Colors.Orange);
             }
             else
                 return new SolidColorBrush(Colors.Blue);

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Turno;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
@@ -135,6 +136,13 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             {
                 tesis.EstadoTesis = 4;
                 new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
+
+                TesisTurnadaPreview tesisTurnada = new TesisTurnadasModel().GetPreviewTesisTurnada(tesis.IdTesis);
+
+                if (Constants.ListadoDeTesis != null)
+                    Constants.ListadoDeTesis.Add(tesisTurnada);
+
+                //Falta elimianrlo del listado de proyectos
             }
 
             this.Close();

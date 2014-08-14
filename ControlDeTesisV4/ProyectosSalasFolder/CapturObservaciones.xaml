@@ -23,7 +23,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Oficio de Envio:" />
-        <TextBox x:Name="TxtOficioEnvioPath"
+        <TextBox x:Name="TxtOficioEnvio"
                  Width="273"
                  Height="23"
                  Margin="132,85,0,0"

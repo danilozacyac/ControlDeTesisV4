@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,14 @@ namespace ControlDeTesisV4.UtilitiesFolder
 
         #region Variables UserControls
 
-        public static ProyectosTesis TesisPorTurnar = null;
-        public static ProyectosTesis TesisTurnada = null;
+        public static ProyectosTesis TesisTurno = null;
+
+
+        public static ObservableCollection<ProyectoPreview> ProyectosSalas;
+        public static ObservableCollection<ProyectoPreview> ProyectosCcst;
+
+
+        public static ObservableCollection<TesisTurnadaPreview> ListadoDeTesis;
 
         #endregion
 

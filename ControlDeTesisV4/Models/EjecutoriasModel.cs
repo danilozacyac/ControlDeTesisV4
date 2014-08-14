@@ -688,7 +688,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Ejecutorias WHERE EstadoEjecutoria < 5";
+            String sqlCadena = "SELECT * FROM Ejecutorias WHERE EstadoEjecutoria <= 5";
 
             try
             {

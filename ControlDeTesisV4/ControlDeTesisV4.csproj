@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="RichTextBoxToolBar">
       <HintPath>..\ControlDeTesis2\bin\Debug\RichTextBoxToolBar.dll</HintPath>
     </Reference>
@@ -80,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\EstadoTesisConverter.cs" />
     <Compile Include="Dao\AccesoUsuarios.cs" />
     <Compile Include="Dao\AuxiliarModel.cs" />
     <Compile Include="Dao\Votos.cs" />
@@ -97,6 +101,9 @@
     </Compile>
     <Compile Include="EjecutoriasVotos\DiceSugiere.xaml.cs">
       <DependentUpon>DiceSugiere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EjecutoriasVotos\ListadoEjecutorias.xaml.cs">
+      <DependentUpon>ListadoEjecutorias.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
@@ -133,6 +140,10 @@
     </Compile>
     <Compile Include="ProyectosSalasFolder\ListaProyectoSalas.xaml.cs">
       <DependentUpon>ListaProyectoSalas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Proyectos\TesisSalasRtfWordTable.cs" />
+    <Compile Include="Reportes\SeleccionPeriodo.xaml.cs">
+      <DependentUpon>SeleccionPeriodo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Singletons\FuncionariosSingleton.cs" />
     <Compile Include="Singletons\OtrosDatosSingleton.cs" />
@@ -176,6 +187,10 @@
     <Page Include="EjecutoriasVotos\DiceSugiere.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EjecutoriasVotos\ListadoEjecutorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -249,6 +264,10 @@
     <Page Include="ProyectosSalasFolder\ListaProyectoSalas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes\SeleccionPeriodo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Botones.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -404,9 +423,7 @@
   <ItemGroup>
     <Resource Include="Resources\login2.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reportes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\wait.png" />
   </ItemGroup>
