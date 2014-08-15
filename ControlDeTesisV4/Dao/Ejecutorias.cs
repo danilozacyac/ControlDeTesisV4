@@ -32,7 +32,20 @@ namespace ControlDeTesisV4.Dao
         ObservableCollection<Observaciones> observaciones;
         ObservableCollection<Votos> votos;
         PrecedentesTesis precedente;
+        TurnoDao turno;
         int estadoEjecutoria;
+
+        public TurnoDao Turno
+        {
+            get
+            {
+                return this.turno;
+            }
+            set
+            {
+                this.turno = value;
+            }
+        }
 
         public int IdEjecutoria
         {

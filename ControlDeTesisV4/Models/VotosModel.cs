@@ -603,35 +603,28 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-
-        /// <summary>
-        /// Devuelve el voto relacionado a una ejecutoria en particular
-        /// </summary>
-        /// <param name="idEjecutoria">Id de la ejecutoria a la que esta asociado el voto</param>
-        /// <returns></returns>
-        public Votos GetVoto(int idEjecutoria)
+        public ObservableCollection<Votos> GetVoto()
         {
-            Votos voto = null;
+            ObservableCollection<Votos> listadoVotos = new ObservableCollection<Votos>();
 
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Votos WHERE IdEjecutoria = @IdEjecutoria";
+            String sqlCadena = "SELECT * FROM Votos WHERE EstadoVoto < 5";
 
             try
             {
                 oleConne.Open();
 
                 cmd = new OleDbCommand(sqlCadena, oleConne);
-                cmd.Parameters.AddWithValue("@IdEjecutoria", idEjecutoria);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        voto = new Votos();
+                        Votos voto = new Votos();
                         voto.IdVoto = reader["IdVoto"] as int? ?? -1;
                         voto.IdEjecutoria = reader["IdEjecutoria"] as int? ?? -1;
                         voto.ProvFilePathOrigen = reader["ProvFilePathOrigen"].ToString();
@@ -655,6 +648,7 @@ namespace ControlDeTesisV4.Models
                         voto.EstadoVoto = reader["EstadoVoto"] as int? ?? -1;
                         voto.Observaciones = this.GetObservaciones(voto.IdVoto);
                         voto.Precedente = this.GetPrecedenteEjecutoria(voto.IdVoto);
+                        listadoVotos.Add(voto);
                     }
                 }
                 cmd.Dispose();
@@ -679,10 +673,16 @@ namespace ControlDeTesisV4.Models
                 oleConne.Close();
             }
 
-            return voto;
+            return listadoVotos;
         }
 
-        public ObservableCollection<Votos> GetVoto()
+        
+        /// <summary>
+        /// Devuelve la coleccion de votos relacionados a una ejecutoria en particular
+        /// </summary>
+        /// <param name="idEjecutoria"></param>
+        /// <returns></returns>
+        public ObservableCollection<Votos> GetVoto(int idEjecutoria)
         {
             ObservableCollection<Votos> listadoVotos = new ObservableCollection<Votos>();
 
@@ -690,13 +690,14 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Votos WHERE EstadoVoto < 5";
+            String sqlCadena = "SELECT * FROM Votos WHERE EstadoVoto < 5 AND IdEjecutoria = @IdEjecutoria";
 
             try
             {
                 oleConne.Open();
 
                 cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdEjecutoria", idEjecutoria);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)

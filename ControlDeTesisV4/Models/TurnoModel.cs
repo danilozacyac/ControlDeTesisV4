@@ -93,5 +93,70 @@ namespace ControlDeTesisV4.Models
                 connection.Close();
             }
         }
+
+
+        public TurnoDao GetTurno(int idTipoDocto, int idDocto)
+        {
+            TurnoDao turno = null;
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT * FROM Turno WHERE IdTipoDocto = @IdTipoDocto AND IdDocto = @IdDocto";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdTipoDocto", idTipoDocto);
+                cmd.Parameters.AddWithValue("@IdDocto", idDocto);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        turno = new TurnoDao();
+                        turno.IdTurno = reader["IdTurno"] as int? ?? -1;
+                        turno.IdAbogado = reader["IdAbogado"] as int? ?? -1;
+                        turno.IdTipoDocto = reader["IdTipoDocto"] as int? ?? -1;
+                        turno.IdDocto = reader["IdDocto"] as int? ?? -1;
+                        turno.NumPaginas = reader["NumPaginas"] as int? ?? -1;
+                        turno.FTurno = StringUtilities.GetDateFromReader(reader, "FTurno");
+                        turno.FEntrega = StringUtilities.GetDateFromReader(reader, "FEntrega");
+                        turno.FSugerida = StringUtilities.GetDateFromReader(reader, "FSugerida");
+                        turno.EnTiempo = reader["EnTiempo"] as int? ?? -1;
+                        turno.DiasAtraso = reader["DiasAtraso"] as int? ?? -1;
+                        turno.IsReturn = reader["Returno"] as int? ?? -1;
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return turno;
+        }
+
+
     }
 }

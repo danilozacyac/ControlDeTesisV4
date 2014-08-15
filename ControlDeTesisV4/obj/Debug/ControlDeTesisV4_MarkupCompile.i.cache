@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\
 ControlDeTesisV4
 none
 false
 DEBUG;TRACE
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\App.xaml
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\App.xaml
 28-1293989387
 
-74-1543350600
-321326797475
+74-700483955
+32392857224
 EjecutoriasVotos\CapturaEjecutoria.xaml;EjecutoriasVotos\CapturaObservaciones.xaml;EjecutoriasVotos\CapturaVotos.xaml;EjecutoriasVotos\DetalleVotos.xaml;EjecutoriasVotos\DiceSugiere.xaml;EjecutoriasVotos\ListadoEjecutorias.xaml;LogIn.xaml;MainWindow.xaml;ProyectosCcstFolder\CapturaAprobacionCcst.xaml;ProyectosCcstFolder\CapturaProyectoCcst.xaml;ProyectosCcstFolder\DatosProyectoCcst.xaml;ProyectosCcstFolder\ListaProyectosCcst.xaml;ProyectosCcstFolder\TesisPublicar.xaml;ProyectosSalasFolder\CapturaAprobacion.xaml;ProyectosSalasFolder\CapturaProyectoSalas.xaml;ProyectosSalasFolder\CapturObservaciones.xaml;ProyectosSalasFolder\DatosProyectoSalas.xaml;ProyectosSalasFolder\ListaProyectoSalas.xaml;Reportes\SeleccionPeriodo.xaml;Themes\Botones.xaml;Themes\ShinyBlue.xaml;Themes\ShinyRed.xaml;Turno\CargaPorabogado.xaml;Turno\ListaTurnadas.xaml;Turno\StatTurno.xaml;Turno\TurnarWin.xaml;VisualComparition\CcstCompare.xaml;VisualComparition\SalasCompare.xaml;
 
 False

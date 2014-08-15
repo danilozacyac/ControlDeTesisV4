@@ -15,8 +15,8 @@ namespace ControlDeTesisV4.Converter
             {
                 int semaforo = (Int32)value;
 
-                if (semaforo > 5)
-                    semaforo = 5;
+                if (semaforo < 0)
+                    semaforo = 0;
 
 
                 switch (semaforo)

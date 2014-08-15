@@ -30,5 +30,10 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         {
             ListaEjecuto.DataContext = new EjecutoriasModel().GetEjecutorias();
         }
+
+        private void GListadoTurno_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+
+        }
     }
 }

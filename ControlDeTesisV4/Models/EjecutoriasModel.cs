@@ -725,6 +725,9 @@ namespace ControlDeTesisV4.Models
                         ejecutoria.EstadoEjecutoria = reader["EstadoEjecutoria"] as int? ?? -1;
                         ejecutoria.Observaciones = this.GetObservaciones(ejecutoria.IdEjecutoria);
                         ejecutoria.Precedente = this.GetPrecedenteEjecutoria(ejecutoria.IdEjecutoria);
+                        ejecutoria.Turno = new TurnoModel().GetTurno(3, ejecutoria.IdEjecutoria);
+                        ejecutoria.Votos = new VotosModel().GetVoto(ejecutoria.IdEjecutoria);
+
                         listadoEjecutorias.Add(ejecutoria);
                     }
                 }
