@@ -28,7 +28,7 @@
                              ShowGroupPanel="False">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Width="100"
-                                            DataMemberBinding="{Binding IdEjecutoria}"
+                                            DataMemberBinding="{Binding idDocumento}"
                                             Header=""
                                             IsReadOnly="True"
                                             IsVisible="False" />

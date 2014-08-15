@@ -18,14 +18,20 @@ namespace ControlDeTesisV4.EjecutoriasVotos
     {
         ObservableCollection<Observaciones> observaciones;
         string observacionesFilePath;
-        private readonly int idEjecutoria;
+        private readonly int idDocumento;
+        private readonly int tipoDocumento;
+        private readonly bool isUpdating;
 
-        public CapturaObservaciones(ObservableCollection<Observaciones> observaciones, string observacionesFilePath, int idEjecutoria)
+        public CapturaObservaciones(ObservableCollection<Observaciones> observaciones, string observacionesFilePath, int idDocumento, 
+                                                int tipoDocumento, bool isUpdating)
         {
             InitializeComponent();
             this.observaciones = observaciones;
             this.observacionesFilePath = observacionesFilePath;
-            this.idEjecutoria = idEjecutoria;
+            this.idDocumento = idDocumento;
+            this.tipoDocumento = tipoDocumento;
+            this.isUpdating = isUpdating;
+
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -83,17 +89,17 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
             observaciones.Remove(observ);
 
-            if (observ.IdEjecutoria != -1)
-            {
+            if (observ.IdDocumento != -1 && tipoDocumento == 3)
                 new EjecutoriasModel().DeleteObservaciones(observ);
-            }
+            else if (observ.IdDocumento != -1 && tipoDocumento == 4)
+                new VotosModel().DeleteObservaciones(observ);
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Observaciones observ = GObserv.SelectedItem as Observaciones;
 
-            DiceSugiere sugiere = new DiceSugiere(observ, observ.IdEjecutoria);
+            DiceSugiere sugiere = new DiceSugiere(observ, observ.IdDocumento,tipoDocumento);
             sugiere.ShowDialog();
         }
 

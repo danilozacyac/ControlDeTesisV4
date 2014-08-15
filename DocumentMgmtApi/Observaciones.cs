@@ -6,7 +6,7 @@ namespace DocumentMgmtApi
     public class Observaciones
     {
         private int idObservacion;
-        private int idEjecutoria;
+        private int idDocumento;
         private string foja;
         private string parrafo;
         private string renglon;
@@ -27,15 +27,15 @@ namespace DocumentMgmtApi
             }
         }
 
-        public int IdEjecutoria
+        public int IdDocumento
         {
             get
             {
-                return this.idEjecutoria;
+                return this.idDocumento;
             }
             set
             {
-                this.idEjecutoria = value;
+                this.idDocumento = value;
             }
         }
 

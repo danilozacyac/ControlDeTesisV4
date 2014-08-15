@@ -83,7 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\DisidentesConverter.cs" />
     <Compile Include="Converter\EstadoTesisConverter.cs" />
+    <Compile Include="Converter\TipoVotoConverter.cs" />
     <Compile Include="Dao\AccesoUsuarios.cs" />
     <Compile Include="Dao\AuxiliarModel.cs" />
     <Compile Include="Dao\Votos.cs" />

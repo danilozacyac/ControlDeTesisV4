@@ -33,7 +33,7 @@
                                             IsReadOnly="True"
                                             IsVisible="False" />
                 <telerik:GridViewDataColumn Width="0"
-                                            DataMemberBinding="{Binding IdEjecutoria}"
+                                            DataMemberBinding="{Binding idDocumento}"
                                             IsReadOnly="True"
                                             IsVisible="False" />
                 <telerik:GridViewDataColumn Width="100"

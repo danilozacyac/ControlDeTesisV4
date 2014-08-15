@@ -139,7 +139,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
                 ejecutoria.Observaciones = new ObservableCollection<Observaciones>();
 
             int idEjecutoria = (isUpdating) ? ejecutoria.IdEjecutoria : -1;
-            CapturaObservaciones observ = new CapturaObservaciones(ejecutoria.Observaciones,ejecutoria.ObsFilePathOrigen,idEjecutoria);
+            CapturaObservaciones observ = new CapturaObservaciones(ejecutoria.Observaciones,ejecutoria.ObsFilePathOrigen,idEjecutoria,3,isUpdating);
             observ.ShowDialog();
         }
 

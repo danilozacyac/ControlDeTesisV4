@@ -24,22 +24,23 @@ namespace ControlDeTesisV4.EjecutoriasVotos
     {
         private ObservableCollection<Observaciones> listaObservaciones;
         private Observaciones observacion;
-        private readonly int idEjecutoria;
+        private int idDocumento = -1;
+        private readonly int tipoDocumento;
 
         public DiceSugiere(ObservableCollection<Observaciones> listaObservaciones)
         {
             InitializeComponent();
             this.listaObservaciones = listaObservaciones;
             observacion = new Observaciones();
-            idEjecutoria = -1;
-            observacion.IdEjecutoria = idEjecutoria;
+            observacion.IdDocumento = idDocumento;
         }
 
-        public DiceSugiere(Observaciones observacion, int idEjecutoria)
+        public DiceSugiere(Observaciones observacion, int idDocumento, int tipoDocumento)
         {
             InitializeComponent();
             this.observacion = observacion;
-            this.idEjecutoria = idEjecutoria;
+            this.idDocumento = idDocumento;
+            this.tipoDocumento = tipoDocumento;
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void RadGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (idEjecutoria == -1) 
+            if (idDocumento == -1) 
             {
                 listaObservaciones.Add(observacion);
                 this.Close();
@@ -57,7 +58,12 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             else
             {
                 listaObservaciones.Add(observacion);
-                new EjecutoriasModel().SetNewObservacion(observacion, idEjecutoria);
+
+                if (tipoDocumento == 3)
+                    new EjecutoriasModel().SetNewObservacion(observacion, idDocumento);
+                else if (tipoDocumento == 4)
+                    new VotosModel().SetNewObservacion(observacion, idDocumento);
+                
                 this.Close();
             }
         }

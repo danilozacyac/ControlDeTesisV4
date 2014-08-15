@@ -124,7 +124,7 @@ namespace ControlDeTesisV4
 
         private void BtnNuevoVotoProv_Click(object sender, RoutedEventArgs e)
         {
-            DetalleVotos votos = new DetalleVotos();
+            CapturaVotos votos = new CapturaVotos();
             votos.ShowDialog();
         }
 

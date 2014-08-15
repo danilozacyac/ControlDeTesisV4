@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.Models;
+using ControlDeTesisV4.Singletons;
 using ModuloInterconexionCommonApi;
-using Telerik.Windows.Controls;
 
 namespace ControlDeTesisV4.EjecutoriasVotos
 {
@@ -35,6 +28,8 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = precedente;
+            CbxPonentes.DataContext = FuncionariosSingleton.Ponentes;
+            CbxTipoAsunto.DataContext = OtrosDatosSingleton.TipoAsuntos;
         }
 
         private void Numeric_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -44,13 +39,23 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
+            precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
 
+            foreach (Votos voto in listaVotos)
+            {
+                voto.EstadoVoto = 1;
+                new VotosModel().SetNewProyectoVoto(voto, precedente);
+            }
+
+            this.Close();
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DetalleVotos detalle = new DetalleVotos();
+            DetalleVotos detalle = new DetalleVotos(listaVotos);
             detalle.ShowDialog();
+            GListaVotos.DataContext = listaVotos;
         }
     }
 }

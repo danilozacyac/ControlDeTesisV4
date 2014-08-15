@@ -36,7 +36,7 @@
                                      DisplayMemberPath="NombreCompleto"
                                      SelectedValuePath="IdFuncionario"
                                      HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Top" />
+                                     VerticalAlignment="Top" SelectionChanged="CbxMinistros_SelectionChanged" />
 
                 <ListBox Name="LstMinistros"
                          Height="115"
@@ -225,7 +225,7 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <telerik:RadButton x:Name="BtnGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Height="40" Width="72"/>
+            <telerik:RadButton x:Name="BtnGuardar" Content="Guardar" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Height="40" Width="72" Click="BtnGuardar_Click"/>
             <telerik:RadButton x:Name="BtnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="622,10,0,0" VerticalAlignment="Top" Height="40" Width="71" IsCancel="True"/>
 
         </Grid>

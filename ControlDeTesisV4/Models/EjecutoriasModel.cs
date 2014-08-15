@@ -779,7 +779,7 @@ namespace ControlDeTesisV4.Models
                     while (reader.Read())
                     {
                         Observaciones observacion = new Observaciones();
-                        observacion.IdEjecutoria = reader["IdEjecutoria"] as int? ?? -1;
+                        observacion.IdDocumento = reader["IdEjecutoria"] as int? ?? -1;
                         observacion.IdObservacion = reader["IdObservacion"] as int? ?? -1;
                         observacion.Foja = reader["Foja"].ToString();
                         observacion.Parrafo = reader["Parrafo"].ToString();

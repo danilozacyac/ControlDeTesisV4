@@ -16,7 +16,7 @@ namespace ControlDeTesisV4.Models
 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public void SetNewProyectoVoto(Votos voto)
+        public void SetNewProyectoVoto(Votos voto,PrecedentesTesis precedente)
         {
             OleDbConnection connection = new OleDbConnection(connectionString);
 
@@ -28,7 +28,7 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                voto.IdEjecutoria = AuxiliarModel.GetLastId("Votos", "IdVoto");
+                voto.IdVoto = AuxiliarModel.GetLastId("Votos", "IdVoto");
 
                 string sqlCadena = "SELECT * FROM Votos WHERE IdVoto = 0";
 
@@ -94,15 +94,15 @@ namespace ControlDeTesisV4.Models
 
                 dataAdapter.InsertCommand = connection.CreateCommand();
 
-                sSql = "INSERT INTO Ejecutorias (IdEjecutoria,IdTesis,IdTipoVoto,ForObservaciones,ProvFilePathOrigen,ProvFilePathConten,ProvNumFojas,Obs,ObsFilePathOrigen,ObsFilePathConten," +
-                       "FRecepcion,FRecepcionInt,FEnvioObs,FEnvioObsInt,FDevolucion,FDevolucionInt,CCFilePathOrigen,CCFilePathConten,CCNumFojas,VPFilePathOrigen,VPFilePathConten,VPNumFojas,EstadoEjecutoria) " +
-                       " VALUES (@IdEjecutoria,@IdTesis,@IdTipoVoto,@ForObservaciones,@ProvFilePathOrigen,@ProvFilePathConten,@ProvNumFojas,@Obs,@ObsFilePathOrigen,@ObsFilePathConten," +
-                       "@FRecepcion,@FRecepccionInt,@FEnvioObs,@FEnvioObsInt,@FDevolucion,@FDevolucionInt,@CCFilePathOrigen,@CCFilePathConten,@CCNumFojas,@VPFilePathOrigen,@VPFilePathConten,@VPNumFojas,@EstadoEjecutoria)";
+                sSql = "INSERT INTO Votos (IdVoto,IdEjecutoria,IdTipoVoto,ForObservaciones,ProvFilePathOrigen,ProvFilePathConten,ProvNumFojas,Obs,ObsFilePathOrigen,ObsFilePathConten," +
+                       "FRecepcion,FRecepcionInt,FEnvioObs,FEnvioObsInt,FDevolucion,FDevolucionInt,CCFilePathOrigen,CCFilePathConten,CCNumFojas,VPFilePathOrigen,VPFilePathConten,VPNumFojas,EstadoVoto) " +
+                       " VALUES (@IdVoto,@IdEjecutoria,@IdTipoVoto,@ForObservaciones,@ProvFilePathOrigen,@ProvFilePathConten,@ProvNumFojas,@Obs,@ObsFilePathOrigen,@ObsFilePathConten," +
+                       "@FRecepcion,@FRecepccionInt,@FEnvioObs,@FEnvioObsInt,@FDevolucion,@FDevolucionInt,@CCFilePathOrigen,@CCFilePathConten,@CCNumFojas,@VPFilePathOrigen,@VPFilePathConten,@VPNumFojas,@EstadoVoto)";
 
                 dataAdapter.InsertCommand.CommandText = sSql;
 
+                dataAdapter.InsertCommand.Parameters.Add("@IdVoto", OleDbType.Numeric, 0, "IdVoto");
                 dataAdapter.InsertCommand.Parameters.Add("@IdEjecutoria", OleDbType.Numeric, 0, "IdEjecutoria");
-                dataAdapter.InsertCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
                 dataAdapter.InsertCommand.Parameters.Add("@IdTipoVoto", OleDbType.Numeric, 0, "IdTipoVoto");
                 dataAdapter.InsertCommand.Parameters.Add("@ForObservaciones", OleDbType.Numeric, 0, "ForObservaciones");
                 dataAdapter.InsertCommand.Parameters.Add("@ProvFilePathOrigen", OleDbType.VarChar, 0, "ProvFilePathOrigen");
@@ -129,7 +129,8 @@ namespace ControlDeTesisV4.Models
                 dataSet.Dispose();
                 dataAdapter.Dispose();
 
-                this.SetPrecedentes(voto.Precedente, voto.IdVoto);
+                this.SetPrecedentes(precedente, voto.IdVoto);
+                this.SetNewObservacion(voto.Observaciones, voto.IdVoto);
             }
             catch (OleDbException ex)
             {
@@ -169,7 +170,7 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                observacion.IdObservacion = AuxiliarModel.GetLastId("ObservacionesVotos", "IdObservacion");
+                observacion.IdObservacion = AuxiliarModel.GetLastId("ObservacionesVoto", "IdObservacion");
 
                 string sqlCadena = "SELECT * FROM ObservacionesVoto WHERE IdObservacion = 0";
 
@@ -280,7 +281,7 @@ namespace ControlDeTesisV4.Models
 
                 dataAdapter.InsertCommand = connection.CreateCommand();
 
-                sSql = "INSERT INTO PrecedentesEjecutorias (IdPrecedente,IdVoto,IdTipoAsunto,NumAsunto,YearAsunto,FResolucion,FResolucionInt,IdPonente,Promovente) " +
+                sSql = "INSERT INTO PrecedentesVotos (IdPrecedente,IdVoto,IdTipoAsunto,NumAsunto,YearAsunto,FResolucion,FResolucionInt,IdPonente,Promovente) " +
                        " VALUES (@IdPrecedente,@IdVoto,@IdTipoAsunto,@NumAsunto,@YearAsunto,@FResolucion,@FResolucionInt,@IdPonente,@Promovente)";
 
                 dataAdapter.InsertCommand.CommandText = sSql;
@@ -680,7 +681,7 @@ namespace ControlDeTesisV4.Models
         /// <summary>
         /// Devuelve la coleccion de votos relacionados a una ejecutoria en particular
         /// </summary>
-        /// <param name="idEjecutoria"></param>
+        /// <param name="idEjecutoria">Identificador de la ejecutoria de la cual queremos obtener todos sus votos relacionados</param>
         /// <returns></returns>
         public ObservableCollection<Votos> GetVoto(int idEjecutoria)
         {
@@ -779,7 +780,7 @@ namespace ControlDeTesisV4.Models
                     while (reader.Read())
                     {
                         Observaciones observacion = new Observaciones();
-                        observacion.IdEjecutoria = reader["IdVoto"] as int? ?? -1;
+                        observacion.IdDocumento = reader["IdVoto"] as int? ?? -1;
                         observacion.IdObservacion = reader["IdObservacion"] as int? ?? -1;
                         observacion.Foja = reader["Foja"].ToString();
                         observacion.Parrafo = reader["Parrafo"].ToString();
