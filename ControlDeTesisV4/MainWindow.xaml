@@ -121,17 +121,59 @@
 
 
                 </telerik:RadRibbonGroup>
-                <telerik:RadRibbonGroup Header="Ejecutorias" >
+                <telerik:RadRibbonGroup Header="Ejecutorias">
                     <telerik:RadRibbonButton x:Name="BtnListaEjecutoria"
+                                             Click="BtnListaEjecutoria_Click"
                                              LargeImage="Resources/ejecutoria.png"
-                                             Size="Large" Click="BtnListaEjecutoria_Click">
+                                             Size="Large">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="    Listado" />
                             <TextBlock Text="de ejecutorias" />
                         </StackPanel>
                     </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnTurnaEjecutoria"
+                                             LargeImage="Resources/tesisTurno.png"
+                                             Size="Large" Click="BtnTurnaEjecutoria_Click">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Turnar" />
+                            <TextBlock Text=" ejecutoria" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnReTurnaEjecutoria"
+                                             LargeImage="Resources/reload.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Returnar" />
+                            <TextBlock Text=" ejecutoria" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
                 </telerik:RadRibbonGroup>
-                <telerik:RadRibbonGroup Header="Votos" />
+                <telerik:RadRibbonGroup Header="Votos">
+                    <telerik:RadRibbonButton x:Name="BtnListaVotos"
+                                             LargeImage="Resources/ejecutoria.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Listado" />
+                            <TextBlock Text="de votos" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnTurnaVoto"
+                                             LargeImage="Resources/tesisTurno.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Turnar" />
+                            <TextBlock Text=" Voto" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnReTurnaVoto"
+                                             LargeImage="Resources/reload.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="    Returnar" />
+                            <TextBlock Text=" Voto" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Estadísticas">
                 <telerik:RadRibbonGroup Header="">
@@ -154,13 +196,13 @@
                     <telerik:RadPaneGroup x:Name="PanelCentral">
                         <telerik:RadPane Header="Proyectos Observaciones">
                             <Grid>
-                                <!--<ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                                <!--  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
 
                             </Grid>
                         </telerik:RadPane>
                         <telerik:RadPane Header="Proyectos de la CCST">
                             <Grid>
-                                <!--<ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                                <!--  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
                             </Grid>
                         </telerik:RadPane>
 

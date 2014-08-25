@@ -145,5 +145,16 @@ namespace ControlDeTesisV4
 
             PanelCentral.AddItem(pane, DockPosition.Center);
         }
+
+        private void BtnTurnaEjecutoria_Click(object sender, RoutedEventArgs e)
+        {
+            if (Constants.EjecutoriaTurno != null)
+            {
+                TurnarWin turnar = new TurnarWin(Constants.EjecutoriaTurno);
+                turnar.ShowDialog();
+
+                Constants.EjecutoriaTurno == null;
+            }
+        }
     }
 }

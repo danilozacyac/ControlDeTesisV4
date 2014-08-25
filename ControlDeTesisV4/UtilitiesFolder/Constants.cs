@@ -19,6 +19,8 @@ namespace ControlDeTesisV4.UtilitiesFolder
         #region Variables UserControls
 
         public static ProyectosTesis TesisTurno = null;
+        public static Ejecutorias EjecutoriaTurno = null;
+        public static Votos VotoTurno = null;
 
 
         public static ObservableCollection<ProyectoPreview> ProyectosSalas;
