@@ -33,7 +33,10 @@ namespace ControlDeTesisV4.Dao
         ObservableCollection<Observaciones> observaciones;
         ObservableCollection<int> ministros;
         PrecedentesTesis precedente;
+        TurnoDao turno;
         int estadoVoto;
+
+        
 
         public int IdVoto
         {
@@ -344,6 +347,18 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.precedente = value;
+            }
+        }
+
+        public TurnoDao Turno
+        {
+            get
+            {
+                return this.turno;
+            }
+            set
+            {
+                this.turno = value;
             }
         }
 

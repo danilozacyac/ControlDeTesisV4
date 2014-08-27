@@ -71,11 +71,11 @@ namespace ControlDeTesisV4.Turno
             }
             else if (idTipoDocumento == 3)
             {
-                numPaginas += ejecutoria.CcNumFojas;
+                numPaginas += (ejecutoria.Observaciones != null && ejecutoria.Observaciones.Count > 0 ) ? ejecutoria.ProvNumFojas : ejecutoria.CcNumFojas;
             }
             else if (idTipoDocumento == 4)
             {
-                numPaginas += votos.ProvNumFojas;
+                numPaginas += (votos.Observaciones != null && votos.Observaciones.Count > 0) ? votos.ProvNumFojas : votos.CcNumFojas;
             }
 
             TxtNumPaginas.Text = numPaginas.ToString();
@@ -105,6 +105,7 @@ namespace ControlDeTesisV4.Turno
             else if (idTipoDocumento == 4)
             {
                 turno.IdDocto = votos.IdVoto;
+                votos.Turno = turno;
                 new AuxiliarModel().UpdateEstadoDocumento(votos.IdVoto, 5, "Votos", "IdVoto", "EstadoVoto");
             }
 

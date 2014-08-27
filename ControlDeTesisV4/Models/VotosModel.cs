@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
@@ -16,8 +17,10 @@ namespace ControlDeTesisV4.Models
 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public void SetNewProyectoVoto(Votos voto,PrecedentesTesis precedente)
+        public bool SetNewProyectoVoto(Votos voto,PrecedentesTesis precedente)
         {
+            bool correctInsert = true;
+
             OleDbConnection connection = new OleDbConnection(connectionString);
 
             string sSql;
@@ -45,7 +48,7 @@ namespace ControlDeTesisV4.Models
                 dr["ProvFilePathOrigen"] = voto.ProvFilePathOrigen;
                 dr["ProvFilePathConten"] = voto.ProvFilePathConten;
                 dr["ProvNumFojas"] = voto.ProvNumFojas;
-                dr["Obs"] = (voto.Observaciones.Count > 0) ? 1 : 0;
+                dr["Obs"] = (voto.Observaciones != null && voto.Observaciones.Count > 0) ? 1 : 0;
                 dr["ObsFilePathOrigen"] = voto.ObsFilePathOrigen;
                 dr["ObsFilePathConten"] = voto.ObsFilePathConten;
 
@@ -130,7 +133,11 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Dispose();
 
                 this.SetPrecedentes(precedente, voto.IdVoto);
-                this.SetNewObservacion(voto.Observaciones, voto.IdVoto);
+
+                if (voto.Observaciones != null)
+                    this.SetNewObservacion(voto.Observaciones, voto.IdVoto);
+
+                this.SetMinistrosDisidentes(voto.IdVoto, voto.Ministros);
             }
             catch (OleDbException ex)
             {
@@ -138,6 +145,7 @@ namespace ControlDeTesisV4.Models
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Utilities.SetNewErrorMessage(ex, methodName, 0);
+                correctInsert = false;
             }
             catch (Exception ex)
             {
@@ -145,11 +153,14 @@ namespace ControlDeTesisV4.Models
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Utilities.SetNewErrorMessage(ex, methodName, 0);
+                correctInsert = false;
             }
             finally
             {
                 connection.Close();
             }
+
+            return correctInsert;
         }
 
         public void SetNewObservacion(ObservableCollection<Observaciones> observaciones, int idVoto)
@@ -299,6 +310,68 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Update(dataSet, "PrecedentesVotos");
                 dataSet.Dispose();
                 dataAdapter.Dispose();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void SetMinistrosDisidentes(int idVoto, ObservableCollection<int> ministros)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                foreach (int ministro in ministros)
+                {
+
+                    string sqlCadena = "SELECT * FROM VotosMinistros WHERE Id = 0";
+
+                    dataAdapter = new OleDbDataAdapter();
+                    dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                    dataAdapter.Fill(dataSet, "VotosMinistros");
+
+                    dr = dataSet.Tables["VotosMinistros"].NewRow();
+                    dr["IdVoto"] = idVoto;
+                    dr["IdFuncionario"] = ministro;
+
+                    dataSet.Tables["VotosMinistros"].Rows.Add(dr);
+
+                    dataAdapter.InsertCommand = connection.CreateCommand();
+
+                    sSql = "INSERT INTO VotosMinistros (IdVoto,IdFuncionario) VALUES (@IdVoto,@IdFuncionario)";
+
+                    dataAdapter.InsertCommand.CommandText = sSql;
+
+                    dataAdapter.InsertCommand.Parameters.Add("@IdVoto", OleDbType.Numeric, 0, "IdVoto");
+                    dataAdapter.InsertCommand.Parameters.Add("@IdFuncionario", OleDbType.Numeric, 0, "IdFuncionario");
+
+                    dataAdapter.Update(dataSet, "VotosMinistros");
+                    dataSet.Dispose();
+                    dataAdapter.Dispose();
+                }
             }
             catch (OleDbException ex)
             {
@@ -604,15 +677,17 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        public ObservableCollection<Votos> GetVoto()
+        /// <summary>
+        /// Genera el listado de votos particulares que se han registrado y que llegaron para publicar o para observaciones
+        /// </summary>
+        public void GetVoto()
         {
-            ObservableCollection<Votos> listadoVotos = new ObservableCollection<Votos>();
 
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Votos WHERE EstadoVoto < 5";
+            String sqlCadena = "SELECT * FROM Votos WHERE EstadoVoto <= 5";
 
             try
             {
@@ -649,7 +724,9 @@ namespace ControlDeTesisV4.Models
                         voto.EstadoVoto = reader["EstadoVoto"] as int? ?? -1;
                         voto.Observaciones = this.GetObservaciones(voto.IdVoto);
                         voto.Precedente = this.GetPrecedenteEjecutoria(voto.IdVoto);
-                        listadoVotos.Add(voto);
+                        voto.Turno = new TurnoModel().GetTurno(4, voto.IdVoto);
+                        voto.Ministros = this.GetMinistrosDisidentes(voto.IdVoto);
+                        Constants.ListadoDeVotos.Add(voto);
                     }
                 }
                 cmd.Dispose();
@@ -674,7 +751,6 @@ namespace ControlDeTesisV4.Models
                 oleConne.Close();
             }
 
-            return listadoVotos;
         }
 
         
@@ -729,6 +805,7 @@ namespace ControlDeTesisV4.Models
                         voto.EstadoVoto = reader["EstadoVoto"] as int? ?? -1;
                         voto.Observaciones = this.GetObservaciones(voto.IdVoto);
                         voto.Precedente = this.GetPrecedenteEjecutoria(voto.IdVoto);
+                        voto.Ministros = this.GetMinistrosDisidentes(voto.IdVoto);
                         listadoVotos.Add(voto);
                     }
                 }
@@ -792,6 +869,57 @@ namespace ControlDeTesisV4.Models
                         observacion.IsAcepted = reader["Aceptada"] as int? ?? -1;
 
                         listadoObservaciones.Add(observacion);
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return listadoObservaciones;
+        }
+
+        public ObservableCollection<int> GetMinistrosDisidentes(int idVoto)
+        {
+            ObservableCollection<int> listadoObservaciones = new ObservableCollection<int>();
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT * FROM VotosMinistros WHERE IdVoto = @IdVoto";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdVoto", idVoto);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int idMinistro = reader["IdFuncionario"] as int? ?? -1;
+                        listadoObservaciones.Add(idMinistro);
                     }
                 }
                 cmd.Dispose();

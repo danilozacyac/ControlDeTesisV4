@@ -107,6 +107,12 @@
     <Compile Include="EjecutoriasVotos\ListadoEjecutorias.xaml.cs">
       <DependentUpon>ListadoEjecutorias.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EjecutoriasVotos\ListadoVotos.xaml.cs">
+      <DependentUpon>ListadoVotos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EjecutoriasVotos\VotoSencillo.xaml.cs">
+      <DependentUpon>VotoSencillo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
@@ -193,6 +199,14 @@
     <Page Include="EjecutoriasVotos\ListadoEjecutorias.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EjecutoriasVotos\ListadoVotos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EjecutoriasVotos\VotoSencillo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LogIn.xaml">
       <Generator>MSBuild:Compile</Generator>

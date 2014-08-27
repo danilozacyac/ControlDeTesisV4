@@ -78,6 +78,7 @@
                     </telerik:RadRibbonButton>
 
                     <telerik:RadRibbonButton x:Name="BtnVotoPublica"
+                                             Click="BtnVotoPublica_Click"
                                              LargeImage="Resources/juez256.png"
                                              Size="Large">
                         <StackPanel Orientation="Vertical">
@@ -132,8 +133,9 @@
                         </StackPanel>
                     </telerik:RadRibbonButton>
                     <telerik:RadRibbonButton x:Name="BtnTurnaEjecutoria"
+                                             Click="BtnTurnaEjecutoria_Click"
                                              LargeImage="Resources/tesisTurno.png"
-                                             Size="Large" Click="BtnTurnaEjecutoria_Click">
+                                             Size="Large">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="    Turnar" />
                             <TextBlock Text=" ejecutoria" />
@@ -150,6 +152,7 @@
                 </telerik:RadRibbonGroup>
                 <telerik:RadRibbonGroup Header="Votos">
                     <telerik:RadRibbonButton x:Name="BtnListaVotos"
+                                             Click="BtnListaVotos_Click"
                                              LargeImage="Resources/ejecutoria.png"
                                              Size="Large">
                         <StackPanel Orientation="Vertical">

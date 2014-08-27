@@ -1,22 +1,140 @@
-﻿<telerik:RadWindow x:Class="ControlDeTesisV4.EjecutoriasVotos.DetalleVotos"
+﻿<telerik:RadWindow x:Class="ControlDeTesisV4.EjecutoriasVotos.VotoSencillo"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="800"
-                   Height="Auto"
-                   Header="Detalle del Voto"
+                   Height="600"
+                   Header="VotoSencillo"
                    Loaded="RadWindow_Loaded"
                    ResizeMode="NoResize"
                    WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="100" />
             <RowDefinition Name="GridMinistros" Height="220" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+            <DatePicker x:Name="DtpFRecepcion"
+                        Margin="537,17,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        SelectedDate="{Binding FRecepcion,
+                                               Mode=TwoWay}" />
+            <Label Margin="446,17,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="F. de Recepción:" />
+            <Label Margin="10,18,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Oficio de Recepción:" />
+            <TextBox x:Name="TxtOficRecepcion"
+                     Width="195"
+                     Height="23"
+                     Margin="143,17,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding OficioRecepcion,
+                                    Mode=TwoWay}"
+                     TextWrapping="NoWrap" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Label Grid.Row="1"
+                   Margin="8,23,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Tipo de asunto:" />
+            <ComboBox x:Name="CbxTipoAsunto"
+                      Grid.Row="1"
+                      Width="193"
+                      Margin="101,17,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      DisplayMemberPath="Descripcion"
+                      ItemsSource="{Binding}"
+                      SelectedValuePath="IdDato" />
+            <Label Grid.Row="1"
+                   Margin="328,23,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Número:" />
+            <TextBox x:Name="TxtNumAsunto"
+                     Grid.Row="1"
+                     Width="48"
+                     Height="23"
+                     Margin="379,17,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewTextInput="Numeric_PreviewTextInput"
+                     Text="{Binding Precedente.NumAsunto,
+                                    Mode=TwoWay}" />
+            <Label Grid.Row="1"
+                   Margin="432,23,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="/" />
+            <TextBox x:Name="TxtAnio"
+                     Grid.Row="1"
+                     Width="49"
+                     Height="23"
+                     Margin="442,17,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     PreviewTextInput="Numeric_PreviewTextInput"
+                     Text="{Binding Precedente.YearAsunto,
+                                    Mode=TwoWay}" />
+            <Label Grid.Row="1"
+                   Margin="532,23,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="F. de resolución:" />
+            <DatePicker x:Name="DtpFResolucion"
+                        Grid.Row="1"
+                        Width="141"
+                        Margin="623,15,-72,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        SelectedDate="{Binding Precedente.FResolucion,
+                                               Mode=TwoWay}" />
+            <Label Grid.Row="1"
+                   Width="66"
+                   Margin="8,63,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Ponente " />
+            <Label Grid.Row="1"
+                   Margin="474,59,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Promovente:" />
+            <TextBox x:Name="TxtPromovente"
+                     Grid.Row="1"
+                     Width="218"
+                     Height="23"
+                     Margin="546,56,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding Precedente.Promovente,
+                                    Mode=TwoWay}" />
+            <ComboBox x:Name="CbxPonentes"
+                      Grid.Row="1"
+                      Width="273"
+                      Margin="101,57,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      DisplayMemberPath="NombreCompleto"
+                      IsEditable="True"
+                      ItemsSource="{Binding}"
+                      SelectedValuePath="IdFuncionario" />
+        </Grid>
+
+        <Grid Grid.Row="2">
             <Label Margin="38,31,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -65,98 +183,7 @@
 
         </Grid>
 
-        <Grid Name="ObsPanel"
-              Grid.Row="1"
-              Visibility="Visible">
-            <Label Margin="10,13,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Content="Provisional:" />
-            <TextBox x:Name="TxtProvisional"
-                     Width="293"
-                     Height="23"
-                     Margin="143,10,0,0"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     PreviewDragOver="TxtDrag_PreviewDragOver"
-                     PreviewDrop="TxtDrop_PreviewDrop"
-                     Text="{Binding ProvFilePathOrigen,
-                                    Mode=TwoWay}"
-                     TextChanged="TxtProvisional_TextChanged" />
-            <Button x:Name="BtnLoadProvisional"
-                    Width="30"
-                    Margin="441,10,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Click="BtnLoadProvisional_Click">
-                <Image Width="22"
-                       Height="19"
-                       Source="/ControlDeTesisV4;component/Resources/browse.png" />
-            </Button>
-            <DatePicker x:Name="DtpEnvioObserv"
-                        Margin="143,53,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        SelectedDate="{Binding FEnvioObs,
-                                               Mode=TwoWay}" />
-            <Label Margin="13,57,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Content="F. de Envio Observ:" />
-            <DatePicker x:Name="DtpFDevolucion"
-                        Margin="143,91,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        SelectedDate="{Binding FDevolucion,
-                                               Mode=TwoWay}" />
-            <Label Margin="13,95,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Content="F. de Devolución:" />
-            <Label Margin="532,74,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Content="Observaciones aceptadas:" />
-            <RadioButton x:Name="RadNoAcept"
-                         Margin="444,95,0,0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         Content="No Aceptadas" />
-            <RadioButton x:Name="RadParcial"
-                         Margin="565,95,0,0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         Content=" Parcialmente" />
-            <RadioButton x:Name="RadCompleta"
-                         Margin="668,95,0,0"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         Content="Completamente" />
-            <Button x:Name="BtnObservaciones"
-                    Width="162"
-                    Height="26"
-                    Margin="607,5,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Click="BtnObservaciones_Click"
-                    Content="Capturar Observaciones" />
-            <Label Margin="475,53,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Content="Núm. Fojas" />
-            <TextBox x:Name="TxtFojasProv"
-                     Width="53"
-                     Height="23"
-                     Margin="549,46,0,0"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     PreviewTextInput="Numeric_PreviewTextInput"
-                     Text="{Binding CcNumFojas,
-                                    Mode=TwoWay}"
-                     TextWrapping="Wrap" />
-        </Grid>
-
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Label Margin="10,15,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -236,7 +263,7 @@
                      TextWrapping="Wrap" />
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <telerik:RadButton x:Name="BtnGuardar"
                                Width="72"
                                Height="40"
@@ -251,9 +278,11 @@
                                Margin="622,10,0,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
+                               Click="BtnCancelar_Click"
                                Content="Cancelar"
                                IsCancel="True" />
 
         </Grid>
+
     </Grid>
 </telerik:RadWindow>

@@ -15,10 +15,10 @@
 
         <telerik:RadTabControl>
             <telerik:RadTabItem Header="Carga de Trabajo por Abogado">
-                <!--  <local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                <local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </telerik:RadTabItem>
             <telerik:RadTabItem Header="Carga de Trabajo por Documento">
-                <!--  <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
             </telerik:RadTabItem>
         </telerik:RadTabControl>
 

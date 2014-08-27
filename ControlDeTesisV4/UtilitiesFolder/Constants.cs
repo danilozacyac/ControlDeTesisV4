@@ -28,6 +28,8 @@ namespace ControlDeTesisV4.UtilitiesFolder
 
 
         public static ObservableCollection<TesisTurnadaPreview> ListadoDeTesis;
+        public static ObservableCollection<Ejecutorias> ListadoDeEjecutorias;
+        public static ObservableCollection<Votos> ListadoDeVotos;
 
         #endregion
 

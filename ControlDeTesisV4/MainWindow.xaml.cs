@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.EjecutoriasVotos;
+using ControlDeTesisV4.Models;
 using ControlDeTesisV4.ProyectosCcstFolder;
 using ControlDeTesisV4.ProyectosSalasFolder;
 using ControlDeTesisV4.Turno;
@@ -39,7 +41,13 @@ namespace ControlDeTesisV4
                 RibbonHeader.SelectedIndex = 1;
                 Proyectos.IsEnabled = false;
             }
-            
+
+            Constants.ListadoDeTesis = new ObservableCollection<TesisTurnadaPreview>();
+            Constants.ListadoDeEjecutorias = new ObservableCollection<Ejecutorias>();
+            Constants.ListadoDeVotos = new ObservableCollection<Votos>();
+                
+            new VotosModel().GetVoto();
+
         }
 
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)
@@ -153,8 +161,23 @@ namespace ControlDeTesisV4
                 TurnarWin turnar = new TurnarWin(Constants.EjecutoriaTurno);
                 turnar.ShowDialog();
 
-                Constants.EjecutoriaTurno == null;
+                Constants.EjecutoriaTurno = null;
             }
+        }
+
+        private void BtnVotoPublica_Click(object sender, RoutedEventArgs e)
+        {
+            VotoSencillo voto = new VotoSencillo();
+            voto.ShowDialog();
+        }
+
+        private void BtnListaVotos_Click(object sender, RoutedEventArgs e)
+        {
+            RadPane pane = new RadPane();
+            pane.Header = "Listado de votos";
+            pane.Content = new ListadoVotos();
+
+            PanelCentral.AddItem(pane, DockPosition.Center);
         }
     }
 }

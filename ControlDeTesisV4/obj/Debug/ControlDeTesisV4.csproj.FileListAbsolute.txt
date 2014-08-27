@@ -362,3 +362,7 @@ C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesi
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.g.cs
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\Reportes\SeleccionPeriodo.g.cs
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.baml
