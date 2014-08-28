@@ -11,7 +11,6 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <converter:AbogadoConverter x:Key="AbogadoK" />
-        <converter:TipoTesisConverter x:Key="TipoTesis" />
         <converter:SemaforoConverter x:Key="SemaforoK" />
         <converter:InstanciaConverter x:Key="InstanciaK" />
         <converter:EstadoTesisConverter x:Key="EstadoK" />

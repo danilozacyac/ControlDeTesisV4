@@ -210,8 +210,24 @@ namespace ControlDeTesisV4
         {
             AuxiliarModel auxiliar = new AuxiliarModel();
             auxiliar.SetEntregaValida(Constants.EjecutoriaTurno.Turno);
-            auxiliar.UpdateEstadoDocumento(Constants.EjecutoriaTurno.IdTesis, 7, "Ejecutorias", "IdEjecutoria", "EstadoEjecutoria");
+            auxiliar.UpdateEstadoDocumento(Constants.EjecutoriaTurno.IdEjecutoria, 7, "Ejecutorias", "IdEjecutoria", "EstadoEjecutoria");
             Constants.EjecutoriaTurno.EstadoEjecutoria = 7;
+        }
+
+        private void BtnEntregarVoto_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetFechaEntrega(Constants.VotoTurno.Turno.IdTurno);
+            auxiliar.UpdateEstadoDocumento(Constants.VotoTurno.IdVoto, 6, "Votos", "IdVoto", "EstadoVoto");
+            Constants.VotoTurno.EstadoVoto = 6;
+        }
+
+        private void BtnRecibirVoto_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetFechaEntrega(Constants.VotoTurno.Turno.IdTurno);
+            auxiliar.UpdateEstadoDocumento(Constants.VotoTurno.IdVoto, 7, "Votos", "IdVoto", "EstadoVoto");
+            Constants.VotoTurno.EstadoVoto = 7;
         }
     }
 }
