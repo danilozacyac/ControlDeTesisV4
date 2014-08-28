@@ -33,7 +33,6 @@ namespace ControlDeTesisV4.Turno
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Constants.ListadoDeTesis = new TesisTurnadasModel().GetPreviewTesisTurnadas();
             GListadoTurno.DataContext = Constants.ListadoDeTesis;
         }
 

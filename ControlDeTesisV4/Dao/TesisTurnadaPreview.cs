@@ -21,8 +21,21 @@ namespace ControlDeTesisV4.Dao
         private bool enTiempo;
         private int diasAtraso;
         private int semaforo;
+        private int estadoTesis;
 
         
+
+        public int EstadoTesis
+        {
+            get
+            {
+                return this.estadoTesis;
+            }
+            set
+            {
+                this.estadoTesis = value;
+            }
+        }
 
         public int IdTesis
         {

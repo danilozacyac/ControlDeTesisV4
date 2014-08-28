@@ -13,10 +13,15 @@ namespace ControlDeTesisV4.Turno
     public partial class TurnarWin
     {
         private ProyectosTesis proyecto;
+        private TesisTurnadaPreview tesisTurnada;
         private Ejecutorias ejecutoria;
         private Votos votos;
         private int idTipoDocumento;
         private int numPaginas = 0;
+        private TurnoDao turnoAnterior = null;
+
+
+        private TurnoModel model = new TurnoModel();
 
         public TurnarWin(ProyectosTesis proyecto, int idTipoDocumento)
         {
@@ -24,6 +29,10 @@ namespace ControlDeTesisV4.Turno
             this.proyecto = proyecto;
             this.idTipoDocumento = idTipoDocumento;
             this.Header = "Turnar tesis";
+
+            if (proyecto.Turno != null)
+                turnoAnterior = proyecto.Turno;
+            
         }
 
         public TurnarWin(Ejecutorias ejecutoria)
@@ -32,6 +41,9 @@ namespace ControlDeTesisV4.Turno
             this.ejecutoria = ejecutoria;
             this.idTipoDocumento = 3;
             this.Header = "Turnar ejecutoria";
+
+            if (ejecutoria.Turno != null)
+                turnoAnterior = ejecutoria.Turno;
         }
 
         public TurnarWin(Votos votos)
@@ -40,6 +52,9 @@ namespace ControlDeTesisV4.Turno
             this.votos = votos;
             this.idTipoDocumento = 4;
             this.Header = "Turnar Voto";
+
+            if (votos.Turno != null)
+                turnoAnterior = votos.Turno;
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -49,8 +64,21 @@ namespace ControlDeTesisV4.Turno
                                       orderby n.NombreCompleto
                                       select n);
 
-            DtpFTurno.SelectedDate = DateTime.Now;
-            DtpSugerida.SelectedDate = DateTime.Now.AddDays(5);
+
+            if (turnoAnterior != null && turnoAnterior.IdAbogado > 0)
+            {
+                DtpFTurno.SelectedDate = turnoAnterior.FTurno;
+                DtpSugerida.SelectedDate = turnoAnterior.FSugerida;
+                TxtAbogResponsable.Text = (from n in FuncionariosSingleton.AbogResp
+                                           where n.IdFuncionario == turnoAnterior.IdAbogado
+                                           orderby n.NombreCompleto
+                                           select n.NombreCompleto).ToList()[0];
+            }
+            else
+            {
+                DtpFTurno.SelectedDate = DateTime.Now;
+                DtpSugerida.SelectedDate = DateTime.Now.AddDays(5);
+            }
 
             if (idTipoDocumento == 1 || idTipoDocumento == 2)
             {
@@ -90,7 +118,6 @@ namespace ControlDeTesisV4.Turno
             turno.NumPaginas = Convert.ToInt32(TxtNumPaginas.Text);
             turno.FTurno = DtpFTurno.SelectedDate;
             turno.FSugerida = DtpSugerida.SelectedDate;
-            turno.FTurno = DateTime.Now;
 
             if (idTipoDocumento == 1 || idTipoDocumento == 2)
             {
@@ -109,7 +136,39 @@ namespace ControlDeTesisV4.Turno
                 new AuxiliarModel().UpdateEstadoDocumento(votos.IdVoto, 5, "Votos", "IdVoto", "EstadoVoto");
             }
 
-            new TurnoModel().SetNewTurno(turno);
+            if (turnoAnterior != null)
+            {
+                turno.IdTurno = turnoAnterior.IdTurno;
+                
+                model.SetNewReturno(turno, turnoAnterior);
+
+                if (idTipoDocumento == 1 || idTipoDocumento == 2)
+                {
+                    proyecto.Turno.IdTurno = turno.IdAbogado;
+                    proyecto.Turno.FTurno = turno.FTurno;
+                    proyecto.Turno.FSugerida = turno.FSugerida;
+                }
+                if (idTipoDocumento == 3)
+                {
+                    ejecutoria.Turno.IdAbogado = turno.IdAbogado;
+                    ejecutoria.Turno.FTurno = turno.FTurno;
+                    ejecutoria.Turno.FSugerida = turno.FSugerida;
+                }
+                else if (idTipoDocumento == 4)
+                {
+                    votos.Turno.IdAbogado = turno.IdAbogado;
+                    votos.Turno.FTurno = turno.FTurno;
+                    votos.Turno.FSugerida = turno.FSugerida;
+                }
+
+                model.UpdateTurno(turno);
+
+            }
+            else
+            {
+                model.SetNewTurno(turno);
+            }
+            
             this.Close();
         }
     }

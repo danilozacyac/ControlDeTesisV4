@@ -94,6 +94,87 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        public void SetNewReturno(TurnoDao turnoActual,TurnoDao turnoAnterior)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM Returno WHERE Id = 0";
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "Returno");
+
+                dr = dataSet.Tables["Returno"].NewRow();
+                dr["IdTurno"] = turnoAnterior.IdTurno;
+                dr["IdAbogadoAnt"] = turnoAnterior.IdAbogado;
+                dr["IdAbogadoNue"] = turnoActual.IdAbogado;
+                dr["FReturno"] = DateTime.Now;
+                dr["FReturnoInt"] = StringUtilities.DateToInt(DateTime.Now);
+                dr["MantieneFecha"] = 0;
+                dr["FAnterior"] = turnoAnterior.FSugerida;
+                dr["FAnteriorInt"] = StringUtilities.DateToInt(turnoAnterior.FSugerida);
+                dr["FNueva"] = turnoActual.FSugerida;
+                dr["FNuevaInt"] = StringUtilities.DateToInt(turnoActual.FSugerida); 
+                dr["Observaciones"] = turnoActual.Observaciones;
+                dr["IdAbogadoAuth"] = AccesoUsuarios.Llave;
+
+                dataSet.Tables["Returno"].Rows.Add(dr);
+
+                dataAdapter.InsertCommand = connection.CreateCommand();
+
+                sSql = "INSERT INTO Returno (IdTurno,IdAbogadoAnt,IdAbogadoNue,FReturno,FReturnoInt,MantieneFecha,FAnterior," +
+                       "FAnteriorInt,FNueva,FNuevaInt,Observaciones,IdAbogadoAuth) " +
+                       " VALUES (@IdTurno,@IdAbogadoAnt,@IdAbogadoNue,@FReturno,@FReturnoInt,@MantieneFecha,@FAnterior," +
+                       "@FAnteriorInt,@FNueva,@FNuevaInt,@Observaciones,@IdAbogadoAuth)";
+
+                dataAdapter.InsertCommand.CommandText = sSql;
+
+                dataAdapter.InsertCommand.Parameters.Add("@IdTurno", OleDbType.Numeric, 0, "IdTurno");
+                dataAdapter.InsertCommand.Parameters.Add("@IdAbogadoAnt", OleDbType.Numeric, 0, "IdAbogadoAnt");
+                dataAdapter.InsertCommand.Parameters.Add("@IdAbogadoNue", OleDbType.Numeric, 0, "IdAbogadoNue");
+                dataAdapter.InsertCommand.Parameters.Add("@FReturno", OleDbType.Numeric, 0, "FReturno");
+                dataAdapter.InsertCommand.Parameters.Add("@FReturnoInt", OleDbType.Date, 0, "FReturnoInt");
+                dataAdapter.InsertCommand.Parameters.Add("@MantieneFecha", OleDbType.Numeric, 0, "MantieneFecha");
+                dataAdapter.InsertCommand.Parameters.Add("@FAnterior", OleDbType.Date, 0, "FAnterior");
+                dataAdapter.InsertCommand.Parameters.Add("@FAnteriorInt", OleDbType.Numeric, 0, "FAnteriorInt");
+                dataAdapter.InsertCommand.Parameters.Add("@FNueva", OleDbType.Numeric, 0, "FNueva");
+                dataAdapter.InsertCommand.Parameters.Add("@FNuevaInt", OleDbType.Numeric, 0, "FNuevaInt");
+                dataAdapter.InsertCommand.Parameters.Add("@Observaciones", OleDbType.Numeric, 0, "Observaciones");
+                dataAdapter.InsertCommand.Parameters.Add("@IdAbogadoAuth", OleDbType.VarChar, 0, "IdAbogadoAuth");
+
+                dataAdapter.Update(dataSet, "Returno");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         public void UpdateTurno(TurnoDao turno)
         {
             OleDbConnection connection = new OleDbConnection(connectionString);

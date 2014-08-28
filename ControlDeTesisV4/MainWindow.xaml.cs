@@ -48,6 +48,7 @@ namespace ControlDeTesisV4
                 
             new VotosModel().GetVoto();
             new EjecutoriasModel().GetEjecutorias();
+            new TesisTurnadasModel().GetPreviewTesisTurnadas();
         }
 
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)
@@ -178,6 +179,39 @@ namespace ControlDeTesisV4
             pane.Content = new ListadoVotos();
 
             PanelCentral.AddItem(pane, DockPosition.Center);
+        }
+
+        
+        private void BtnEntregarTesis_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetFechaEntrega(Constants.TesisTurno.Turno.IdTurno);
+            auxiliar.UpdateEstadoDocumento(Constants.TesisTurno.IdTesis, 6, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            Constants.TesisTurno.EstadoTesis = 6;
+        }
+
+        private void BtnRecibirTesis_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetEntregaValida(Constants.TesisTurno.Turno);
+            auxiliar.UpdateEstadoDocumento(Constants.TesisTurno.IdTesis, 7, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            Constants.TesisTurno.EstadoTesis = 7;
+        }
+
+        private void BtnEntregarEjecutoria_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetFechaEntrega(Constants.EjecutoriaTurno.Turno.IdTurno);
+            auxiliar.UpdateEstadoDocumento(Constants.EjecutoriaTurno.IdTesis, 6, "Ejecutorias", "IdEjecutoria", "EstadoEjecutoria");
+            Constants.EjecutoriaTurno.EstadoEjecutoria = 6;
+        }
+
+        private void BtnRecibirEjecutoria_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliarModel auxiliar = new AuxiliarModel();
+            auxiliar.SetEntregaValida(Constants.EjecutoriaTurno.Turno);
+            auxiliar.UpdateEstadoDocumento(Constants.EjecutoriaTurno.IdTesis, 7, "Ejecutorias", "IdEjecutoria", "EstadoEjecutoria");
+            Constants.EjecutoriaTurno.EstadoEjecutoria = 7;
         }
     }
 }

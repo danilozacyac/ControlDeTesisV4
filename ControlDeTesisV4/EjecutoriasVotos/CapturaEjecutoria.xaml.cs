@@ -120,14 +120,6 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             ejecutoria.EstadoEjecutoria = estadoEjecutoria;
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
-            ejecutoria.FRecepcionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FRecepcion));
-            ejecutoria.Precedente.FResolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.Precedente.FResolucion));
-
-            if(ejecutoria.FEnvioObs != null)
-                ejecutoria.FEnvioObsInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FEnvioObs));
-            
-            if(ejecutoria.FDevolucion != null)
-                ejecutoria.FDevolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FDevolucion));
 
             if (new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria))
             {

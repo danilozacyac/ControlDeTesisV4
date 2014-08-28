@@ -326,6 +326,7 @@ namespace ControlDeTesisV4.Models
                         tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
                         tesis.Precedente = new PrecedentesModel().GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = new TesisComparaModel().GetTesisCompara(idTesis);
+                        tesis.Turno = new TurnoModel().GetTurno(tesis.IdTipoJuris + 1, tesis.IdTesis);
                     }
                 }
                 cmd.Dispose();

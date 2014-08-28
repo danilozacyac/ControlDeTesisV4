@@ -14,20 +14,15 @@ namespace ControlDeTesisV4.Converter
         {
             int estadoTesis = value as int? ?? 0;
 
-            if (estadoTesis == 99) //Publicada
+            switch (estadoTesis)
             {
-                return new SolidColorBrush(Colors.Orange);
+                case 4: return new SolidColorBrush(Colors.LightBlue);
+                case 5: return new SolidColorBrush(Colors.White);
+                case 6: return new SolidColorBrush(Colors.LightGreen);
+                case 7: return new SolidColorBrush(Colors.LightPink);
+                case 8: return new SolidColorBrush(Colors.Yellow);
+                default: return new SolidColorBrush(Colors.White);
             }
-           
-            else if (estadoTesis == 0) //Espera Turno
-            {
-                return new SolidColorBrush(Colors.LightBlue);
-            }
-            else 
-            {
-                return new SolidColorBrush(Colors.White);
-            }
-            
 
         }
 

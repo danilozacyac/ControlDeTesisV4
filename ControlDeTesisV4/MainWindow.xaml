@@ -123,10 +123,12 @@
                     <StackPanel Orientation="Vertical">
 
                         <telerik:RadRibbonButton x:Name="BtnEntregarTesis"
+                                                 Click="BtnEntregarTesis_Click"
                                                  Content="Entregar tesis"
                                                  LargeImage="Resources/entregar.png"
                                                  Size="Medium" />
                         <telerik:RadRibbonButton x:Name="BtnRecibirTesis"
+                                                 Click="BtnRecibirTesis_Click"
                                                  Content="Validar entrega"
                                                  LargeImage="Resources/recibir.png"
                                                  Size="Medium" />
@@ -165,6 +167,22 @@
                             <TextBlock Text=" ejecutoria" />
                         </StackPanel>
                     </telerik:RadRibbonButton>
+
+                    <StackPanel Orientation="Vertical">
+
+                        <telerik:RadRibbonButton x:Name="BtnEntregarEjecutoria"
+                                                 Content="Entregar tesis"
+                                                 LargeImage="Resources/entregar.png"
+                                                 Size="Medium" Click="BtnEntregarEjecutoria_Click" />
+                        <telerik:RadRibbonButton x:Name="BtnRecibirEjecutoria"
+                                                 Content="Validar entrega"
+                                                 LargeImage="Resources/recibir.png"
+                                                 Size="Medium" Click="BtnRecibirEjecutoria_Click" />
+                        <telerik:RadRibbonButton x:Name="BtnPublicaEjecutoria"
+                                                 Content="Publicar tesis"
+                                                 LargeImage="Resources/publicar.png"
+                                                 Size="Medium" />
+                    </StackPanel>
                 </telerik:RadRibbonGroup>
                 <telerik:RadRibbonGroup Header="Votos">
                     <telerik:RadRibbonButton x:Name="BtnListaVotos"

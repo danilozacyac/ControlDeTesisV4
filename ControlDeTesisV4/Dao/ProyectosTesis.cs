@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace ControlDeTesisV4.Dao
 {
-    public class ProyectosTesis
+    public class ProyectosTesis : INotifyPropertyChanged
     {
         private int idTesis;
         private string oficioEnvio;
@@ -28,14 +29,8 @@ namespace ControlDeTesisV4.Dao
         private TesisCompara comparaTesis;
         private PrecedentesTesis precedente;
         private Ejecutorias ejecutoria;
+        private TurnoDao turno;
         private int estadoTesis;
-       
-        
-        
-
-       
-
-        
 
         public int IdTesis
         {
@@ -313,6 +308,19 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
+        public TurnoDao Turno
+        {
+            get
+            {
+                return this.turno;
+            }
+            set
+            {
+                this.turno = value;
+                this.OnPropertyChanged("Turno");
+            }
+        }
+
         public int EstadoTesis
         {
             get
@@ -322,7 +330,20 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.estadoTesis = value;
+                this.OnPropertyChanged("EstadoTesis");
             }
         }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion // INotifyPropertyChanged Members
     }
 }

@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.UtilitiesFolder;
 using ModuloInterconexionCommonApi;
 
 namespace ControlDeTesisV4.Models
@@ -19,9 +20,8 @@ namespace ControlDeTesisV4.Models
         /// </summary>
         /// <param name="estadoTesis">Estado del proceso de publicación en el que se encuentra la tesis</param>
         /// <returns></returns>
-        public ObservableCollection<TesisTurnadaPreview> GetPreviewTesisTurnadas()
+        public void GetPreviewTesisTurnadas()
         {
-            ObservableCollection<TesisTurnadaPreview> tesisTurnadas = new ObservableCollection<TesisTurnadaPreview>();
 
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
@@ -29,7 +29,7 @@ namespace ControlDeTesisV4.Models
 
             String sqlCadena = "SELECT T.IdDocto, T.IdAbogado, PT.ClaveTesis, PT.Rubro, PrT.IdTipoAsunto, PrT.NumAsunto, PrT.YearAsunto, PT.IdInstancia, PrT.FResolucion, T.FTurno, T.FSugerida, T.FEntrega, PT.EstadoTesis,T.EnTiempo,T.DiasAtraso " +
                                " FROM (PrecedentesTesis PrT INNER JOIN ProyectosTesis PT ON PrT.IdTesis = PT.IdTesis) INNER JOIN Turno T ON PT.IdTesis = T.IdDocto " +
-                               " WHERE (PT.EstadoTesis = 4 OR PT.EstadoTesis = 5 ); ";
+                               " WHERE (PT.EstadoTesis >= 4 ); ";
 
             try
             {
@@ -57,13 +57,14 @@ namespace ControlDeTesisV4.Models
                         tesis.FEntrega = StringUtilities.GetDateFromReader(reader, "FEntrega");
                         tesis.EnTiempo = Convert.ToBoolean(reader["EnTiempo"] as int? ?? -1);
                         tesis.DiasAtraso = reader["DiasAtraso"] as int? ?? -1;
+                        tesis.EstadoTesis = reader["EstadoTesis"] as int? ?? -1;
 
                         TimeSpan? ts = tesis.FSugerida - DateTime.Now;
                         int diferenciaEnDias = ts.Value.Days;
 
                         tesis.Semaforo = diferenciaEnDias;
                         
-                        tesisTurnadas.Add(tesis);
+                        Constants.ListadoDeTesis.Add(tesis);
                     }
                 }
                 cmd.Dispose();
@@ -82,7 +83,6 @@ namespace ControlDeTesisV4.Models
                 oleConne.Close();
             }
 
-            return tesisTurnadas;
         }
 
 

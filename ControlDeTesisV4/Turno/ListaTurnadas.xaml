@@ -107,7 +107,7 @@
 
             <telerik:RadGridView.RowStyle>
                 <Style TargetType="telerik:GridViewRow">
-                    <Setter Property="Background" Value="{Binding Idabogado, Converter={StaticResource EstadoK}}" />
+                    <Setter Property="Background" Value="{Binding EstadoTesis, Mode=TwoWay, Converter={StaticResource EstadoK}}" />
                 </Style>
             </telerik:RadGridView.RowStyle>
 

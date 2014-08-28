@@ -286,7 +286,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\DatosProyectoSalas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\ListaProyectoSalas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\CargaPorabogado.g.cs
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\ListadoTesisTurnadas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\ListaTurnadas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\StatTurno.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\TurnarWin.g.cs
@@ -331,7 +330,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\ListaProyectosCcst.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\CapturaProyectoSalas.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\ListaProyectoSalas.baml
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\ListadoTesisTurnadas.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\ListaTurnadas.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\StatTurno.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\TurnarWin.baml
@@ -356,3 +354,15 @@ C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesi
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\DetalleVotos.g.cs
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\LogIn.g.cs
 C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\TesisPublicar.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Reportes\SeleccionPeriodo.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Reportes\SeleccionPeriodo.g.cs
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\Reportes\SeleccionPeriodo.baml
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.g.cs
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\Reportes\SeleccionPeriodo.g.cs
+C:\Users\Luis\Documents\Visual Studio 2012\Projects\ControlDeTesis\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoEjecutorias.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.baml
