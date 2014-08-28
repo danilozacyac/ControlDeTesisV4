@@ -121,16 +121,25 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
             ejecutoria.FRecepcionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FRecepcion));
-            ejecutoria.FEnvioObsInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FEnvioObs));
-            ejecutoria.FDevolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FDevolucion));
+            ejecutoria.Precedente.FResolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.Precedente.FResolucion));
 
-            new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria);
+            if(ejecutoria.FEnvioObs != null)
+                ejecutoria.FEnvioObsInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FEnvioObs));
+            
+            if(ejecutoria.FDevolucion != null)
+                ejecutoria.FDevolucionInt = Convert.ToInt32(StringUtilities.DateToInt(ejecutoria.FDevolucion));
 
-            TurnarWin turnar = new TurnarWin(ejecutoria);
-            turnar.ShowDialog();
+            if (new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria))
+            {
+                TurnarWin turnar = new TurnarWin(ejecutoria);
+                turnar.ShowDialog();
 
-
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Revisa los datos de la ejecutoria");
+            }
         }
 
         private void BtnObservaciones_Click(object sender, RoutedEventArgs e)

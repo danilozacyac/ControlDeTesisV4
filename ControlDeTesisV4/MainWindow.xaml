@@ -5,7 +5,7 @@
         xmlns:ProyectosSalasFolder="clr-namespace:ControlDeTesisV4.ProyectosSalasFolder"
         xmlns:igRibbon="http://infragistics.com/Ribbon"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        Width="525"
+        Width="800"
         Height="350"
         Icon="Resources/appImage.png"
         Loaded="Window_Loaded"
@@ -120,6 +120,22 @@
                                                  Size="Medium" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Vertical">
+
+                        <telerik:RadRibbonButton x:Name="BtnEntregarTesis"
+                                                 Content="Entregar tesis"
+                                                 LargeImage="Resources/entregar.png"
+                                                 Size="Medium" />
+                        <telerik:RadRibbonButton x:Name="BtnRecibirTesis"
+                                                 Content="Validar entrega"
+                                                 LargeImage="Resources/recibir.png"
+                                                 Size="Medium" />
+                        <telerik:RadRibbonButton x:Name="BtnPublicarTesis"
+                                                 Content="Publicar tesis"
+                                                 LargeImage="Resources/publicar.png"
+                                                 Size="Medium" />
+                    </StackPanel>
+
 
                 </telerik:RadRibbonGroup>
                 <telerik:RadRibbonGroup Header="Ejecutorias">
@@ -177,6 +193,7 @@
                         </StackPanel>
                     </telerik:RadRibbonButton>
                 </telerik:RadRibbonGroup>
+
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Estadísticas">
                 <telerik:RadRibbonGroup Header="">

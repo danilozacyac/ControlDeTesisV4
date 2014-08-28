@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ControlDeTesisV4.Dao
 {
-    public class TurnoDao
+    public class TurnoDao :  INotifyPropertyChanged
     {
         private int idTurno;
         private int idAbogado;
@@ -42,6 +43,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.idAbogado = value;
+                this.OnPropertyChanged("IdAbogado");
             }
         }
 
@@ -164,5 +166,17 @@ namespace ControlDeTesisV4.Dao
                 this.observaciones = value;
             }
         }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion // INotifyPropertyChanged Members
     }
 }

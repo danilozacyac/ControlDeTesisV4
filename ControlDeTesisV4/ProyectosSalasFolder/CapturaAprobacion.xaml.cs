@@ -146,17 +146,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             this.Close();
         }
 
-        private void BtnGuardarTurn_Click(object sender, RoutedEventArgs e)
-        {
-            BtnGuardar_Click(null, null);
-
-            // this.Hide();
-            int tipoDocto = (tesis.Tatj == 0) ? 1 : 2;
-
-            TurnarWin turno = new TurnarWin(tesis, tipoDocto);
-            turno.ShowDialog();
-            this.Close();
-        }
+        
 
         private void LoadRichTextBoxContent(RichTextBox rtb, string contentString)
         {

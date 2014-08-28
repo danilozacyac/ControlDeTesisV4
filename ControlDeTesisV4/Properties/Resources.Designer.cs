@@ -123,6 +123,16 @@ namespace ControlDeTesisV4.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap entregar {
+            get {
+                object obj = ResourceManager.GetObject("entregar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap juez24 {
             get {
                 object obj = ResourceManager.GetObject("juez24", resourceCulture);
@@ -236,6 +246,16 @@ namespace ControlDeTesisV4.Properties {
         internal static System.Drawing.Bitmap Publicar {
             get {
                 object obj = ResourceManager.GetObject("Publicar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recibir {
+            get {
+                object obj = ResourceManager.GetObject("recibir", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

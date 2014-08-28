@@ -439,7 +439,9 @@
   <ItemGroup>
     <Resource Include="Resources\login2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\entregar.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\wait.png" />
   </ItemGroup>
@@ -448,6 +450,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\recibir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

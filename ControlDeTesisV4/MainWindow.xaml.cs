@@ -47,7 +47,7 @@ namespace ControlDeTesisV4
             Constants.ListadoDeVotos = new ObservableCollection<Votos>();
                 
             new VotosModel().GetVoto();
-
+            new EjecutoriasModel().GetEjecutorias();
         }
 
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)

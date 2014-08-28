@@ -94,6 +94,82 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        public void UpdateTurno(TurnoDao turno)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM Turno WHERE IdTurno = " + turno.IdTurno;
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "Turno");
+
+                dr = dataSet.Tables["Turno"].Rows[0];
+                dr.BeginEdit();
+
+                dr["IdAbogado"] = turno.IdAbogado;
+                dr["NumPaginas"] = turno.NumPaginas;
+                dr["FTurno"] = turno.FTurno;
+                dr["FTurnoInt"] = StringUtilities.DateToInt(turno.FTurno);
+                dr["FSugerida"] = turno.FSugerida;
+                dr["FSugeridaInt"] = StringUtilities.DateToInt(turno.FSugerida);
+                dr["EnTiempo"] = 1;
+                dr["DiasAtraso"] = 0;
+                dr["Returno"] = 1;
+                dr["Observaciones"] = turno.Observaciones;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE Turno SET IdAbogado = @IdAbogado,FTurno = @FTurno,FTurnoInt = @FTurnoInt,FSugerida = @FSugeridaInt," +
+                       " EnTiempo = @EnTiempo,DiasAtraso = @DiasAtraso,Returno = @Returno " +
+                       " WHERE IdTurno = @IdTurno";
+
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@IdAbogado", OleDbType.Numeric, 0, "IdAbogado");
+                dataAdapter.UpdateCommand.Parameters.Add("@FTurno", OleDbType.Date, 0, "FTurno");
+                dataAdapter.UpdateCommand.Parameters.Add("@FTurnoInt", OleDbType.Numeric, 0, "FTurnoInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@FSugerida", OleDbType.Date, 0, "FSugerida");
+                dataAdapter.UpdateCommand.Parameters.Add("@FSugeridaInt", OleDbType.Numeric, 0, "FSugeridaInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@EnTiempo", OleDbType.Numeric, 0, "EnTiempo");
+                dataAdapter.UpdateCommand.Parameters.Add("@DiasAtraso", OleDbType.Numeric, 0, "DiasAtraso");
+                dataAdapter.UpdateCommand.Parameters.Add("@Returno", OleDbType.Numeric, 0, "Returno");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdTurno", OleDbType.Numeric, 0, "IdTurno");
+
+                dataAdapter.Update(dataSet, "Turno");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
 
         public TurnoDao GetTurno(int idTipoDocto, int idDocto)
         {

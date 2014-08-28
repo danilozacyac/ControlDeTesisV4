@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ModuloInterconexionCommonApi;
 
@@ -15,8 +16,10 @@ namespace ControlDeTesisV4.Models
     {
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public void SetNewProyectoEjecutoria(Ejecutorias ejecutoria)
+        public bool SetNewProyectoEjecutoria(Ejecutorias ejecutoria)
         {
+            bool isInsert = true;
+
             OleDbConnection connection = new OleDbConnection(connectionString);
 
             string sSql;
@@ -46,6 +49,7 @@ namespace ControlDeTesisV4.Models
                 dr["Obs"] = (ejecutoria.Observaciones != null && ejecutoria.Observaciones.Count > 0) ? 1 : 0;
                 dr["ObsFilePathOrigen"] = ejecutoria.ObsFilePathOrigen;
                 dr["ObsFilePathConten"] = ejecutoria.ObsFilePathConten;
+                dr["OficioRecepcion"] = ejecutoria.OficioRecepcion;
 
                 if (ejecutoria.FRecepcion != null)
                 {
@@ -93,9 +97,9 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.InsertCommand = connection.CreateCommand();
 
                 sSql = "INSERT INTO Ejecutorias (IdEjecutoria,IdTesis,ForObservaciones,ProvFilePathOrigen,ProvFilePathConten,ProvNumFojas,Obs,ObsFilePathOrigen,ObsFilePathConten," +
-                       "FRecepcion,FRecepcionInt,FEnvioObs,FEnvioObsInt,FDevolucion,FDevolucionInt,CCFilePathOrigen,CCFilePathConten,CCNumFojas,VPFilePathOrigen,VPFilePathConten,VPNumFojas,EstadoEjecutoria) " +
+                       "OficioRecepcion,FRecepcion,FRecepcionInt,FEnvioObs,FEnvioObsInt,FDevolucion,FDevolucionInt,CCFilePathOrigen,CCFilePathConten,CCNumFojas,VPFilePathOrigen,VPFilePathConten,VPNumFojas,EstadoEjecutoria) " +
                        " VALUES (@IdEjecutoria,@IdTesis,@ForObservaciones,@ProvFilePathOrigen,@ProvFilePathConten,@ProvNumFojas,@Obs,@ObsFilePathOrigen,@ObsFilePathConten," +
-                       "@FRecepcion,@FRecepccionInt,@FEnvioObs,@FEnvioObsInt,@FDevolucion,@FDevolucionInt,@CCFilePathOrigen,@CCFilePathConten,@CCNumFojas,@VPFilePathOrigen,@VPFilePathConten,@VPNumFojas,@EstadoEjecutoria)";
+                       "@OficioRecepcion,@FRecepcion,@FRecepccionInt,@FEnvioObs,@FEnvioObsInt,@FDevolucion,@FDevolucionInt,@CCFilePathOrigen,@CCFilePathConten,@CCNumFojas,@VPFilePathOrigen,@VPFilePathConten,@VPNumFojas,@EstadoEjecutoria)";
 
                 dataAdapter.InsertCommand.CommandText = sSql;
 
@@ -108,6 +112,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.InsertCommand.Parameters.Add("@Obs", OleDbType.Numeric, 0, "Obs");
                 dataAdapter.InsertCommand.Parameters.Add("@ObsFilePathOrigen", OleDbType.VarChar, 0, "ObsFilePathOrigen");
                 dataAdapter.InsertCommand.Parameters.Add("@ObsFilePathConten", OleDbType.VarChar, 0, "ObsFilePathConten");
+                dataAdapter.InsertCommand.Parameters.Add("@OficioRecepcion", OleDbType.VarChar, 0, "OficioRecepcion");
                 dataAdapter.InsertCommand.Parameters.Add("@FRecepcion", OleDbType.Date, 0, "FRecepcion");
                 dataAdapter.InsertCommand.Parameters.Add("@FRecepcionInt", OleDbType.Numeric, 0, "FRecepcionInt");
                 dataAdapter.InsertCommand.Parameters.Add("@FEnvioObs", OleDbType.Date, 0, "FEnvioObs");
@@ -131,6 +136,13 @@ namespace ControlDeTesisV4.Models
                 if (ejecutoria.Observaciones != null)
                     this.SetNewObservacion(ejecutoria.Observaciones, ejecutoria.IdEjecutoria);
 
+                if (ejecutoria.Votos != null && ejecutoria.Votos.Count > 0)
+                {
+                    foreach (Votos voto in ejecutoria.Votos)
+                    {
+                        new VotosModel().SetNewProyectoVoto(voto, voto.Precedente);
+                    }
+                }
                 
             }
             catch (OleDbException ex)
@@ -139,6 +151,7 @@ namespace ControlDeTesisV4.Models
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Utilities.SetNewErrorMessage(ex, methodName, 0);
+                isInsert = false;
             }
             catch (Exception ex)
             {
@@ -146,11 +159,15 @@ namespace ControlDeTesisV4.Models
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Utilities.SetNewErrorMessage(ex, methodName, 0);
+                isInsert = false;
             }
             finally
             {
                 connection.Close();
+
             }
+
+            return isInsert;
         }
 
         public void SetNewObservacion(ObservableCollection<Observaciones> observaciones, int idEjecutoria)
@@ -680,10 +697,8 @@ namespace ControlDeTesisV4.Models
             return ejecutoria;
         }
 
-        public ObservableCollection<Ejecutorias> GetEjecutorias()
+        public void GetEjecutorias()
         {
-            ObservableCollection<Ejecutorias> listadoEjecutorias = new ObservableCollection<Ejecutorias>();
-
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
@@ -709,6 +724,7 @@ namespace ControlDeTesisV4.Models
                         ejecutoria.ProvNumFojas = reader["Provnumfojas"] as int? ?? -1;
                         ejecutoria.ObsFilePathOrigen = reader["ObsFilePathOrigen"].ToString();
                         ejecutoria.ObsFilePathConten = reader["ObsFilePathConten"].ToString();
+                        ejecutoria.OficioRecepcion = reader["OficioRecepcion"].ToString();
                         ejecutoria.FRecepcion = StringUtilities.GetDateFromReader(reader, "FRecepcion");
                         ejecutoria.FRecepcionInt = reader["FRecepcionInt"] as int? ?? -1;
                         ejecutoria.FEnvioObs = StringUtilities.GetDateFromReader(reader, "FEnvioObs");
@@ -728,7 +744,7 @@ namespace ControlDeTesisV4.Models
                         ejecutoria.Turno = new TurnoModel().GetTurno(3, ejecutoria.IdEjecutoria);
                         ejecutoria.Votos = new VotosModel().GetVoto(ejecutoria.IdEjecutoria);
 
-                        listadoEjecutorias.Add(ejecutoria);
+                        Constants.ListadoDeEjecutorias.Add(ejecutoria);
                     }
                 }
                 cmd.Dispose();
@@ -753,7 +769,6 @@ namespace ControlDeTesisV4.Models
                 oleConne.Close();
             }
 
-            return listadoEjecutorias;
         }
 
         public ObservableCollection<Observaciones> GetObservaciones(int idEjecutoria)
