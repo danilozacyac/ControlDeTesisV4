@@ -94,7 +94,7 @@
 
                     <telerik:RadRibbonButton x:Name="BtnPorTurnar"
                                              Click="BtnPorTurnar_Click"
-                                             LargeImage="Resources/lista.png"
+                                             LargeImage="Resources/Login.png"
                                              Size="Large">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="  Listado" />

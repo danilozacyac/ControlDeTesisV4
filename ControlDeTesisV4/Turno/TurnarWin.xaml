@@ -6,7 +6,8 @@
                    Width="750"
                    Height="650"
                    Header="Turnar"
-                   Loaded="RadWindow_Loaded">
+                   Loaded="RadWindow_Loaded"
+                   WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -15,7 +16,9 @@
 
         <telerik:RadTabControl>
             <telerik:RadTabItem Header="Carga de Trabajo por Abogado">
-                <local:CargaPorabogado HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <local:AbogadoTotal x:Name="TurnoTotal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
             </telerik:RadTabItem>
             <telerik:RadTabItem Header="Carga de Trabajo por Documento">
                 <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

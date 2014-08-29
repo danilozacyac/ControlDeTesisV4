@@ -268,7 +268,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Themes\Botones.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Themes\ShinyBlue.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Themes\ShinyRed.baml
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\CargaPorabogado.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\VisualComparition\CcstCompare.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\VisualComparition\SalasCompare.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\App.baml
@@ -285,7 +284,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\CapturObservaciones.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\DatosProyectoSalas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\ListaProyectoSalas.g.cs
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\CargaPorabogado.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\ListaTurnadas.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\StatTurno.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\TurnarWin.g.cs
@@ -366,3 +364,13 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\VentanaTurno.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\VentanaTurno.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\AbogadoTotal.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\AbogadoTotal.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Controls.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\WPFToolkit.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Controls.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\WPFToolkit.pdb

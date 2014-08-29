@@ -153,12 +153,20 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             voto.CcFilePathOrigen = TxtCertificada.Text;
             voto.VpFilePathOrigen = TxtPublica.Text;
 
-            if (new VotosModel().SetNewProyectoVoto(voto, voto.Precedente))
+            if (!isUpdating)
             {
-                TurnarWin turnar = new TurnarWin(voto);
-                turnar.ShowDialog();
+                if (new VotosModel().SetNewProyectoVoto(voto, voto.Precedente))
+                {
+                    TurnarWin turnar = new TurnarWin(voto);
+                    turnar.ShowDialog();
 
-                Constants.ListadoDeVotos.Add(voto);
+                    Constants.ListadoDeVotos.Add(voto);
+                    this.Close();
+                }
+            }
+            else
+            {
+                new VotosModel().UpdateProyectoVoto(voto);
                 this.Close();
             }
         }

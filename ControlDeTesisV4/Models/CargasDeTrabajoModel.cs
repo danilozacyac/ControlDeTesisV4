@@ -91,7 +91,7 @@ namespace ControlDeTesisV4.Models
                 {
                     while (reader.Read())
                     {
-                        CargaTrabajo carga = new CargaTrabajo(reader["Nombre"].ToString(), "", Convert.ToInt32(reader["Paginas"]));
+                        CargaTrabajo carga = new CargaTrabajo(reader["Nombre"].ToString() + "     NP: " + reader["Paginas"].ToString(), "", Convert.ToInt32(reader["Paginas"]));
                         cargas.Add(carga);
 
                     }

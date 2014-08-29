@@ -76,10 +76,15 @@ namespace ControlDeTesisV4
                 pane.Content = new StatTurno();
                 RadPane pane2 = new RadPane();
                 pane2.Header = "Total";
-                pane2.Content = new CargaPorabogado();
+                pane2.Content = new AbogadoTotal();
+
+                //RadPane pane3 = new RadPane();
+                //pane3.Header = "Total";
+                //pane3.Content = new CargaTAbogado();
 
                 group.AddItem(pane, DockPosition.Center);
                 group.AddItem(pane2, DockPosition.Center);
+                //group.AddItem(pane3, DockPosition.Center);
                 leftContainer.Items.Add(group);
                 Docking.Items.Add(leftContainer);
                 isCargasVisible = true;
@@ -160,7 +165,7 @@ namespace ControlDeTesisV4
         {
             if (Constants.EjecutoriaTurno != null)
             {
-                TurnarWin turnar = new TurnarWin(Constants.EjecutoriaTurno);
+                VentanaTurno turnar = new VentanaTurno(Constants.EjecutoriaTurno);
                 turnar.ShowDialog();
 
                 Constants.EjecutoriaTurno = null;

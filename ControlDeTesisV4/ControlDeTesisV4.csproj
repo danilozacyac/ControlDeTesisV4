@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Controls">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\AppTesauros\AppTesauro09wpf\AppTesauro09wpf\bin\Debug\Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -45,6 +48,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -156,8 +160,8 @@
     </Compile>
     <Compile Include="Singletons\FuncionariosSingleton.cs" />
     <Compile Include="Singletons\OtrosDatosSingleton.cs" />
-    <Compile Include="Turno\CargaPorabogado.xaml.cs">
-      <DependentUpon>CargaPorabogado.xaml</DependentUpon>
+    <Compile Include="Turno\AbogadoTotal.xaml.cs">
+      <DependentUpon>AbogadoTotal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Turno\CargaTrabajo.cs" />
     <Compile Include="Turno\CargaTrabajoModel.cs" />
@@ -169,6 +173,9 @@
     </Compile>
     <Compile Include="Turno\TurnarWin.xaml.cs">
       <DependentUpon>TurnarWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Turno\VentanaTurno.xaml.cs">
+      <DependentUpon>VentanaTurno.xaml</DependentUpon>
     </Compile>
     <Compile Include="UtilitiesFolder\Constants.cs" />
     <Compile Include="VisualComparition\CcstCompare.xaml.cs">
@@ -298,9 +305,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Turno\CargaPorabogado.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Turno\AbogadoTotal.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Turno\ListaTurnadas.xaml">
       <SubType>Designer</SubType>
@@ -311,6 +318,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Turno\TurnarWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Turno\VentanaTurno.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -456,8 +467,9 @@
     <Resource Include="Resources\recibir.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lista.png" />
+    <Resource Include="Resources\lista.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
