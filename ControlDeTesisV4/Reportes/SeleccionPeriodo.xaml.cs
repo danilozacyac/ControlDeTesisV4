@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Reportes.Proyectos;
-using Telerik.Windows.Controls;
 
 namespace ControlDeTesisV4.Reportes
 {
@@ -24,11 +15,12 @@ namespace ControlDeTesisV4.Reportes
     public partial class SeleccionPeriodo
     {
         RadioButton selectedRadio = null;
+        private readonly int tipoProyecto;
 
-
-        public SeleccionPeriodo()
+        public SeleccionPeriodo(int tipoProyecto)
         {
             InitializeComponent();
+            this.tipoProyecto = tipoProyecto;
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
@@ -74,10 +66,20 @@ namespace ControlDeTesisV4.Reportes
                 periodoFinal = Convert.ToInt32(CbxAnio.Text);
             }
 
-            ObservableCollection<ProyectosTesis> listaImprimir = new ProyectoTesisSalasModel().GetProyectoTesis(periodoInicio, periodoFinal);
+            ObservableCollection<ProyectosTesis> listaImprimir;
 
-            TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
-            rtf.GeneraWord();
+            if (tipoProyecto == 1)
+            {
+                listaImprimir = new ProyectoTesisSalasModel().GetProyectoTesis(periodoInicio, periodoFinal);
+                TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
+                rtf.GeneraWord();
+            }
+            else
+            {
+                listaImprimir = new ProyectoTesisCcstModel().GetProyectoTesis(periodoInicio, periodoFinal);
+            }
+
+            
 
             this.Close();
         }

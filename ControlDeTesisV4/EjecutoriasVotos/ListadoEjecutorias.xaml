@@ -12,7 +12,6 @@
     <UserControl.Resources>
         <converter:AbogadoConverter x:Key="AbogadoK" />
         <converter:SemaforoConverter x:Key="SemaforoK" />
-        <converter:InstanciaConverter x:Key="InstanciaK" />
         <converter:EstadoTesisConverter x:Key="EstadoK" />
     </UserControl.Resources>
     <Grid>

@@ -149,6 +149,7 @@
     <Compile Include="ProyectosSalasFolder\ListaProyectoSalas.xaml.cs">
       <DependentUpon>ListaProyectoSalas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Proyectos\TesisCcstRtfWordTable.cs" />
     <Compile Include="Reportes\Proyectos\TesisSalasRtfWordTable.cs" />
     <Compile Include="Reportes\SeleccionPeriodo.xaml.cs">
       <DependentUpon>SeleccionPeriodo.xaml</DependentUpon>

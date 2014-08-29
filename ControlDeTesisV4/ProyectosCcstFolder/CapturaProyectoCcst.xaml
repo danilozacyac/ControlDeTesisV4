@@ -13,7 +13,6 @@
 
     <telerik:RadWindow.Resources>
         <converter:PonentesConverter x:Key="PonenteConverter" />
-        <converter:AsuntosConverter x:Key="AsuntoConverter" />
     </telerik:RadWindow.Resources>
 
     <Grid>

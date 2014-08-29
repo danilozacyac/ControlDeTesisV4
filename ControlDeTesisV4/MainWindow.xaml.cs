@@ -7,6 +7,7 @@ using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.ProyectosCcstFolder;
 using ControlDeTesisV4.ProyectosSalasFolder;
+using ControlDeTesisV4.Reportes;
 using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
 using Telerik.Windows.Controls;
@@ -228,6 +229,18 @@ namespace ControlDeTesisV4
             auxiliar.SetFechaEntrega(Constants.VotoTurno.Turno.IdTurno);
             auxiliar.UpdateEstadoDocumento(Constants.VotoTurno.IdVoto, 7, "Votos", "IdVoto", "EstadoVoto");
             Constants.VotoTurno.EstadoVoto = 7;
+        }
+
+        private void BtnProyectosSalas_Click(object sender, RoutedEventArgs e)
+        {
+            SeleccionPeriodo periodo = new SeleccionPeriodo(1);
+            periodo.ShowDialog();
+        }
+
+        private void BtnProyectosCcst_Click(object sender, RoutedEventArgs e)
+        {
+            SeleccionPeriodo periodo = new SeleccionPeriodo(2);
+            periodo.ShowDialog();
         }
     }
 }

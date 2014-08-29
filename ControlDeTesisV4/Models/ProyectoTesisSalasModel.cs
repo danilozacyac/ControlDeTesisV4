@@ -348,7 +348,12 @@ namespace ControlDeTesisV4.Models
             return tesis;
         }
 
-
+        /// <summary>
+        /// Devuelve un listado con las tesis que abarcan un periodo determinado, este periodo puede ser mensual o anual
+        /// </summary>
+        /// <param name="inicio">Dia inicial que se toma para obtener las tesis</param>
+        /// <param name="fin">Último día considerado para regresar las tesis</param>
+        /// <returns></returns>
         public ObservableCollection<ProyectosTesis> GetProyectoTesis(int inicio, int fin)
         {
             ObservableCollection<ProyectosTesis> listaDeTesis = new ObservableCollection<ProyectosTesis>();
@@ -361,9 +366,9 @@ namespace ControlDeTesisV4.Models
             String sqlCadena  = "";
 
             if (inicio == fin)
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%'";
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
             else
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt Between " + inicio + " and " + fin;
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt (Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
 
             try
             {

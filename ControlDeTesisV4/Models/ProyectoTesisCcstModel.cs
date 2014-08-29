@@ -331,6 +331,86 @@ namespace ControlDeTesisV4.Models
 
 
         /// <summary>
+        /// Devuelve un listado con las tesis que abarcan un periodo determinado, este periodo puede ser mensual o anual
+        /// </summary>
+        /// <param name="inicio">Dia inicial que se toma para obtener las tesis</param>
+        /// <param name="fin">Último día considerado para regresar las tesis</param>
+        /// <returns></returns>
+        public ObservableCollection<ProyectosTesis> GetProyectoTesis(int inicio, int fin)
+        {
+            ObservableCollection<ProyectosTesis> listaDeTesis = new ObservableCollection<ProyectosTesis>();
+
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "";
+
+            if (inicio == fin)
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 2";
+            else
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt (Between " + inicio + " and " + fin + ") AND idTipoProyecto = 2";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ProyectosTesis tesis = new ProyectosTesis();
+
+                        tesis.IdTesis = reader["IdTesis"] as int? ?? -1;
+                        tesis.OficioEnvio = reader["OficioEnvio"].ToString();
+                        tesis.FEnvio = StringUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
+                        tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
+                        tesis.Rubro = reader["Rubro"].ToString();
+                        tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
+                        tesis.IdTipoJuris = Convert.ToInt32(reader["TipoJuris"]);
+                        tesis.NumPaginas = Convert.ToInt32(reader["NumPaginas"]);
+                        tesis.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
+                        tesis.IdInstancia = Convert.ToInt32(reader["Idinstancia"]);
+                        tesis.IdSubInstancia = Convert.ToInt32(reader["IdSubinstancia"]);
+                        tesis.Aprobada = Convert.ToInt32(reader["Aprobada"]);
+                        tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
+                        tesis.NumTesis = reader["numTesis"].ToString();
+                        tesis.NumTesisInt = Convert.ToInt32(reader["NumTesisInt"]);
+                        tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
+                        tesis.ClaveTesis = reader["ClaveTesis"].ToString();
+                        tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
+                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
+                        tesis.Precedente = new PrecedentesModel().GetPrecedenteTesis(tesis.IdTesis);
+                        tesis.ComparaTesis = new TesisComparaModel().GetTesisCompara(tesis.IdTesis);
+
+                        listaDeTesis.Add(tesis);
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException sql)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return listaDeTesis;
+        } 
+
+
+        /// <summary>
         /// Actualiza el estado de la tesis dentro del proceso de publicacion
         /// 1. Recepcion
         /// 2. ENvio de Observaciones o envío del proyecto
