@@ -174,9 +174,6 @@
     <Compile Include="Turno\TurnarWin.xaml.cs">
       <DependentUpon>TurnarWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Turno\VentanaTurno.xaml.cs">
-      <DependentUpon>VentanaTurno.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UtilitiesFolder\Constants.cs" />
     <Compile Include="VisualComparition\CcstCompare.xaml.cs">
       <DependentUpon>CcstCompare.xaml</DependentUpon>
@@ -318,10 +315,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Turno\TurnarWin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Turno\VentanaTurno.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

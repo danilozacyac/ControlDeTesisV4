@@ -165,7 +165,7 @@ namespace ControlDeTesisV4
         {
             if (Constants.EjecutoriaTurno != null)
             {
-                VentanaTurno turnar = new VentanaTurno(Constants.EjecutoriaTurno);
+                TurnarWin turnar = new TurnarWin(Constants.EjecutoriaTurno);
                 turnar.ShowDialog();
 
                 Constants.EjecutoriaTurno = null;
