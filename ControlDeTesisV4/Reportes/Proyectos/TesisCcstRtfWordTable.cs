@@ -86,7 +86,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                     {
                         Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
 
-                        Word.Table oTable = oDoc.Tables.Add(wrdRng, 3, 3, ref oMissing, ref oMissing);
+                        Word.Table oTable = oDoc.Tables.Add(wrdRng, 3, 2, ref oMissing, ref oMissing);
                         oTable.Range.ParagraphFormat.SpaceAfter = 6;
                         oTable.Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
                         oTable.Range.Font.Size = 10;
@@ -98,24 +98,26 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                         oTable.Cell(1, 2).Merge(oTable.Cell(1, 3));
                         oTable.Cell(1, 1).Merge(oTable.Cell(1, 2));
-                        oTable.Cell(1, 1).Range.Text = "Instancia: " + this.GetInstanciaString(tesis.IdInstancia);
-                        oTable.Cell(1, 1).Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+                        oTable.Cell(1, 1).Range.Text = (tesis.Tatj == 1) ? "JURISPRUDENCIA" : "AISLADA";
+                        oTable.Cell(1, 1).Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                        oTable.Cell(2, 1).Split(4, 1);
-                        oTable.Cell(2, 1).Range.Text = "Ponencia: " + this.GetPonencia(tesis.Precedente.IdPonente);
-                        oTable.Cell(3, 1).Range.Text = "Recepción: " + this.GetFechaString(tesis.FEnvio);
-                        oTable.Cell(4, 1).Range.Text = "Entrega: " + this.GetFechaString(tesis.FEnvio);
-                        oTable.Cell(5, 1).Range.Text = "Oficio número: " + tesis.OficioEnvio;
+                        oTable.Cell(2, 1).Split(2, 1);
+                        oTable.Cell(2, 1).Range.Text = "TEXTO PROPUESTO POR LA COORDINACIÓN DE COMPILACIÓN Y SISTEMATIZACIÓN DE TESIS DE LA SCJN";
+                        oTable.Cell(3, 1).Split(1, 4);
 
-                        oTable.Cell(2, 2).Range.Text = "TEXTO MODIFICADO A PROPUESTA DE LA COORDINACIÓN DE COMPILACIÓN Y SISTEMATIZACIÓN DE TESIS";
+                        oTable.Cell(3, 1).Range.Text = "Fecha de entrega: ";
+                        oTable.Cell(3, 2).Range.Text = this.GetFechaString(tesis.FEnvio);
+                        oTable.Cell(3, 3).Range.Text = "Oficio número: ";
+                        oTable.Cell(3, 4).Range.Text = tesis.OficioEnvio;
+
+                        oTable.Cell(2, 5).Range.Text = "TEXTO APROBADO POR LOS MINISTROS DE LA SCJN";
                         oTable.Cell(2, 2).Range.Font.Bold = 1;
 
-                        oTable.Cell(2, 3).Split(1, 2);
-                        oTable.Cell(2, 3).Range.Text = "TEXTO APROBADO POR LOS MINISTROS DE LA SCJN.";
-                        oTable.Cell(2, 3).Range.Font.Bold = 1;
-                        oTable.Cell(2, 4).Range.Text = (String.IsNullOrEmpty(tesis.ClaveTesis)) ? "TESIS PENDIENTE DE APROBACIÓN" : tesis.ClaveTesis;
-                        oTable.Cell(2, 4).Range.Font.Bold = 1;
+                        oTable.Cell(2, 6).Range.Text = (String.IsNullOrEmpty(tesis.ClaveTesis)) ? "TESIS PENDIENTE DE APROBACIÓN" : tesis.ClaveTesis;
+                        oTable.Cell(2, 2).Range.Font.Bold = 1;
 
+
+                        
                         oTable.Range.Font.Name = "Arial";
                         oTable.Range.Font.Size = 9;
 
@@ -127,17 +129,13 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Cell(6, 1).Range.Font.Name = "Arial";
                         oTable.Cell(6, 1).Range.Font.Size = 10;
 
-                        Clipboard.SetText(tesis.ComparaTesis.TObservaciones, TextDataFormat.Rtf);
+                        Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
                         oTable.Cell(6, 2).Select();
                         oWord.Selection.Paste();
                         oTable.Cell(6, 2).Range.Font.Name = "Arial";
                         oTable.Cell(6, 2).Range.Font.Size = 10;
 
-                        Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
-                        oTable.Cell(6, 3).Select();
-                        oWord.Selection.Paste();
-                        oTable.Cell(6, 3).Range.Font.Name = "Arial";
-                        oTable.Cell(6, 3).Range.Font.Size = 10;
+                        
 
                         fila++;
                         numTesis++;
@@ -194,22 +192,6 @@ namespace ControlDeTesisV4.Reportes.Proyectos
             return "";
         }
 
-        private string GetInstanciaString(int instancia)
-        {
-            switch (instancia)
-            {
-                case 1: return "TRIBUNAL PLENO";
-                case 2: return "PRIMERA SALA";
-                case 3: return "SEGUNDA SALA";
-            }
-            return String.Empty;
-        }
-
-        private string GetPonencia(int idMinistro)
-        {
-            return (from n in FuncionariosSingleton.Ponentes
-                    where n.IdFuncionario == idMinistro
-                    select n.NombreCompleto).ToList()[0];
-        }
+        
     }
 }

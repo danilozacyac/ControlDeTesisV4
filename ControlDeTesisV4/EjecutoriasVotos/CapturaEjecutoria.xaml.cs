@@ -119,6 +119,9 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             ejecutoria.EstadoEjecutoria = estadoEjecutoria;
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
+            ejecutoria.CcFilePathConten = Utilities.CopyToLocalResource(ejecutoria.CcFilePathOrigen);
+            ejecutoria.VpFilePathConten = Utilities.CopyToLocalResource(ejecutoria.VpFilePathOrigen);
+
 
             if (new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria))
             {

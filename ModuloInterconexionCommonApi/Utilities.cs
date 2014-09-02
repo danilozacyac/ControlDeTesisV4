@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 
 namespace ModuloInterconexionCommonApi
@@ -34,6 +35,26 @@ namespace ModuloInterconexionCommonApi
             }
         }
 
+        /// <summary>
+        /// Copia un archivo a la carpeta detinada dentro de la ubicación en que se 
+        /// encuentra la aplicacion
+        /// </summary>
+        public static string CopyToLocalResource(string docPath)
+        {
+            try
+            {
+                string newPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 
+                newPath += @"\Docs\" + Path.GetFileName(docPath);
+
+                File.Copy(docPath, newPath);
+
+                return newPath;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
     }
 }

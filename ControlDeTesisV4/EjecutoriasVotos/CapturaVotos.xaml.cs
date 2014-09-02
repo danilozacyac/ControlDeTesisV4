@@ -41,10 +41,15 @@ namespace ControlDeTesisV4.EjecutoriasVotos
         {
             precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
+            
+            
 
             foreach (Votos voto in listaVotos)
             {
                 voto.EstadoVoto = 1;
+                voto.CcFilePathConten = Utilities.CopyToLocalResource(voto.CcFilePathOrigen);
+                voto.VpFilePathConten = Utilities.CopyToLocalResource(voto.VpFilePathOrigen);
+                     
                 new VotosModel().SetNewProyectoVoto(voto, precedente);
             }
 

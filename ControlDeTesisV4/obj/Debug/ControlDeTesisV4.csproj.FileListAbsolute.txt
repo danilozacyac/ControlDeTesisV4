@@ -364,8 +364,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\VotoSencillo.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\ListadoVotos.baml
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\VentanaTurno.g.cs
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\VentanaTurno.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\AbogadoTotal.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Turno\AbogadoTotal.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Controls.dll

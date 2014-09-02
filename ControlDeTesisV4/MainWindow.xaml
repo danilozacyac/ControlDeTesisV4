@@ -262,13 +262,13 @@
                     <telerik:RadPaneGroup x:Name="PanelCentral">
                         <telerik:RadPane Header="Proyectos Observaciones">
                             <Grid>
-                                <!--  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                                  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  
 
                             </Grid>
                         </telerik:RadPane>
                         <telerik:RadPane Header="Proyectos de la CCST">
                             <Grid>
-                                <!--  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
+                                  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  
                             </Grid>
                         </telerik:RadPane>
 
