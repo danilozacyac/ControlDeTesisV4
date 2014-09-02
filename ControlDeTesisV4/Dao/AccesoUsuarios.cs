@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ControlDeTesisV4.Dao
@@ -7,6 +8,7 @@ namespace ControlDeTesisV4.Dao
     {
         private static string nombre;
 
+        
         public static string Nombre
         {
             get
@@ -74,5 +76,20 @@ namespace ControlDeTesisV4.Dao
                 perfil = value;
             }
         }
+
+        private static List<int> secciones;
+
+        public static List<int> Secciones
+        {
+            get
+            {
+                return secciones;
+            }
+            set
+            {
+                secciones = value;
+            }
+        }
+
     }
 }
