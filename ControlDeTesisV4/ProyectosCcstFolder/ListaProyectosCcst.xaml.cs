@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,8 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     /// </summary>
     public partial class ListaProyectosCcst : UserControl
     {
+        private ObservableCollection<ProyectoPreview> listaProyectos;
+
         public ListaProyectosCcst()
         {
             InitializeComponent();
@@ -21,7 +24,8 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            GListado.DataContext = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(2);
+            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(2);
+            GListado.DataContext = listaProyectos;
         }
 
         private void ComparaButton_Click(object sender, RoutedEventArgs e)
@@ -65,6 +69,18 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             }
             CapturaAprobacion aprob = new CapturaAprobacion(lastProyecto);
             aprob.ShowDialog();
+        }
+
+        private void SearchTextBox_Search(object sender, RoutedEventArgs e)
+        {
+            String tempString = ((TextBox)sender).Text.ToUpper();
+
+            if (!String.IsNullOrEmpty(tempString))
+                GListado.DataContext = (from n in listaProyectos
+                                          where n.Asunto.Contains(tempString) || n.Rubro.Contains(tempString)
+                                          select n).ToList();
+            else
+                GListado.DataContext = listaProyectos;
         }
     }
 }

@@ -163,8 +163,8 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             proyecto.Proyecto.Tatj = (Radjuris.IsChecked == true) ? 1 : 0;
             proyecto.Proyecto.IdTipoJuris = (Radjuris.IsChecked == true) ? Convert.ToInt16(CbxTipoJuris.SelectedValue) : -1;
 
-
             new ProyectoTesisSalasModel(proyecto).SetNewProyecto();
+
 
             TurnarWin turnar = new TurnarWin(proyecto.Proyecto, proyecto.Proyecto.Tatj + 1);
             turnar.ShowDialog();

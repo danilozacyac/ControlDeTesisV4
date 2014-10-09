@@ -22,7 +22,14 @@
                                VerticalAlignment="Top"
                                ApplicationName=" Módulo de Interconexión de la CCST">
             <telerik:RadRibbonTab x:Name="Proyectos" Header="Proyectos">
-                <telerik:RadRibbonGroup Header="Proyectos para Observaciones" Uid="1">
+                <telerik:RadRibbonGroup x:Name="GPObservaciones"
+                                        Header="Proyectos para Observaciones"
+                                        Uid="1">
+                    <telerik:RadRibbonButton x:Name="BtnListadoProyS"
+                                             Click="BtnListadoProyS_Click"
+                                             Content="listado"
+                                             LargeImage="Resources/listado.png"
+                                             Size="Large" />
                     <telerik:RadRibbonButton x:Name="BtnNuevaTesis"
                                              Click="BtnNuevoPS_Click"
                                              Content="Tesis"
@@ -42,7 +49,14 @@
                     </StackPanel>
 
                 </telerik:RadRibbonGroup>
-                <telerik:RadRibbonGroup Header="Proyectos de la CCST" Uid="2">
+                <telerik:RadRibbonGroup x:Name="GpoCcst"
+                                        Header="Proyectos de la CCST"
+                                        Uid="2">
+                    <telerik:RadRibbonButton x:Name="BtnListadoCcst"
+                                             Click="BtnListadoCcst_Click"
+                                             Content="Listado CCST"
+                                             LargeImage="Resources/listado.png"
+                                             Size="Large" />
                     <telerik:RadRibbonButton x:Name="BtnNuevoPC"
                                              Click="BtnNuevoPC_Click"
                                              LargeImage="Resources/tesis.png"
@@ -57,7 +71,9 @@
 
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab x:Name="Publicar" Header="Para publicar">
-                <telerik:RadRibbonGroup Header="Llegan para publicar" Uid="20">
+                <telerik:RadRibbonGroup x:Name="GpoPublicar"
+                                        Header="Llegan para publicar"
+                                        Uid="20">
                     <telerik:RadRibbonButton x:Name="BtnTesisPublica"
                                              Click="BtnTesisPublica_Click"
                                              LargeImage="Resources/tesis.png"
@@ -246,29 +262,37 @@
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Estadísticas">
                 <telerik:RadRibbonGroup Header="">
-                    <telerik:RadRibbonRadioButton x:Name="BtnCargas"
-                                                  Click="BtnCargas_Click"
-                                                  Content="Carga de trabajo"
-                                                  LargeImage="Resources/char.png"
-                                                  Size="Large"
-                                                  Uid="80" />
+                    <telerik:RadRibbonButton x:Name="BtnCargas"
+                                             Click="BtnCargas_Click"
+                                             Content="Carga de trabajo"
+                                             LargeImage="Resources/char.png"
+                                             Size="Large"
+                                             Uid="80" />
                 </telerik:RadRibbonGroup>
 
             </telerik:RadRibbonTab>
             <telerik:RadRibbonTab Header="Reportes">
                 <telerik:RadRibbonGroup>
-                    <telerik:RadRibbonRadioButton x:Name="BtnProyectosSalas"
-                                                  Click="BtnProyectosSalas_Click"
-                                                  Content="Observaciones"
-                                                  LargeImage="Resources/tesis.png"
-                                                  Size="Large"
-                                                  Uid="100" />
-                    <telerik:RadRibbonRadioButton x:Name="BtnProyectosCcst"
-                                                  Click="BtnProyectosCcst_Click"
-                                                  Content="Observaciones"
-                                                  LargeImage="Resources/tesis.png"
-                                                  Size="Large"
-                                                  Uid="101" />
+                    <telerik:RadRibbonButton x:Name="BtnProyectosSalas"
+                                             Click="BtnProyectosSalas_Click"
+                                             LargeImage="Resources/tesis.png"
+                                             Size="Large"
+                                             Uid="100" >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="  Observaciones " />
+                            <TextBlock Text="  Proyectos Salas" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    <telerik:RadRibbonButton x:Name="BtnProyectosCcst"
+                                             Click="BtnProyectosCcst_Click"
+                                             LargeImage="Resources/tesis.png"
+                                             Size="Large"
+                                             Uid="101" >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="  Observaciones " />
+                            <TextBlock Text="  Proyectos CCST" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
                 </telerik:RadRibbonGroup>
             </telerik:RadRibbonTab>
         </telerik:RadRibbonView>
@@ -280,20 +304,7 @@
                             PreviewClose="Docking_PreviewClose">
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer>
-                    <telerik:RadPaneGroup x:Name="PanelCentral">
-                        <telerik:RadPane Header="Proyectos Observaciones">
-                            <Grid>
-                                <!--  <ProyectosSalasFolder:ListaProyectoSalas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
-
-                            </Grid>
-                        </telerik:RadPane>
-                        <telerik:RadPane Header="Proyectos de la CCST">
-                            <Grid>
-                                <!--  <ProyectosCcstFolder:ListaProyectosCcst HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />  -->
-                            </Grid>
-                        </telerik:RadPane>
-
-                    </telerik:RadPaneGroup>
+                    <telerik:RadPaneGroup x:Name="PanelCentral" />
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>

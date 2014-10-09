@@ -90,8 +90,11 @@ namespace ControlDeTesisV4.Models
                 {
                     while (reader.Read())
                     {
-                        listaSignatarios.Add(new Funcionarios(reader["IdSignatario"] as int? ?? -1,"","","",
-                            reader["Nombre"].ToString()));
+                        listaSignatarios.Add(new Funcionarios(reader["IdSignatario"] as int? ?? -1,
+                             reader["Paterno"].ToString(),
+                            reader["Materno"].ToString(),
+                            reader["Nombre"].ToString(),
+                            reader["Nombre"].ToString() + " " + reader["Paterno"].ToString() + " " + reader["Materno"].ToString()));
                     }
                 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -20,6 +21,9 @@ namespace ControlDeTesisV4
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<RadRibbonButton> botonesAuth;// = new List<Telerik.Windows.Controls>();
+        List<RadRibbonGroup> groupAuth;
+
         public MainWindow()
         {
             StyleManager.ApplicationTheme = new Windows8Theme();
@@ -29,6 +33,10 @@ namespace ControlDeTesisV4
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            botonesAuth = new List<RadRibbonButton>() { BtnPorTurnar, TurnaTesis, ReturnaTesis, BtnEntregarTesis, BtnRecibirTesis, BtnPublicarTesis, BtnListaEjecutoria, BtnTurnaEjecutoria, BtnReTurnaEjecutoria, BtnEntregarEjecutoria, BtnRecibirEjecutoria, BtnPublicaEjecutoria, BtnListaVotos, BtnTurnaVoto, BtnReTurnaVoto, BtnEntregarVoto, BtnRecibirVoto, BtnPublicaVoto, BtnCargas, BtnProyectosSalas, BtnProyectosCcst };
+            groupAuth = new List<RadRibbonGroup>() { GPObservaciones,GpoCcst,GpoPublicar};
+            
+
             LogIn log = new LogIn();
             log.ShowDialog();
 
@@ -37,10 +45,29 @@ namespace ControlDeTesisV4
                 Close();
             }
 
-            if (AccesoUsuarios.Perfil != 5 && AccesoUsuarios.Perfil != 0)
+            if (AccesoUsuarios.Perfil != 0)
             {
-                RibbonHeader.SelectedIndex = 1;
-                Proyectos.IsEnabled = false;
+                if (AccesoUsuarios.Perfil != 5 && AccesoUsuarios.Perfil != 0)
+                {
+                    RibbonHeader.SelectedIndex = 1;
+                    Proyectos.IsEnabled = false;
+                }
+
+                foreach (RadRibbonGroup group in groupAuth)
+                {
+                    if (AccesoUsuarios.Secciones.Contains(Convert.ToInt32(group.Uid)))
+                        group.IsEnabled = true;
+                    else
+                        group.IsEnabled = false;
+                }
+
+                foreach (RadRibbonButton boton in botonesAuth)
+                {
+                    if (AccesoUsuarios.Secciones.Contains(Convert.ToInt32(boton.Uid)))
+                        boton.IsEnabled = true;
+                    else
+                        boton.IsEnabled = false;
+                }
             }
 
             Constants.ListadoDeTesis = new ObservableCollection<TesisTurnadaPreview>();
@@ -69,8 +96,8 @@ namespace ControlDeTesisV4
         {
             if (!isCargasVisible)
             {
-                RadSplitContainer leftContainer = new RadSplitContainer() { InitialPosition = DockState.DockedBottom };
-                RadPaneGroup group = new RadPaneGroup();
+                //RadSplitContainer leftContainer = new RadSplitContainer() { InitialPosition = DockState.DockedBottom };
+                //RadPaneGroup group = new RadPaneGroup();
                 RadPane pane = new RadPane();
                 pane.Header = "Carga de Trabajo por Abogado";
                 pane.Content = new StatTurno();
@@ -82,11 +109,12 @@ namespace ControlDeTesisV4
                 //pane3.Header = "Total";
                 //pane3.Content = new CargaTAbogado();
 
-                group.AddItem(pane, DockPosition.Center);
-                group.AddItem(pane2, DockPosition.Center);
+                //group.AddItem(pane, DockPosition.Center);
+                //group.AddItem(pane2, DockPosition.Center);
                 //group.AddItem(pane3, DockPosition.Center);
-                leftContainer.Items.Add(group);
-                Docking.Items.Add(leftContainer);
+                PanelCentral.Items.Add(pane);
+                PanelCentral.Items.Add(pane2);
+                //Docking.Items.Add(leftContainer);
                 isCargasVisible = true;
             }
         }
@@ -246,6 +274,24 @@ namespace ControlDeTesisV4
         {
             SeleccionPeriodo periodo = new SeleccionPeriodo(2);
             periodo.ShowDialog();
+        }
+
+        private void BtnListadoProyS_Click(object sender, RoutedEventArgs e)
+        {
+            RadPane pane = new RadPane();
+            pane.Header = "Listado de proyectos Salas";
+            pane.Content = new ListaProyectoSalas();
+
+            PanelCentral.AddItem(pane, DockPosition.Center);
+        }
+
+        private void BtnListadoCcst_Click(object sender, RoutedEventArgs e)
+        {
+            RadPane pane = new RadPane();
+            pane.Header = "Listado de proyectos CCST";
+            pane.Content = new ListaProyectosCcst();
+
+            PanelCentral.AddItem(pane, DockPosition.Center);
         }
     }
 }

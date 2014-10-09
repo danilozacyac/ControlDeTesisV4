@@ -39,6 +39,9 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             CbxInstancia.DataContext = from n in OtrosDatosSingleton.Instancias
                                        where n.IdDato < 5
                                        select n;
+
+
+
         }
 
         private void TxtTotalProyectos_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -115,7 +118,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
             oficialiaSalas.FRecepcion = DtpFRecep.SelectedDate;
-            //oficialiaSalas.IdEmisor = ((OtrosDatos)CbxEmisores.SelectedItem).IdDato;
+            oficialiaSalas.IdEmisor = ((OtrosDatos)CbxEmisores.SelectedItem).IdDato;
             oficialiaSalas.IdSignatario = ((Funcionarios)CbxSignatario.SelectedItem).IdFuncionario;
             oficialiaSalas.Ejecutoria = (RadProySiEje.IsChecked == true) ? 1 : 0;
 

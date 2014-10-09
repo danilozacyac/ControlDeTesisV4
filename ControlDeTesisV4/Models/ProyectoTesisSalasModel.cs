@@ -6,13 +6,14 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.UtilitiesFolder;
 using ModuloInterconexionCommonApi;
 
 namespace ControlDeTesisV4.Models
 {
     public class ProyectoTesisSalasModel : IProyecto
     {
-        ProyectosSalas proyectoSalas;
+        readonly ProyectosSalas proyectoSalas;
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
         public ProyectoTesisSalasModel(ProyectosSalas proyectoSalas)
@@ -122,7 +123,12 @@ namespace ControlDeTesisV4.Models
                 dataSet.Dispose();
                 dataAdapter.Dispose();
 
-                this.SetNewProyectoTesis(proyectoSalas.Proyectos);
+                if (proyectoSalas.Proyectos != null)
+                    this.SetNewProyectoTesis(proyectoSalas.Proyectos);
+                else if (proyectoSalas.Proyecto != null)
+                {
+                    this.SetNewProyectoTesis(proyectoSalas.Proyecto);
+                }
             }
             catch (OleDbException ex)
             {
@@ -255,6 +261,8 @@ namespace ControlDeTesisV4.Models
 
                     this.SetTesisCompara(tesis.ComparaTesis, tesis.IdTesis);
                     new PrecedentesModel().SetPrecedentes(tesis.Precedente, tesis.IdTesis);
+
+                    AddNewProyectToList(tesis);
                 }
             }
             catch (OleDbException ex)
@@ -277,6 +285,152 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        public void SetNewProyectoTesis(ProyectosTesis tesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                tesis.IdTesis = AuxiliarModel.GetLastId("ProyectosTesis", "IdTesis");
+
+                string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdProyecto = 0";
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "ProyectosTesis");
+
+                dr = dataSet.Tables["ProyectosTesis"].NewRow();
+                dr["IdTesis"] = tesis.IdTesis;
+                dr["IdProyecto"] = proyectoSalas.IdProyecto;
+                dr["IdTipoProyecto"] = proyectoSalas.IdTipoProyecto;
+                dr["OficioEnvio"] = tesis.OficioEnvio;
+
+                if (tesis.FEnvio != null)
+                {
+                    dr["FechaEnvioOficio"] = tesis.FEnvio;
+                    dr["FechaEnvioOficioInt"] = StringUtilities.DateToInt(tesis.FEnvio);
+                }
+                else
+                {
+                    dr["FechaEnvioOficio"] = DBNull.Value;
+                    dr["FechaEnvioOficioInt"] = 0;
+                }
+
+                dr["OficioEnvioPathOrigen"] = tesis.OficioEnvioPathOrigen;
+                dr["OficioEnvioPathConten"] = tesis.OficioEnvioPathConten;
+                dr["Rubro"] = tesis.Rubro;
+                dr["Tatj"] = tesis.Tatj;
+                dr["TipoJuris"] = tesis.IdTipoJuris;
+                dr["NumPaginas"] = tesis.NumPaginas;
+                dr["IdAbogado"] = tesis.IdAbogadoResponsable;
+                dr["IdInstancia"] = tesis.IdInstancia;
+                dr["IdSubInstancia"] = tesis.IdSubInstancia;
+                dr["Aprobada"] = tesis.Aprobada;
+
+                if (tesis.FAprobacion != null)
+                {
+                    dr["FAprobacion"] = tesis.FAprobacion;
+                    dr["FAprobacionInt"] = StringUtilities.DateToInt(tesis.FAprobacion);
+                }
+                else
+                {
+                    dr["FAprobacion"] = DBNull.Value;
+                    dr["FAprobacionInt"] = 0;
+                }
+
+                dr["NumTesis"] = tesis.NumTesis;
+                dr["YearTesis"] = tesis.YearTesis;
+                dr["ClaveTesis"] = tesis.ClaveTesis;
+                dr["EstadoTesis"] = 1;
+
+                dataSet.Tables["ProyectosTesis"].Rows.Add(dr);
+
+                dataAdapter.InsertCommand = connection.CreateCommand();
+
+                sSql = "INSERT INTO ProyectosTesis (IdTesis,IdProyecto,IdTipoProyecto,OficioEnvio,FechaEnvioOficio,FechaEnvioOficioInt,OficioEnvioPathOrigen," +
+                       "OficioEnvioPathConten,Rubro,Tatj,TipoJuris,NumPaginas,IdAbogado,IdInstancia,IdSubInstancia,Aprobada,FAprobacion,FAprobacionInt,NumTesis,YearTesis,ClaveTesis,EstadoTesis) " +
+                       " VALUES (@IdTesis,@IdProyecto,@IdTipoProyecto,@OficioEnvio,@FechaEnvioOficio,@FechaEnvioOficioInt,@OficioEnvioPathOrigen," +
+                       "@OficioEnvioPathConten,@Rubro,@Tatj,@TipoJuris,@NumPaginas,@IdAbogado,@IdInstancia,@IdSubInstancia,@Aprobada,@FAprobacion,@FAprobacionInt,@NumTesis,@YearTesis,@ClaveTesis,@EstadoTesis)";
+
+                dataAdapter.InsertCommand.CommandText = sSql;
+
+                dataAdapter.InsertCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
+                dataAdapter.InsertCommand.Parameters.Add("@IdProyecto", OleDbType.Numeric, 0, "IdProyecto");
+                dataAdapter.InsertCommand.Parameters.Add("@IdTipoProyecto", OleDbType.Numeric, 0, "IdTipoProyecto");
+                dataAdapter.InsertCommand.Parameters.Add("@OficioEnvio", OleDbType.VarChar, 0, "OficioEnvio");
+                dataAdapter.InsertCommand.Parameters.Add("@FechaEnvioOficio", OleDbType.Date, 0, "FechaEnvioOficio");
+                dataAdapter.InsertCommand.Parameters.Add("@FechaEnvioOficioInt", OleDbType.Numeric, 0, "FechaEnvioOficioInt");
+                dataAdapter.InsertCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
+                dataAdapter.InsertCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
+                dataAdapter.InsertCommand.Parameters.Add("@Rubro", OleDbType.VarChar, 0, "Rubro");
+                dataAdapter.InsertCommand.Parameters.Add("@Tatj", OleDbType.Numeric, 0, "Tatj");
+                dataAdapter.InsertCommand.Parameters.Add("@TipoJuris", OleDbType.Numeric, 0, "TipoJuris");
+                dataAdapter.InsertCommand.Parameters.Add("@NumPaginas", OleDbType.Numeric, 0, "NumPaginas");
+                dataAdapter.InsertCommand.Parameters.Add("@IdAbogado", OleDbType.Numeric, 0, "IdAbogado");
+                dataAdapter.InsertCommand.Parameters.Add("@IdInstancia", OleDbType.Numeric, 0, "IdInstancia");
+                dataAdapter.InsertCommand.Parameters.Add("@IdSubInstancia", OleDbType.Numeric, 0, "IdSubInstancia");
+                dataAdapter.InsertCommand.Parameters.Add("@Aprobada", OleDbType.Numeric, 0, "Aprobada");
+                dataAdapter.InsertCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
+                dataAdapter.InsertCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
+                dataAdapter.InsertCommand.Parameters.Add("@NumTesis", OleDbType.Numeric, 0, "NumTesis");
+                dataAdapter.InsertCommand.Parameters.Add("@YearTesis", OleDbType.Numeric, 0, "YearTesis");
+                dataAdapter.InsertCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
+                dataAdapter.InsertCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
+
+                dataAdapter.Update(dataSet, "ProyectosTesis");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+
+                this.SetTesisCompara(tesis.ComparaTesis, tesis.IdTesis);
+                new PrecedentesModel().SetPrecedentes(tesis.Precedente, tesis.IdTesis);
+
+                AddNewProyectToList(tesis);
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        private void AddNewProyectToList(ProyectosTesis proyecto)
+        {
+            TesisTurnadaPreview tesis = new TesisTurnadaPreview();
+            tesis.IdTesis = proyecto.IdTesis;
+            tesis.Idabogado = proyecto.IdAbogadoResponsable;
+            tesis.ClaveTesis = proyecto.ClaveTesis;
+            tesis.Rubro = proyecto.Rubro;
+            tesis.IdTipoAsunto = proyecto.Precedente.TipoAsunto;
+            tesis.NumAsunto = proyecto.Precedente.NumAsunto;
+            tesis.YearAsunto = proyecto.Precedente.YearAsunto;
+            tesis.IdInstancia = proyecto.IdInstancia;
+            //tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
+            tesis.FTurno = proyecto.Turno.FTurno;
+            tesis.FSugerida = proyecto.Turno.FSugerida;
+            tesis.EstadoTesis = 4;
+
+            Constants.ListadoDeTesis.Add(tesis);
+        }
 
         /// <summary>
         /// Devueleve el proyecto de tesis completo de la tesis seleccionada
@@ -358,12 +512,11 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<ProyectosTesis> listaDeTesis = new ObservableCollection<ProyectosTesis>();
 
-
             OleDbConnection oleConne = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena  = "";
+            String sqlCadena = "";
 
             if (inicio == fin)
                 sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
@@ -425,7 +578,7 @@ namespace ControlDeTesisV4.Models
             }
 
             return listaDeTesis;
-        } 
+        }
 
         public void SetTesisCompara(TesisCompara tesisCompara, int idTesis)
         {
@@ -512,9 +665,6 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-
-        
-
         /// <summary>
         /// Actualiza la información de las tesis en proceso de publicación, los estados en los que se puede encontrar la tesis son
         /// los siguientes:
@@ -578,6 +728,7 @@ namespace ControlDeTesisV4.Models
                 dr["YearTesis"] = tesis.YearTesis;
                 dr["ClaveTesis"] = tesis.ClaveTesis;
                 dr["EstadoTesis"] = tesis.EstadoTesis;
+                dr["IdAbogado"] = tesis.IdAbogadoResponsable;
 
                 dr.EndEdit();
 
@@ -585,7 +736,7 @@ namespace ControlDeTesisV4.Models
 
                 sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
                        "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten, " +
-                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis " +
+                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado " +
                        " WHERE IdTesis = @IdTesis";
                 dataAdapter.UpdateCommand.CommandText = sSql;
                     
@@ -601,6 +752,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand.Parameters.Add("@YearTesis", OleDbType.Numeric, 0, "YearTesis");
                 dataAdapter.UpdateCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
                 dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdAbogado", OleDbType.Numeric, 0, "IdAbogado");
                 dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
 
                 dataAdapter.Update(dataSet, "ProyectosTesis");
@@ -704,11 +856,7 @@ namespace ControlDeTesisV4.Models
                 connection.Close();
             }
         }
-
-      
-
-        #endregion
-
         
+        #endregion
     }
 }

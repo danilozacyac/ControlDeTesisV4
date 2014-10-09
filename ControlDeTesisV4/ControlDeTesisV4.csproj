@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>appImage.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Controls">
       <HintPath>..\..\..\..\Visual Studio 2010\Projects\AppTesauros\AppTesauro09wpf\AppTesauro09wpf\bin\Debug\Controls.dll</HintPath>
@@ -175,6 +178,9 @@
       <DependentUpon>TurnarWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="UtilitiesFolder\Constants.cs" />
+    <Compile Include="UtilitiesWin\GuiaColores.xaml.cs">
+      <DependentUpon>GuiaColores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualComparition\CcstCompare.xaml.cs">
       <DependentUpon>CcstCompare.xaml</DependentUpon>
     </Compile>
@@ -317,6 +323,10 @@
     <Page Include="Turno\TurnarWin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilitiesWin\GuiaColores.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VisualComparition\CcstCompare.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -462,7 +472,15 @@
   <ItemGroup>
     <Resource Include="Resources\lista.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\listado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="appImage.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,6 +14,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
     /// </summary>
     public partial class ListaProyectoSalas : UserControl
     {
+        
+
         public ListaProyectoSalas()
         {
             InitializeComponent();
@@ -81,6 +83,18 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             }
             CapturaAprobacion aprob = new CapturaAprobacion(lastProyecto);
             aprob.ShowDialog();
+        }
+
+        private void SearchTextBox_Search(object sender, RoutedEventArgs e)
+        {
+            String tempString = ((TextBox)sender).Text.ToUpper();
+
+            if (!String.IsNullOrEmpty(tempString))
+                GListado.DataContext = (from n in Constants.ProyectosSalas
+                                        where n.Asunto.ToUpper().Contains(tempString) || n.Rubro.ToUpper().Contains(tempString)
+                                        select n).ToList();
+            else
+                GListado.DataContext = Constants.ProyectosSalas;
         }
     }
 }

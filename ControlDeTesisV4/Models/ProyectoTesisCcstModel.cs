@@ -74,7 +74,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.InsertCommand.CommandText = sSql;
 
                 dataAdapter.InsertCommand.Parameters.Add("@IdProyecto", OleDbType.Numeric, 0, "IdProyecto");
-                dataAdapter.InsertCommand.Parameters.Add("@Destinatario", OleDbType.VarChar, 0, "Destinatario");
+                dataAdapter.InsertCommand.Parameters.Add("@Destinatario", OleDbType.Numeric, 0, "Destinatario");
                 dataAdapter.InsertCommand.Parameters.Add("@OficioAtn", OleDbType.VarChar, 0, "OficioAtn");
                 dataAdapter.InsertCommand.Parameters.Add("@FechaOficioAtn", OleDbType.Date, 0, "FechaOficioAtn");
                 dataAdapter.InsertCommand.Parameters.Add("@FechaOficioAtnInt", OleDbType.Numeric, 0, "FechaOficioAtnInt");

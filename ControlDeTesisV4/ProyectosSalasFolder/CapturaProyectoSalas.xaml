@@ -87,7 +87,6 @@
                               DisplayMemberPath="NombreCompleto"
                               IsEditable="True"
                               ItemsSource="{Binding}"
-                              KeyDown="CbxSignatario_KeyDown"
                               SelectedValuePath="IdFuncionario" />
                     <Label Margin="470,47,0,0"
                            HorizontalAlignment="Left"

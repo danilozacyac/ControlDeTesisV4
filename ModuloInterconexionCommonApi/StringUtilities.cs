@@ -346,5 +346,7 @@ namespace ModuloInterconexionCommonApi
 
             return cCadena;
         }
+
+        
     }
 }

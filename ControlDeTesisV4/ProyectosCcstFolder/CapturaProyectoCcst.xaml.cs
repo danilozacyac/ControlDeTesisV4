@@ -159,11 +159,11 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
                 return;
             }
 
-            if (String.IsNullOrEmpty(oficialiaCcst.FileOficioAtnOrigen) || String.IsNullOrWhiteSpace(oficialiaCcst.FileOficioAtnOrigen))
-            {
-                MessageBox.Show("Ingresa la ruta del archivo del oficio recibido");
-                return;
-            }
+            //if (String.IsNullOrEmpty(oficialiaCcst.FileOficioAtnOrigen) || String.IsNullOrWhiteSpace(oficialiaCcst.FileOficioAtnOrigen))
+            //{
+            //    MessageBox.Show("Ingresa la ruta del archivo del oficio recibido");
+            //    return;
+            //}
 
             if (CbxInstancia.SelectedIndex == -1)
             {
@@ -171,13 +171,13 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
                 return;
             }
 
-            if (CbxDestinatario.SelectedIndex == -1)
-            {
-                MessageBox.Show("Selecciona el destinatario de los archivos de respuesta");
-                return;
-            }
+            //if (CbxDestinatario.SelectedIndex == -1)
+            //{
+            //    MessageBox.Show("Selecciona el destinatario de los archivos de respuesta");
+            //    return;
+            //}
 
-            oficialiaCcst.Destinatario = CbxDestinatario.Text;
+            oficialiaCcst.Destinatario = CbxDestinatario.SelectedValue  as int? ?? -1;
 
             new ProyectoTesisCcstModel(oficialiaCcst).SetNewProyecto();
 

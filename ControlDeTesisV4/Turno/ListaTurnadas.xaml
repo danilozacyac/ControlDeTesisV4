@@ -7,7 +7,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              Loaded="UserControl_Loaded"
              d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignWidth="1200"
              mc:Ignorable="d">
     <UserControl.Resources>
         <converter:AbogadoConverter x:Key="AbogadoK" />
@@ -22,7 +22,45 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid />
+        <Grid Margin="0,-24,0,24" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadComboBox x:Name="RCbxFiltro"
+                                 Width="200"
+                                 Height="25"
+                                 Margin="77,4,0,6"
+                                 HorizontalAlignment="Left"
+                                 SelectionChanged="RCbxFiltro_SelectionChanged" />
+            <Label Margin="10,10,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Filtrar por:" />
+            <telerik:RadComboBox x:Name="RCbxAbogados"
+                                 Grid.Column="1"
+                                 Width="250"
+                                 Margin="53,7,0,0"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 DisplayMemberPath="NombreCompleto"
+                                 ItemsSource="{Binding}"
+                                 SelectedValuePath="IdFuncionario"
+                                 SelectionChanged="RCbxAbogados_SelectionChanged"
+                                 Visibility="Collapsed" />
+            <Image x:Name="IHelp"
+                   Grid.Column="2"
+                   Width="35"
+                   Height="35"
+                   Margin="0,0,10,0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Cursor="Hand"
+                   PreviewMouseLeftButtonDown="IHelp_PreviewMouseLeftButtonDown"
+                   Source="/ControlDeTesisV4;component/Resources/help.png" />
+        </Grid>
         <telerik:RadGridView x:Name="GListadoTurno"
                              Grid.Row="1"
                              HorizontalAlignment="Stretch"

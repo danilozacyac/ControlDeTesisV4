@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using DocumentMgmtApi;
 using Microsoft.Win32;
@@ -65,7 +66,10 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             CbxTipoAsunto.DataContext = OtrosDatosSingleton.TipoAsuntos;
 
             if (isUpdating)
+            {
                 LoadOnUpdating();
+                BtnGuardar.Content = "Guardar";
+            }
 
         }
 
@@ -109,12 +113,19 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
             proyecto.Precedente.TipoAsunto = ((OtrosDatos)CbxTipoAsunto.SelectedItem).IdDato;
             proyecto.Precedente.IdPonente = ((Funcionarios)CbxPonentes.SelectedItem).IdFuncionario;
+            proyecto.IdAbogadoResponsable = ((Funcionarios)CbxAbogado.SelectedItem).IdFuncionario;
 
             TextRange range = new TextRange(TxtVistaPrevia.Document.ContentStart, TxtVistaPrevia.Document.ContentEnd);
             proyecto.ComparaTesis.TOPlano = range.Text;
             proyecto.ComparaTesis.TextoOriginal = DocumentComparer.GetRtfString(TxtVistaPrevia);
 
-            proyectosSalas.Add(proyecto);
+            if (!isUpdating)
+                proyectosSalas.Add(proyecto);
+            else
+            {
+                new ProyectoTesisSalasModel().UpdateProyectoTesis(proyecto);
+            }
+
             this.Close();
 
         }

@@ -8,7 +8,7 @@ namespace ControlDeTesisV4.Dao
     {
         private int idProyecto;
         private readonly int idTipoProyecto = 2;
-        private string destinatario;
+        private int destinatario;
         private string oficioAtn;
         private DateTime? fOficioAtn;
         private int fOficioAtnInt;
@@ -41,7 +41,7 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
-        public string Destinatario
+        public int Destinatario
         {
             get
             {

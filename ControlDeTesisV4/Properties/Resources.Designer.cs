@@ -133,6 +133,16 @@ namespace ControlDeTesisV4.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap help {
+            get {
+                object obj = ResourceManager.GetObject("help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap juez24 {
             get {
                 object obj = ResourceManager.GetObject("juez24", resourceCulture);
@@ -166,6 +176,16 @@ namespace ControlDeTesisV4.Properties {
         internal static System.Drawing.Bitmap lista {
             get {
                 object obj = ResourceManager.GetObject("lista", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap listado {
+            get {
+                object obj = ResourceManager.GetObject("listado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

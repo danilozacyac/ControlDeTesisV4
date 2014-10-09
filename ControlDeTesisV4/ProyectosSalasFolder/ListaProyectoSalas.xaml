@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:ControlDeTesisV4.Converter"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:search="clr-namespace:UIControls;assembly=UIControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              Loaded="UserControl_Loaded"
@@ -20,6 +21,13 @@
         </Grid.RowDefinitions>
 
         <Grid />
+        <search:SearchTextBox Grid.Row="0"
+                              Grid.Column="0"
+                              Width="200"
+                              Height="21"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Bottom"
+                              Search="SearchTextBox_Search" Margin="10,0,0,7" />
         <telerik:RadGridView x:Name="GListado"
                              Grid.Row="1"
                              HorizontalAlignment="Stretch"
@@ -40,11 +48,18 @@
                                             Header="Oficio Recep."
                                             IsReadOnly="True"
                                             IsVisible="True" />
-                <telerik:GridViewDataColumn Width="200"
-                                            DataMemberBinding="{Binding Asunto}"
+                <telerik:GridViewDataColumn Width="120"
                                             Header="Asunto"
                                             IsFilterable="False"
-                                            IsReadOnly="True" />
+                                            IsReadOnly="True" >
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="12"
+                                       Text="{Binding Asunto}"
+                                       TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+                </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn Width="*"
                                             Header="Rubro"
                                             IsFilterable="False"
@@ -68,7 +83,7 @@
                                             DataMemberBinding="{Binding IdPonente,
                                                                         Converter={StaticResource PonenteConverter}}"
                                             Header="Ponente"
-                                            IsFilterable="False"
+                                            IsFilterable="True"
                                             IsReadOnly="True" />
                 <telerik:GridViewDataColumn>
                     <telerik:GridViewDataColumn.CellTemplate>

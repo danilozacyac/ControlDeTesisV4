@@ -372,3 +372,5 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Controls.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\WPFToolkit.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\UtilitiesWin\GuiaColores.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\UtilitiesWin\GuiaColores.g.cs

@@ -17,8 +17,8 @@
         <telerik:RadTabControl>
             <telerik:RadTabItem Header="Carga de Trabajo por Abogado">
                 <local:AbogadoTotal x:Name="TurnoTotal"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center" />
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch" />
             </telerik:RadTabItem>
             <telerik:RadTabItem Header="Carga de Trabajo por Documento">
                 <local:StatTurno HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
