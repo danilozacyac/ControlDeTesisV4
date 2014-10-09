@@ -10,7 +10,7 @@ using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.ProyectosCcstFolder
 {

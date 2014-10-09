@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -41,7 +41,7 @@ namespace ControlDeTesisV4.Models
                         precedente.TipoAsunto = reader["IdTipoAsunto"] as int? ?? -1;
                         precedente.NumAsunto = reader["NumAsunto"] as int? ?? -1;
                         precedente.YearAsunto = reader["YearAsunto"] as int? ?? -1;
-                        precedente.FResolucion = StringUtilities.GetDateFromReader(reader, "FResolucion");
+                        precedente.FResolucion = DateTimeUtilities.GetDateFromReader(reader, "FResolucion");
                         precedente.IdPonente = reader["IdPonente"] as int? ?? -1;
                         precedente.Promovente = reader["Promovente"].ToString();
                     }
@@ -95,7 +95,7 @@ namespace ControlDeTesisV4.Models
                 if (precedente.FResolucion != null)
                 {
                     dr["FResolucion"] = precedente.FResolucion;
-                    dr["FResolucionInt"] = StringUtilities.DateToInt(precedente.FResolucion);
+                    dr["FResolucionInt"] = DateTimeUtilities.DateToInt(precedente.FResolucion);
                 }
                 else
                 {
@@ -134,14 +134,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -179,14 +179,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {

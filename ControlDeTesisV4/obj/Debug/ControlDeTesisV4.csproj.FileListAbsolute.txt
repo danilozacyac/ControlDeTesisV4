@@ -296,7 +296,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ControlDeTesisV4.exe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ControlDeTesisV4.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\DocumentMgmtApi.dll
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ModuloInterconexionCommonApi.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\telerik.windows.controls.chart.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\telerik.windows.controls.charting.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Telerik.Windows.Controls.dll
@@ -307,7 +306,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\telerik.windows.controls.ribbonview.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Telerik.Windows.Data.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\DocumentMgmtApi.pdb
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ModuloInterconexionCommonApi.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\Telerik.Windows.Controls.xml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\telerik.windows.controls.chart.xml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\telerik.windows.controls.charting.xml
@@ -374,3 +372,5 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\WPFToolkit.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\UtilitiesWin\GuiaColores.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\UtilitiesWin\GuiaColores.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ScjnUtilities.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ScjnUtilities.pdb

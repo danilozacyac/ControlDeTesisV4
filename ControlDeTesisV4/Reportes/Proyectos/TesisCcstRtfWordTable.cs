@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
-using ControlDeTesisV4.Singletons;
+using ScjnUtilities;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace ControlDeTesisV4.Reportes.Proyectos
@@ -19,7 +19,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
         int fila = 1;
 
-        private List<ProyectosTesis> tesisImprime = new List<ProyectosTesis>();
+       // private List<ProyectosTesis> tesisImprime = new List<ProyectosTesis>();
         Word.Application oWord;
         Word.Document oDoc;
         object oMissing = System.Reflection.Missing.Value;
@@ -106,7 +106,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Cell(3, 1).Split(1, 4);
 
                         oTable.Cell(3, 1).Range.Text = "Fecha de entrega: ";
-                        oTable.Cell(3, 2).Range.Text = this.GetFechaString(tesis.FEnvio);
+                        oTable.Cell(3, 2).Range.Text = DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
                         oTable.Cell(3, 3).Range.Text = "Oficio número: ";
                         oTable.Cell(3, 4).Range.Text = tesis.OficioEnvio;
 
@@ -134,8 +134,6 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oWord.Selection.Paste();
                         oTable.Cell(6, 2).Range.Font.Name = "Arial";
                         oTable.Cell(6, 2).Range.Font.Size = 10;
-
-                        
 
                         fila++;
                         numTesis++;
@@ -167,30 +165,9 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
         }
 
-        private string GetFechaString(DateTime? fecha)
-        {
-            return fecha.Value.Day + " de" + this.GetMonthName(fecha.Value.Month) + "de " + fecha.Value.Year;
-        }
+       
 
-        private string GetMonthName(int month)
-        {
-            switch (month)
-            {
-                case 1: return " Enero ";
-                case 2: return " Febrero ";
-                case 3: return " Marzo ";
-                case 4: return " Abril ";
-                case 5: return " Mayo ";
-                case 6: return " Junio ";
-                case 7: return " Julio ";
-                case 8: return " Agosto ";
-                case 9: return " Septiembre ";
-                case 10: return " Octubre ";
-                case 11: return " Noviembre ";
-                case 12: return " Diciembre ";
-            }
-            return "";
-        }
+        
 
         
     }

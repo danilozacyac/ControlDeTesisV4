@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -55,7 +55,7 @@ namespace ControlDeTesisV4.Models
                 if (voto.FRecepcion != null)
                 {
                     dr["FRecepcion"] = voto.FRecepcion;
-                    dr["FRecepcionInt"] = StringUtilities.DateToInt(voto.FRecepcion);
+                    dr["FRecepcionInt"] = DateTimeUtilities.DateToInt(voto.FRecepcion);
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace ControlDeTesisV4.Models
                 if (voto.FEnvioObs != null)
                 {
                     dr["FEnvioObs"] = voto.FEnvioObs;
-                    dr["FEnvioObsInt"] = StringUtilities.DateToInt(voto.FEnvioObs);
+                    dr["FEnvioObsInt"] = DateTimeUtilities.DateToInt(voto.FEnvioObs);
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace ControlDeTesisV4.Models
                 if (voto.FDevolucion != null)
                 {
                     dr["FDevolucion"] = voto.FDevolucion;
-                    dr["FDevolucionInt"] = StringUtilities.DateToInt(voto.FDevolucion);
+                    dr["FDevolucionInt"] = DateTimeUtilities.DateToInt(voto.FDevolucion);
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
                 correctInsert = false;
             }
             catch (Exception ex)
@@ -152,7 +152,7 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
                 correctInsert = false;
             }
             finally
@@ -231,14 +231,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -277,7 +277,7 @@ namespace ControlDeTesisV4.Models
                 if (precedente.FResolucion != null)
                 {
                     dr["FResolucion"] = precedente.FResolucion;
-                    dr["FResolucionInt"] = StringUtilities.DateToInt(precedente.FResolucion);
+                    dr["FResolucionInt"] = DateTimeUtilities.DateToInt(precedente.FResolucion);
                 }
                 else
                 {
@@ -316,14 +316,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -378,14 +378,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -425,7 +425,7 @@ namespace ControlDeTesisV4.Models
                 if (votos.FRecepcion != null)
                 {
                     dr["FRecepcion"] = votos.FRecepcion;
-                    dr["FRecepcionInt"] = StringUtilities.DateToInt(votos.FRecepcion);
+                    dr["FRecepcionInt"] = DateTimeUtilities.DateToInt(votos.FRecepcion);
                 }
                 else
                 {
@@ -436,7 +436,7 @@ namespace ControlDeTesisV4.Models
                 if (votos.FEnvioObs != null)
                 {
                     dr["FEnvioObs"] = votos.FEnvioObs;
-                    dr["FEnvioObsInt"] = StringUtilities.DateToInt(votos.FEnvioObs);
+                    dr["FEnvioObsInt"] = DateTimeUtilities.DateToInt(votos.FEnvioObs);
                 }
                 else
                 {
@@ -447,7 +447,7 @@ namespace ControlDeTesisV4.Models
                 if (votos.FDevolucion != null)
                 {
                     dr["FDevolucion"] = votos.FDevolucion;
-                    dr["FDevolucionInt"] = StringUtilities.DateToInt(votos.FDevolucion);
+                    dr["FDevolucionInt"] = DateTimeUtilities.DateToInt(votos.FDevolucion);
                 }
                 else
                 {
@@ -507,14 +507,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -580,14 +580,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -623,7 +623,7 @@ namespace ControlDeTesisV4.Models
                 if (precedente.FResolucion != null)
                 {
                     dr["FResolucion"] = precedente.FResolucion;
-                    dr["FResolucionInt"] = StringUtilities.DateToInt(precedente.FResolucion);
+                    dr["FResolucionInt"] = DateTimeUtilities.DateToInt(precedente.FResolucion);
                 }
                 else
                 {
@@ -662,14 +662,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -708,11 +708,11 @@ namespace ControlDeTesisV4.Models
                         voto.ProvNumFojas = reader["Provnumfojas"] as int? ?? -1;
                         voto.ObsFilePathOrigen = reader["ObsFilePathOrigen"].ToString();
                         voto.ObsFilePathConten = reader["ObsFilePathConten"].ToString();
-                        voto.FRecepcion = StringUtilities.GetDateFromReader(reader, "FRecepcion");
+                        voto.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         voto.FRecepcionInt = reader["FRecepcionInt"] as int? ?? -1;
-                        voto.FEnvioObs = StringUtilities.GetDateFromReader(reader, "FEnvioObs");
+                        voto.FEnvioObs = DateTimeUtilities.GetDateFromReader(reader, "FEnvioObs");
                         voto.FEnvioObsInt = reader["FEnvioObsInt"] as int? ?? -1;
-                        voto.FDevolucion = StringUtilities.GetDateFromReader(reader, "FDevolucion");
+                        voto.FDevolucion = DateTimeUtilities.GetDateFromReader(reader, "FDevolucion");
                         voto.FDevolucionInt = reader["FDevolucionInt"] as int? ?? -1;
                         voto.CcFilePathOrigen = reader["CcFilePathOrigen"].ToString();
                         voto.CcFilePathConten = reader["CcFilePathConten"].ToString();
@@ -737,14 +737,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -789,11 +789,11 @@ namespace ControlDeTesisV4.Models
                         voto.ProvNumFojas = reader["Provnumfojas"] as int? ?? -1;
                         voto.ObsFilePathOrigen = reader["ObsFilePathOrigen"].ToString();
                         voto.ObsFilePathConten = reader["ObsFilePathConten"].ToString();
-                        voto.FRecepcion = StringUtilities.GetDateFromReader(reader, "FRecepcion");
+                        voto.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         voto.FRecepcionInt = reader["FRecepcionInt"] as int? ?? -1;
-                        voto.FEnvioObs = StringUtilities.GetDateFromReader(reader, "FEnvioObs");
+                        voto.FEnvioObs = DateTimeUtilities.GetDateFromReader(reader, "FEnvioObs");
                         voto.FEnvioObsInt = reader["FEnvioObsInt"] as int? ?? -1;
-                        voto.FDevolucion = StringUtilities.GetDateFromReader(reader, "FDevolucion");
+                        voto.FDevolucion = DateTimeUtilities.GetDateFromReader(reader, "FDevolucion");
                         voto.FDevolucionInt = reader["FDevolucionInt"] as int? ?? -1;
                         voto.CcFilePathOrigen = reader["CcFilePathOrigen"].ToString();
                         voto.CcFilePathConten = reader["CcFilePathConten"].ToString();
@@ -817,14 +817,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -879,14 +879,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -930,14 +930,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -974,7 +974,7 @@ namespace ControlDeTesisV4.Models
                         precedente.TipoAsunto = reader["IdTipoAsunto"] as int? ?? -1;
                         precedente.NumAsunto = reader["NumAsunto"] as int? ?? -1;
                         precedente.YearAsunto = reader["YearAsunto"] as int? ?? -1;
-                        precedente.FResolucion = StringUtilities.GetDateFromReader(reader, "FResolucion");
+                        precedente.FResolucion = DateTimeUtilities.GetDateFromReader(reader, "FResolucion");
                         precedente.IdPonente = reader["IdPonente"] as int? ?? -1;
                         precedente.Promovente = reader["Promovente"].ToString();
                     }
@@ -987,14 +987,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -1028,14 +1028,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {

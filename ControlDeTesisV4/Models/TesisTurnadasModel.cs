@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.UtilitiesFolder;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -51,9 +51,9 @@ namespace ControlDeTesisV4.Models
                         tesis.YearAsunto = reader["YearAsunto"] as int? ?? -1;
                         tesis.IdInstancia = reader["IdInstancia"] as int? ?? -1;
                         //tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
-                        tesis.FTurno = StringUtilities.GetDateFromReader(reader, "FTurno");
-                        tesis.FSugerida = StringUtilities.GetDateFromReader(reader, "FSugerida");
-                        tesis.FEntrega = StringUtilities.GetDateFromReader(reader, "FEntrega");
+                        tesis.FTurno = DateTimeUtilities.GetDateFromReader(reader, "FTurno");
+                        tesis.FSugerida = DateTimeUtilities.GetDateFromReader(reader, "FSugerida");
+                        tesis.FEntrega = DateTimeUtilities.GetDateFromReader(reader, "FEntrega");
                         tesis.EnTiempo = Convert.ToBoolean(reader["EnTiempo"] as int? ?? -1);
                         tesis.DiasAtraso = reader["DiasAtraso"] as int? ?? -1;
                         tesis.EstadoTesis = reader["EstadoTesis"] as int? ?? -1;
@@ -119,9 +119,9 @@ namespace ControlDeTesisV4.Models
                         tesis.YearAsunto = reader["YearAsunto"] as int? ?? -1;
                         tesis.IdInstancia = reader["IdInstancia"] as int? ?? -1;
                         //tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
-                        tesis.FTurno = StringUtilities.GetDateFromReader(reader, "FTurno");
-                        tesis.FSugerida = StringUtilities.GetDateFromReader(reader, "FSugerida");
-                        tesis.FEntrega = StringUtilities.GetDateFromReader(reader, "FEntrega");
+                        tesis.FTurno = DateTimeUtilities.GetDateFromReader(reader, "FTurno");
+                        tesis.FSugerida = DateTimeUtilities.GetDateFromReader(reader, "FSugerida");
+                        tesis.FEntrega = DateTimeUtilities.GetDateFromReader(reader, "FEntrega");
                         tesis.EnTiempo = Convert.ToBoolean(reader["EnTiempo"] as int? ?? -1);
                         tesis.DiasAtraso = reader["DiasAtraso"] as int? ?? -1;
 

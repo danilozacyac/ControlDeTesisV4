@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Office.Interop.Word;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace DocumentMgmtApi

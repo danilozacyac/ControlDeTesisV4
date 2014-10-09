@@ -13,3 +13,5 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInt
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.csprojResolveAssemblyReference.cache
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ModuloInterconexionCommonApi.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\bin\Debug\ScjnUtilities.dll
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\bin\Debug\ScjnUtilities.pdb

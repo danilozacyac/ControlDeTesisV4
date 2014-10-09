@@ -12,7 +12,7 @@ using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using DocumentMgmtApi;
 using Microsoft.Win32;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {

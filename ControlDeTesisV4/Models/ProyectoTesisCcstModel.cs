@@ -6,7 +6,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -52,7 +52,7 @@ namespace ControlDeTesisV4.Models
                 if (tesisCcst.FOficioAtn != null)
                 {
                     dr["FechaOficioAtn"] = tesisCcst.FOficioAtn;
-                    dr["FechaOficioAtnInt"] = StringUtilities.DateToInt(tesisCcst.FOficioAtn); 
+                    dr["FechaOficioAtnInt"] = DateTimeUtilities.DateToInt(tesisCcst.FOficioAtn); 
                 }
                 else
                 {
@@ -92,14 +92,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -142,7 +142,7 @@ namespace ControlDeTesisV4.Models
                     if (tesis.FEnvio != null)
                     {
                         dr["FechaEnvioOficio"] = tesis.FEnvio;
-                        dr["FechaEnvioOficioInt"] = StringUtilities.DateToInt(tesis.FEnvio);
+                        dr["FechaEnvioOficioInt"] = DateTimeUtilities.DateToInt(tesis.FEnvio);
                     }
                     else
                     {
@@ -164,7 +164,7 @@ namespace ControlDeTesisV4.Models
                     if (tesis.FAprobacion != null)
                     {
                         dr["FAprobacion"] = tesis.FAprobacion;
-                        dr["FAprobacionInt"] = StringUtilities.DateToInt(tesis.FAprobacion);
+                        dr["FAprobacionInt"] = DateTimeUtilities.DateToInt(tesis.FAprobacion);
                     }
                     else
                     {
@@ -225,14 +225,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -314,14 +314,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -367,7 +367,7 @@ namespace ControlDeTesisV4.Models
 
                         tesis.IdTesis = reader["IdTesis"] as int? ?? -1;
                         tesis.OficioEnvio = reader["OficioEnvio"].ToString();
-                        tesis.FEnvio = StringUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
+                        tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
                         tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
                         tesis.Rubro = reader["Rubro"].ToString();
                         tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
@@ -377,7 +377,7 @@ namespace ControlDeTesisV4.Models
                         tesis.IdInstancia = Convert.ToInt32(reader["Idinstancia"]);
                         tesis.IdSubInstancia = Convert.ToInt32(reader["IdSubinstancia"]);
                         tesis.Aprobada = Convert.ToInt32(reader["Aprobada"]);
-                        tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
+                        tesis.FAprobacion = DateTimeUtilities.GetDateFromReader(reader, "FAprobacion");
                         tesis.NumTesis = reader["numTesis"].ToString();
                         tesis.NumTesisInt = Convert.ToInt32(reader["NumTesisInt"]);
                         tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
@@ -446,7 +446,7 @@ namespace ControlDeTesisV4.Models
                 if (tesis.FEnvio != null)
                 {
                     dr["FechaEnvioOficio"] = tesis.FEnvio;
-                    dr["FechaEnvioOficioInt"] = StringUtilities.DateToInt(tesis.FEnvio);
+                    dr["FechaEnvioOficioInt"] = DateTimeUtilities.DateToInt(tesis.FEnvio);
                 }
                 else
                 {
@@ -460,7 +460,7 @@ namespace ControlDeTesisV4.Models
                 if (tesis.FAprobacion != null)
                 {
                     dr["FAprobacion"] = tesis.FAprobacion;
-                    dr["FAprobacionInt"] = StringUtilities.DateToInt(tesis.FAprobacion);
+                    dr["FAprobacionInt"] = DateTimeUtilities.DateToInt(tesis.FAprobacion);
                 }
                 else
                 {
@@ -509,14 +509,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -585,14 +585,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {

@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -38,9 +38,9 @@ namespace ControlDeTesisV4.Models
                 dr["IdDocto"] = turno.IdDocto;
                 dr["NumPaginas"] = turno.NumPaginas;
                 dr["FTurno"] = turno.FTurno;
-                dr["FTurnoInt"] = StringUtilities.DateToInt(turno.FTurno);
+                dr["FTurnoInt"] = DateTimeUtilities.DateToInt(turno.FTurno);
                 dr["FSugerida"] = turno.FSugerida;
-                dr["FSugeridaInt"] = StringUtilities.DateToInt(turno.FSugerida);
+                dr["FSugeridaInt"] = DateTimeUtilities.DateToInt(turno.FSugerida);
                 dr["EnTiempo"] = 1;
                 dr["DiasAtraso"] = 0;
                 dr["Returno"] = 0;
@@ -79,14 +79,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -118,12 +118,12 @@ namespace ControlDeTesisV4.Models
                 dr["IdAbogadoAnt"] = turnoAnterior.IdAbogado;
                 dr["IdAbogadoNue"] = turnoActual.IdAbogado;
                 dr["FReturno"] = DateTime.Now;
-                dr["FReturnoInt"] = StringUtilities.DateToInt(DateTime.Now);
+                dr["FReturnoInt"] = DateTimeUtilities.DateToInt(DateTime.Now);
                 dr["MantieneFecha"] = 0;
                 dr["FAnterior"] = turnoAnterior.FSugerida;
-                dr["FAnteriorInt"] = StringUtilities.DateToInt(turnoAnterior.FSugerida);
+                dr["FAnteriorInt"] = DateTimeUtilities.DateToInt(turnoAnterior.FSugerida);
                 dr["FNueva"] = turnoActual.FSugerida;
-                dr["FNuevaInt"] = StringUtilities.DateToInt(turnoActual.FSugerida); 
+                dr["FNuevaInt"] = DateTimeUtilities.DateToInt(turnoActual.FSugerida); 
                 dr["Observaciones"] = turnoActual.Observaciones;
                 dr["IdAbogadoAuth"] = AccesoUsuarios.Llave;
 
@@ -160,14 +160,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -199,9 +199,9 @@ namespace ControlDeTesisV4.Models
                 dr["IdAbogado"] = turno.IdAbogado;
                 dr["NumPaginas"] = turno.NumPaginas;
                 dr["FTurno"] = turno.FTurno;
-                dr["FTurnoInt"] = StringUtilities.DateToInt(turno.FTurno);
+                dr["FTurnoInt"] = DateTimeUtilities.DateToInt(turno.FTurno);
                 dr["FSugerida"] = turno.FSugerida;
-                dr["FSugeridaInt"] = StringUtilities.DateToInt(turno.FSugerida);
+                dr["FSugeridaInt"] = DateTimeUtilities.DateToInt(turno.FSugerida);
                 dr["EnTiempo"] = 1;
                 dr["DiasAtraso"] = 0;
                 dr["Returno"] = 1;
@@ -236,14 +236,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {
@@ -281,9 +281,9 @@ namespace ControlDeTesisV4.Models
                         turno.IdTipoDocto = reader["IdTipoDocto"] as int? ?? -1;
                         turno.IdDocto = reader["IdDocto"] as int? ?? -1;
                         turno.NumPaginas = reader["NumPaginas"] as int? ?? -1;
-                        turno.FTurno = StringUtilities.GetDateFromReader(reader, "FTurno");
-                        turno.FEntrega = StringUtilities.GetDateFromReader(reader, "FEntrega");
-                        turno.FSugerida = StringUtilities.GetDateFromReader(reader, "FSugerida");
+                        turno.FTurno = DateTimeUtilities.GetDateFromReader(reader, "FTurno");
+                        turno.FEntrega = DateTimeUtilities.GetDateFromReader(reader, "FEntrega");
+                        turno.FSugerida = DateTimeUtilities.GetDateFromReader(reader, "FSugerida");
                         turno.EnTiempo = reader["EnTiempo"] as int? ?? -1;
                         turno.DiasAtraso = reader["DiasAtraso"] as int? ?? -1;
                         turno.IsReturn = reader["Returno"] as int? ?? -1;
@@ -297,14 +297,14 @@ namespace ControlDeTesisV4.Models
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Utilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
             }
             finally
             {

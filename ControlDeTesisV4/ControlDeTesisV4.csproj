@@ -46,6 +46,9 @@
     <Reference Include="RichTextBoxToolBar">
       <HintPath>..\ControlDeTesis2\bin\Debug\RichTextBoxToolBar.dll</HintPath>
     </Reference>
+    <Reference Include="ScjnUtilities">
+      <HintPath>..\..\ScjnUtilities\ScjnUtilities\bin\Debug\ScjnUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -382,10 +385,6 @@
     <ProjectReference Include="..\DocumentMgmtApi\DocumentMgmtApi.csproj">
       <Project>{c636bd76-0859-4b66-b5c5-c370f025af98}</Project>
       <Name>DocumentMgmtApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModuloInterconexionCommonApi\ModuloInterconexionCommonApi.csproj">
-      <Project>{f8e84bdd-b3aa-4a07-9758-3fa2b6bff189}</Project>
-      <Name>ModuloInterconexionCommonApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

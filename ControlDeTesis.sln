@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuloInterconexionCommonApi", "ModuloInterconexionCommonApi\ModuloInterconexionCommonApi.csproj", "{F8E84BDD-B3AA-4A07-9758-3FA2B6BFF189}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentMgmtApi", "DocumentMgmtApi\DocumentMgmtApi.csproj", "{C636BD76-0859-4B66-B5C5-C370F025AF98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlDeTesisV4", "ControlDeTesisV4\ControlDeTesisV4.csproj", "{0291EA15-C479-44B7-BA2F-70221D7684F8}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8E84BDD-B3AA-4A07-9758-3FA2B6BFF189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8E84BDD-B3AA-4A07-9758-3FA2B6BFF189}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8E84BDD-B3AA-4A07-9758-3FA2B6BFF189}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8E84BDD-B3AA-4A07-9758-3FA2B6BFF189}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C636BD76-0859-4B66-B5C5-C370F025AF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C636BD76-0859-4B66-B5C5-C370F025AF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C636BD76-0859-4B66-B5C5-C370F025AF98}.Release|Any CPU.ActiveCfg = Release|Any CPU

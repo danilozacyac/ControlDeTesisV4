@@ -35,6 +35,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ScjnUtilities">
+      <HintPath>..\..\ScjnUtilities\ScjnUtilities\bin\Debug\ScjnUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows" />
@@ -53,12 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordDocComparer.cs" />
     <Compile Include="WordDocReader.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ModuloInterconexionCommonApi\ModuloInterconexionCommonApi.csproj">
-      <Project>{f8e84bdd-b3aa-4a07-9758-3fa2b6bff189}</Project>
-      <Name>ModuloInterconexionCommonApi</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

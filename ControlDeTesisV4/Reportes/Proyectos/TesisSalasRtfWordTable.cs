@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Singletons;
+using ScjnUtilities;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace ControlDeTesisV4.Reportes.Proyectos
@@ -103,8 +104,8 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                         oTable.Cell(2, 1).Split(4, 1);
                         oTable.Cell(2, 1).Range.Text = "Ponencia: " + this.GetPonencia(tesis.Precedente.IdPonente);
-                        oTable.Cell(3, 1).Range.Text = "Recepción: " + this.GetFechaString(tesis.FEnvio);
-                        oTable.Cell(4, 1).Range.Text = "Entrega: " + this.GetFechaString(tesis.FEnvio);
+                        oTable.Cell(3, 1).Range.Text = "Recepción: " + DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
+                        oTable.Cell(4, 1).Range.Text = "Entrega: " + DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
                         oTable.Cell(5, 1).Range.Text = "Oficio número: " +tesis.OficioEnvio;
 
                         oTable.Cell(2, 2).Range.Text = "TEXTO MODIFICADO A PROPUESTA DE LA COORDINACIÓN DE COMPILACIÓN Y SISTEMATIZACIÓN DE TESIS";
@@ -167,31 +168,6 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                 MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-        }
-
-        private string GetFechaString(DateTime? fecha)
-        {
-            return fecha.Value.Day + " de" + this.GetMonthName(fecha.Value.Month) + "de " + fecha.Value.Year;
-        }
-
-        private string GetMonthName(int month)
-        {
-            switch (month)
-            {
-                case 1: return " Enero ";
-                case 2: return " Febrero ";
-                case 3: return " Marzo ";
-                case 4: return " Abril ";
-                case 5: return " Mayo ";
-                case 6: return " Junio ";
-                case 7: return " Julio ";
-                case 8: return " Agosto ";
-                case 9: return " Septiembre ";
-                case 10: return " Octubre ";
-                case 11: return " Noviembre ";
-                case 12: return " Diciembre ";
-            }
-            return "";
         }
 
         private string GetInstanciaString(int instancia)

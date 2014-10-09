@@ -12,7 +12,7 @@ using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.ProyectosCcstFolder
 {

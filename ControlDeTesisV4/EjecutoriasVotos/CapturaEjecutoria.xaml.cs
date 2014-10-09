@@ -10,7 +10,7 @@ using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.Turno;
 using DocumentMgmtApi;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.EjecutoriasVotos
 {
@@ -68,7 +68,7 @@ namespace ControlDeTesisV4.EjecutoriasVotos
 
         private void Numeric_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = StringUtilities.IsTextAllowed(e.Text);
+            e.Handled = ScjnUtilities.StringUtilities.IsTextAllowed(e.Text);
         }
 
         private void BtnLoadCCPath_Click(object sender, RoutedEventArgs e)
@@ -119,8 +119,8 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             ejecutoria.EstadoEjecutoria = estadoEjecutoria;
             ejecutoria.Precedente.TipoAsunto = Convert.ToInt32(CbxTipoAsunto.SelectedValue);
             ejecutoria.Precedente.IdPonente = Convert.ToInt32(CbxPonentes.SelectedValue);
-            ejecutoria.CcFilePathConten = Utilities.CopyToLocalResource(ejecutoria.CcFilePathOrigen);
-            ejecutoria.VpFilePathConten = Utilities.CopyToLocalResource(ejecutoria.VpFilePathOrigen);
+            ejecutoria.CcFilePathConten = FilesUtilities.CopyToLocalResource(ejecutoria.CcFilePathOrigen);
+            ejecutoria.VpFilePathConten = FilesUtilities.CopyToLocalResource(ejecutoria.VpFilePathOrigen);
 
 
             if (new EjecutoriasModel().SetNewProyectoEjecutoria(ejecutoria))

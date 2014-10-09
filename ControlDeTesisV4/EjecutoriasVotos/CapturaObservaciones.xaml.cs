@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ControlDeTesisV4.Models;
 using DocumentMgmtApi;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.EjecutoriasVotos
 {

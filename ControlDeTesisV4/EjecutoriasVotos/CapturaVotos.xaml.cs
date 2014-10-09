@@ -6,7 +6,7 @@ using System.Windows.Input;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
-using ModuloInterconexionCommonApi;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.EjecutoriasVotos
 {
@@ -47,8 +47,8 @@ namespace ControlDeTesisV4.EjecutoriasVotos
             foreach (Votos voto in listaVotos)
             {
                 voto.EstadoVoto = 1;
-                voto.CcFilePathConten = Utilities.CopyToLocalResource(voto.CcFilePathOrigen);
-                voto.VpFilePathConten = Utilities.CopyToLocalResource(voto.VpFilePathOrigen);
+                voto.CcFilePathConten = FilesUtilities.CopyToLocalResource(voto.CcFilePathOrigen);
+                voto.VpFilePathConten = FilesUtilities.CopyToLocalResource(voto.VpFilePathOrigen);
                      
                 new VotosModel().SetNewProyectoVoto(voto, precedente);
             }
