@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
         <telerik:RadRibbonView x:Name="RibbonHeader"
@@ -309,5 +310,18 @@
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>
 
+        <StatusBar Height="30" Grid.Row="2"> 
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Usuario: "></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Width="20" Foreground="#FFFBF6F6" ></Separator>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Perfil: "></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

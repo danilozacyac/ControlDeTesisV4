@@ -13,7 +13,7 @@ namespace ControlDeTesisV4.Models
     {
         private static readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public bool ObtenerUsuarioContraseña(string sUsuario, string sPwd)
+        public bool ObtenerUsuarioContraseña()
         {
             bool bExisteUsuario = false;
             string sSql;
@@ -28,10 +28,9 @@ namespace ControlDeTesisV4.Models
             {
                 connection.Open();
 
-                sSql = "SELECT * FROM Abogados WHERE usuario = @usuario AND Pass = @Pass";
+                sSql = "SELECT * FROM Abogados WHERE usuario = @usuario";// AND Pass = @Pass";
                 cmd = new OleDbCommand(sSql, connection);
-                cmd.Parameters.AddWithValue("@usuario", sUsuario);
-                cmd.Parameters.AddWithValue("@Pass", sPwd);
+                cmd.Parameters.AddWithValue("@usuario", Environment.UserName);
                 reader = cmd.ExecuteReader();
 
                 if (reader.Read())

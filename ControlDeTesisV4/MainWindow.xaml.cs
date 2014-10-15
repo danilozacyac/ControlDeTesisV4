@@ -35,7 +35,15 @@ namespace ControlDeTesisV4
         {
             botonesAuth = new List<RadRibbonButton>() { BtnPorTurnar, TurnaTesis, ReturnaTesis, BtnEntregarTesis, BtnRecibirTesis, BtnPublicarTesis, BtnListaEjecutoria, BtnTurnaEjecutoria, BtnReTurnaEjecutoria, BtnEntregarEjecutoria, BtnRecibirEjecutoria, BtnPublicaEjecutoria, BtnListaVotos, BtnTurnaVoto, BtnReTurnaVoto, BtnEntregarVoto, BtnRecibirVoto, BtnPublicaVoto, BtnCargas, BtnProyectosSalas, BtnProyectosCcst };
             groupAuth = new List<RadRibbonGroup>() { GPObservaciones,GpoCcst,GpoPublicar};
-            
+
+
+            AccesoUsuariosModel accesoModel = new AccesoUsuariosModel();
+
+            if (accesoModel.ObtenerUsuarioContraseña() == false)
+            {
+                MessageBox.Show("  No tienes permiso para acceder a la aplicación  ");
+                this.Close();
+            }
 
             LogIn log = new LogIn();
             log.ShowDialog();

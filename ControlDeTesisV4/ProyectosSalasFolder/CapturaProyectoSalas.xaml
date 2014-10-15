@@ -186,19 +186,35 @@
                                      ItemsSource="{Binding }"
                                      ShowGroupPanel="False">
                     <telerik:RadGridView.Columns>
-                        <telerik:GridViewDataColumn Width="150"
+                        <telerik:GridViewDataColumn Width="100"
                                                     DataMemberBinding="{Binding Precedente.FResolucion,
                                                                                 StringFormat={}{0:dd/MM/yyyy}}"
                                                     Header="F. de Resolución"
                                                     IsVisible="True" />
                         <telerik:GridViewDataColumn Width="*"
-                                                    DataMemberBinding="{Binding Rubro}"
                                                     Header="Rubro"
-                                                    IsVisible="True" />
-                        <telerik:GridViewDataColumn Width="150"
-                                                    DataMemberBinding="{Binding Precedente.Asunto}"
+                                                    IsFilterable="False"
+                                                    IsReadOnly="True">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="12"
+                                               Text="{Binding Rubro}"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn Width="120"
                                                     Header="Asunto"
-                                                    IsFilterable="False" />
+                                                    IsFilterable="False"
+                                                    IsReadOnly="True">
+                            <telerik:GridViewDataColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="12"
+                                               Text="{Binding Precedente.Asunto}"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </telerik:GridViewDataColumn.CellTemplate>
+                        </telerik:GridViewDataColumn>
 
                         <telerik:GridViewDataColumn Width="150"
                                                     DataMemberBinding="{Binding Precedente.IdPonente,

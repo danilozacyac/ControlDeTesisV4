@@ -142,7 +142,7 @@ namespace ControlDeTesisV4.Models
                     {
                         tiposAsunto.Add(new OtrosDatos(reader["IdEmisor"] as int? ?? -1, 
                             reader["IdInstancia"] as int? ?? -1,
-                            reader["TipoJurisprudencia"].ToString()));
+                            reader["Emisor"].ToString()));
                     }
                 }
 

@@ -194,7 +194,7 @@
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
                      AcceptsReturn="True"
-                     IsReadOnly="True" />
+                     IsReadOnly="False" />
 
 
 

@@ -72,7 +72,6 @@
                         </DataTemplate>
                     </telerik:GridViewDataColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
-
                 <telerik:GridViewDataColumn Width="100"
                                             DataMemberBinding="{Binding FResolucion,
                                                                         StringFormat={}{0:dd/MM/yyyy}}"

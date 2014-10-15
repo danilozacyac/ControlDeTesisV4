@@ -184,6 +184,7 @@ namespace ControlDeTesisV4.Models
                                           select n.Descripcion).ToList()[0] + " " +
                                          reader["NumAsunto"].ToString() + "/" + reader["YearAsunto"].ToString();
                         preview.IdPonente = reader["IdPonente"] as int? ?? -1;
+                        preview.FResolucion = Convert.ToDateTime(reader["FResolucion"]);
                     }
                 }
                 cmd.Dispose();
