@@ -57,8 +57,8 @@ namespace ControlDeTesisV4.Reportes
             int periodoFinal;
             if (mes < 13)
             {
-                periodoInicio = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + 01);
-                periodoFinal = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + 32);
+                periodoInicio = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "01");
+                periodoFinal = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "32");
             }
             else
             {

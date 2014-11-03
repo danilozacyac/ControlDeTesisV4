@@ -425,8 +425,8 @@ namespace ControlDeTesisV4.Models
             tesis.YearAsunto = proyecto.Precedente.YearAsunto;
             tesis.IdInstancia = proyecto.IdInstancia;
             //tesis.FAprobacion = StringUtilities.GetDateFromReader(reader, "FAprobacion");
-            tesis.FTurno = proyecto.Turno.FTurno;
-            tesis.FSugerida = proyecto.Turno.FSugerida;
+           // tesis.FTurno = proyecto.Turno.FTurno;
+           // tesis.FSugerida = proyecto.Turno.FSugerida;
             tesis.EstadoTesis = 4;
 
             Constants.ListadoDeTesis.Add(tesis);
@@ -521,7 +521,7 @@ namespace ControlDeTesisV4.Models
             if (inicio == fin)
                 sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
             else
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt (Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
 
             try
             {
@@ -723,6 +723,7 @@ namespace ControlDeTesisV4.Models
                     dr["FAprobacionInt"] = 0;
                 }
 
+                dr["Rubro"] = tesis.Rubro;
                 dr["NumTesis"] = tesis.NumTesis;
                 dr["NumTesisInt"] = tesis.NumTesisInt;
                 dr["YearTesis"] = tesis.YearTesis;
@@ -735,7 +736,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand = connection.CreateCommand();
 
                 sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
-                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten, " +
+                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten,Rubro = @Rubro, " +
                        "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado " +
                        " WHERE IdTesis = @IdTesis";
                 dataAdapter.UpdateCommand.CommandText = sSql;
@@ -745,6 +746,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficioInt", OleDbType.Numeric, 0, "FechaEnvioOficioInt");
                 dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
                 dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
+                dataAdapter.UpdateCommand.Parameters.Add("@Rubro", OleDbType.VarChar, 0, "Rubro");
                 dataAdapter.UpdateCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
                 dataAdapter.UpdateCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
                 dataAdapter.UpdateCommand.Parameters.Add("@NumTesis", OleDbType.VarChar, 0, "NumTesis");
@@ -760,6 +762,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Dispose();
 
                 this.UpdateTesisCompara(tesis.ComparaTesis);
+                new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
             }
             catch (OleDbException ex)
             {

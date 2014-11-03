@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.EjecutoriasVotos;
@@ -33,6 +34,8 @@ namespace ControlDeTesisV4
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            //StiVaersion.Text = Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
             botonesAuth = new List<RadRibbonButton>() { BtnPorTurnar, TurnaTesis, ReturnaTesis, BtnEntregarTesis, BtnRecibirTesis, BtnPublicarTesis, BtnListaEjecutoria, BtnTurnaEjecutoria, BtnReTurnaEjecutoria, BtnEntregarEjecutoria, BtnRecibirEjecutoria, BtnPublicaEjecutoria, BtnListaVotos, BtnTurnaVoto, BtnReTurnaVoto, BtnEntregarVoto, BtnRecibirVoto, BtnPublicaVoto, BtnCargas, BtnProyectosSalas, BtnProyectosCcst };
             groupAuth = new List<RadRibbonGroup>() { GPObservaciones,GpoCcst,GpoPublicar};
 
@@ -44,9 +47,6 @@ namespace ControlDeTesisV4
                 MessageBox.Show("  No tienes permiso para acceder a la aplicación  ");
                 this.Close();
             }
-
-            LogIn log = new LogIn();
-            log.ShowDialog();
 
             if (AccesoUsuarios.Llave == 0 || AccesoUsuarios.Llave == -1)
             {

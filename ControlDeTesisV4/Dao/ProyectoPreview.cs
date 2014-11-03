@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace ControlDeTesisV4.Dao
 {
-    public class ProyectoPreview
+    public class ProyectoPreview : INotifyPropertyChanged
     {
         private int idProyecto;
         private int idTesis;
@@ -83,6 +84,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.rubro = value;
+                this.OnPropertyChanged("Rubro");
             }
         }
 
@@ -119,6 +121,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.fResolucion = value;
+                this.OnPropertyChanged("FResolucion");
             }
         }
 
@@ -157,5 +160,17 @@ namespace ControlDeTesisV4.Dao
                 this.idAbogadoResponsable = value;
             }
         }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion // INotifyPropertyChanged Members
     }
 }

@@ -503,6 +503,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Dispose();
 
                 this.UpdateTesisCompara(tesis.ComparaTesis);
+                new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
             }
             catch (OleDbException ex)
             {

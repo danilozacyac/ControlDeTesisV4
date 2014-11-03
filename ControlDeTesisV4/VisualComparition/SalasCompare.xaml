@@ -84,14 +84,14 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Maximum="28"
-                Minimum="10" />
+                Minimum="10" ValueChanged="SlFontSize_ValueChanged" />
         <Button x:Name="BtnGuardar"
                 Grid.Row="3"
                 Width="75"
                 Margin="0,0,10,12"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Content="Guardar" />
+                Content="Guardar" Click="BtnGuardar_Click" />
 
 
     </Grid>

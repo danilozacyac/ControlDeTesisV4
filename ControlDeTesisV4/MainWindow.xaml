@@ -5,6 +5,8 @@
         xmlns:ProyectosSalasFolder="clr-namespace:ControlDeTesisV4.ProyectosSalasFolder"
         xmlns:igRibbon="http://infragistics.com/Ribbon"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:access="clr-namespace:ControlDeTesisV4.Models"
         Width="800"
         Height="350"
         Icon="Resources/appImage.png"
@@ -314,12 +316,20 @@
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Usuario: "></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Static sys:Environment.UserName}}"></TextBlock>
                 </StackPanel>
             </StatusBarItem>
             <Separator Width="20" Foreground="#FFFBF6F6" ></Separator>
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Perfil: "></TextBlock>
+                    <TextBlock Text="Equipo: "></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Static sys:Environment.MachineName}}"></TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Width="20" Foreground="#FFFBF6F6" ></Separator>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="StiVaersion" Text=" "></TextBlock>
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>

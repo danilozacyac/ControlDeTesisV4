@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using ControlDeTesisV4.Singletons;
 
 namespace ControlDeTesisV4.Dao
 {
-    public class PrecedentesTesis
+    public class PrecedentesTesis : INotifyPropertyChanged
     {
         private int idTesis;
         private int idPrecedente;
@@ -85,6 +86,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.fResolucion = value;
+                this.OnPropertyChanged("FResolucion");
             }
         }
 
@@ -134,5 +136,17 @@ namespace ControlDeTesisV4.Dao
                        " " + NumAsunto + "/" + YearAsunto;
             }
         }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion // INotifyPropertyChanged Members
     }
 }

@@ -6,6 +6,7 @@ using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.UtilitiesFolder;
 using ControlDeTesisV4.VisualComparition;
+using Telerik.Windows.Controls.GridView;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -48,6 +49,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             Button but = sender as Button;
             idTesis = Convert.ToInt32(but.Uid);
+
+            
 
             if (lastProyecto == null || idTesis != lastProyecto.IdTesis)
             {

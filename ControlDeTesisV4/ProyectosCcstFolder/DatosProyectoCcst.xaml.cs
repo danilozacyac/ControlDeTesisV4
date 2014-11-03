@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using DocumentMgmtApi;
 using Microsoft.Win32;
@@ -60,7 +61,39 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
             if (isUpdating)
                 LoadOnUpdating();
+            else if (listaProyectos.Count > 0)
+                this.SetDatosIguales();
+
         }
+
+        private void SetDatosIguales()
+        {
+            if (listaProyectos.Count > 0)
+            {
+                ProyectosTesis proy1 = listaProyectos[0];
+                tesis.FEnvio = proy1.FEnvio;
+                CbxAbogados.SelectedValue = proy1.IdAbogadoResponsable;
+                tesis.OficioEnvio = proy1.OficioEnvio;
+                tesis.OficioEnvioPathOrigen = proy1.OficioEnvioPathOrigen;
+
+                if (proy1.Tatj == 0)
+                    RadAislada.IsChecked = true;
+                else
+                {
+                    Radjuris.IsChecked = true;
+                    CbxTipoJuris.SelectedValue = proy1.IdTipoJuris;
+                }
+
+                tesis.NumPaginas = proy1.NumPaginas;
+                CbxTipoAsunto.SelectedValue = proy1.Precedente.TipoAsunto;
+                tesis.Precedente.NumAsunto = proy1.Precedente.NumAsunto;
+                tesis.Precedente.YearAsunto = proy1.Precedente.YearAsunto;
+                tesis.Precedente.FResolucion = proy1.Precedente.FResolucion;
+                CbxPonentes.SelectedValue = proy1.Precedente.IdPonente;
+
+            }
+        }
+
 
         private void NumericTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -140,7 +173,8 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             tesis.ComparaTesis.TextoOriginal = DocumentComparer.GetRtfString(TxtVistaPrevia);
             tesis.ComparaTesis.TOrigenAlfab = StringUtilities.PrepareToAlphabeticalOrder(tesis.Rubro.ToUpper());
 
-            listaProyectos.Add(tesis);
+            new ProyectoTesisCcstModel().UpdateProyectoTesis(tesis);
+            //listaProyectos.Add(tesis);
             this.Close();
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Singletons;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -95,7 +96,7 @@ namespace ControlDeTesisV4.Models
                 {
                     while (reader.Read())
                     {
-                        preview.FRecepcion = Convert.ToDateTime(reader["FRecepcion"]);
+                        preview.FRecepcion = DateTimeUtilities.GetDateFromReader(reader,"FRecepcion");
                         preview.OficioRecepcion = reader["OficioRecepcion"].ToString();
                     }
                 }
@@ -171,7 +172,7 @@ namespace ControlDeTesisV4.Models
                 oleConne.Open();
 
                 cmd = new OleDbCommand(sqlCadena, oleConne);
-                cmd.Parameters.AddWithValue("@IdTesis", preview.IdProyecto);
+                cmd.Parameters.AddWithValue("@IdTesis", preview.IdTesis);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -184,7 +185,7 @@ namespace ControlDeTesisV4.Models
                                           select n.Descripcion).ToList()[0] + " " +
                                          reader["NumAsunto"].ToString() + "/" + reader["YearAsunto"].ToString();
                         preview.IdPonente = reader["IdPonente"] as int? ?? -1;
-                        preview.FResolucion = Convert.ToDateTime(reader["FResolucion"]);
+                        preview.FResolucion = DateTimeUtilities.GetDateFromReader(reader,"FResolucion");
                     }
                 }
                 cmd.Dispose();

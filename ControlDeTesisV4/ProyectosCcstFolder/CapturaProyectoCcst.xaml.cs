@@ -15,7 +15,7 @@ using Microsoft.Win32;
 
 namespace ControlDeTesisV4.ProyectosCcstFolder
 {
-    /// <summary>
+    /// <summary>o
     /// Interaction logic for CapturaProyectoCcst.xaml
     /// </summary>
     public partial class CapturaProyectoCcst

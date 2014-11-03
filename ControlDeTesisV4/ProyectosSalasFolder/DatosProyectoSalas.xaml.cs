@@ -105,8 +105,15 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 MessageBox.Show("La ruta del archivo que ingreso es incorrecta, favor de verificar");
                 return;
             }
+            if (String.IsNullOrEmpty(TxtRubro.Text) || String.IsNullOrWhiteSpace(TxtRubro.Text))
+            {
+                MessageBox.Show("Ingresa el rubro de la tesis");
+                return;
+            }
+
 
             proyecto.Tatj = (RadAislada.IsChecked == true) ? 0 : 1;
+            proyecto.Rubro = TxtRubro.Text;
             proyecto.IdTipoJuris = (RadAislada.IsChecked == true) ? 0 : ((OtrosDatos)CbxTipoJuris.SelectedItem).IdDato;
             proyecto.ComparaTesis.TOrigenAlfab = StringUtilities.PrepareToAlphabeticalOrder(proyecto.Rubro.ToUpper());
 
@@ -204,6 +211,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 Radjuris.IsChecked = true;
                 CbxTipoJuris.SelectedValue = proyecto.IdTipoJuris;
             }
+
+            TxtProyFilePath_TextChanged(null, null);
 
         }
     }

@@ -149,6 +149,90 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        public void UpdatePrecedentes(PrecedentesTesis precedente, int idTesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM PrecedentesTesis WHERE IdPrecedente = " + precedente.IdPrecedente;
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "PrecedentesTesis");
+
+                dr = dataSet.Tables["PrecedentesTesis"].Rows[0];
+                dr.BeginEdit();
+                dr["IdPrecedente"] = precedente.IdPrecedente;
+                dr["IdTesis"] = idTesis;
+                dr["IdTipoAsunto"] = precedente.TipoAsunto;
+                dr["NumAsunto"] = precedente.NumAsunto;
+                dr["YearAsunto"] = precedente.YearAsunto;
+
+                if (precedente.FResolucion != null)
+                {
+                    dr["FResolucion"] = precedente.FResolucion;
+                    dr["FResolucionInt"] = DateTimeUtilities.DateToInt(precedente.FResolucion);
+                }
+                else
+                {
+                    dr["FResolucion"] = DBNull.Value;
+                    dr["FResolucionInt"] = 0;
+                }
+
+                dr["IdPonente"] = precedente.IdPonente;
+                dr["Promovente"] = precedente.Promovente;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "Update PrecedentesTesis SET IdTipoAsunto = @IdTipoAsunto, NumAsunto = @NumAsunto, YearAsunto = @YearAsunto, " +
+                            "FResolucion = @FResolucion,FResolucionInt = @FResolucionInt,IdPonente = @IdPonente,Promovente = @Promovente " +
+                            "WHERE IdPrecedente = @IdPrecedente ";
+
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@IdTipoAsunto", OleDbType.Numeric, 0, "IdTipoAsunto");
+                dataAdapter.UpdateCommand.Parameters.Add("@NumAsunto", OleDbType.Numeric, 0, "NumAsunto");
+                dataAdapter.UpdateCommand.Parameters.Add("@YearAsunto", OleDbType.Numeric, 0, "YearAsunto");
+                dataAdapter.UpdateCommand.Parameters.Add("@FResolucion", OleDbType.Date, 0, "FResolucion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FResolucionInt", OleDbType.Numeric, 0, "FResolucionInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdPonente", OleDbType.Numeric, 0, "IdPonente");
+                dataAdapter.UpdateCommand.Parameters.Add("@Promovente", OleDbType.VarChar, 0, "Promovente");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdPrecedente", OleDbType.Numeric, 0, "IdPrecedente");
+
+                dataAdapter.Update(dataSet, "PrecedentesTesis");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
 
         private int GetLastId(string tabla, string columna)
         {

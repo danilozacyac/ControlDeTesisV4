@@ -336,8 +336,6 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInt
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ModuloInterconexionCommonApi\obj\Debug\ControlDeTesisV4.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\TesisPublicar.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\TesisPublicar.g.cs
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\LogIn.baml
-C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\LogIn.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\CapturaVotos.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\DetalleVotos.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\EjecutoriasVotos\CapturaVotos.g.cs
@@ -374,3 +372,7 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\UtilitiesWin\GuiaColores.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ScjnUtilities.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ScjnUtilities.pdb
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ControlDeTesisV4.exe.manifest
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ControlDeTesisV4.application
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ControlDeTesisV4.exe.manifest
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ControlDeTesisV4.application

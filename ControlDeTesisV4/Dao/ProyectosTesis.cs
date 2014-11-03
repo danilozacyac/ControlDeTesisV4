@@ -113,6 +113,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.rubro = value;
+                this.OnPropertyChanged("Rubro");
             }
         }
 

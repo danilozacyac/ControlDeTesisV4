@@ -134,11 +134,14 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Cell(6, 2).Range.Font.Name = "Arial";
                         oTable.Cell(6, 2).Range.Font.Size = 10;
 
-                        Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
-                        oTable.Cell(6, 3).Select();
-                        oWord.Selection.Paste();
-                        oTable.Cell(6, 3).Range.Font.Name = "Arial";
-                        oTable.Cell(6, 3).Range.Font.Size = 10;
+                        if (!String.IsNullOrEmpty(tesis.ComparaTesis.TAprobada))
+                        {
+                            Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
+                            oTable.Cell(6, 3).Select();
+                            oWord.Selection.Paste();
+                            oTable.Cell(6, 3).Range.Font.Name = "Arial";
+                            oTable.Cell(6, 3).Range.Font.Size = 10;
+                        }
 
                         fila++;
                         numTesis++;

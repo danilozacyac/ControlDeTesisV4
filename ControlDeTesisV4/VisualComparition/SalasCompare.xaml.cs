@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using ControlDeTesisV4.Dao;
+using ControlDeTesisV4.Models;
 
 namespace ControlDeTesisV4.VisualComparition
 {
@@ -42,6 +43,54 @@ namespace ControlDeTesisV4.VisualComparition
                 range.Load(ms, DataFormats.Rtf);
             }
             catch (ArgumentException) { }
+        }
+
+        private void SlFontSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double sizeValue = SlFontSize.Value;
+
+            var range = new TextRange(OriginalText.Document.ContentStart, OriginalText.Document.ContentEnd);
+            range.ApplyPropertyValue(TextElement.FontSizeProperty, sizeValue);
+
+            range = new TextRange(ObservText.Document.ContentStart, ObservText.Document.ContentEnd);
+            range.ApplyPropertyValue(TextElement.FontSizeProperty, sizeValue);
+
+            range = new TextRange(AprobaText.Document.ContentStart, AprobaText.Document.ContentEnd);
+            range.ApplyPropertyValue(TextElement.FontSizeProperty, sizeValue);
+        }
+
+        private void BtnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange range = new TextRange(OriginalText.Document.ContentStart, OriginalText.Document.ContentEnd);
+            tesis.ComparaTesis.TOPlano = range.Text;
+
+            range = new TextRange(ObservText.Document.ContentStart, ObservText.Document.ContentEnd);
+            tesis.ComparaTesis.TObservacionesPlano = range.Text;
+
+            range = new TextRange(AprobaText.Document.ContentStart, AprobaText.Document.ContentEnd);
+            tesis.ComparaTesis.TAprobadaPlano = range.Text;
+
+            tesis.ComparaTesis.TextoOriginal = this.GetRtfString(OriginalText);
+            tesis.ComparaTesis.TObservaciones = this.GetRtfString(ObservText);
+            tesis.ComparaTesis.TAprobada = this.GetRtfString(AprobaText);
+
+            tesis.ComparaTesis.IdTesis = tesis.IdTesis;
+
+            new TesisComparaModel().UpdateTesisCompara(tesis.ComparaTesis);
+            this.Close();
+        }
+
+        private string GetRtfString(RichTextBox rich)
+        {
+            var doc = rich.Document;
+            var range = new TextRange(doc.ContentStart, doc.ContentEnd);
+            var ms = new MemoryStream();
+            range.Save(ms, DataFormats.Rtf);
+            ms.Seek(0, SeekOrigin.Begin);
+
+            var rtfString = new StreamReader(ms).ReadToEnd();
+
+            return rtfString;
         }
     }
 }
