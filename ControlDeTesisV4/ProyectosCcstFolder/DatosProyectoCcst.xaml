@@ -76,14 +76,14 @@
                  Text="{Binding ComparaTesis.ToFilePathOrigen,
                                 Mode=TwoWay}"
                  TextChanged="TxtProyFilePath_TextChanged" />
-        <Label Margin="648,166,0,0"
+        <Label Margin="648,176,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Núm. Páginas:" />
         <TextBox x:Name="TxtNumPags"
                  Width="54"
                  Height="23"
-                 Margin="755,166,0,0"
+                 Margin="755,176,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  PreviewTextInput="NumericTxt_PreviewTextInput"
@@ -145,13 +145,13 @@
                    Source="/ControlDeTesisV4;component/Resources/browse.png" />
         </Button>
         <RadioButton x:Name="Radjuris"
-                     Margin="124,166,0,0"
+                     Margin="124,176,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
                      Checked="Radjuris_Checked"
                      Content=" Jurisprudencia" />
         <RadioButton x:Name="RadAislada"
-                     Margin="31,166,0,0"
+                     Margin="31,176,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
                      Checked="RadAislada_Checked"
@@ -233,14 +233,14 @@
                Content=" / " />
 
         <Label Name="LblJuris"
-               Margin="254,166,0,0"
+               Margin="254,176,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Tipo jurisprudencia:"
                Visibility="Visible" />
         <ComboBox x:Name="CbxTipoJuris"
                   Width="216"
-                  Margin="376,160,0,0"
+                  Margin="376,170,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   DisplayMemberPath="Descripcion"
@@ -259,6 +259,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Vista previa:" />
+        <Button x:Name="BtnLlegada" Visibility="Hidden" Content="Datos del oficio" HorizontalAlignment="Left" Margin="675,455,0,0" VerticalAlignment="Top" Width="112" Click="BtnLlegada_Click" Height="28"/>
 
     </Grid>
 

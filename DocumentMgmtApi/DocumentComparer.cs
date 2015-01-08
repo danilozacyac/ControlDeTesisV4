@@ -15,44 +15,58 @@ namespace DocumentMgmtApi
     {
         public static FlowDocument LoadDocumentContent(string pathFile)
         {
+
             RichTextBox richTextBox = new RichTextBox();
-
-            String convertedFilePath = "";
-
-            if (!String.IsNullOrEmpty(pathFile) && !String.IsNullOrWhiteSpace(pathFile))
+            FlowDocument flowdocument = null;
+            try
             {
-                if (!pathFile.EndsWith(".rtf"))
+                String convertedFilePath = "";
+
+                if (!String.IsNullOrEmpty(pathFile) && !String.IsNullOrWhiteSpace(pathFile))
                 {
-                    convertedFilePath = Path.GetTempFileName();
+                    if (!pathFile.EndsWith(".rtf"))
+                    {
+                        convertedFilePath = Path.GetTempFileName();
 
-                    DocumentConversion.SetNewDocFormat(pathFile, convertedFilePath, "RTF");
+                        DocumentConversion.SetNewDocFormat(pathFile, convertedFilePath, "RTF");
 
-                    pathFile = convertedFilePath + ".rtf";
+                        pathFile = convertedFilePath + ".rtf";
+                    }
+
+                    TextRange range;
+
+                    System.IO.FileStream fStream;
+
+                    if (System.IO.File.Exists(pathFile))
+                    {
+                        range = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+
+                        fStream = new System.IO.FileStream(pathFile, System.IO.FileMode.OpenOrCreate);
+
+                        range.Load(fStream, System.Windows.DataFormats.Rtf);
+
+                        fStream.Close();
+                    }
+
+                    //OriginalText.Font
+                    var text = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+                    text.ApplyPropertyValue(TextElement.FontSizeProperty, 10.0);
+                    richTextBox.Document.TextAlignment = TextAlignment.Justify;
                 }
 
-                TextRange range;
-
-                System.IO.FileStream fStream;
-
-                if (System.IO.File.Exists(pathFile))
-                {
-                    range = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-
-                    fStream = new System.IO.FileStream(pathFile, System.IO.FileMode.OpenOrCreate);
-
-                    range.Load(fStream, System.Windows.DataFormats.Rtf);
-
-                    fStream.Close();
-                }
-
-                //OriginalText.Font
-                var text = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-                text.ApplyPropertyValue(TextElement.FontSizeProperty, 10.0);
-                richTextBox.Document.TextAlignment = TextAlignment.Justify;
+                flowdocument = richTextBox.Document;
+                richTextBox.Document = new FlowDocument();
             }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-            FlowDocument flowdocument = richTextBox.Document;
-            richTextBox.Document = new FlowDocument();
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+
+                MessageBox.Show("ATENCIÓN:", "El documento que esta seleccionando no tiene el formato correcto, se sugiere copiar su contenido y crear un documento nuevo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
 
             return flowdocument;
         }

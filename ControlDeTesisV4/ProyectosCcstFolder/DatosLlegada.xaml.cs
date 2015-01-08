@@ -10,6 +10,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
+using Microsoft.Win32;
 
 namespace ControlDeTesisV4.ProyectosCcstFolder
 {
@@ -18,18 +19,23 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     /// </summary>
     public partial class DatosLlegada
     {
-        public DatosLlegada()
+        private ProyectosTesis preview;
+        private ProyectosCcst proyecto;
+
+        public DatosLlegada(ProyectosTesis preview)
         {
             InitializeComponent();
+            this.preview = preview;
         }
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            CbxInstancia.DataContext = (from n in OtrosDatosSingleton.Instancias
-                                        where n.IdDato < 5
-                                        select n);
+            proyecto = new ProyectoTesisCcstModel().GetDatosLlegada(preview.IdTesis);
 
            CbxDestinatario.DataContext = FuncionariosSingleton.Signatarios;
+
+           this.DataContext = proyecto;
+           CbxDestinatario.SelectedValue = proyecto.Destinatario;
         }
 
         private void TxtPathOficioAtn_PreviewDragOver(object sender, DragEventArgs e)
@@ -67,7 +73,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             if (File.Exists(TxtPathOficioAtn.Text))
             {
                 BtnViewOficioRecibido.IsEnabled = true;
-                oficialiaCcst.FileOficioAtnOrigen = TxtPathOficioAtn.Text;
+                proyecto.FileOficioAtnOrigen = TxtPathOficioAtn.Text;
             }
             else
             {
@@ -76,40 +82,6 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             }
         }
 
-        private int idInstancia;
-        private void CbxInstancia_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            idInstancia = ((OtrosDatos)CbxInstancia.SelectedItem).IdDato;
-
-            CbxPlenosDeCircuito.Visibility = (idInstancia < 4) ? Visibility.Hidden : Visibility.Visible;
-            LblPlenos.Visibility = (idInstancia < 4) ? Visibility.Hidden : Visibility.Visible;
-
-            if (oficialiaCcst.Proyectos != null && oficialiaCcst.Proyectos.Count > 0)
-            {
-                foreach (ProyectosTesis tesis in oficialiaCcst.Proyectos)
-                {
-                    tesis.IdInstancia = idInstancia;
-
-                    if (idInstancia != 4)
-                        tesis.IdSubInstancia = 0;
-                }
-            }
-
-        }
-
-        private int subInstancia;
-        private void CbxPlenosDeCircuito_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            subInstancia = ((OtrosDatos)CbxPlenosDeCircuito.SelectedItem).IdDato;
-
-            if (oficialiaCcst.Proyectos != null && oficialiaCcst.Proyectos.Count > 0)
-            {
-                foreach (ProyectosTesis tesis in oficialiaCcst.Proyectos)
-                {
-                    tesis.IdSubInstancia = subInstancia;
-                }
-            }
-        }
 
         private void BtnLoadOficioRecibido_Click(object sender, RoutedEventArgs e)
         {
@@ -118,7 +90,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void BtnViewOficioRecibido_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(oficialiaCcst.FileOficioAtnOrigen);
+            Process.Start(proyecto.FileOficioAtnOrigen);
         }
 
         private void CbxDestinatario_KeyDown(object sender, KeyEventArgs e)
@@ -145,9 +117,24 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         }
 
+        private String GetFilePath()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Filter = "Office Documents|*.doc;*.docx| RichTextFiles |*.rtf";
+
+            dialog.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\Documents";
+            dialog.Title = "Selecciona el archivo del proyecto";
+            dialog.ShowDialog();
+
+            return dialog.FileName;
+        }
+
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
+            proyecto.Destinatario = Convert.ToInt16(CbxDestinatario.SelectedValue);
+            new ProyectoTesisCcstModel().UpdateDatosLlegada(proyecto);
+            this.Close();
         }
     }
 }

@@ -25,11 +25,13 @@ namespace ControlDeTesisV4.Reportes
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            int initYear = 2014;
+
             int year = DateTime.Now.Year;
-            while (year <= 2014)
+            while (initYear >= 2014 && initYear <= (year +1))
             {
-                CbxAnio.Items.Add(year);
-                year++;
+                CbxAnio.Items.Add(initYear);
+                initYear++;
             }
         }
 
@@ -77,6 +79,8 @@ namespace ControlDeTesisV4.Reportes
             else
             {
                 listaImprimir = new ProyectoTesisCcstModel().GetProyectoTesis(periodoInicio, periodoFinal);
+                TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
+                rtf.GeneraWord();
             }
 
             

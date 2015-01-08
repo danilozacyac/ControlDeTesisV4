@@ -34,8 +34,6 @@ namespace ControlDeTesisV4
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Version version = Assembly.GetExecutingAssembly().GetName().Version;
-            //StiVaersion.Text = Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
             botonesAuth = new List<RadRibbonButton>() { BtnPorTurnar, TurnaTesis, ReturnaTesis, BtnEntregarTesis, BtnRecibirTesis, BtnPublicarTesis, BtnListaEjecutoria, BtnTurnaEjecutoria, BtnReTurnaEjecutoria, BtnEntregarEjecutoria, BtnRecibirEjecutoria, BtnPublicaEjecutoria, BtnListaVotos, BtnTurnaVoto, BtnReTurnaVoto, BtnEntregarVoto, BtnRecibirVoto, BtnPublicaVoto, BtnCargas, BtnProyectosSalas, BtnProyectosCcst };
             groupAuth = new List<RadRibbonGroup>() { GPObservaciones,GpoCcst,GpoPublicar};
 
@@ -90,13 +88,13 @@ namespace ControlDeTesisV4
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)
         {
             CapturaProyectoSalas salas = new CapturaProyectoSalas();
-            salas.Show();
+            salas.ShowDialog();
         }
 
         private void BtnNuevoPC_Click(object sender, RoutedEventArgs e)
         {
             CapturaProyectoCcst ccst = new CapturaProyectoCcst();
-            ccst.Show();
+            ccst.ShowDialog();
         }
 
         private bool isCargasVisible = false;

@@ -94,9 +94,9 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                         oTable.Columns[1].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
                         oTable.Columns[2].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
-                        oTable.Columns[3].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
+                       // oTable.Columns[3].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
 
-                        oTable.Cell(1, 2).Merge(oTable.Cell(1, 3));
+                        //oTable.Cell(1, 2).Merge(oTable.Cell(1, 3));
                         oTable.Cell(1, 1).Merge(oTable.Cell(1, 2));
                         oTable.Cell(1, 1).Range.Text = (tesis.Tatj == 1) ? "JURISPRUDENCIA" : "AISLADA";
                         oTable.Cell(1, 1).Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
@@ -110,10 +110,10 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Cell(3, 3).Range.Text = "Oficio número: ";
                         oTable.Cell(3, 4).Range.Text = tesis.OficioEnvio;
 
-                        oTable.Cell(2, 5).Range.Text = "TEXTO APROBADO POR LOS MINISTROS DE LA SCJN";
+                        oTable.Cell(2, 2).Range.Text = "TEXTO APROBADO POR LOS MINISTROS DE LA SCJN";
                         oTable.Cell(2, 2).Range.Font.Bold = 1;
 
-                        oTable.Cell(2, 6).Range.Text = (String.IsNullOrEmpty(tesis.ClaveTesis)) ? "TESIS PENDIENTE DE APROBACIÓN" : tesis.ClaveTesis;
+                        oTable.Cell(2, 2).Range.Text = (String.IsNullOrEmpty(tesis.ClaveTesis)) ? "TESIS PENDIENTE DE APROBACIÓN" : tesis.ClaveTesis;
                         oTable.Cell(2, 2).Range.Font.Bold = 1;
 
 
@@ -129,12 +129,14 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Cell(6, 1).Range.Font.Name = "Arial";
                         oTable.Cell(6, 1).Range.Font.Size = 10;
 
-                        Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
-                        oTable.Cell(6, 2).Select();
-                        oWord.Selection.Paste();
-                        oTable.Cell(6, 2).Range.Font.Name = "Arial";
-                        oTable.Cell(6, 2).Range.Font.Size = 10;
-
+                        if (tesis.ComparaTesis.TAprobada != null && !String.IsNullOrWhiteSpace( tesis.ComparaTesis.TAprobada))
+                        {
+                            Clipboard.SetText(tesis.ComparaTesis.TAprobada, TextDataFormat.Rtf);
+                            oTable.Cell(6, 2).Select();
+                            oWord.Selection.Paste();
+                            oTable.Cell(6, 2).Range.Font.Name = "Arial";
+                            oTable.Cell(6, 2).Range.Font.Size = 10;
+                        }
                         fila++;
                         numTesis++;
 

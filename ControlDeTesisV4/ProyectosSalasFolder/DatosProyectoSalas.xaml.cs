@@ -45,6 +45,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             InitializeComponent();
             this.proyecto = proyecto;
             this.isUpdating = true;
+            BtnOficio.Visibility = Visibility.Visible;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -214,6 +215,12 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
             TxtProyFilePath_TextChanged(null, null);
 
+        }
+
+        private void BtnOficio_Click(object sender, RoutedEventArgs e)
+        {
+            DatosLlegadaSalas datos = new DatosLlegadaSalas(proyecto);
+            datos.ShowDialog();
         }
     }
 }

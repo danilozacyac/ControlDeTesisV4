@@ -350,7 +350,7 @@ namespace ControlDeTesisV4.Models
             if (inicio == fin)
                 sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 2";
             else
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt (Between " + inicio + " and " + fin + ") AND idTipoProyecto = 2";
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 2";
 
             try
             {
@@ -407,6 +407,61 @@ namespace ControlDeTesisV4.Models
             }
 
             return listaDeTesis;
+        }
+
+        /// <summary>
+        /// Obtiene los datos generales de llegada del proyecto correspondiente
+        /// </summary>
+        /// <param name="idProyecto"></param>
+        /// <returns></returns>
+        public ProyectosCcst GetDatosLlegada(int idTesis)
+        {
+            ProyectosCcst proyecto = null;
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT PC.*, PT.IdProyecto FROM ProyectosCcst PC INNER JOIN ProyectosTesis PT ON PC.IdProyecto = PT.IdProyecto WHERE IdTesis = @IdTesis";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        proyecto = new ProyectosCcst();
+                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1; ;
+                        proyecto.Destinatario = reader["Destinatario"] as int? ?? -1;
+                        proyecto.OficioAtn = reader["OficioAtn"].ToString();
+                        proyecto.FOficioAtn = DateTimeUtilities.GetDateFromReader(reader, "FechaOficioAtn");
+                        proyecto.FileOficioAtnOrigen = reader["FileOficioAtnOrigen"].ToString();
+                        proyecto.FileOficioAtnConten = reader["FileOficioAtnConten"].ToString();
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException sql)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return proyecto;
         } 
 
 
@@ -504,6 +559,88 @@ namespace ControlDeTesisV4.Models
 
                 this.UpdateTesisCompara(tesis.ComparaTesis);
                 new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void UpdateDatosLlegada(ProyectosCcst tesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM ProyectosCcst WHERE IdProyecto = @IdProyecto";
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@IdProyecto", tesis.IdProyecto);
+
+                dataAdapter.Fill(dataSet, "ProyectosCcst");
+
+                dr = dataSet.Tables["ProyectosCcst"].Rows[0];
+                dr.BeginEdit();
+                dr["Destinatario"] = tesis.Destinatario;
+                dr["OficioAtn"] = tesis.OficioAtn;
+
+                if (tesis.FOficioAtn != null)
+                {
+                    dr["FechaOficioAtn"] = tesis.FOficioAtn;
+                    dr["FechaOficioAtnInt"] = DateTimeUtilities.DateToInt(tesis.FOficioAtn);
+                }
+                else
+                {
+                    dr["FechaOficioAtn"] = DBNull.Value;
+                    dr["FechaOficioAtnInt"] = 0;
+                }
+
+                dr["FileOficioAtnOrigen"] = tesis.FileOficioAtnOrigen;
+                dr["FileOficioAtnConten"] = tesis.FileOficioAtnConten;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE ProyectosCcst SET Destinatario = @Destinatario, OficioAtn = @OficioAtn,FechaOficioAtn = @FechaOficioAtn," +
+                       "FechaOficioAtnInt = @FechaOficioAtnInt,FileOficioAtnOrigen = @FileOficioAtnOrigen, " +
+                       "FileOficioAtnConten = @FileOficioAtnConten " +
+                       " WHERE IdProyecto = @IdProyecto";
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@Destinatario", OleDbType.Numeric, 0, "Destinatario");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioAtn", OleDbType.VarChar, 0, "OficioAtn");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaOficioAtn", OleDbType.Date, 0, "FechaOficioAtn");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaOficioAtnInt", OleDbType.Numeric, 0, "FechaOficioAtnInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@FileOficioAtnOrigen", OleDbType.VarChar, 0, "FileOficioAtnOrigen");
+                dataAdapter.UpdateCommand.Parameters.Add("@FileOficioAtnConten", OleDbType.VarChar, 0, "FileOficioAtnConten");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdProyecto", OleDbType.Numeric, 0, "IdProyecto");
+
+                dataAdapter.Update(dataSet, "ProyectosCcst");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+
             }
             catch (OleDbException ex)
             {

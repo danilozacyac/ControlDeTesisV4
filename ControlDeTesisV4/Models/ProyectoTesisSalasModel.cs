@@ -503,6 +503,63 @@ namespace ControlDeTesisV4.Models
         }
 
         /// <summary>
+        /// Obtiene los datos generales de llegada del proyecto correspondiente
+        /// </summary>
+        /// <param name="idProyecto"></param>
+        /// <returns></returns>
+        public ProyectosSalas GetDatosLlegada(int idTesis)
+        {
+            ProyectosSalas proyecto = null;
+
+            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT PC.*, PT.IdProyecto FROM Proyectos PC INNER JOIN ProyectosTesis PT ON PC.IdProyecto = PT.IdProyecto WHERE IdTesis = @IdTesis";
+
+            try
+            {
+                oleConne.Open();
+
+                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        proyecto = new ProyectosSalas();
+                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1; ;
+                        proyecto.Referencia = reader["ReferenciaOficialia"].ToString();
+                        proyecto.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
+                        proyecto.OficioRecepcion = reader["OficioRecepcion"].ToString();
+                        proyecto.IdEmisor = reader["IdEmisor"] as int? ?? -1;
+                        proyecto.IdSignatario = reader["IdSignatario"] as int? ?? -1;
+                        proyecto.OfRecepcionPathOrigen = reader["OficioPathOrigen"].ToString();
+                        proyecto.OfRecepcionPathConten = reader["OficioPathConten"].ToString();
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException sql)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+            }
+            finally
+            {
+                oleConne.Close();
+            }
+
+            return proyecto;
+        } 
+
+        /// <summary>
         /// Devuelve un listado con las tesis que abarcan un periodo determinado, este periodo puede ser mensual o anual
         /// </summary>
         /// <param name="inicio">Dia inicial que se toma para obtener las tesis</param>
@@ -763,6 +820,93 @@ namespace ControlDeTesisV4.Models
 
                 this.UpdateTesisCompara(tesis.ComparaTesis);
                 new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void UpdateDatosLlegada(ProyectosSalas tesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM Proyectos WHERE IdProyecto = @IdProyecto";
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@IdProyecto", tesis.IdProyecto);
+
+                dataAdapter.Fill(dataSet, "Proyectos");
+
+                dr = dataSet.Tables["Proyectos"].Rows[0];
+                dr.BeginEdit();
+                dr["ReferenciaOficialia"] = tesis.Referencia;
+                dr["OficioRecepcion"] = tesis.OficioRecepcion;
+
+                if (tesis.FRecepcion != null)
+                {
+                    dr["FRecepcion"] = tesis.FRecepcion;
+                    dr["FRecepcionInt"] = DateTimeUtilities.DateToInt(tesis.FRecepcion);
+                }
+                else
+                {
+                    dr["FRecepcion"] = DBNull.Value;
+                    dr["FRecepcionInt"] = 0;
+                }
+
+                dr["OficioPathOrigen"] = tesis.OfRecepcionPathOrigen;
+                dr["OficioPathConten"] = tesis.OfRecepcionPathConten;
+                dr["IdSignatario"] = tesis.IdSignatario;
+                dr["IdEmisor"] = tesis.IdEmisor;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE Proyectos SET ReferenciaOficialia = @ReferenciaOficialia, OficioRecepcion = @OficioRecepcion,FRecepcion = @FRecepcion," +
+                       "FRecepcionInt = @FRecepcionInt,OficioPathOrigen = @OficioPathOrigen, " +
+                       "OficioPathConten = @OficioPathConten, " +
+                       "IdSignatario = @IdSignatario,IdEmisor = @IdEmisor " +
+                       " WHERE IdProyecto = @IdProyecto";
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@ReferenciaOficialia", OleDbType.VarChar, 0, "ReferenciaOficialia");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioRecepcion", OleDbType.VarChar, 0, "OficioRecepcion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FRecepcion", OleDbType.Date, 0, "FRecepcion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FRecepcionInt", OleDbType.Numeric, 0, "FRecepcionInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioPathOrigen", OleDbType.VarChar, 0, "OficioPathOrigen");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioPathConten", OleDbType.VarChar, 0, "OficioPathConten");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdSignatario", OleDbType.Numeric, 0, "IdSignatario");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdEmisor", OleDbType.Numeric, 0, "IdEmisor");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdProyecto", OleDbType.Numeric, 0, "IdProyecto");
+
+                dataAdapter.Update(dataSet, "Proyectos");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+
             }
             catch (OleDbException ex)
             {

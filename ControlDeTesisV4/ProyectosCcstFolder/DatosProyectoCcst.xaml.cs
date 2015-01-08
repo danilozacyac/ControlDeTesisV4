@@ -40,6 +40,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             InitializeComponent();
             this.tesis = tesis;
             this.isUpdating = true;
+            BtnLlegada.Visibility = Visibility.Visible;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -90,6 +91,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
                 tesis.Precedente.YearAsunto = proy1.Precedente.YearAsunto;
                 tesis.Precedente.FResolucion = proy1.Precedente.FResolucion;
                 CbxPonentes.SelectedValue = proy1.Precedente.IdPonente;
+                tesis.Precedente.Promovente = proy1.Precedente.Promovente;
 
             }
         }
@@ -173,8 +175,10 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             tesis.ComparaTesis.TextoOriginal = DocumentComparer.GetRtfString(TxtVistaPrevia);
             tesis.ComparaTesis.TOrigenAlfab = StringUtilities.PrepareToAlphabeticalOrder(tesis.Rubro.ToUpper());
 
+            if(isUpdating)
             new ProyectoTesisCcstModel().UpdateProyectoTesis(tesis);
-            //listaProyectos.Add(tesis);
+            else
+            listaProyectos.Add(tesis);
             this.Close();
         }
 
@@ -243,6 +247,12 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
                 CbxTipoJuris.SelectedValue = tesis.IdTipoJuris;
             }
 
+        }
+
+        private void BtnLlegada_Click(object sender, RoutedEventArgs e)
+        {
+            DatosLlegada llegada = new DatosLlegada(tesis);
+            llegada.ShowDialog();
         }
     }
 }

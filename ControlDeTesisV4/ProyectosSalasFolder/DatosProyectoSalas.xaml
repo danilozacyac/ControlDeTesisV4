@@ -202,6 +202,15 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Content="Vista Previa" />
+        <Button x:Name="BtnOficio"
+                Width="89"
+                Height="30"
+                Margin="707,317,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="BtnOficio_Click"
+                Content="Datos del oficio"
+                Visibility="Hidden" />
 
 
 
