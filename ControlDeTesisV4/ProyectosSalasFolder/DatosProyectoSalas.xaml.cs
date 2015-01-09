@@ -174,7 +174,16 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             {
                 this.Cursor = Cursors.Wait;
                 TxtVistaPrevia.Document = DocumentComparer.LoadDocumentContent(TxtProyFilePath.Text);
-                proyecto.ComparaTesis.ToFilePathOrigen = TxtProyFilePath.Text;
+
+                if (TxtVistaPrevia.Document == null)
+                {
+                    TxtProyFilePath.Text = String.Empty;
+                }
+                else
+                {
+                    proyecto.ComparaTesis.ToFilePathOrigen = TxtProyFilePath.Text;
+                }
+
                 this.Cursor = Cursors.Arrow;
             }
         }

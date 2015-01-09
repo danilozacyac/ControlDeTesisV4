@@ -61,10 +61,10 @@ namespace DocumentMgmtApi
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName);
                 ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
 
-                MessageBox.Show("ATENCIÓN:", "El documento que esta seleccionando no tiene el formato correcto, se sugiere copiar su contenido y crear un documento nuevo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("ATENCIÓN:", "El documento que esta seleccionando no tiene el formato correcto, se sugiere copiar su contenido y crear un documento nuevo");
 
             }
 

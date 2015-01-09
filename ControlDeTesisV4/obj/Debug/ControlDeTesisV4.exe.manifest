@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1959936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1959424">
       <assemblyIdentity name="ControlDeTesisV4" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4WXFgRrpA/8lJzRDLHvKqNjJw068WRPkYrWtcRnJLhs=</dsig:DigestValue>
+        <dsig:DigestValue>3G6qJetwfOnTPL1wYyHlR41QcRAkAOhafz+rCQ30Peg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DocumentMgmtApi.dll" size="22016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DocumentMgmtApi.dll" size="22528">
       <assemblyIdentity name="DocumentMgmtApi" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gkWH2fvZj5cvJwP163wcrgrDr0aBn2tlRd6IeABh5Gs=</dsig:DigestValue>
+        <dsig:DigestValue>d5IT1AhQ+6lR/iKXHpAJDsgEcIkUQaaZ7frQUl5oaKo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
