@@ -97,6 +97,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.tatj = value;
+                this.OnPropertyChanged("Tatj");
             }
         }
 

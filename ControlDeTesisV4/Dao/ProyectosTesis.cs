@@ -8,6 +8,8 @@ namespace ControlDeTesisV4.Dao
     {
         private int idTesis;
         private string oficioEnvio;
+        private DateTime? fRecepcion;
+        private int fRecepcionInt;
         private DateTime? fEnvio;
         private int fEnvioInt;
         private string oficioEnvioPathOrigen;
@@ -53,6 +55,31 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.oficioEnvio = value;
+            }
+        }
+
+
+        public DateTime? FRecepcion
+        {
+            get
+            {
+                return this.fRecepcion;
+            }
+            set
+            {
+                this.fRecepcion = value;
+            }
+        }
+
+        public int FRecepcionInt
+        {
+            get
+            {
+                return this.fRecepcionInt;
+            }
+            set
+            {
+                this.fRecepcionInt = value;
             }
         }
 
@@ -126,6 +153,7 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.tatj = value;
+                this.OnPropertyChanged("Tatj");
             }
         }
 

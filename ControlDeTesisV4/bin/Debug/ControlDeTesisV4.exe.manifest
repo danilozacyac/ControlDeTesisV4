@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ControlDeTesisV4.exe" version="1.1.0.7" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ControlDeTesisV4.exe" version="1.1.0.30" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="appImage.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1959424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1962496">
       <assemblyIdentity name="ControlDeTesisV4" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3G6qJetwfOnTPL1wYyHlR41QcRAkAOhafz+rCQ30Peg=</dsig:DigestValue>
+        <dsig:DigestValue>L7c2+/aRdUsJphhjXpCIhDxurNxb4c+9TuifzW1+aCs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,19 +62,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W80vX6opXR7TLhsqi785b2R2+R8WM2XFzkEN1mgvOaU=</dsig:DigestValue>
+        <dsig:DigestValue>+uaZcMtWoeR+0lNnOInMHSi8RycTZDg/S/FMGIfIZfM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DocumentMgmtApi.dll" size="22528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DocumentMgmtApi.dll" size="23040">
       <assemblyIdentity name="DocumentMgmtApi" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>d5IT1AhQ+6lR/iKXHpAJDsgEcIkUQaaZ7frQUl5oaKo=</dsig:DigestValue>
+        <dsig:DigestValue>hQxEib6wugmitK9zRqx+WYudTVRdWNaBumaNHHP57cg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScjnUtilities.dll" size="12288">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScjnUtilities.dll" size="20992">
       <assemblyIdentity name="ScjnUtilities" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7ffUd5T3x+S0fl0wGsmjKP/Ug/dJAxU1z/ZtoJz7T9s=</dsig:DigestValue>
+        <dsig:DigestValue>Wgf1KS7adJE6r647bkvDQub8xVbfm0c2Xwdl7X4EMus=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -327,13 +327,13 @@
       <dsig:DigestValue>Zb3nbwqmeESFu32f0P3YIrEYQ1fPQd5ycviKGNdnIq4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ControlDeTesisV4.exe.config" size="1791">
+  <file name="ControlDeTesisV4.exe.config" size="1787">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+rzAP3W3g58BUDJeT8bdvwqyg5lSLAmBwJZVIING+P8=</dsig:DigestValue>
+      <dsig:DigestValue>O3yAwCYyd/FyP+e6DbU8UgzD4Ssi9CjO8KC4DRap3YM=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

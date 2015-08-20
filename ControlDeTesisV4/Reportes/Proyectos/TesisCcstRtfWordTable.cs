@@ -92,8 +92,8 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         oTable.Range.Font.Size = 10;
                         oTable.Borders.Enable = 1;
 
-                        oTable.Columns[1].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
-                        oTable.Columns[2].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
+                        oTable.Columns[1].SetWidth(430, Word.WdRulerStyle.wdAdjustSameWidth);
+                        oTable.Columns[2].SetWidth(430, Word.WdRulerStyle.wdAdjustSameWidth);
                        // oTable.Columns[3].SetWidth(300, Word.WdRulerStyle.wdAdjustSameWidth);
 
                         //oTable.Cell(1, 2).Merge(oTable.Cell(1, 3));

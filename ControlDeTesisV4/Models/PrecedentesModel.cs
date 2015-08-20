@@ -36,13 +36,13 @@ namespace ControlDeTesisV4.Models
                 {
                     while (reader.Read())
                     {
-                        precedente.IdPrecedente = reader["IdPrecedente"] as int? ?? -1;
+                        precedente.IdPrecedente = Convert.ToInt32(reader["IdPrecedente"]);
                         precedente.IdTesis = idTesis;
-                        precedente.TipoAsunto = reader["IdTipoAsunto"] as int? ?? -1;
-                        precedente.NumAsunto = reader["NumAsunto"] as int? ?? -1;
-                        precedente.YearAsunto = reader["YearAsunto"] as int? ?? -1;
+                        precedente.TipoAsunto = Convert.ToInt32(reader["IdTipoAsunto"]);
+                        precedente.NumAsunto = Convert.ToInt32(reader["NumAsunto"]);
+                        precedente.YearAsunto = Convert.ToInt32(reader["YearAsunto"]);
                         precedente.FResolucion = DateTimeUtilities.GetDateFromReader(reader, "FResolucion");
-                        precedente.IdPonente = reader["IdPonente"] as int? ?? -1;
+                        precedente.IdPonente = Convert.ToInt32(reader["IdPonente"]);
                         precedente.Promovente = reader["Promovente"].ToString();
                     }
                 }

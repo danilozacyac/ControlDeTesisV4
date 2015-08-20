@@ -576,9 +576,11 @@ namespace ControlDeTesisV4.Models
             String sqlCadena = "";
 
             if (inicio == fin)
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                            " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
             else
-                sqlCadena = "SELECT * FROM ProyectosTesis WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                            " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
 
             try
             {
@@ -595,6 +597,7 @@ namespace ControlDeTesisV4.Models
 
                         tesis.IdTesis = reader["IdTesis"] as int? ?? -1;
                         tesis.OficioEnvio = reader["OficioEnvio"].ToString();
+                        tesis.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
                         tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
                         tesis.Rubro = reader["Rubro"].ToString();
@@ -781,6 +784,8 @@ namespace ControlDeTesisV4.Models
                 }
 
                 dr["Rubro"] = tesis.Rubro;
+                dr["Tatj"] = tesis.Tatj;
+                dr["TipoJuris"] = tesis.IdTipoJuris;
                 dr["NumTesis"] = tesis.NumTesis;
                 dr["NumTesisInt"] = tesis.NumTesisInt;
                 dr["YearTesis"] = tesis.YearTesis;
@@ -793,7 +798,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand = connection.CreateCommand();
 
                 sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
-                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten,Rubro = @Rubro, " +
+                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten,Rubro = @Rubro,Tatj = @Tatj, TipoJuris = @TipoJuris," +
                        "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado " +
                        " WHERE IdTesis = @IdTesis";
                 dataAdapter.UpdateCommand.CommandText = sSql;
@@ -804,6 +809,8 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
                 dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
                 dataAdapter.UpdateCommand.Parameters.Add("@Rubro", OleDbType.VarChar, 0, "Rubro");
+                dataAdapter.UpdateCommand.Parameters.Add("@Tatj", OleDbType.Numeric, 0, "Tatj");
+                dataAdapter.UpdateCommand.Parameters.Add("@TipoJuris", OleDbType.Numeric, 0, "TipoJuris");
                 dataAdapter.UpdateCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
                 dataAdapter.UpdateCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
                 dataAdapter.UpdateCommand.Parameters.Add("@NumTesis", OleDbType.VarChar, 0, "NumTesis");
@@ -950,7 +957,11 @@ namespace ControlDeTesisV4.Models
                 dr = dataSet.Tables["TesisCompara"].Rows[0];
                 
                 dr.BeginEdit();
-                
+
+                dr["TextoOriginal"] = tesis.TextoOriginal;
+                dr["TOPlano"] = tesis.TOPlano;
+                dr["ToFilePathOrigen"] = tesis.ToFilePathOrigen;
+                dr["ToFilePathConten"] = tesis.ToFilePathConten;
                 dr["TextoRevision1"] = tesis.TObservaciones;
                 dr["TR1Plano"] = tesis.TObservacionesPlano;
                 dr["TObsFilePathOrigen"] = tesis.TObsFilePathOrigen;
@@ -964,12 +975,17 @@ namespace ControlDeTesisV4.Models
 
                 dataAdapter.UpdateCommand = connection.CreateCommand();
 
-                sSql = "UPDATE TesisCompara SET TextoRevision1 = @TextoRevision1, TR1Plano = @TR1Plano,TObsFilePathOrigen = @TObsFilePathOrigen," +
+                sSql = "UPDATE TesisCompara SET TextoOriginal = @TextoOriginal, TOPlano = @TOPlano, ToFilePathOrigen = @ToFilePathOrigen, ToFilePathConten = @TOFilePathConten," + 
+                    " TextoRevision1 = @TextoRevision1, TR1Plano = @TR1Plano,TObsFilePathOrigen = @TObsFilePathOrigen," +
                        "TObsFilePathConten = @TObsFilePathConten, TextoRevision2 = @TextoRevision2, TR2Plano = @TR2Plano,TAprobFilePathOrigen = @TAprobFilePathOrigen," +
                        "TAprobFilePathConten = @TAprobFilePathConten " +
                        " WHERE IdTesis = @IdTesis";
                 dataAdapter.UpdateCommand.CommandText = sSql;
 
+                dataAdapter.UpdateCommand.Parameters.Add("@TextoOriginal", OleDbType.VarChar, 0, "TextoOriginal");
+                dataAdapter.UpdateCommand.Parameters.Add("@TOPlano", OleDbType.VarChar, 0, "TOPlano");
+                dataAdapter.UpdateCommand.Parameters.Add("@ToFilePathOrigen", OleDbType.VarChar, 0, "ToFilePathOrigen");
+                dataAdapter.UpdateCommand.Parameters.Add("@ToFilePathConten", OleDbType.VarChar, 0, "ToFilePathConten");
                 dataAdapter.UpdateCommand.Parameters.Add("@TextoRevision1", OleDbType.VarChar, 0, "TextoRevision1");
                 dataAdapter.UpdateCommand.Parameters.Add("@TR1Plano", OleDbType.VarChar, 0, "TR1Plano");
                 dataAdapter.UpdateCommand.Parameters.Add("@TObsFilePathOrigen", OleDbType.VarChar, 0, "TObsFilePathOrigen");

@@ -67,7 +67,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             {
                 lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
             }
-            CapturaAprobacion aprob = new CapturaAprobacion(lastProyecto);
+            CapturaAprobacionCcst aprob = new CapturaAprobacionCcst(lastProyecto);
             aprob.ShowDialog();
         }
 

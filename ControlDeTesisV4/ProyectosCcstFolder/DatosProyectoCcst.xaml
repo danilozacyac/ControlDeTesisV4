@@ -253,8 +253,7 @@
                      Margin="31,511,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     AcceptsReturn="True"
-                     IsReadOnly="True" />
+                     AcceptsReturn="True" />
         <Label Margin="31,490,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"

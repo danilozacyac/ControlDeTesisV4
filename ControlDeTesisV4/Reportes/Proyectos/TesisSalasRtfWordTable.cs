@@ -104,8 +104,23 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                         oTable.Cell(2, 1).Split(4, 1);
                         oTable.Cell(2, 1).Range.Text = "Ponencia: " + this.GetPonencia(tesis.Precedente.IdPonente);
-                        oTable.Cell(3, 1).Range.Text = "Recepción: " + DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
-                        oTable.Cell(4, 1).Range.Text = "Entrega: " + DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
+
+                        if (tesis.FRecepcion != null)
+                            oTable.Cell(3, 1).Range.Text = "Recepción: " + DateTimeUtilities.ToLongDateFormat(tesis.FRecepcion);
+                        else
+                        {
+                            oTable.Cell(3, 1).Range.Text = "Recepción: ";
+                            MessageBox.Show("Falta la fecha de Recepción");
+                        }
+
+                        if (tesis.FEnvio != null)
+                            oTable.Cell(4, 1).Range.Text = "Entrega: " + DateTimeUtilities.ToLongDateFormat(tesis.FEnvio);
+                        else
+                        {
+                            oTable.Cell(4, 1).Range.Text = "Entrega: ";
+                            MessageBox.Show("Falta la fecha de Entrega");
+                        }
+
                         oTable.Cell(5, 1).Range.Text = "Oficio número: " +tesis.OficioEnvio;
 
                         oTable.Cell(2, 2).Range.Text = "TEXTO MODIFICADO A PROPUESTA DE LA COORDINACIÓN DE COMPILACIÓN Y SISTEMATIZACIÓN DE TESIS";

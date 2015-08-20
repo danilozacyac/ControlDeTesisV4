@@ -84,19 +84,24 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void PreviewChanges()
         {
-            string docFile = Path.GetTempFileName() + ".doc";
-            System.IO.StreamWriter writer = new StreamWriter(docFile, false, System.Text.Encoding.Default);
-            writer.WriteLine(tesis.ComparaTesis.TObservaciones);
-            writer.Close();
+            //string docFile = Path.GetTempFileName() + ".doc";
+            //System.IO.StreamWriter writer = new StreamWriter(docFile, false, System.Text.Encoding.Default);
+            //writer.WriteLine(tesis.ComparaTesis.TObservaciones);
+            //writer.Close();
+
+            //tesis.ComparaTesis.TAprobFilePathOrigen = TxtProyFilePath.Text;
+
+            //string xmlResult = Path.GetTempFileName() + ".xml";
+
+            //WordDocComparer comparer = new WordDocComparer(docFile, tesis.ComparaTesis.TAprobFilePathOrigen, xmlResult);
+            //comparer.Compare();
+
+            //TxtVistaPrevia.Document = DocumentComparer.LoadDocumentRevision(xmlResult, 2);
+
 
             tesis.ComparaTesis.TAprobFilePathOrigen = TxtProyFilePath.Text;
-
-            string xmlResult = Path.GetTempFileName() + ".xml";
-
-            WordDocComparer comparer = new WordDocComparer(docFile, tesis.ComparaTesis.TAprobFilePathOrigen, xmlResult);
-            comparer.Compare();
-
-            TxtVistaPrevia.Document = DocumentComparer.LoadDocumentRevision(xmlResult, 2);
+            string resultingXml = DocumentComparer.CompareDocuments(tesis.ComparaTesis.ToFilePathOrigen, tesis.ComparaTesis.TAprobFilePathOrigen);
+            TxtVistaPrevia.Document = DocumentComparer.LoadDocumentRevision(resultingXml, 2);
 
         }
 
@@ -129,20 +134,20 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             ProyectoTesisCcstModel model = new ProyectoTesisCcstModel();
             model.UpdateProyectoTesis(tesis);
 
-            MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (MessageBoxResult.Yes == qResult)
-            {
-                tesis.EstadoTesis = 4;
-                new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            //if (MessageBoxResult.Yes == qResult)
+            //{
+            //    tesis.EstadoTesis = 4;
+            //    new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
 
-                TesisTurnadaPreview tesisTurnada = new TesisTurnadasModel().GetPreviewTesisTurnada(tesis.IdTesis);
+            //    TesisTurnadaPreview tesisTurnada = new TesisTurnadasModel().GetPreviewTesisTurnada(tesis.IdTesis);
 
-                if (Constants.ListadoDeTesis != null)
-                    Constants.ListadoDeTesis.Add(tesisTurnada);
+            //    if (Constants.ListadoDeTesis != null)
+            //        Constants.ListadoDeTesis.Add(tesisTurnada);
 
-                //Falta elimianrlo del listado de proyectos
-            }
+            //    //Falta elimianrlo del listado de proyectos
+            //}
 
             this.Close();
         }

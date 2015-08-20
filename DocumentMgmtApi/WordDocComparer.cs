@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace DocumentMgmtApi
@@ -35,30 +37,37 @@ namespace DocumentMgmtApi
 
         public void Compare()
         {
-            object missing = System.Reflection.Missing.Value;
+            try
+            {
+                object missing = System.Reflection.Missing.Value;
 
-            object readonlyobj = false;
-            object filename = docOriginal;
+                object readonlyobj = false;
+                object filename = docOriginal;
 
-            //create a word application object for processing the word file.
-            Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+                //create a word application object for processing the word file.
+                Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
 
-            //create a word document object and open the above file..
-            Word.Document doc = app.Documents.Open(ref filename, ref missing, ref readonlyobj, ref missing, ref missing,
-                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                //create a word document object and open the above file..
+                Word.Document doc = app.Documents.Open(ref filename, ref missing, ref readonlyobj, ref missing, ref missing,
+                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
 
-            doc.TrackRevisions = true;
-            doc.ShowRevisions = true;
-            doc.PrintRevisions = true;
-            doc.Compare(docRevision, missing, Word.WdCompareTarget.wdCompareTargetCurrent, true, false, false, false, false);
+                doc.TrackRevisions = true;
+                doc.ShowRevisions = true;
+                doc.PrintRevisions = true;
+                doc.Compare(docRevision, missing, Word.WdCompareTarget.wdCompareTargetCurrent, true, false, false, false, false);
 
-            object saveToFormat = Word.WdSaveFormat.wdFormatXML;
-            doc.SaveAs(xmlResult, ref saveToFormat, ref missing, ref missing, ref missing, ref missing,
-                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                object saveToFormat = Word.WdSaveFormat.wdFormatXML;
+                doc.SaveAs(xmlResult, ref saveToFormat, ref missing, ref missing, ref missing, ref missing,
+                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
 
-            doc.Close(ref missing, ref missing, ref missing);
-            app.Quit(ref missing, ref missing, ref missing);
-            //MessageBox.Show("Process complete");
+                doc.Close(ref missing, ref missing, ref missing);
+                app.Quit(ref missing, ref missing, ref missing);
+                
+            }
+            catch (COMException)
+            {
+                MessageBox.Show("No se econtro el documento original");
+            }
         }
 
         #endregion

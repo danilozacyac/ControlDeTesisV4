@@ -4,10 +4,10 @@
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="843"
                    Height="660"
-                   Background="LightGoldenrodYellow"
                    Header="DatosProyecto"
                    Loaded="Window_Loaded"
-                   ResizeMode="NoResize">
+                   ResizeMode="NoResize"
+                   WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Label Margin="40,77,0,0"

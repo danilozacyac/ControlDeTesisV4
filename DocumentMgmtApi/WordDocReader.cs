@@ -11,31 +11,42 @@ namespace DocumentMgmtApi
     {
         public static void ReadFileContent(string path, ObservableCollection<Observaciones> observaciones)
         {
-
+            object nullobj = System.Reflection.Missing.Value;
             int i = 1;
             Application word = new Application();
-            object file = path;
-            object nullobj = System.Reflection.Missing.Value;
-            Word.Document doc = word.Documents.Open(ref file, ref nullobj, ref nullobj,
-                ref nullobj, ref nullobj, ref nullobj,
-                ref nullobj, ref nullobj, ref nullobj,
-                ref nullobj, ref nullobj, ref nullobj);
 
-            Word.Paragraphs docPar = doc.Paragraphs;
-            // Count number of paragraphs in the file
-            long parCount = docPar.Count;
-            // Step through the paragraphs
-            while (i < parCount)
+            try
             {
-                if (docPar[i].Range.Text.Contains("foja"))
-                {
-                    observaciones.Add(WordDocReader.GetObservacionFromParagraph(docPar[i].Range.Text));
-                }
+
+                object file = path;
                 
-                i++;
+                Word.Document doc = word.Documents.Open(ref file, ref nullobj, ref nullobj,
+                    ref nullobj, ref nullobj, ref nullobj,
+                    ref nullobj, ref nullobj, ref nullobj,
+                    ref nullobj, ref nullobj, ref nullobj);
+
+                Word.Paragraphs docPar = doc.Paragraphs;
+                // Count number of paragraphs in the file
+                long parCount = docPar.Count;
+                // Step through the paragraphs
+                while (i < parCount)
+                {
+                    if (docPar[i].Range.Text.Contains("foja"))
+                    {
+                        observaciones.Add(WordDocReader.GetObservacionFromParagraph(docPar[i].Range.Text));
+                    }
+
+                    i++;
+                }
+                doc.Close(ref nullobj, ref nullobj, ref nullobj);
             }
-            doc.Close(ref nullobj, ref nullobj, ref nullobj);
-            word.Quit(ref nullobj, ref nullobj, ref nullobj);
+            catch (RankException) { }
+            finally
+            {
+                ((Application)word).Quit(SaveChanges: false, OriginalFormat: false, RouteDocument: false);
+                //word.Quit(ref nullobj, ref nullobj, ref nullobj);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(word);
+            }
 
         }
 

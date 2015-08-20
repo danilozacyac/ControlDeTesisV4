@@ -81,6 +81,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 oficialiaSalas.Proyectos = new ObservableCollection<ProyectosTesis>();
 
             DatosProyectoSalas datos = new DatosProyectoSalas(oficialiaSalas.Proyectos, idInstancia);
+            datos.Owner = this;
             datos.ShowDialog();
             GProyectos.DataContext = oficialiaSalas.Proyectos;
         }

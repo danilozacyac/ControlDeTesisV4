@@ -33,10 +33,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             if (proyectosSalas == null)
                 proyectosSalas = new ObservableCollection<ProyectosTesis>();
 
-
             this.proyectosSalas = proyectosSalas;
             this.idInstancia = idInstancia;
-
 
         }
 
@@ -71,7 +69,38 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 LoadOnUpdating();
                 BtnGuardar.Content = "Guardar";
             }
+            else if (proyectosSalas.Count > 0)
+                this.SetDatosIguales();
 
+        }
+
+        private void SetDatosIguales()
+        {
+            if (proyectosSalas.Count > 0)
+            {
+                ProyectosTesis proy1 = proyectosSalas[0];
+                proyecto.FEnvio = proy1.FEnvio;
+                CbxAbogado.SelectedValue = proy1.IdAbogadoResponsable;
+                proyecto.OficioEnvio = proy1.OficioEnvio;
+                proyecto.OficioEnvioPathOrigen = proy1.OficioEnvioPathOrigen;
+
+                if (proy1.Tatj == 0)
+                    RadAislada.IsChecked = true;
+                else
+                {
+                    Radjuris.IsChecked = true;
+                    CbxTipoJuris.SelectedValue = proy1.IdTipoJuris;
+                }
+
+                proyecto.NumPaginas = proy1.NumPaginas;
+                CbxTipoAsunto.SelectedValue = proy1.Precedente.TipoAsunto;
+                proyecto.Precedente.NumAsunto = proy1.Precedente.NumAsunto;
+                proyecto.Precedente.YearAsunto = proy1.Precedente.YearAsunto;
+                proyecto.Precedente.FResolucion = proy1.Precedente.FResolucion;
+                CbxPonentes.SelectedValue = proy1.Precedente.IdPonente;
+                proyecto.Precedente.Promovente = proy1.Precedente.Promovente;
+
+            }
         }
 
         private void RadAislada_Checked(object sender, RoutedEventArgs e)
@@ -101,19 +130,25 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 MessageBox.Show("Agrega el archivo del proyecto");
                 return;
             }
-            else if (!File.Exists(proyecto.ComparaTesis.ToFilePathOrigen))
-            {
-                MessageBox.Show("La ruta del archivo que ingreso es incorrecta, favor de verificar");
-                return;
-            }
+            //else if (!File.Exists(proyecto.ComparaTesis.ToFilePathOrigen))
+            //{
+            //    MessageBox.Show("La ruta del archivo que ingreso es incorrecta, favor de verificar");
+            //    return;
+            //}
             if (String.IsNullOrEmpty(TxtRubro.Text) || String.IsNullOrWhiteSpace(TxtRubro.Text))
             {
                 MessageBox.Show("Ingresa el rubro de la tesis");
                 return;
             }
 
-
             proyecto.Tatj = (RadAislada.IsChecked == true) ? 0 : 1;
+
+            if (proyecto.Tatj == 1 && CbxTipoJuris.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debes seleccionar el tipo de Jurisprudencia");
+                return;
+            }
+
             proyecto.Rubro = TxtRubro.Text;
             proyecto.IdTipoJuris = (RadAislada.IsChecked == true) ? 0 : ((OtrosDatos)CbxTipoJuris.SelectedItem).IdDato;
             proyecto.ComparaTesis.TOrigenAlfab = StringUtilities.PrepareToAlphabeticalOrder(proyecto.Rubro.ToUpper());
@@ -190,20 +225,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         private void BtnLoadPath_Click(object sender, RoutedEventArgs e)
         {
-            TxtProyFilePath.Text = this.GetFilePath();
-        }
-
-        private String GetFilePath()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-
-            dialog.Filter = "Office Documents|*.doc;*.docx| RichTextFiles |*.rtf";
-
-            dialog.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\Documents";
-            dialog.Title = "Selecciona el archivo del proyecto";
-            dialog.ShowDialog();
-
-            return dialog.FileName;
+            TxtProyFilePath.Text = FilesUtilities.GetWordFilePath("Selecciona el archivo del proyecto", true);
         }
 
         private void LoadOnUpdating()

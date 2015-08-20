@@ -88,12 +88,14 @@ namespace ControlDeTesisV4
         private void BtnNuevoPS_Click(object sender, RoutedEventArgs e)
         {
             CapturaProyectoSalas salas = new CapturaProyectoSalas();
+            salas.Owner = this;
             salas.ShowDialog();
         }
 
         private void BtnNuevoPC_Click(object sender, RoutedEventArgs e)
         {
             CapturaProyectoCcst ccst = new CapturaProyectoCcst();
+            ccst.Owner = this;
             ccst.ShowDialog();
         }
 

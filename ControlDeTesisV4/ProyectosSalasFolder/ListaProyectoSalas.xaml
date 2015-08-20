@@ -68,14 +68,16 @@
                     <telerik:GridViewDataColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock FontSize="12"
-                                       Text="{Binding Rubro,Mode=TwoWay}"
+                                       Text="{Binding Rubro,
+                                                      Mode=TwoWay}"
                                        TextWrapping="Wrap" />
                         </DataTemplate>
                     </telerik:GridViewDataColumn.CellTemplate>
                 </telerik:GridViewDataColumn>
                 <telerik:GridViewDataColumn Width="100"
                                             DataMemberBinding="{Binding FResolucion,
-                                                                        StringFormat={}{0:dd/MM/yyyy},Mode=TwoWay}"
+                                                                        StringFormat={}{0:dd/MM/yyyy},
+                                                                        Mode=TwoWay}"
                                             Header="F. de Resolucion"
                                             IsReadOnly="True"
                                             IsVisible="True" />

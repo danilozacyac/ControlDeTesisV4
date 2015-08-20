@@ -126,21 +126,21 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
             model.UpdateProyectoTesis(tesis);
 
-            MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (MessageBoxResult.Yes == qResult)
-            {
-                tesis.EstadoTesis = 4;
-                new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
+            //if (MessageBoxResult.Yes == qResult)
+            //{
+            //    tesis.EstadoTesis = 4;
+            //    new AuxiliarModel().UpdateEstadoDocumento(tesis.IdTesis, tesis.EstadoTesis, "ProyectosTesis", "IdTesis", "EstadoTesis");
 
-                TesisTurnadaPreview tesisTurnada = new TesisTurnadasModel().GetPreviewTesisTurnada(tesis.IdTesis);
+            //    TesisTurnadaPreview tesisTurnada = new TesisTurnadasModel().GetPreviewTesisTurnada(tesis.IdTesis);
 
-                if(Constants.ListadoDeTesis != null)
-                    Constants.ListadoDeTesis.Add(tesisTurnada);
+            //    if(Constants.ListadoDeTesis != null)
+            //        Constants.ListadoDeTesis.Add(tesisTurnada);
 
-                //Falta elimianrlo del listado de proyectos
+            //    //Falta elimianrlo del listado de proyectos
 
-            }
+            //}
 
             this.Close();
         }

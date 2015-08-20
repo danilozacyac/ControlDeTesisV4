@@ -41,12 +41,12 @@ namespace ControlDeTesisV4.Models
                     while (reader.Read())
                     {
                         ProyectoPreview preview = new ProyectoPreview();
-                        preview.IdTesis = reader["IdTesis"] as int? ?? -1;
-                        preview.IdProyecto = reader["IdProyecto"] as int? ?? -1;
+                        preview.IdTesis = Convert.ToInt32(reader["IdTesis"]);
+                        preview.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
                         preview.Rubro = reader["Rubro"].ToString();
-                        preview.Tatj = reader["tatj"] as int? ?? -1;
-                        preview.EstadoTesis = reader["EstadoTesis"] as int? ?? -1;
-                        preview.IdAbogadoResponsable = reader["IdAbogado"] as int? ?? -1;
+                        preview.Tatj = Convert.ToInt32(reader["tatj"]);
+                        preview.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
+                        preview.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
 
                         if (idTipoProyecto == 1)
                             this.GetProyectoInfoPreview(preview);
@@ -179,15 +179,16 @@ namespace ControlDeTesisV4.Models
                 {
                     while (reader.Read())
                     {
-                        int tipoAsunto = reader["IdTipoAsunto"] as int? ?? -1;
+                        int tipoAsunto = Convert.ToInt32(reader["IdTipoAsunto"]);
                         preview.Asunto = (from n in OtrosDatosSingleton.TipoAsuntos
                                           where n.IdDato == tipoAsunto
                                           select n.Descripcion).ToList()[0] + " " +
                                          reader["NumAsunto"].ToString() + "/" + reader["YearAsunto"].ToString();
                         preview.IdPonente = reader["IdPonente"] as int? ?? -1;
-                        preview.FResolucion = DateTimeUtilities.GetDateFromReader(reader,"FResolucion");
+                        preview.FResolucion = DateTimeUtilities.GetDateFromReader(reader, "FResolucion");
                     }
                 }
+                
                 cmd.Dispose();
                 reader.Close();
             }

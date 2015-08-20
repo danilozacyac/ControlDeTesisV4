@@ -71,7 +71,6 @@
                  VerticalAlignment="Top"
                  AcceptsReturn="True"
                  AllowDrop="True"
-                 IsEnabled="False"
                  PreviewDragOver="TxtDrag_PreviewDragOver"
                  PreviewDrop="TxtDrop_PreviewDrop"
                  Text="{Binding ComparaTesis.TAprobFilePathOrigen,

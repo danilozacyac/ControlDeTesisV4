@@ -3,10 +3,10 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:converter="clr-namespace:ControlDeTesisV4.Converter"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-                   Width="885.052"
+                   WindowStartupLocation="CenterScreen"
+                   Width="890"
                    Height="730"
                    MinHeight="700"
-                   Background="LightGoldenrodYellow"
                    Header="Captura"
                    Loaded="Window_Loaded">
 
@@ -23,10 +23,10 @@
 
         <Grid Grid.Row="0">
 
-            <GroupBox Grid.RowSpan="2"
-                      Width="845"
+            <GroupBox 
+                      
                       Height="182"
-                      Margin="21,25,0,0"
+                      Margin="21,25,15,0"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
                       Header="Información del Oficio">
@@ -53,12 +53,12 @@
                              Text="{Binding OficioRecepcion,
                                             Mode=TwoWay}" />
                     <DatePicker x:Name="DtpFRecep"
-                                Margin="594,10,0,0"
+                                Margin="579,10,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 SelectedDate="{Binding FRecepcion,
                                                        Mode=TwoWay}" />
-                    <Label Margin="473,10,0,0"
+                    <Label Margin="458,10,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Fecha de Recepción:" />
@@ -75,27 +75,27 @@
                               IsEditable="True"
                               ItemsSource="{Binding}"
                               SelectedValuePath="IdDato" />
-                    <Label Margin="473,120,0,0"
+                    <Label Margin="458,120,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Signatario:" />
                     <ComboBox x:Name="CbxSignatario"
                               Width="229"
-                              Margin="594,120,0,0"
+                              Margin="579,120,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               DisplayMemberPath="NombreCompleto"
                               IsEditable="True"
                               ItemsSource="{Binding}"
                               SelectedValuePath="IdFuncionario" />
-                    <Label Margin="470,47,0,0"
+                    <Label Margin="455,47,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Archivo Oficio:" />
                     <TextBox x:Name="TxtArchivoPath"
                              Width="229"
                              Height="23"
-                             Margin="594,47,0,0"
+                             Margin="579,47,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              PreviewDragOver="TxtArchivoPath_PreviewDragOver"
@@ -123,7 +123,7 @@
                               SelectionChanged="CbxInstancia_SelectionChanged" />
                     <Button x:Name="BtnLoadOficioRecibido"
                             Width="30"
-                            Margin="760,75,0,0"
+                            Margin="745,75,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="BtnLoadOficioRecibido_Click">
@@ -133,7 +133,7 @@
                     </Button>
                     <Button x:Name="BtnViewOficioRecibido"
                             Width="27"
-                            Margin="795,75,0,0"
+                            Margin="780,75,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="BtnViewOficioRecibido_Click"
@@ -148,7 +148,7 @@
 
 
         <GroupBox Grid.Row="1"
-                  Margin="25,25,25,20"
+                  Margin="25,25,15,20"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   Header="Proyecto de Tesis">

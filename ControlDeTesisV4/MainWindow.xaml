@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ProyectosCcstFolder="clr-namespace:ControlDeTesisV4.ProyectosCcstFolder"
         xmlns:ProyectosSalasFolder="clr-namespace:ControlDeTesisV4.ProyectosSalasFolder"
-        xmlns:igRibbon="http://infragistics.com/Ribbon"
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:access="clr-namespace:ControlDeTesisV4.Models"
+        xmlns:igRibbon="http://infragistics.com/Ribbon"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Width="800"
         Height="350"
         Icon="Resources/appImage.png"
@@ -280,7 +280,7 @@
                                              Click="BtnProyectosSalas_Click"
                                              LargeImage="Resources/tesis.png"
                                              Size="Large"
-                                             Uid="100" >
+                                             Uid="100">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="  Observaciones " />
                             <TextBlock Text="  Proyectos Salas" />
@@ -290,7 +290,7 @@
                                              Click="BtnProyectosCcst_Click"
                                              LargeImage="Resources/tesis.png"
                                              Size="Large"
-                                             Uid="101" >
+                                             Uid="101">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="  Observaciones " />
                             <TextBlock Text="  Proyectos CCST" />
@@ -312,24 +312,24 @@
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>
 
-        <StatusBar Height="30" Grid.Row="2"> 
+        <StatusBar Grid.Row="2" Height="30">
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Usuario: "></TextBlock>
-                    <TextBlock Text="{Binding Source={x:Static sys:Environment.UserName}}"></TextBlock>
+                    <TextBlock Text="Usuario: " />
+                    <TextBlock Text="{Binding Source={x:Static sys:Environment.UserName}}" />
                 </StackPanel>
             </StatusBarItem>
-            <Separator Width="20" Foreground="#FFFBF6F6" ></Separator>
+            <Separator Width="20" Foreground="#FFFBF6F6" />
             <StatusBarItem>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Equipo: "></TextBlock>
-                    <TextBlock Text="{Binding Source={x:Static sys:Environment.MachineName}}"></TextBlock>
+                    <TextBlock Text="Equipo: " />
+                    <TextBlock Text="{Binding Source={x:Static sys:Environment.MachineName}}" />
                 </StackPanel>
             </StatusBarItem>
-            <Separator Width="20" Foreground="#FFFBF6F6" ></Separator>
+            <Separator Width="20" Foreground="#FFFBF6F6" />
             <StatusBarItem HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="StiVaersion" Text=" "></TextBlock>
+                    <TextBlock Name="StiVaersion" Text=" " />
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
