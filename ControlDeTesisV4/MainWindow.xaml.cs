@@ -284,11 +284,13 @@ namespace ControlDeTesisV4
             periodo.ShowDialog();
         }
 
+        ListaProyectoSalas panelProyectosSalas;
         private void BtnListadoProyS_Click(object sender, RoutedEventArgs e)
         {
             RadPane pane = new RadPane();
             pane.Header = "Listado de proyectos Salas";
-            pane.Content = new ListaProyectoSalas();
+            panelProyectosSalas = new ListaProyectoSalas();
+            pane.Content = panelProyectosSalas;
 
             PanelCentral.AddItem(pane, DockPosition.Center);
         }
@@ -300,6 +302,26 @@ namespace ControlDeTesisV4
             pane.Content = new ListaProyectosCcst();
 
             PanelCentral.AddItem(pane, DockPosition.Center);
+        }
+
+        private void BtnDelTesis_Click(object sender, RoutedEventArgs e)
+        {
+            if (panelProyectosSalas.SelectedTesis != null)
+            {
+
+                ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
+                model.DeleteTesisCompara(panelProyectosSalas.SelectedTesis.IdTesis);
+                model.DeleteProyectoTesis(panelProyectosSalas.SelectedTesis.IdTesis);
+                model.DeleteProyecto(panelProyectosSalas.SelectedTesis.IdProyecto);
+
+                new PrecedentesModel().DeletePrecedentes(panelProyectosSalas.SelectedTesis.IdTesis);
+
+                Constants.ProyectosSalas.Remove(panelProyectosSalas.SelectedTesis);
+            }
+            else
+            {
+                MessageBox.Show("Selecciona la tesis que deseas eliminar");
+            }
         }
     }
 }

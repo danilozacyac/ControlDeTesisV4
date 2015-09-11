@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:ControlDeTesisV4.Converter"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:search="clr-namespace:UIControls;assembly=UIControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:search="clr-namespace:UIControls;assembly=UIControls"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              Loaded="UserControl_Loaded"
              d:DesignHeight="300"
@@ -25,9 +25,10 @@
                               Grid.Column="0"
                               Width="200"
                               Height="21"
+                              Margin="10,0,0,7"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Bottom"
-                              Search="SearchTextBox_Search" Margin="10,0,0,7" />
+                              Search="SearchTextBox_Search" />
         <telerik:RadGridView x:Name="GListado"
                              Grid.Row="1"
                              HorizontalAlignment="Stretch"
@@ -51,7 +52,7 @@
                 <telerik:GridViewDataColumn Width="90"
                                             Header="Asunto"
                                             IsFilterable="False"
-                                            IsReadOnly="True" >
+                                            IsReadOnly="True">
                     <telerik:GridViewDataColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock FontSize="12"

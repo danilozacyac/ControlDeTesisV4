@@ -99,5 +99,12 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             else
                 GListado.DataContext = Constants.ProyectosSalas;
         }
+
+
+        public ProyectoPreview SelectedTesis;
+        private void GListado_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+            SelectedTesis = GListado.SelectedItem as ProyectoPreview;
+        }
     }
 }

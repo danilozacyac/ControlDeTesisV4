@@ -99,13 +99,13 @@
                VerticalAlignment="Top"
                Content="Vista previa:" />
         <telerik:RadButton x:Name="BtnGuardar"
-                Width="97"
-                Height="38"
-                Margin="712,497,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="BtnGuardar_Click"
-                Content="Guardar" />
+                           Width="97"
+                           Height="38"
+                           Margin="712,497,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Click="BtnGuardar_Click"
+                           Content="Guardar" />
 
     </Grid>
 </telerik:RadWindow>

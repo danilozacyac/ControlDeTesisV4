@@ -36,7 +36,7 @@
                              AutoGenerateColumns="False"
                              ItemsSource="{Binding}"
                              RowHeight="150"
-                             ShowGroupPanel="False">
+                             ShowGroupPanel="False" SelectionChanged="GListado_SelectionChanged">
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn Width="100"
                                             DataMemberBinding="{Binding FRecepcion,

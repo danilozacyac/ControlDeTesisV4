@@ -6,6 +6,12 @@ namespace ControlDeTesisV4.Dao
 {
     public class ProyectosTesis : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Se utiliza principalmente para ubicar el proyecto que debe de ser eliminado una vez que se
+        /// determino que una tesis es eliminada
+        /// </summary>
+        private int idProyecto;
+        
         private int idTesis;
         private string oficioEnvio;
         private DateTime? fRecepcion;
@@ -33,6 +39,18 @@ namespace ControlDeTesisV4.Dao
         private Ejecutorias ejecutoria;
         private TurnoDao turno;
         private int estadoTesis;
+
+        public int IdProyecto
+        {
+            get
+            {
+                return this.idProyecto;
+            }
+            set
+            {
+                this.idProyecto = value;
+            }
+        }
 
         public int IdTesis
         {

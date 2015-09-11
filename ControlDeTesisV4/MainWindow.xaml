@@ -4,7 +4,6 @@
         xmlns:ProyectosCcstFolder="clr-namespace:ControlDeTesisV4.ProyectosCcstFolder"
         xmlns:ProyectosSalasFolder="clr-namespace:ControlDeTesisV4.ProyectosSalasFolder"
         xmlns:access="clr-namespace:ControlDeTesisV4.Models"
-        xmlns:igRibbon="http://infragistics.com/Ribbon"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Width="800"
@@ -38,6 +37,15 @@
                                              Content="Tesis"
                                              LargeImage="Resources/tesis.png"
                                              Size="Large" />
+                    <telerik:RadRibbonButton x:Name="BtnDelTesis"
+                                             Click="BtnDelTesis_Click"
+                                             LargeImage="Resources/tesis_del.png"
+                                             Size="Large">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Eliminar" />
+                            <TextBlock HorizontalAlignment="Center" Text="tesis" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
                     <StackPanel Orientation="Vertical">
                         <telerik:RadRibbonButton x:Name="BtnNuevaEjecProv"
                                                  Click="BtnNuevaEjecProv_Click"

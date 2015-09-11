@@ -61,7 +61,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
     public partial class CapturaProyectoCcst : Telerik.Windows.Controls.RadWindow, System.Windows.Markup.IComponentConnector {
         
         
-        #line 38 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 37 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox TxtOficioAtn;
         
@@ -69,7 +69,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 50 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 49 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DatePicker DtpOficioAtn;
         
@@ -77,7 +77,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 60 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 59 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox TxtPathOficioAtn;
         
@@ -85,7 +85,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 76 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 75 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox CbxInstancia;
         
@@ -93,7 +93,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 85 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 84 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label LblPlenos;
         
@@ -101,7 +101,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 91 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 90 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox CbxPlenosDeCircuito;
         
@@ -109,7 +109,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 101 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 100 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnLoadOficioRecibido;
         
@@ -117,7 +117,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 111 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 110 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnViewOficioRecibido;
         
@@ -125,7 +125,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 122 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 121 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox CbxDestinatario;
         
@@ -133,7 +133,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 154 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 153 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnEliminar;
         
@@ -141,7 +141,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 161 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 160 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnAgregarProy;
         
@@ -149,7 +149,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 169 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 168 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Telerik.Windows.Controls.RadGridView GProyectos;
         
@@ -157,7 +157,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
         #line hidden
         
         
-        #line 203 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+        #line 202 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button BtnGuardar;
         
@@ -196,7 +196,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             {
             case 1:
             
-            #line 11 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 10 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             ((ControlDeTesisV4.ProyectosCcstFolder.CapturaProyectoCcst)(target)).Loaded += new System.Windows.RoutedEventHandler(this.Window_Loaded);
             
             #line default
@@ -211,19 +211,19 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 4:
             this.TxtPathOficioAtn = ((System.Windows.Controls.TextBox)(target));
             
-            #line 66 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 65 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.TxtPathOficioAtn.PreviewDragOver += new System.Windows.DragEventHandler(this.TxtPathOficioAtn_PreviewDragOver);
             
             #line default
             #line hidden
             
-            #line 67 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 66 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.TxtPathOficioAtn.PreviewDrop += new System.Windows.DragEventHandler(this.TxtPathOficioAtn_PreviewDrop);
             
             #line default
             #line hidden
             
-            #line 71 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 70 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.TxtPathOficioAtn.TextChanged += new System.Windows.Controls.TextChangedEventHandler(this.TxtPathOficioAtn_TextChanged);
             
             #line default
@@ -232,7 +232,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 5:
             this.CbxInstancia = ((System.Windows.Controls.ComboBox)(target));
             
-            #line 84 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 83 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.CbxInstancia.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(this.CbxInstancia_SelectionChanged);
             
             #line default
@@ -244,7 +244,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 7:
             this.CbxPlenosDeCircuito = ((System.Windows.Controls.ComboBox)(target));
             
-            #line 99 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 98 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.CbxPlenosDeCircuito.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(this.CbxPlenosDeCircuito_SelectionChanged);
             
             #line default
@@ -253,7 +253,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 8:
             this.BtnLoadOficioRecibido = ((System.Windows.Controls.Button)(target));
             
-            #line 106 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 105 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.BtnLoadOficioRecibido.Click += new System.Windows.RoutedEventHandler(this.BtnLoadOficioRecibido_Click);
             
             #line default
@@ -262,7 +262,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 9:
             this.BtnViewOficioRecibido = ((System.Windows.Controls.Button)(target));
             
-            #line 116 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 115 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.BtnViewOficioRecibido.Click += new System.Windows.RoutedEventHandler(this.BtnViewOficioRecibido_Click);
             
             #line default
@@ -271,7 +271,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 10:
             this.CbxDestinatario = ((System.Windows.Controls.ComboBox)(target));
             
-            #line 130 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 129 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.CbxDestinatario.KeyDown += new System.Windows.Input.KeyEventHandler(this.CbxDestinatario_KeyDown);
             
             #line default
@@ -283,7 +283,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 12:
             this.BtnAgregarProy = ((System.Windows.Controls.Button)(target));
             
-            #line 166 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 165 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.BtnAgregarProy.Click += new System.Windows.RoutedEventHandler(this.BtnAgregarProy_Click);
             
             #line default
@@ -295,7 +295,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder {
             case 14:
             this.BtnGuardar = ((System.Windows.Controls.Button)(target));
             
-            #line 210 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
+            #line 209 "..\..\..\ProyectosCcstFolder\CapturaProyectoCcst.xaml"
             this.BtnGuardar.Click += new System.Windows.RoutedEventHandler(this.BtnGuardar_Click);
             
             #line default

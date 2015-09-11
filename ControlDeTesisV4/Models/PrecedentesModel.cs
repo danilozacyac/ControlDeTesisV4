@@ -14,6 +14,11 @@ namespace ControlDeTesisV4.Models
 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
+        /// <summary>
+        /// Obtiene el precedente de la tesis que se esta solicitando
+        /// </summary>
+        /// <param name="idTesis">Identificador de la tesis</param>
+        /// <returns></returns>
         public PrecedentesTesis GetPrecedenteTesis(int idTesis)
         {
             PrecedentesTesis precedente = new PrecedentesTesis();
@@ -78,7 +83,7 @@ namespace ControlDeTesisV4.Models
             try
             {
                 string sqlCadena = "SELECT * FROM PrecedentesTesis WHERE IdPrecedente = 0";
-                precedente.IdPrecedente = this.GetLastId("PrecedentesTesis", "IdPrecedente");
+                precedente.IdPrecedente = DataBaseUtilities.GetNextIdForUse("PrecedentesTesis", "IdPrecedente",connection);
 
                 dataAdapter = new OleDbDataAdapter();
                 dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
@@ -233,30 +238,24 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-
-        private int GetLastId(string tabla, string columna)
+        /// <summary>
+        /// Elimina los precedentes asociados a la tesis que se esta eliminando
+        /// </summary>
+        /// <param name="idTesis">Identificador de la tesis que se esta eliminando</param>
+        public void DeletePrecedentes(int idTesis)
         {
             OleDbConnection connection = new OleDbConnection(connectionString);
-            OleDbCommand cmd;
-            OleDbDataReader reader = null;
-
-            int id = 0;
+            OleDbCommand cmd = new OleDbCommand();
 
             try
             {
+                cmd = connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM PresedentesTesis WHERE IdTesis = @IdTesis";
+                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
+
                 connection.Open();
-
-                string sqlCadena = "SELECT MAX(" + columna + " ) AS ID FROM " + tabla;
-
-                cmd = new OleDbCommand(sqlCadena, connection);
-                reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    id = reader["ID"] as int? ?? -1;
-                }
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
             catch (OleDbException ex)
             {
@@ -274,12 +273,10 @@ namespace ControlDeTesisV4.Models
             }
             finally
             {
-                reader.Close();
                 connection.Close();
             }
-
-            return id + 1;
         }
+
 
     }
 }
