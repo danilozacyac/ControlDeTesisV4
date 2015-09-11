@@ -7,7 +7,9 @@ namespace ControlDeTesisV4.Dao
     public class ProyectoPreview : INotifyPropertyChanged
     {
         private int idProyecto;
+        private int idTipoProyecto;
         private int idTesis;
+
         private string oficioRecepcion;
         private DateTime? fRecepcion;
         private string rubro;
@@ -18,6 +20,18 @@ namespace ControlDeTesisV4.Dao
         private int estadoTesis;
         private int idAbogadoResponsable;
         private readonly string comparativoImage = "/ControlDeTesis2;component/Resources/compare.png";
+
+        public int IdTipoProyecto
+        {
+            get
+            {
+                return this.idTipoProyecto;
+            }
+            set
+            {
+                this.idTipoProyecto = value;
+            }
+        }
 
         public string ComparativoImage
         {

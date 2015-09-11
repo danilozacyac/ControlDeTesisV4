@@ -78,6 +78,15 @@
                         </StackPanel>
                     </telerik:RadRibbonButton>
 
+                    <telerik:RadRibbonButton x:Name="BtnDelProyecto"
+                                             LargeImage="Resources/tesis_del.png"
+                                             Size="Large" Click="BtnDelProyecto_Click">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock HorizontalAlignment="Center" Text="Eliminar" />
+                            <TextBlock HorizontalAlignment="Center" Text="proyecto" />
+                        </StackPanel>
+                    </telerik:RadRibbonButton>
+                    
                 </telerik:RadRibbonGroup>
 
             </telerik:RadRibbonTab>

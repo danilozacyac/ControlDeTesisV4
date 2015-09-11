@@ -323,5 +323,10 @@ namespace ControlDeTesisV4
                 MessageBox.Show("Selecciona la tesis que deseas eliminar");
             }
         }
+
+        private void BtnDelProyecto_Click(object sender, RoutedEventArgs e)
+        {
+            ProyectoTesisCcstModel model = 
+        }
     }
 }

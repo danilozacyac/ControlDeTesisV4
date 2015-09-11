@@ -107,6 +107,51 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+
+        /// <summary>
+        /// Elimina los datos de recepción de un proyecto
+        /// </summary>
+        /// <param name="idProyecto">Identificador del Proyecto que se va a eliminar</param>
+        public void DeleteProyecto(int idProyecto)
+        {
+            int tesisNumber = ProyectoTesisSalasModel.GetTesisNumberByProyecto(idProyecto, 1);
+
+            if (tesisNumber > 1)
+            {
+                OleDbConnection connection = new OleDbConnection(connectionString);
+                OleDbCommand cmd = new OleDbCommand();
+
+                try
+                {
+                    cmd = connection.CreateCommand();
+                    cmd.CommandText = "DELETE FROM ProyectosCcst WHERE IdProyecto = @IdProyecto";
+                    cmd.Parameters.AddWithValue("@IdProyecto", idProyecto);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (OleDbException ex)
+                {
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                }
+                catch (Exception ex)
+                {
+                    string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         #region Tesis
 
         public void SetNewProyectoTesis(ObservableCollection<ProyectosTesis> listaProyectos)

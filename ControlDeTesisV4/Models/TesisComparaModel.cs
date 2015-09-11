@@ -146,5 +146,45 @@ namespace ControlDeTesisV4.Models
         }
 
 
+
+        /// <summary>
+        /// Elimina la información de comparación de la tesis seleccionada
+        /// </summary>
+        /// <param name="idTesis"></param>
+        public void DeleteTesisCompara(int idTesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+            OleDbCommand cmd = new OleDbCommand();
+
+            try
+            {
+                cmd = connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM TesisCompara WHERE IdTesis = @IdTesis";
+                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
     }
 }

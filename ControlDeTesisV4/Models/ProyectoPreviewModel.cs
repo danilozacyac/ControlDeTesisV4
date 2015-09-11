@@ -43,6 +43,7 @@ namespace ControlDeTesisV4.Models
                         ProyectoPreview preview = new ProyectoPreview();
                         preview.IdTesis = Convert.ToInt32(reader["IdTesis"]);
                         preview.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
+                        preview.IdTipoProyecto = idTipoProyecto;
                         preview.Rubro = reader["Rubro"].ToString();
                         preview.Tatj = Convert.ToInt32(reader["tatj"]);
                         preview.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);

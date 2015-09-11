@@ -6,7 +6,6 @@
                    Width="885.052"
                    Height="802"
                    MinHeight="700"
-                   Background="LightGoldenrodYellow"
                    Header="CapturaProyectoCcst"
                    Loaded="Window_Loaded"
                    ResizeMode="NoResize">

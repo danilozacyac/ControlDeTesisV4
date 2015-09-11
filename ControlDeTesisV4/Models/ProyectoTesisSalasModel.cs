@@ -278,7 +278,7 @@ namespace ControlDeTesisV4.Models
         /// <param name="idProyecto">Identificador del Proyecto que se va a eliminar</param>
         public void DeleteProyecto(int idProyecto)
         {
-            int tesisNumber = this.GetTesisNumberByProyecto(idProyecto);
+            int tesisNumber = ProyectoTesisSalasModel.GetTesisNumberByProyecto(idProyecto,1);
 
             if (tesisNumber > 1)
             {
@@ -942,14 +942,14 @@ namespace ControlDeTesisV4.Models
         /// </summary>
         /// <param name="idProyecto"></param>
         /// <returns></returns>
-        public int GetTesisNumberByProyecto(int idProyecto)
+        public static int GetTesisNumberByProyecto(int idProyecto,int idTipoProyecto)
         {
             int total = 0;
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection oleConne = new OleDbConnection(ConfigurationManager.ConnectionStrings["Modulo"].ToString());
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena =  "SELECT IdProyecto,COUNT(Idproyecto) AS Total FROM ProyectosTesis WHERE IdProyecto = @IdProyecto GROUP BY idproyecto";
+            String sqlCadena =  "SELECT IdProyecto,COUNT(Idproyecto) AS Total FROM ProyectosTesis WHERE IdProyecto = @IdProyecto AND IdTipoProyecto = @IdTipoProyecto GROUP BY idproyecto";
 
             try
             {
@@ -957,6 +957,7 @@ namespace ControlDeTesisV4.Models
 
                 cmd = new OleDbCommand(sqlCadena, oleConne);
                 cmd.Parameters.AddWithValue("@IdProyecto", idProyecto);
+                cmd.Parameters.AddWithValue("@IdTipoProyecto", idTipoProyecto);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -1161,44 +1162,7 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        /// <summary>
-        /// Elimina la información de comparación de la tesis seleccionada
-        /// </summary>
-        /// <param name="idTesis"></param>
-        public void DeleteTesisCompara(int idTesis)
-        {
-            OleDbConnection connection = new OleDbConnection(connectionString);
-            OleDbCommand cmd = new OleDbCommand();
-
-            try
-            {
-                cmd = connection.CreateCommand();
-                cmd.CommandText = "DELETE FROM TesisCompara WHERE IdTesis = @IdTesis";
-                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
-
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (OleDbException ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            catch (Exception ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+        
 
         #endregion
     }
