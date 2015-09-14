@@ -76,7 +76,7 @@ namespace ControlDeTesisV4.VisualComparition
 
             tesis.ComparaTesis.IdTesis = tesis.IdTesis;
 
-            new TesisComparaModel().UpdateTesisCompara(tesis.ComparaTesis);
+            new TesisCommonModel(1).UpdateTesisCompara(tesis.ComparaTesis);
             this.Close();
         }
 

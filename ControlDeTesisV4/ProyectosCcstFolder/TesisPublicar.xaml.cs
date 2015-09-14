@@ -5,12 +5,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.Turno;
-using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
 
@@ -23,6 +23,9 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     {
         private ProyectosSalas proyecto;
         private readonly bool isUpdating = false;
+
+        private SolidColorBrush textBoxDragColor = new SolidColorBrush(Color.FromRgb(133, 194, 255));
+        private SolidColorBrush textBoxDropColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
         public TesisPublicar()
         {
@@ -122,7 +125,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             {
                 e.Effects = DragDropEffects.Copy;
                 var listbox = sender as TextBox;
-                listbox.Background = Constants.TextBoxDragColor;
+                listbox.Background = this.textBoxDragColor;
             }
             else
             {
@@ -141,7 +144,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             //TxtProyFilePath.Text +=  File.ReadAllText(filename);
 
             var listbox = sender as TextBox;
-            listbox.Background = Constants.TextBoxDropColor;
+            listbox.Background = this.textBoxDropColor;
 
             e.Handled = true;
         }

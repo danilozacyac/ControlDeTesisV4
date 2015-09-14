@@ -29,8 +29,8 @@
     <PublisherName>Suprema Corte de Justicia de la Nación</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>35</ApplicationRevision>
-    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Models\AccesoUsuariosModel.cs" />
     <Compile Include="Models\EjecutoriasModel.cs" />
+    <Compile Include="Models\TesisCommonModel.cs" />
     <Compile Include="Models\VotosModel.cs" />
     <Compile Include="ProyectosCcstFolder\CapturaAprobacionCcst.xaml.cs">
       <DependentUpon>CapturaAprobacionCcst.xaml</DependentUpon>
@@ -390,11 +391,9 @@
     <Compile Include="Models\FuncionariosModel.cs" />
     <Compile Include="Models\IProyecto.cs" />
     <Compile Include="Models\OtrosDatosModel.cs" />
-    <Compile Include="Models\PrecedentesModel.cs" />
     <Compile Include="Models\ProyectoPreviewModel.cs" />
     <Compile Include="Models\ProyectoTesisCcstModel.cs" />
     <Compile Include="Models\ProyectoTesisSalasModel.cs" />
-    <Compile Include="Models\TesisComparaModel.cs" />
     <Compile Include="Models\TesisTurnadasModel.cs" />
     <Compile Include="Models\TurnoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -414,6 +413,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="ControlDeTesisV4_ClaveTemporal.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

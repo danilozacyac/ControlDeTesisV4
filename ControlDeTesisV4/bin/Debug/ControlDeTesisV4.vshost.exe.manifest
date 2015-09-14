@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1976320">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ControlDeTesisV4.exe" size="1976832">
       <assemblyIdentity name="ControlDeTesisV4" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dhh68nc/yOdSJhc7rz0cCFdEb/699nRLJXqDeZ0e4YU=</dsig:DigestValue>
+        <dsig:DigestValue>10KucFJxnK/8dRRb3bgRXADq8Onf1jZTuxVL0P961t8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

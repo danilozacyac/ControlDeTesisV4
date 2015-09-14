@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
-using ControlDeTesisV4.ProyectosSalasFolder;
 using ControlDeTesisV4.VisualComparition;
 
 namespace ControlDeTesisV4.ProyectosCcstFolder
@@ -16,7 +15,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     public partial class ListaProyectosCcst : UserControl
     {
         private ObservableCollection<ProyectoPreview> listaProyectos;
-        public ProyectoPreview SelectedTesis;
+        private ProyectoPreview selectedTesis;
 
         public ListaProyectosCcst()
         {
@@ -86,7 +85,31 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void GListado_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
-            SelectedTesis = GListado.SelectedItem as ProyectoPreview;
+            selectedTesis = GListado.SelectedItem as ProyectoPreview;
+        }
+
+
+        public void EliminarTesis()
+        {
+            if (selectedTesis == null)
+            {
+                MessageBox.Show("Selecciona la tesis que deseas eliminar");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("¿Estas seguro de eliminar esta tesis?", "Atención", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                ProyectoTesisCcstModel model = new ProyectoTesisCcstModel();
+                model.DeleteTesisCompara(selectedTesis.IdTesis);
+                model.DeleteTesisProyecto(selectedTesis.IdTesis);
+                model.DeleteProyecto(selectedTesis.IdProyecto);
+
+                model.DeletePrecedentes(selectedTesis.IdTesis);
+
+                listaProyectos.Remove(selectedTesis);
+            }
         }
     }
 }

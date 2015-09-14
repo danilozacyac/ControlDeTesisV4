@@ -310,42 +310,12 @@ namespace ControlDeTesisV4
 
         private void BtnDelTesis_Click(object sender, RoutedEventArgs e)
         {
-            if (panelProyectosSalas.SelectedTesis != null)
-            {
-
-                ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
-                new TesisComparaModel().DeleteTesisCompara(panelProyectosSalas.SelectedTesis.IdTesis);
-                model.DeleteProyectoTesis(panelProyectosSalas.SelectedTesis.IdTesis);
-                model.DeleteProyecto(panelProyectosSalas.SelectedTesis.IdProyecto);
-
-                new PrecedentesModel().DeletePrecedentes(panelProyectosSalas.SelectedTesis.IdTesis);
-
-                Constants.ProyectosSalas.Remove(panelProyectosSalas.SelectedTesis);
-            }
-            else
-            {
-                MessageBox.Show("Selecciona la tesis que deseas eliminar");
-            }
+            panelProyectosSalas.EliminarTesis();
         }
 
         private void BtnDelProyecto_Click(object sender, RoutedEventArgs e)
         {
-            if (panelProyectosCcst.SelectedTesis != null)
-            {
-
-                ProyectoTesisCcstModel model = new ProyectoTesisCcstModel();
-                new TesisComparaModel().DeleteTesisCompara(panelProyectosCcst.SelectedTesis.IdTesis);
-                model.DeleteProyectoTesis(panelProyectosCcst.SelectedTesis.IdTesis);
-                model.DeleteProyecto(panelProyectosCcst.SelectedTesis.IdProyecto);
-
-                new PrecedentesModel().DeletePrecedentes(panelProyectosCcst.SelectedTesis.IdTesis);
-
-                Constants.ProyectosSalas.Remove(panelProyectosCcst.SelectedTesis);
-            }
-            else
-            {
-                MessageBox.Show("Selecciona la tesis que deseas eliminar");
-            }
+            panelProyectosCcst.EliminarTesis();
         }
     }
 }
