@@ -16,6 +16,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     public partial class ListaProyectosCcst : UserControl
     {
         private ObservableCollection<ProyectoPreview> listaProyectos;
+        public ProyectoPreview SelectedTesis;
 
         public ListaProyectosCcst()
         {
@@ -81,6 +82,11 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
                                           select n).ToList();
             else
                 GListado.DataContext = listaProyectos;
+        }
+
+        private void GListado_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
+        {
+            SelectedTesis = GListado.SelectedItem as ProyectoPreview;
         }
     }
 }

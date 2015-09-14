@@ -293,15 +293,19 @@ namespace ControlDeTesisV4
             pane.Content = panelProyectosSalas;
 
             PanelCentral.AddItem(pane, DockPosition.Center);
+            BtnDelTesis.IsEnabled = true;
         }
 
+        ListaProyectosCcst panelProyectosCcst;
         private void BtnListadoCcst_Click(object sender, RoutedEventArgs e)
         {
             RadPane pane = new RadPane();
             pane.Header = "Listado de proyectos CCST";
-            pane.Content = new ListaProyectosCcst();
+            panelProyectosCcst = new ListaProyectosCcst();
+            pane.Content = panelProyectosCcst;
 
             PanelCentral.AddItem(pane, DockPosition.Center);
+            BtnDelProyecto.IsEnabled = true;
         }
 
         private void BtnDelTesis_Click(object sender, RoutedEventArgs e)
@@ -310,7 +314,7 @@ namespace ControlDeTesisV4
             {
 
                 ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
-                model.DeleteTesisCompara(panelProyectosSalas.SelectedTesis.IdTesis);
+                new TesisComparaModel().DeleteTesisCompara(panelProyectosSalas.SelectedTesis.IdTesis);
                 model.DeleteProyectoTesis(panelProyectosSalas.SelectedTesis.IdTesis);
                 model.DeleteProyecto(panelProyectosSalas.SelectedTesis.IdProyecto);
 
@@ -326,7 +330,22 @@ namespace ControlDeTesisV4
 
         private void BtnDelProyecto_Click(object sender, RoutedEventArgs e)
         {
-            ProyectoTesisCcstModel model = 
+            if (panelProyectosCcst.SelectedTesis != null)
+            {
+
+                ProyectoTesisCcstModel model = new ProyectoTesisCcstModel();
+                new TesisComparaModel().DeleteTesisCompara(panelProyectosCcst.SelectedTesis.IdTesis);
+                model.DeleteProyectoTesis(panelProyectosCcst.SelectedTesis.IdTesis);
+                model.DeleteProyecto(panelProyectosCcst.SelectedTesis.IdProyecto);
+
+                new PrecedentesModel().DeletePrecedentes(panelProyectosCcst.SelectedTesis.IdTesis);
+
+                Constants.ProyectosSalas.Remove(panelProyectosCcst.SelectedTesis);
+            }
+            else
+            {
+                MessageBox.Show("Selecciona la tesis que deseas eliminar");
+            }
         }
     }
 }

@@ -39,6 +39,7 @@
                                              Size="Large" />
                     <telerik:RadRibbonButton x:Name="BtnDelTesis"
                                              Click="BtnDelTesis_Click"
+                                             IsEnabled="False"
                                              LargeImage="Resources/tesis_del.png"
                                              Size="Large">
                         <StackPanel Orientation="Vertical">
@@ -79,14 +80,16 @@
                     </telerik:RadRibbonButton>
 
                     <telerik:RadRibbonButton x:Name="BtnDelProyecto"
+                                             Click="BtnDelProyecto_Click"
+                                             IsEnabled="False"
                                              LargeImage="Resources/tesis_del.png"
-                                             Size="Large" Click="BtnDelProyecto_Click">
+                                             Size="Large">
                         <StackPanel Orientation="Vertical">
                             <TextBlock HorizontalAlignment="Center" Text="Eliminar" />
                             <TextBlock HorizontalAlignment="Center" Text="proyecto" />
                         </StackPanel>
                     </telerik:RadRibbonButton>
-                    
+
                 </telerik:RadRibbonGroup>
 
             </telerik:RadRibbonTab>

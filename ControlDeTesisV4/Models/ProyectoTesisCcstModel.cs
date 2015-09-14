@@ -107,6 +107,120 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        /// <summary>
+        /// Actualiza el estado de la tesis dentro del proceso de publicacion
+        /// 1. Recepcion
+        /// 2. ENvio de Observaciones o envío del proyecto
+        /// 3. Aprobación
+        /// 4. Espera de Turno
+        /// 5. Turno
+        /// 6. Publicación
+        /// </summary>
+        /// <param name="tesis"></param>
+        public void UpdateProyectoTesis(ProyectosTesis tesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdTesis = " + tesis.IdTesis;
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "ProyectosTesis");
+
+                dr = dataSet.Tables["ProyectosTesis"].Rows[0];
+                dr.BeginEdit();
+                dr["OficioEnvio"] = tesis.OficioEnvio;
+
+                if (tesis.FEnvio != null)
+                {
+                    dr["FechaEnvioOficio"] = tesis.FEnvio;
+                    dr["FechaEnvioOficioInt"] = DateTimeUtilities.DateToInt(tesis.FEnvio);
+                }
+                else
+                {
+                    dr["FechaEnvioOficio"] = DBNull.Value;
+                    dr["FechaEnvioOficioInt"] = 0;
+                }
+
+                dr["OficioEnvioPathOrigen"] = tesis.OficioEnvioPathOrigen;
+                dr["OficioEnvioPathConten"] = tesis.OficioEnvioPathConten;
+
+                if (tesis.FAprobacion != null)
+                {
+                    dr["FAprobacion"] = tesis.FAprobacion;
+                    dr["FAprobacionInt"] = DateTimeUtilities.DateToInt(tesis.FAprobacion);
+                }
+                else
+                {
+                    dr["FAprobacion"] = DBNull.Value;
+                    dr["FAprobacionInt"] = 0;
+                }
+
+                dr["NumTesis"] = tesis.NumTesis;
+                dr["NumTesisInt"] = tesis.NumTesisInt;
+                dr["YearTesis"] = tesis.YearTesis;
+                dr["ClaveTesis"] = tesis.ClaveTesis;
+                dr["EstadoTesis"] = tesis.EstadoTesis;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
+                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten, " +
+                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis  " +
+                       " WHERE IdTesis = @IdTesis";
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvio", OleDbType.VarChar, 0, "OficioEnvio");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficio", OleDbType.Date, 0, "FechaEnvioOficio");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficioInt", OleDbType.Numeric, 0, "FechaEnvioOficioInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
+                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@NumTesis", OleDbType.VarChar, 0, "NumTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@NumTesisInt", OleDbType.Numeric, 0, "NumTesisInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@YearTesis", OleDbType.Numeric, 0, "YearTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
+
+                dataAdapter.Update(dataSet, "ProyectosTesis");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+
+                this.UpdateTesisCompara(tesis.ComparaTesis);
+                new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
         /// <summary>
         /// Elimina los datos de recepción de un proyecto
@@ -264,6 +378,46 @@ namespace ControlDeTesisV4.Models
                     this.SetTesisCompara(tesis.ComparaTesis, tesis.IdTesis);
                 }
                 
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+
+                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        /// <summary>
+        /// Elimina el detalle de la tesis seleccionada
+        /// </summary>
+        /// <param name="idTesis">Identificador de la tesis que se va a eliminar</param>
+        public void DeleteProyectoTesis(int idTesis)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+            OleDbCommand cmd = new OleDbCommand();
+
+            try
+            {
+                cmd = connection.CreateCommand();
+                cmd.CommandText = "DELETE FROM ProyectosTesis WHERE IdTesis = @IdTesis";
+                cmd.Parameters.AddWithValue("@IdTesis", idTesis);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
             catch (OleDbException ex)
             {
@@ -510,120 +664,7 @@ namespace ControlDeTesisV4.Models
         } 
 
 
-        /// <summary>
-        /// Actualiza el estado de la tesis dentro del proceso de publicacion
-        /// 1. Recepcion
-        /// 2. ENvio de Observaciones o envío del proyecto
-        /// 3. Aprobación
-        /// 4. Espera de Turno
-        /// 5. Turno
-        /// 6. Publicación
-        /// </summary>
-        /// <param name="tesis"></param>
-        public void UpdateProyectoTesis(ProyectosTesis tesis)
-        {
-            OleDbConnection connection = new OleDbConnection(connectionString);
-
-            string sSql;
-            OleDbDataAdapter dataAdapter;
-
-            DataSet dataSet = new DataSet();
-            DataRow dr;
-
-            try
-            {
-                string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdTesis = " + tesis.IdTesis;
-
-                dataAdapter = new OleDbDataAdapter();
-                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
-
-                dataAdapter.Fill(dataSet, "ProyectosTesis");
-
-                dr = dataSet.Tables["ProyectosTesis"].Rows[0];
-                dr.BeginEdit();
-                dr["OficioEnvio"] = tesis.OficioEnvio;
-
-                if (tesis.FEnvio != null)
-                {
-                    dr["FechaEnvioOficio"] = tesis.FEnvio;
-                    dr["FechaEnvioOficioInt"] = DateTimeUtilities.DateToInt(tesis.FEnvio);
-                }
-                else
-                {
-                    dr["FechaEnvioOficio"] = DBNull.Value;
-                    dr["FechaEnvioOficioInt"] = 0;
-                }
-
-                dr["OficioEnvioPathOrigen"] = tesis.OficioEnvioPathOrigen;
-                dr["OficioEnvioPathConten"] = tesis.OficioEnvioPathConten;
-
-                if (tesis.FAprobacion != null)
-                {
-                    dr["FAprobacion"] = tesis.FAprobacion;
-                    dr["FAprobacionInt"] = DateTimeUtilities.DateToInt(tesis.FAprobacion);
-                }
-                else
-                {
-                    dr["FAprobacion"] = DBNull.Value;
-                    dr["FAprobacionInt"] = 0;
-                }
-
-                dr["NumTesis"] = tesis.NumTesis;
-                dr["NumTesisInt"] = tesis.NumTesisInt;
-                dr["YearTesis"] = tesis.YearTesis;
-                dr["ClaveTesis"] = tesis.ClaveTesis;
-                dr["EstadoTesis"] = tesis.EstadoTesis;
-
-                dr.EndEdit();
-
-                dataAdapter.UpdateCommand = connection.CreateCommand();
-
-                sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
-                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten, " +
-                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis  " +
-                       " WHERE IdTesis = @IdTesis";
-                dataAdapter.UpdateCommand.CommandText = sSql;
-
-                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvio", OleDbType.VarChar, 0, "OficioEnvio");
-                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficio", OleDbType.Date, 0, "FechaEnvioOficio");
-                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficioInt", OleDbType.Numeric, 0, "FechaEnvioOficioInt");
-                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
-                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
-                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
-                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
-                dataAdapter.UpdateCommand.Parameters.Add("@NumTesis", OleDbType.VarChar, 0, "NumTesis");
-                dataAdapter.UpdateCommand.Parameters.Add("@NumTesisInt", OleDbType.Numeric, 0, "NumTesisInt");
-                dataAdapter.UpdateCommand.Parameters.Add("@YearTesis", OleDbType.Numeric, 0, "YearTesis");
-                dataAdapter.UpdateCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
-                dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
-                dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
-
-                dataAdapter.Update(dataSet, "ProyectosTesis");
-                dataSet.Dispose();
-                dataAdapter.Dispose();
-
-                this.UpdateTesisCompara(tesis.ComparaTesis);
-                new PrecedentesModel().UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
-            }
-            catch (OleDbException ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            catch (Exception ex)
-            {
-                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+        
 
         public void UpdateDatosLlegada(ProyectosCcst tesis)
         {
