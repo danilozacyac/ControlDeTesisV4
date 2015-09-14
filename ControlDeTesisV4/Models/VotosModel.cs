@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
-using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
@@ -19,7 +18,7 @@ namespace ControlDeTesisV4.Models
 
         public bool SetNewProyectoVoto(Votos voto,PrecedentesTesis precedente)
         {
-            bool correctInsert = true;
+            bool correctInsert = false;
 
             OleDbConnection connection = new OleDbConnection(connectionString);
 
@@ -138,22 +137,17 @@ namespace ControlDeTesisV4.Models
                     this.SetNewObservacion(voto.Observaciones, voto.IdVoto);
 
                 this.SetMinistrosDisidentes(voto.IdVoto, voto.Ministros);
+                correctInsert = true;
             }
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-                correctInsert = false;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
-                correctInsert = false;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -229,16 +223,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -314,16 +304,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -376,16 +362,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -505,16 +487,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -578,16 +556,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -660,16 +634,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
@@ -683,7 +653,7 @@ namespace ControlDeTesisV4.Models
         public void GetVoto()
         {
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -691,9 +661,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -735,20 +705,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
         }
@@ -763,7 +729,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<Votos> listadoVotos = new ObservableCollection<Votos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -771,9 +737,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdEjecutoria", idEjecutoria);
                 reader = cmd.ExecuteReader();
 
@@ -815,20 +781,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return listadoVotos;
@@ -838,7 +800,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<Observaciones> listadoObservaciones = new ObservableCollection<Observaciones>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -846,9 +808,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdVoto", idVoto);
                 reader = cmd.ExecuteReader();
 
@@ -877,20 +839,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return listadoObservaciones;
@@ -900,7 +858,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<int> listadoObservaciones = new ObservableCollection<int>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -908,9 +866,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdVoto", idVoto);
                 reader = cmd.ExecuteReader();
 
@@ -928,20 +886,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return listadoObservaciones;
@@ -951,7 +905,7 @@ namespace ControlDeTesisV4.Models
         {
             PrecedentesTesis precedente = new PrecedentesTesis();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -959,9 +913,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdVoto", idVoto);
                 reader = cmd.ExecuteReader();
 
@@ -985,20 +939,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return precedente;
@@ -1008,16 +958,16 @@ namespace ControlDeTesisV4.Models
         public int DeleteObservaciones(Observaciones observacion)
         {
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
 
             String sqlCadena = "DELETE FROM ObservacionesVoto WHERE IdObservacion = @IdObservacion";
             int affectedRows = 0;
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdObservacion", observacion.IdObservacion);
                 affectedRows = cmd.ExecuteNonQuery();
 
@@ -1026,20 +976,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,VotosModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return affectedRows;

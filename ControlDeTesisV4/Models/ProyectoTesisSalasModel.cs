@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
@@ -134,16 +133,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {
@@ -257,16 +252,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {
@@ -300,16 +291,12 @@ namespace ControlDeTesisV4.Models
                 catch (OleDbException ex)
                 {
                     string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
                 }
                 catch (Exception ex)
                 {
                     string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
                 }
                 finally
                 {
@@ -434,16 +421,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {
@@ -479,7 +462,7 @@ namespace ControlDeTesisV4.Models
         {
             ProyectosTesis tesis = new ProyectosTesis();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -487,9 +470,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTesis", idTesis);
                 reader = cmd.ExecuteReader();
 
@@ -525,17 +508,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return tesis;
@@ -552,7 +537,7 @@ namespace ControlDeTesisV4.Models
         {
             ProyectosSalas proyecto = null;
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -560,9 +545,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTesis", idTesis);
                 reader = cmd.ExecuteReader();
 
@@ -571,7 +556,7 @@ namespace ControlDeTesisV4.Models
                     while (reader.Read())
                     {
                         proyecto = new ProyectosSalas();
-                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1; ;
+                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1; 
                         proyecto.Referencia = reader["ReferenciaOficialia"].ToString();
                         proyecto.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         proyecto.OficioRecepcion = reader["OficioRecepcion"].ToString();
@@ -584,17 +569,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return proyecto;

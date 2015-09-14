@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
-using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
 using ScjnUtilities;
 
@@ -15,9 +13,10 @@ namespace ControlDeTesisV4.Models
         readonly ProyectosCcst tesisCcst;
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ToString();
 
-        public ProyectoTesisCcstModel():base(2) { }
+        public ProyectoTesisCcstModel() : base(2) { }
 
-        public ProyectoTesisCcstModel(ProyectosCcst tesisCcst):base(tesisCcst.IdTipoProyecto)
+        public ProyectoTesisCcstModel(ProyectosCcst tesisCcst)
+            : base(tesisCcst.IdTipoProyecto)
         {
             this.tesisCcst = tesisCcst;
         }
@@ -35,7 +34,7 @@ namespace ControlDeTesisV4.Models
             try
             {
                 tesisCcst.IdProyecto = AuxiliarModel.GetLastId("ProyectosCCST", "IdProyecto");
-                    
+
                 string sqlCadena = "SELECT * FROM ProyectosCcst WHERE IdProyecto = 0";
 
                 dataAdapter = new OleDbDataAdapter();
@@ -44,7 +43,7 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.Fill(dataSet, "ProyectosCcst");
 
                 dr = dataSet.Tables["ProyectosCcst"].NewRow();
-                
+
                 dr["IdProyecto"] = tesisCcst.IdProyecto;
                 dr["Destinatario"] = tesisCcst.Destinatario;
                 dr["OficioAtn"] = tesisCcst.OficioAtn;
@@ -52,7 +51,7 @@ namespace ControlDeTesisV4.Models
                 if (tesisCcst.FOficioAtn != null)
                 {
                     dr["FechaOficioAtn"] = tesisCcst.FOficioAtn;
-                    dr["FechaOficioAtnInt"] = DateTimeUtilities.DateToInt(tesisCcst.FOficioAtn); 
+                    dr["FechaOficioAtnInt"] = DateTimeUtilities.DateToInt(tesisCcst.FOficioAtn);
                 }
                 else
                 {
@@ -85,21 +84,17 @@ namespace ControlDeTesisV4.Models
                 dataSet.Dispose();
                 dataAdapter.Dispose();
 
-                SetNewTesisProyecto(tesisCcst.Proyectos,tesisCcst.IdProyecto);
+                SetNewTesisProyecto(tesisCcst.Proyectos, tesisCcst.IdProyecto);
             }
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             finally
             {
@@ -205,16 +200,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             finally
             {
@@ -248,16 +239,12 @@ namespace ControlDeTesisV4.Models
                 catch (OleDbException ex)
                 {
                     string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
                 }
                 catch (Exception ex)
                 {
                     string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                    MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                    ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
                 }
                 finally
                 {
@@ -275,7 +262,7 @@ namespace ControlDeTesisV4.Models
         {
             ProyectosCcst proyecto = null;
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -283,9 +270,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTesis", idTesis);
                 reader = cmd.ExecuteReader();
 
@@ -294,7 +281,7 @@ namespace ControlDeTesisV4.Models
                     while (reader.Read())
                     {
                         proyecto = new ProyectosCcst();
-                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1; ;
+                        proyecto.IdProyecto = reader["PT.IdProyecto"] as int? ?? -1;
                         proyecto.Destinatario = reader["Destinatario"] as int? ?? -1;
                         proyecto.OficioAtn = reader["OficioAtn"].ToString();
                         proyecto.FOficioAtn = DateTimeUtilities.GetDateFromReader(reader, "FechaOficioAtn");
@@ -305,17 +292,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return proyecto;
@@ -386,16 +375,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             finally
             {
@@ -465,16 +450,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
             }
             finally
             {
@@ -482,10 +463,10 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        
 
 
 
-        
+
+
     }
 }

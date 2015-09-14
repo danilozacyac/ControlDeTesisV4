@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
-using System.Windows.Forms;
 using ControlDeTesisV4.Dao;
 using ScjnUtilities;
 
@@ -77,16 +76,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             finally
             {
@@ -158,16 +153,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             finally
             {
@@ -234,16 +225,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             finally
             {
@@ -256,7 +243,7 @@ namespace ControlDeTesisV4.Models
         {
             TurnoDao turno = null;
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -264,9 +251,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTipoDocto", idTipoDocto);
                 cmd.Parameters.AddWithValue("@IdDocto", idDocto);
                 reader = cmd.ExecuteReader();
@@ -295,20 +282,16 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,TurnoModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
 
             return turno;

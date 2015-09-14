@@ -14,129 +14,134 @@
         <converter:PonentesConverter x:Key="PonenteConverter" />
         <converter:TipoTesisConverter x:Key="TipoTesis" />
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <telerik:RadBusyIndicator x:Name="BusyIndicator"
+                              IsIndeterminate="True"
+                              telerik:StyleManager.Theme="Windows7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Grid />
-        <search:SearchTextBox Grid.Row="0"
-                              Grid.Column="0"
-                              Width="200"
-                              Height="21"
-                              Margin="10,0,0,7"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Bottom"
-                              Search="SearchTextBox_Search" />
-        <telerik:RadGridView x:Name="GListado"
-                             Grid.Row="1"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch"
-                             AutoGenerateColumns="False"
-                             ItemsSource="{Binding}"
-                             RowHeight="150"
-                             ShowGroupPanel="False" SelectionChanged="GListado_SelectionChanged">
-            <telerik:RadGridView.Columns>
-                <telerik:GridViewDataColumn Width="100"
-                                            DataMemberBinding="{Binding FRecepcion,
-                                                                        StringFormat={}{0:dd/MM/yyyy}}"
-                                            Header="F. de Recepción"
-                                            IsReadOnly="True"
-                                            IsVisible="True" />
-                <telerik:GridViewDataColumn Width="100"
-                                            DataMemberBinding="{Binding OficioRecepcion}"
-                                            Header="Oficio Recep."
-                                            IsReadOnly="True"
-                                            IsVisible="True" />
-                <telerik:GridViewDataColumn Width="90"
-                                            Header="Asunto"
-                                            IsFilterable="False"
-                                            IsReadOnly="True">
-                    <telerik:GridViewDataColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock FontSize="12"
-                                       Text="{Binding Asunto}"
-                                       TextWrapping="Wrap" />
-                        </DataTemplate>
-                    </telerik:GridViewDataColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
-                <telerik:GridViewDataColumn Width="*"
-                                            Header="Rubro"
-                                            IsFilterable="False"
-                                            IsReadOnly="True">
-                    <telerik:GridViewDataColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock FontSize="12"
-                                       Text="{Binding Rubro}"
-                                       TextWrapping="Wrap" />
-                        </DataTemplate>
-                    </telerik:GridViewDataColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
+            <Grid />
+            <search:SearchTextBox Grid.Row="0"
+                                  Grid.Column="0"
+                                  Width="200"
+                                  Height="21"
+                                  Margin="10,0,0,7"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Bottom"
+                                  Search="SearchTextBox_Search" />
+            <telerik:RadGridView x:Name="GListado"
+                                 Grid.Row="1"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 AutoGenerateColumns="False"
+                                 ItemsSource="{Binding}"
+                                 RowHeight="150"
+                                 SelectionChanged="GListado_SelectionChanged"
+                                 ShowGroupPanel="False">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Width="100"
+                                                DataMemberBinding="{Binding FRecepcion,
+                                                                            StringFormat={}{0:dd/MM/yyyy}}"
+                                                Header="F. de Recepción"
+                                                IsReadOnly="True"
+                                                IsVisible="True" />
+                    <telerik:GridViewDataColumn Width="100"
+                                                DataMemberBinding="{Binding OficioRecepcion}"
+                                                Header="Oficio Recep."
+                                                IsReadOnly="True"
+                                                IsVisible="True" />
+                    <telerik:GridViewDataColumn Width="90"
+                                                Header="Asunto"
+                                                IsFilterable="False"
+                                                IsReadOnly="True">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="12"
+                                           Text="{Binding Asunto}"
+                                           TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Width="*"
+                                                Header="Rubro"
+                                                IsFilterable="False"
+                                                IsReadOnly="True">
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="12"
+                                           Text="{Binding Rubro}"
+                                           TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
 
-                <telerik:GridViewDataColumn Width="100"
-                                            DataMemberBinding="{Binding FResolucion,
-                                                                        StringFormat={}{0:dd/MM/yyyy}}"
-                                            Header="F. de Resolucion"
-                                            IsReadOnly="True"
-                                            IsVisible="True" />
-                <telerik:GridViewDataColumn Width="150"
-                                            DataMemberBinding="{Binding IdPonente,
-                                                                        Converter={StaticResource PonenteConverter}}"
-                                            Header="Ponente"
-                                            IsFilterable="False"
-                                            IsReadOnly="True" />
-                <telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="ComparaButton"
-                                    Click="ComparaButton_Click"
-                                    Cursor="Hand"
-                                    Style="{DynamicResource BotonNormal}"
-                                    Uid="{Binding IdTesis}">
-                                <Image Width="100"
-                                       Height="100"
-                                       Source="/ControlDeTesisV4;component/Resources/compare.png" />
-                            </Button>
-                        </DataTemplate>
-                    </telerik:GridViewDataColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
-
-                <telerik:GridViewDataColumn>
-                    <telerik:GridViewDataColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <Button x:Name="BtnInfoRec"
-                                        Click="BtnInfoRec_Click"
+                    <telerik:GridViewDataColumn Width="100"
+                                                DataMemberBinding="{Binding FResolucion,
+                                                                            StringFormat={}{0:dd/MM/yyyy}}"
+                                                Header="F. de Resolucion"
+                                                IsReadOnly="True"
+                                                IsVisible="True" />
+                    <telerik:GridViewDataColumn Width="150"
+                                                DataMemberBinding="{Binding IdPonente,
+                                                                            Converter={StaticResource PonenteConverter}}"
+                                                Header="Ponente"
+                                                IsFilterable="False"
+                                                IsReadOnly="True" />
+                    <telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ComparaButton"
+                                        Click="ComparaButton_Click"
                                         Cursor="Hand"
+                                        Style="{DynamicResource BotonNormal}"
                                         Uid="{Binding IdTesis}">
-                                    <Image Width="32"
-                                           Height="32"
-                                           Source="/ControlDeTesisV4;component/Resources/mailSend.png" />
+                                    <Image Width="100"
+                                           Height="100"
+                                           Source="/ControlDeTesisV4;component/Resources/compare.png" />
                                 </Button>
-                                <Grid Height="15" />
-                                <Button x:Name="BtnInfoApr"
-                                        Click="BtnInfoApr_Click"
-                                        Cursor="Hand"
-                                        Uid="{Binding IdTesis}">
-                                    <Image Width="32"
-                                           Height="32"
-                                           Source="/ControlDeTesisV4;component/Resources/mailReceive.png" />
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </telerik:GridViewDataColumn.CellTemplate>
-                </telerik:GridViewDataColumn>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
 
-            </telerik:RadGridView.Columns>
-            <telerik:RadGridView.RowStyle>
-                <Style TargetType="telerik:GridViewRow">
-                    <Setter Property="Background" Value="{Binding Tatj, Converter={StaticResource TipoTesis}}" />
-                </Style>
-            </telerik:RadGridView.RowStyle>
+                    <telerik:GridViewDataColumn>
+                        <telerik:GridViewDataColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Button x:Name="BtnInfoRec"
+                                            Click="BtnInfoRec_Click"
+                                            Cursor="Hand"
+                                            Uid="{Binding IdTesis}">
+                                        <Image Width="32"
+                                               Height="32"
+                                               Source="/ControlDeTesisV4;component/Resources/mailSend.png" />
+                                    </Button>
+                                    <Grid Height="15" />
+                                    <Button x:Name="BtnInfoApr"
+                                            Click="BtnInfoApr_Click"
+                                            Cursor="Hand"
+                                            Uid="{Binding IdTesis}">
+                                        <Image Width="32"
+                                               Height="32"
+                                               Source="/ControlDeTesisV4;component/Resources/mailReceive.png" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerik:GridViewDataColumn.CellTemplate>
+                    </telerik:GridViewDataColumn>
 
-        </telerik:RadGridView>
+                </telerik:RadGridView.Columns>
+                <telerik:RadGridView.RowStyle>
+                    <Style TargetType="telerik:GridViewRow">
+                        <Setter Property="Background" Value="{Binding Tatj, Converter={StaticResource TipoTesis}}" />
+                    </Style>
+                </telerik:RadGridView.RowStyle>
 
-    </Grid>
+            </telerik:RadGridView>
+
+        </Grid>
+    </telerik:RadBusyIndicator>
 </UserControl>
 

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.OleDb;
 using System.Linq;
-using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Singletons;
 using ScjnUtilities;
@@ -23,7 +22,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<ProyectoPreview> listaProyectosSalas = new ObservableCollection<ProyectoPreview>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -31,9 +30,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -61,17 +60,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
             
             return listaProyectosSalas;
@@ -79,7 +80,7 @@ namespace ControlDeTesisV4.Models
 
         private void GetProyectoInfoPreview(ProyectoPreview preview)
         {
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -87,9 +88,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdProyecto", preview.IdProyecto);
                 reader = cmd.ExecuteReader();
 
@@ -104,23 +105,25 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
         }
 
         private void GetProyectoInfoPreviewCcst(ProyectoPreview preview)
         {
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -128,9 +131,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdProyecto", preview.IdProyecto);
                 reader = cmd.ExecuteReader();
 
@@ -145,34 +148,35 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
         }
 
         private void GetPrecedenteInfoPreview(ProyectoPreview preview)
         {
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * " +
-                               "FROM PrecedentesTesis WHERE IdTesis = @IdTesis";
+            String sqlCadena = "SELECT * FROM PrecedentesTesis WHERE IdTesis = @IdTesis";
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTesis", preview.IdTesis);
                 reader = cmd.ExecuteReader();
 
@@ -193,17 +197,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoPreviewModel", "ControlTesis");
             }
             finally
             {
-                oleConne.Close();
+                connection.Close();
             }
         }
     }

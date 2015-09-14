@@ -3,8 +3,8 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.OleDb;
 using System.Linq;
-using System.Windows;
 using ControlDeTesisV4.Dao;
+using ScjnUtilities;
 
 namespace ControlDeTesisV4.Models
 {
@@ -21,7 +21,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> tiposAsunto = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -30,9 +30,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -45,18 +45,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             finally
             {
-                
-                oleConne.Close();
+                connection.Close();
             }
 
             return tiposAsunto;
@@ -71,18 +72,17 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> tiposAsunto = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * " +
-                               "FROM TipoJurisprudencia ORDER BY IdTipoJuris";
+            String sqlCadena = "SELECT * FROM TipoJurisprudencia ORDER BY IdTipoJuris";
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -96,18 +96,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             finally
             {
-                
-                oleConne.Close();
+                connection.Close();
             }
 
             return tiposAsunto;
@@ -122,7 +123,7 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> tiposAsunto = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
@@ -131,9 +132,9 @@ namespace ControlDeTesisV4.Models
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -149,18 +150,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             finally
             {
-                
-                oleConne.Close();
+                connection.Close();
             }
 
             return tiposAsunto;
@@ -175,18 +177,17 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> instancias = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * " +
-                               "FROM Instancias ORDER BY IdInstancia";
+            String sqlCadena = "SELECT * FROM Instancias ORDER BY IdInstancia";
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -202,18 +203,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             finally
             {
-
-                oleConne.Close();
+                connection.Close();
             }
 
             return instancias;
@@ -228,18 +230,17 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> tipoDeVotos = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection oleConne = new OleDbConnection(connectionString);
+            OleDbConnection connection = new OleDbConnection(connectionString);
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * " +
-                               "FROM TipoVotos ORDER BY Id";
+            String sqlCadena = "SELECT * FROM TipoVotos ORDER BY Id";
 
             try
             {
-                oleConne.Open();
+                connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, oleConne);
+                cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -255,18 +256,19 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException sql)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + sql.Source + sql.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, "Error Interno");
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
             }
             finally
             {
-
-                oleConne.Close();
+                connection.Close();
             }
 
             return tipoDeVotos;

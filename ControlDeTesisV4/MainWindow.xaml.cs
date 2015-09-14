@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.EjecutoriasVotos;

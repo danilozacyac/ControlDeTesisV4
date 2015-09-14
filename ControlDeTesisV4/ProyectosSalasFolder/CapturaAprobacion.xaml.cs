@@ -8,7 +8,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
-using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
 

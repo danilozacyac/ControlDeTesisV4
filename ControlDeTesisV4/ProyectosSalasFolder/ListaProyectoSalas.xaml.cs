@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,12 +21,15 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         public ListaProyectoSalas()
         {
             InitializeComponent();
+            worker.DoWork += this.WorkerDoWork;
+            worker.RunWorkerCompleted += WorkerRunWorkerCompleted;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
-            GListado.DataContext = listaProyectos;
+            LaunchBusyIndicator();
+            //listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
+            //GListado.DataContext = listaProyectos;
         }
 
         private void ComparaButton_Click(object sender, RoutedEventArgs e)
@@ -128,5 +132,33 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 listaProyectos.Remove(selectedTesis);
             }
         }
+
+        #region Background Worker
+
+        private BackgroundWorker worker = new BackgroundWorker();
+        private void WorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
+        }
+
+        void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            GListado.DataContext = listaProyectos;
+
+            //Dispatcher.BeginInvoke(new Action<ObservableCollection<Organismos>>(this.UpdateGridDataSource), e.Result);
+            this.BusyIndicator.IsBusy = false;
+        }
+
+        private void LaunchBusyIndicator()
+        {
+            if (!worker.IsBusy)
+            {
+                this.BusyIndicator.IsBusy = true;
+                worker.RunWorkerAsync();
+
+            }
+        }
+
+        #endregion
     }
 }
