@@ -110,7 +110,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
                         else
                         {
                             oTable.Cell(3, 1).Range.Text = "Recepción: ";
-                            MessageBox.Show("Falta la fecha de Recepción");
+                            MessageBox.Show("Falta la fecha de Recepción " + tesis.IdTesis );
                         }
 
                         if (tesis.FEnvio != null)

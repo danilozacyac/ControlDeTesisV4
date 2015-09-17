@@ -38,6 +38,7 @@ namespace ControlDeTesisV4.Reportes
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+
         }
 
         private void BtnContinuar_Click(object sender, RoutedEventArgs e)
@@ -55,36 +56,19 @@ namespace ControlDeTesisV4.Reportes
 
             int mes = Convert.ToInt16(selectedRadio.Name.Replace("Rad", ""));
 
-            int periodoInicio;
-            int periodoFinal;
             if (mes < 13)
             {
-                periodoInicio = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "01");
-                periodoFinal = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "32");
+                MainWindow.InicioPeriodo = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "01");
+                MainWindow.FinalPeriodo = Convert.ToInt32(CbxAnio.Text + this.GetTwoDigitFormat(mes) + "32");
             }
             else
             {
-                periodoInicio = Convert.ToInt32(CbxAnio.Text);
-                periodoFinal = Convert.ToInt32(CbxAnio.Text);
+                MainWindow.InicioPeriodo = Convert.ToInt32(CbxAnio.Text);
+                MainWindow.FinalPeriodo = Convert.ToInt32(CbxAnio.Text);
             }
 
-            ObservableCollection<ProyectosTesis> listaImprimir;
 
-            if (tipoProyecto == 1)
-            {
-                listaImprimir = new ProyectoTesisSalasModel().GetProyectoTesis(periodoInicio, periodoFinal);
-                TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
-                rtf.GeneraWord();
-            }
-            else
-            {
-                listaImprimir = new ProyectoTesisCcstModel().GetProyectoTesis(periodoInicio, periodoFinal);
-                TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
-                rtf.GeneraWord();
-            }
-
-            
-
+            DialogResult = true;
             this.Close();
         }
 

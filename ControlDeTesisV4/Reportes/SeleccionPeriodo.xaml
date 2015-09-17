@@ -1,11 +1,13 @@
 ﻿<telerik:RadWindow x:Class="ControlDeTesisV4.Reportes.SeleccionPeriodo"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        Header="SeleccionaPeriodoImpresion"
-        Width="346.269"
-        Height="390.209"
-        ResizeMode="NoResize" Loaded="RadWindow_Loaded">
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   Width="346.269"
+                   Height="390.209"
+                   Header="Periodo de impresión"
+                   Loaded="RadWindow_Loaded"
+                   ResizeMode="NoResize"
+                   WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox x:Name="CbxAnio"
                   Width="120"
@@ -112,11 +114,13 @@
                      Content=" Todo el año"
                      Foreground="Black" />
         <telerik:RadButton x:Name="BtnContinuar"
-                Width="75"
-                Margin="237,302,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Content="Continuar" Height="27" Click="BtnContinuar_Click" />
+                           Width="75"
+                           Height="27"
+                           Margin="237,302,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Click="BtnContinuar_Click"
+                           Content="Continuar" />
         <Label Margin="37,83,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
@@ -124,12 +128,13 @@
                FontSize="14"
                Foreground="Black" />
         <telerik:RadButton x:Name="BtnCancelar"
-                Width="75"
-                Margin="145,302,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="BtnCancelar_Click"
-                Content="Cancelar" Height="27" />
+                           Width="75"
+                           Height="27"
+                           Margin="145,302,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Click="BtnCancelar_Click"
+                           Content="Cancelar" />
 
     </Grid>
 </telerik:RadWindow>

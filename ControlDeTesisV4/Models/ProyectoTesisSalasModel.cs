@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
@@ -526,7 +527,92 @@ namespace ControlDeTesisV4.Models
             return tesis;
         }
 
-       
+
+        /// <summary>
+        /// Devuelve un listado con las tesis que abarcan un periodo determinado, este periodo puede ser mensual o anual
+        /// </summary>
+        /// <param name="inicio">Dia inicial que se toma para obtener las tesis</param>
+        /// <param name="fin">Último día considerado para regresar las tesis</param>
+        /// <returns></returns>
+        public ObservableCollection<ProyectosTesis> GetProyectoTesis(int inicio, int fin)
+        {
+            ObservableCollection<ProyectosTesis> listaDeTesis = new ObservableCollection<ProyectosTesis>();
+
+            OleDbConnection connection = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "";
+
+            if (inicio == fin)
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                            " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
+            else
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                            " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
+
+            try
+            {
+                connection.Open();
+
+                cmd = new OleDbCommand(sqlCadena, connection);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ProyectosTesis tesis = new ProyectosTesis();
+
+                        tesis.IdTesis = reader["IdTesis"] as int? ?? -1;
+                        tesis.OficioEnvio = reader["OficioEnvio"].ToString();
+                        tesis.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
+                        tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
+                        tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
+                        tesis.Rubro = reader["Rubro"].ToString();
+                        tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
+                        tesis.IdTipoJuris = Convert.ToInt32(reader["TipoJuris"]);
+                        tesis.NumPaginas = Convert.ToInt32(reader["NumPaginas"]);
+                        tesis.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
+                        tesis.IdInstancia = Convert.ToInt32(reader["Idinstancia"]);
+                        tesis.IdSubInstancia = Convert.ToInt32(reader["IdSubinstancia"]);
+                        tesis.Aprobada = Convert.ToInt32(reader["Aprobada"]);
+                        tesis.FAprobacion = DateTimeUtilities.GetDateFromReader(reader, "FAprobacion");
+                        tesis.NumTesis = reader["numTesis"].ToString();
+                        tesis.NumTesisInt = Convert.ToInt32(reader["NumTesisInt"]);
+                        tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
+                        tesis.ClaveTesis = reader["ClaveTesis"].ToString();
+                        tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
+                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
+                        tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
+                        tesis.ComparaTesis = this.GetTesisCompara(tesis.IdTesis);
+
+                        listaDeTesis.Add(tesis);
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return listaDeTesis;
+        }
+        
+
+
 
         /// <summary>
         /// Obtiene los datos generales de llegada del proyecto correspondiente
@@ -586,12 +672,6 @@ namespace ControlDeTesisV4.Models
 
             return proyecto;
         } 
-
-        
-
-        
-
-        
 
         public void UpdateDatosLlegada(ProyectosSalas tesis)
         {
@@ -680,14 +760,16 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-
-        
         #endregion
 
 
         #region Tesis compara
 
-
+        /// <summary>
+        /// Actualiza los datos comparados de la tesis seleccionada, los cuales incluyen la versión
+        /// en texto plano, la versión en RTF, así como la ruta de acceso del archivo original
+        /// </summary>
+        /// <param name="tesis"></param>
         public void UpdateTesisCompara(TesisCompara tesis)
         {
             OleDbConnection connection = new OleDbConnection(connectionString);
@@ -756,16 +838,12 @@ namespace ControlDeTesisV4.Models
             catch (OleDbException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ErrorUtilities.SetNewErrorMessage(ex, methodName, 0);
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
             }
             finally
             {

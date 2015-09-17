@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using ControlDeTesisV4.Dao;
@@ -9,6 +10,7 @@ using ControlDeTesisV4.Models;
 using ControlDeTesisV4.ProyectosCcstFolder;
 using ControlDeTesisV4.ProyectosSalasFolder;
 using ControlDeTesisV4.Reportes;
+using ControlDeTesisV4.Reportes.Proyectos;
 using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
 using Telerik.Windows.Controls;
@@ -21,6 +23,11 @@ namespace ControlDeTesisV4
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int InicioPeriodo;
+        public static int FinalPeriodo;
+        int tipoReporte = 0;
+        ObservableCollection<ProyectosTesis> listaImprimir;
+             
         List<RadRibbonButton> botonesAuth;// = new List<Telerik.Windows.Controls>();
         List<RadRibbonGroup> groupAuth;
 
@@ -28,6 +35,8 @@ namespace ControlDeTesisV4
         {
             StyleManager.ApplicationTheme = new Windows8Theme();
             InitializeComponent();
+            worker.DoWork += this.WorkerDoWork;
+            worker.RunWorkerCompleted += WorkerRunWorkerCompleted;
             
         }
 
@@ -273,14 +282,21 @@ namespace ControlDeTesisV4
 
         private void BtnProyectosSalas_Click(object sender, RoutedEventArgs e)
         {
+            tipoReporte = 1;
             SeleccionPeriodo periodo = new SeleccionPeriodo(1);
             periodo.ShowDialog();
+
+            if (periodo.DialogResult == true)
+                LaunchBusyIndicator();
         }
 
         private void BtnProyectosCcst_Click(object sender, RoutedEventArgs e)
         {
+            tipoReporte = 2;
             SeleccionPeriodo periodo = new SeleccionPeriodo(2);
             periodo.ShowDialog();
+            if (periodo.DialogResult == true)
+                LaunchBusyIndicator();
         }
 
         ListaProyectoSalas panelProyectosSalas;
@@ -316,5 +332,50 @@ namespace ControlDeTesisV4
         {
             panelProyectosCcst.EliminarTesis();
         }
+
+
+        #region Background Worker
+
+        private BackgroundWorker worker = new BackgroundWorker();
+        private void WorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            if (tipoReporte == 1)
+            {
+                listaImprimir = new ProyectoTesisSalasModel().GetProyectoTesis(MainWindow.InicioPeriodo, MainWindow.FinalPeriodo);
+            }
+            else
+            {
+                listaImprimir = new ProyectoTesisCcstModel().GetProyectoTesis(MainWindow.InicioPeriodo, MainWindow.FinalPeriodo);
+            }
+        }
+
+        void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (tipoReporte == 1)
+            {
+                TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
+                rtf.GeneraWord();
+            }
+            else
+            {
+                TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
+                rtf.GeneraWord();
+            }
+
+            //Dispatcher.BeginInvoke(new Action<ObservableCollection<Organismos>>(this.UpdateGridDataSource), e.Result);
+            this.BusyIndicator.IsBusy = false;
+        }
+
+        private void LaunchBusyIndicator()
+        {
+            if (!worker.IsBusy)
+            {
+                this.BusyIndicator.IsBusy = true;
+                worker.RunWorkerAsync();
+
+            }
+        }
+
+        #endregion
     }
 }
