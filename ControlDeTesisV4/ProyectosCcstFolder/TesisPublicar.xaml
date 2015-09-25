@@ -5,7 +5,8 @@
                    Width="900"
                    Height="750"
                    Header="Tesis para publicar"
-                   Loaded="RadWindow_Loaded">
+                   Loaded="RadWindow_Loaded"
+                   WindowStartupLocation="CenterScreen">
     <Grid>
         <GroupBox Width="845"
                   Height="182"
@@ -56,6 +57,7 @@
                           VerticalAlignment="Top"
                           DisplayMemberPath="Descripcion"
                           IsEditable="True"
+                          IsEnabled="False"
                           ItemsSource="{Binding}"
                           SelectedValuePath="IdDato" />
                 <Label Margin="473,120,0,0"
@@ -69,6 +71,7 @@
                           VerticalAlignment="Top"
                           DisplayMemberPath="NombreCompleto"
                           IsEditable="True"
+                          IsEnabled="False"
                           ItemsSource="{Binding}"
                           KeyDown="CbxSignatario_KeyDown"
                           SelectedValuePath="IdFuncionario" />
@@ -102,7 +105,8 @@
                           VerticalAlignment="Top"
                           DisplayMemberPath="Descripcion"
                           ItemsSource="{Binding}"
-                          SelectedValuePath="IdDato" />
+                          SelectedValuePath="IdDato"
+                          SelectionChanged="CbxInstancia_SelectionChanged" />
                 <Button x:Name="BtnLoadOficioRecibido"
                         Width="30"
                         Margin="760,75,0,0"
@@ -278,7 +282,9 @@
                           VerticalAlignment="Top"
                           DisplayMemberPath="NombreCompleto"
                           IsEditable="True"
+                          IsEnabled="False"
                           ItemsSource="{Binding}"
+                          KeyDown="CbxPonentes_KeyDown"
                           SelectedValuePath="IdPonente" />
                 <ComboBox x:Name="CbxAbogado"
                           Width="189"

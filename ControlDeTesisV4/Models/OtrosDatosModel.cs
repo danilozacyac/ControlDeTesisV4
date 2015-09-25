@@ -12,6 +12,7 @@ namespace ControlDeTesisV4.Models
     {
 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["Modulo"].ConnectionString;
+        readonly string connectionStringDirectorio = ConfigurationManager.ConnectionStrings["Directorio"].ConnectionString;
 
 
         #region Asunto
@@ -127,8 +128,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * " +
-                               "FROM AreasEmisoras ORDER BY IdEmisor";
+            String sqlCadena = "SELECT * FROM AreasEmisoras ORDER BY IdEmisor";
 
             try
             {
@@ -166,6 +166,59 @@ namespace ControlDeTesisV4.Models
             }
 
             return tiposAsunto;
+        }
+
+        /// <summary>
+        /// Obtiene el listado de plenos de circuito que se encuentran registrados en el Directorio del 
+        /// Semanario Judicial de la Federación
+        /// </summary>
+        /// <returns></returns>
+        public ObservableCollection<OtrosDatos> GetAreasEmisorasPlenos()
+        {
+            ObservableCollection<OtrosDatos> plenosDeCircuito = new ObservableCollection<OtrosDatos>();
+
+            OleDbConnection connection = new OleDbConnection(connectionStringDirectorio);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "SELECT IdOrg,Organismo,TpoOrg FROM Organismos WHERE TpoOrg = 4 ORDER BY Organismo";
+
+            try
+            {
+                connection.Open();
+
+                cmd = new OleDbCommand(sqlCadena, connection);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        plenosDeCircuito.Add(new OtrosDatos(Convert.ToInt32(reader["IdOrg"]), 
+                            4,
+                            reader["Organismo"].ToString()));
+                    }
+                }
+
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return plenosDeCircuito;
         }
 
         #endregion

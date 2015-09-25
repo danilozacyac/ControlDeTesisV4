@@ -8,6 +8,8 @@ namespace ControlDeTesisV4.UtilitiesFolder
     public class Constants
     {
 
+    public static Funcionarios NuevoFuncionario;
+
         #region Variables UserControls
 
         public static ProyectosTesis TesisTurno = null;

@@ -8,6 +8,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
@@ -111,5 +112,50 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             this.Close();
         }
+
+
+        //private void CbxSignatario_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        this.AddSignatario(CbxSignatario.Text);
+        //    }
+        //}
+
+        //int idInstancia;
+        //private void AddSignatario(string nombre)
+        //{
+        //    int filter = (idInstancia == 4) ? 2 : 1;
+
+        //    AddNombre newFunc = new AddNombre(nombre, 2, filter);
+        //    newFunc.Owner = this;
+        //    newFunc.ShowDialog();
+
+        //    if (newFunc.DialogResult == true)
+        //    {
+        //        Funcionarios nuevo = new Funcionarios(
+        //            Constants.NuevoFuncionario.IdFuncionario, Constants.NuevoFuncionario.Paterno, Constants.NuevoFuncionario.Materno,
+        //            Constants.NuevoFuncionario.Nombre, Constants.NuevoFuncionario.NombreCompleto);
+        //        nuevo.IdTipoFuncionario = Constants.NuevoFuncionario.IdTipoFuncionario;
+
+        //        FuncionariosSingleton.Signatarios.Add(nuevo);
+        //        CbxSignatario.SelectedItem = nuevo;
+        //        this.MuestraSignatarios();
+        //    }
+        //    else
+        //        CbxSignatario.Text = String.Empty;
+
+
+        //}
+
+        //public void MuestraSignatarios()
+        //{
+        //    int filter = (idInstancia == 4) ? 2 : 1;
+
+        //    CbxSignatario.DataContext = (from n in FuncionariosSingleton.Signatarios
+        //                                 where n.IdTipoFuncionario == filter
+        //                                 select n);
+        //}
+
     }
 }

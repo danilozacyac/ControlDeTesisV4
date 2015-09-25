@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -11,6 +10,7 @@ using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.Turno;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
 
@@ -46,7 +46,6 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void RadWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
             CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisoras;
             CbxInstancia.DataContext = OtrosDatosSingleton.Instancias;
             CbxPonentes.DataContext = FuncionariosSingleton.Ponentes;
@@ -56,8 +55,6 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             CbxTipoJuris.DataContext = OtrosDatosSingleton.TipoJurisprudencias;
 
             this.DataContext = proyecto;
-
-
         }
 
         private void CbxSignatario_KeyDown(object sender, KeyEventArgs e)
@@ -70,17 +67,25 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void AddSignatario(string nombre)
         {
-            Funcionarios funcionario = new Funcionarios();
-            funcionario.NombreCompleto = nombre;
+            int filter = (idInstancia == 4) ? 2 : 1;
 
-            IEnumerable<Funcionarios> lista = FuncionariosSingleton.Signatarios.Where(func => func.NombreCompleto.Equals(nombre));
+            AddNombre newFunc = new AddNombre(nombre, 2, filter);
+            newFunc.Owner = this;
+            newFunc.ShowDialog();
 
-            if (lista.Count() == 0)
+            if (newFunc.DialogResult == true)
             {
-                new FuncionariosModel().SetNewSignatario(funcionario);
-                FuncionariosSingleton.Signatarios.Add(funcionario);
-                CbxSignatario.SelectedItem = funcionario;
+                Funcionarios nuevo = new Funcionarios(
+                    Constants.NuevoFuncionario.IdFuncionario, Constants.NuevoFuncionario.Paterno, Constants.NuevoFuncionario.Materno,
+                    Constants.NuevoFuncionario.Nombre, Constants.NuevoFuncionario.NombreCompleto);
+                nuevo.IdTipoFuncionario = Constants.NuevoFuncionario.IdTipoFuncionario;
+
+                FuncionariosSingleton.Signatarios.Add(nuevo);
+                CbxSignatario.SelectedItem = nuevo;
+                this.MuestraSignatarios();
             }
+            else
+                CbxSignatario.Text = String.Empty;
 
         }
 
@@ -199,6 +204,76 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             CapturaEjecutoria ejecutoriaCapt = new CapturaEjecutoria(proyecto.Proyecto.Ejecutoria);
             ejecutoriaCapt.ShowDialog();
 
+        }
+
+        int idInstancia;
+        private void CbxInstancia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CbxEmisores.IsEnabled = true;
+            CbxSignatario.IsEnabled = true;
+            CbxPonentes.IsEnabled = true;
+
+            idInstancia = ((OtrosDatos)CbxInstancia.SelectedItem).IdDato;
+
+            if (idInstancia == 4)
+                CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisorasPlenos;
+            else
+                CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisoras;
+
+            this.MuestraSignatarios();
+            this.MuestraPonentes();
+        }
+
+        public void MuestraSignatarios()
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            CbxSignatario.DataContext = (from n in FuncionariosSingleton.Signatarios
+                                         where n.IdTipoFuncionario == filter
+                                         select n);
+        }
+
+        private void AddPonente(string nombre)
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            AddNombre newFunc = new AddNombre(nombre, 1, filter);
+            newFunc.Owner = this;
+            newFunc.ShowDialog();
+
+            if (newFunc.DialogResult == true)
+            {
+                Funcionarios nuevo = new Funcionarios(
+                    Constants.NuevoFuncionario.IdFuncionario, Constants.NuevoFuncionario.Paterno, Constants.NuevoFuncionario.Materno,
+                    Constants.NuevoFuncionario.Nombre, Constants.NuevoFuncionario.NombreCompleto);
+                nuevo.IdTipoFuncionario = Constants.NuevoFuncionario.IdTipoFuncionario;
+                nuevo.Estado = Constants.NuevoFuncionario.Estado;
+
+                FuncionariosSingleton.Ponentes.Add(nuevo);
+                this.MuestraPonentes();
+                CbxPonentes.SelectedItem = nuevo;
+                
+            }
+            else
+                CbxPonentes.Text = String.Empty;
+
+        }
+
+        public void MuestraPonentes()
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            CbxPonentes.DataContext = (from n in FuncionariosSingleton.Ponentes
+                                         where n.IdTipoFuncionario == filter && n.Estado == 1
+                                         select n);
+        }
+
+        private void CbxPonentes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.AddPonente(CbxPonentes.Text);
+            }
         }
     }
 }

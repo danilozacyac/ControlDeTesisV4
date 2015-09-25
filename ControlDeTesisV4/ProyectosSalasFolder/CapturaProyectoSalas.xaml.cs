@@ -11,6 +11,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
 
@@ -35,7 +36,6 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             this.DataContext = oficialiaSalas;
 
             CbxSignatario.DataContext = FuncionariosSingleton.Signatarios;
-            CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisoras;
             CbxInstancia.DataContext = from n in OtrosDatosSingleton.Instancias
                                        where n.IdDato < 5
                                        select n;
@@ -59,20 +59,30 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             }
         }
 
+        
         private void AddSignatario(string nombre)
         {
-            Funcionarios funcionario = new Funcionarios();
-            funcionario.NombreCompleto = nombre;
+            int filter = (idInstancia == 4) ? 2 : 1;
 
-            IEnumerable<Funcionarios> lista = FuncionariosSingleton.Signatarios.Where(func => func.NombreCompleto.Equals(nombre));
+            AddNombre newFunc = new AddNombre(nombre, 2, filter);
+            newFunc.Owner = this;
+            newFunc.ShowDialog();
 
-            if (lista.Count() == 0)
+            if (newFunc.DialogResult == true)
             {
-                new FuncionariosModel().SetNewSignatario(funcionario);
-                FuncionariosSingleton.Signatarios.Add(funcionario);
-                CbxSignatario.SelectedItem = funcionario;
-            }
+                Funcionarios nuevo = new Funcionarios(
+                    Constants.NuevoFuncionario.IdFuncionario, Constants.NuevoFuncionario.Paterno, Constants.NuevoFuncionario.Materno,
+                    Constants.NuevoFuncionario.Nombre, Constants.NuevoFuncionario.NombreCompleto);
+                nuevo.IdTipoFuncionario = Constants.NuevoFuncionario.IdTipoFuncionario;
 
+                FuncionariosSingleton.Signatarios.Add(nuevo);
+                CbxSignatario.SelectedItem = nuevo;
+                this.MuestraSignatarios();
+            }
+            else
+                CbxSignatario.Text = String.Empty;
+
+            
         }
 
         private void BtnAgregarProy_Click(object sender, RoutedEventArgs e)
@@ -132,6 +142,9 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         private int idInstancia;
         private void CbxInstancia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            CbxEmisores.IsEnabled = true;
+            CbxSignatario.IsEnabled = true;
+
             idInstancia = ((OtrosDatos)CbxInstancia.SelectedItem).IdDato;
 
             if (oficialiaSalas.Proyectos != null && oficialiaSalas.Proyectos.Count > 0)
@@ -141,6 +154,13 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                     tesis.IdInstancia = idInstancia;
                 }
             }
+
+            if (idInstancia == 4)
+                CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisorasPlenos;
+            else
+                CbxEmisores.DataContext = OtrosDatosSingleton.AreasEmisoras;
+
+            this.MuestraSignatarios();
         }
 
         private void BtnLoadOficioRecibido_Click(object sender, RoutedEventArgs e)
@@ -168,5 +188,17 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             Process.Start(oficialiaSalas.OfRecepcionPathOrigen);
         }
+
+
+        public void MuestraSignatarios()
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            CbxSignatario.DataContext = (from n in FuncionariosSingleton.Signatarios
+                                         where n.IdTipoFuncionario == filter
+                                         select n);
+        }
+
+
     }
 }

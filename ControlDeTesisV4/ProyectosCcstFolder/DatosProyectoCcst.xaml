@@ -226,7 +226,7 @@
                   DisplayMemberPath="NombreCompleto"
                   IsEditable="True"
                   ItemsSource="{Binding}"
-                  SelectedValuePath="IdFuncionario" />
+                  SelectedValuePath="IdFuncionario" KeyDown="CbxPonentes_KeyDown" />
         <Label Margin="452,375,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"

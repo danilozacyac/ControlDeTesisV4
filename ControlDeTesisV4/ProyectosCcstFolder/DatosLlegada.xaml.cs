@@ -110,7 +110,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
             if (lista.Count() == 0)
             {
-                new FuncionariosModel().SetNewSignatario(funcionario);
+                new FuncionariosModel().SetNewSignatario(funcionario,1);
                 FuncionariosSingleton.Signatarios.Add(funcionario);
                 CbxDestinatario.SelectedItem = funcionario;
             }

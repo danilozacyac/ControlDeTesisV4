@@ -13,6 +13,16 @@ namespace ControlDeTesisV4.Dao
         int nivel;
         int perfil;
 
+        /// <summary>
+        /// Indica si el funcionario es de Corte o de Plenos
+        /// </summary>
+        int idTipoFuncionario;
+
+        /// <summary>
+        /// Indica si el funcionario en cuestión sigue en funciones o esta inhabilitado
+        /// </summary>
+        int estado;
+
         public Funcionarios(int idFuncionario, string paterno, string materno, string nombre, string nombreCompleto, int nivel, int perfil)
         {
             this.idFuncionario = idFuncionario;
@@ -120,6 +130,30 @@ namespace ControlDeTesisV4.Dao
             set
             {
                 this.perfil = value;
+            }
+        }
+
+        public int IdTipoFuncionario
+        {
+            get
+            {
+                return this.idTipoFuncionario;
+            }
+            set
+            {
+                this.idTipoFuncionario = value;
+            }
+        }
+
+        public int Estado
+        {
+            get
+            {
+                return this.estado;
+            }
+            set
+            {
+                this.estado = value;
             }
         }
     }

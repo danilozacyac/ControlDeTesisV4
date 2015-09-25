@@ -380,3 +380,5 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDe
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosCcstFolder\DatosLlegada.g.cs
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\DatosLlegadaSalas.baml
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ProyectosSalasFolder\DatosLlegadaSalas.g.cs
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\AddNombre.baml
+C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\AddNombre.g.cs

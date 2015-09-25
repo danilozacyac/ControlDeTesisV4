@@ -125,8 +125,8 @@
                                              LargeImage="Resources/juez256.png"
                                              Size="Large">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="       Voto" />
-                                <TextBlock Text="para publicar" />
+                                <TextBlock Text="Voto" HorizontalAlignment="Center" />
+                                <TextBlock Text="para publicar" HorizontalAlignment="Center" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
 

@@ -82,6 +82,7 @@
                   VerticalAlignment="Top"
                   DisplayMemberPath="NombreCompleto"
                   IsEditable="True"
+                  IsEnabled="False"
                   ItemsSource="{Binding}"
                   KeyDown="CbxDestinatario_KeyDown"
                   SelectedValuePath="IdFuncionario" />

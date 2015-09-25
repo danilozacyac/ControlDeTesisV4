@@ -29,7 +29,7 @@
     <PublisherName>Suprema Corte de Justicia de la Nación</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -131,6 +131,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddNombre.xaml.cs">
+      <DependentUpon>AddNombre.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\DisidentesConverter.cs" />
     <Compile Include="Converter\EstadoTesisConverter.cs" />
     <Compile Include="Converter\TipoVotoConverter.cs" />
@@ -232,6 +235,10 @@
     <Compile Include="VisualComparition\SalasCompare.xaml.cs">
       <DependentUpon>SalasCompare.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddNombre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="EjecutoriasVotos\CapturaEjecutoria.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

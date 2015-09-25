@@ -10,6 +10,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
+using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
 
@@ -59,9 +60,9 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             this.DataContext = proyecto;
 
             CbxAbogado.DataContext = FuncionariosSingleton.AbogResp;
-            CbxPonentes.DataContext = FuncionariosSingleton.Ponentes;
             CbxTipoJuris.DataContext = OtrosDatosSingleton.TipoJurisprudencias;
             CbxTipoAsunto.DataContext = OtrosDatosSingleton.TipoAsuntos;
+            this.MuestraPonentes();
 
             if (isUpdating)
             {
@@ -251,6 +252,49 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             DatosLlegadaSalas datos = new DatosLlegadaSalas(proyecto);
             datos.ShowDialog();
+        }
+
+        public void MuestraPonentes()
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            CbxPonentes.DataContext = (from n in FuncionariosSingleton.Ponentes
+                                       where n.IdTipoFuncionario == filter && n.Estado == 1
+                                       select n);
+        }
+
+        private void CbxPonentes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.AddPonente(CbxPonentes.Text);
+            }
+        }
+
+        private void AddPonente(string nombre)
+        {
+            int filter = (idInstancia == 4) ? 2 : 1;
+
+            AddNombre newFunc = new AddNombre(nombre, 1, filter);
+            newFunc.Owner = this;
+            newFunc.ShowDialog();
+
+            if (newFunc.DialogResult == true)
+            {
+                Funcionarios nuevo = new Funcionarios(
+                    Constants.NuevoFuncionario.IdFuncionario, Constants.NuevoFuncionario.Paterno, Constants.NuevoFuncionario.Materno,
+                    Constants.NuevoFuncionario.Nombre, Constants.NuevoFuncionario.NombreCompleto);
+                nuevo.IdTipoFuncionario = Constants.NuevoFuncionario.IdTipoFuncionario;
+                nuevo.Estado = Constants.NuevoFuncionario.Estado;
+
+                FuncionariosSingleton.Ponentes.Add(nuevo);
+                this.MuestraPonentes();
+                CbxPonentes.SelectedItem = nuevo;
+
+            }
+            else
+                CbxPonentes.Text = String.Empty;
+
         }
     }
 }

@@ -127,7 +127,7 @@
                               IsEditable="True"
                               ItemsSource="{Binding}"
                               KeyDown="CbxDestinatario_KeyDown"
-                              SelectedValuePath="IdFuncionario" />
+                              SelectedValuePath="IdFuncionario" IsEnabled="False" />
                     <Label Margin="22,188,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"

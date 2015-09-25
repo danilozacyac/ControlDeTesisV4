@@ -11,6 +11,7 @@ namespace ControlDeTesisV4.Singletons
         private static ObservableCollection<OtrosDatos> tipoAsuntos;
         private static ObservableCollection<OtrosDatos> tipoJurisprudencia;
         private static ObservableCollection<OtrosDatos> areasEmisoras;
+        private static ObservableCollection<OtrosDatos> areasEmisorasPlenos;
         private static ObservableCollection<OtrosDatos> instancias;
         private static ObservableCollection<OtrosDatos> tipoVotos;
 
@@ -48,6 +49,17 @@ namespace ControlDeTesisV4.Singletons
                     areasEmisoras = new OtrosDatosModel().GetAreasEmisoras();
 
                 return areasEmisoras;
+            }
+        }
+
+        public static ObservableCollection<OtrosDatos> AreasEmisorasPlenos
+        {
+            get
+            {
+                if (areasEmisorasPlenos == null)
+                    areasEmisorasPlenos = new OtrosDatosModel().GetAreasEmisorasPlenos();
+
+                return areasEmisorasPlenos;
             }
         }
 
