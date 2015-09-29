@@ -545,10 +545,10 @@ namespace ControlDeTesisV4.Models
             String sqlCadena = "";
 
             if (inicio == fin)
-                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion, Proyectos.IdEmisor " +
                             " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 1";
             else
-                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion " +
+                sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion, Proyectos.IdEmisor  " +
                             " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
 
             try
@@ -564,7 +564,9 @@ namespace ControlDeTesisV4.Models
                     {
                         ProyectosTesis tesis = new ProyectosTesis();
 
-                        tesis.IdTesis = reader["IdTesis"] as int? ?? -1;
+                        tesis.IdTesis = Convert.ToInt32(reader["IdTesis"]);
+                        tesis.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
+                        tesis.IdEmisor = Convert.ToInt32(reader["IdEmisor"]);
                         tesis.OficioEnvio = reader["OficioEnvio"].ToString();
                         tesis.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");

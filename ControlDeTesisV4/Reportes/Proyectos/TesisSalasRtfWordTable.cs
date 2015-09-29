@@ -99,7 +99,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                         oTable.Cell(1, 2).Merge(oTable.Cell(1, 3));
                         oTable.Cell(1, 1).Merge(oTable.Cell(1, 2));
-                        oTable.Cell(1, 1).Range.Text = "Instancia: " + this.GetInstanciaString(tesis.IdInstancia);
+                        oTable.Cell(1, 1).Range.Text = "Instancia: " + this.GetInstanciaString(tesis);
                         oTable.Cell(1, 1).Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
 
                         oTable.Cell(2, 1).Split(4, 1);
@@ -188,15 +188,20 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
         }
 
-        private string GetInstanciaString(int instancia)
+        private string GetInstanciaString(ProyectosTesis tesis)
         {
-            switch (instancia)
+            switch (tesis.IdInstancia)
             {
                 case 1: return "TRIBUNAL PLENO";
                 case 2: return "PRIMERA SALA";
                 case 3: return "SEGUNDA SALA";
+                case 4: return (from n in OtrosDatosSingleton.AreasEmisorasPlenos
+                                where n.IdDato == tesis.IdEmisor
+                                select n.Descripcion).ToList()[0].ToString();
             }
             return String.Empty;
+
+
         }
 
         private string GetPonencia(int idMinistro)

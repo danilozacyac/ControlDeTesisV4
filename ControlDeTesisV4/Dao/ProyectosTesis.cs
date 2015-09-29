@@ -39,6 +39,20 @@ namespace ControlDeTesisV4.Dao
         private Ejecutorias ejecutoria;
         private TurnoDao turno;
         private int estadoTesis;
+        private int idEmisor;
+
+
+        public int IdEmisor
+        {
+            get
+            {
+                return this.idEmisor;
+            }
+            set
+            {
+                this.idEmisor = value;
+            }
+        }
 
         public int IdProyecto
         {

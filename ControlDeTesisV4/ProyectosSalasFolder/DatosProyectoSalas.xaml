@@ -164,7 +164,8 @@
                   DisplayMemberPath="NombreCompleto"
                   IsEditable="True"
                   ItemsSource="{Binding}"
-                  SelectedValuePath="IdFuncionario" KeyDown="CbxPonentes_KeyDown" />
+                  KeyDown="CbxPonentes_KeyDown"
+                  SelectedValuePath="IdFuncionario" />
         <ComboBox x:Name="CbxAbogado"
                   Width="189"
                   Margin="607,60,0,0"

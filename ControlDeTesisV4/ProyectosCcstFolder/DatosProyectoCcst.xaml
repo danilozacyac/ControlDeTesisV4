@@ -226,7 +226,8 @@
                   DisplayMemberPath="NombreCompleto"
                   IsEditable="True"
                   ItemsSource="{Binding}"
-                  SelectedValuePath="IdFuncionario" KeyDown="CbxPonentes_KeyDown" />
+                  KeyDown="CbxPonentes_KeyDown"
+                  SelectedValuePath="IdFuncionario" />
         <Label Margin="452,375,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
@@ -258,7 +259,15 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Vista previa:" />
-        <Button x:Name="BtnLlegada" Visibility="Hidden" Content="Datos del oficio" HorizontalAlignment="Left" Margin="675,455,0,0" VerticalAlignment="Top" Width="112" Click="BtnLlegada_Click" Height="28"/>
+        <Button x:Name="BtnLlegada"
+                Width="112"
+                Height="28"
+                Margin="675,455,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="BtnLlegada_Click"
+                Content="Datos del oficio"
+                Visibility="Hidden" />
 
     </Grid>
 
