@@ -13,6 +13,7 @@ using ControlDeTesisV4.Reportes;
 using ControlDeTesisV4.Reportes.Proyectos;
 using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
+using DocumentMgmtApi;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
@@ -377,5 +378,7 @@ namespace ControlDeTesisV4
         }
 
         #endregion
+
+        
     }
 }
