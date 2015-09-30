@@ -39,6 +39,7 @@
       <HintPath>..\..\ScjnUtilities\ScjnUtilities\bin\Debug\ScjnUtilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
@@ -55,6 +56,7 @@
     <Compile Include="DocumentConversion.cs" />
     <Compile Include="Observaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TxtFileCreate.cs" />
     <Compile Include="WordDocComparer.cs" />
     <Compile Include="WordDocReader.cs" />
   </ItemGroup>

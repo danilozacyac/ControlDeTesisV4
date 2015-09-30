@@ -26,13 +26,14 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM ProyectosTesis WHERE EstadoTesis < 4 AND IdTipoProyecto = " + idTipoProyecto;
-
+            String sqlCadena = "SELECT IdTesis,IdProyecto,Rubro,tatj,EstadoTesis,IdAbogado FROM ProyectosTesis WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto";
+            
             try
             {
                 connection.Open();
 
                 cmd = new OleDbCommand(sqlCadena, connection);
+                cmd.Parameters.AddWithValue("@IdTipoProyecto", idTipoProyecto);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -84,7 +85,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM Proyectos WHERE IdProyecto = @IdProyecto";
+            String sqlCadena = "SELECT FRecepcion,OficioRecepcion FROM Proyectos WHERE IdProyecto = @IdProyecto";
 
             try
             {
@@ -127,7 +128,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT * FROM ProyectosCcst WHERE IdProyecto = @IdProyecto";
+            String sqlCadena = "SELECT FechaOficioAtn,OficioAtn FROM ProyectosCcst WHERE IdProyecto = @IdProyecto";
 
             try
             {
@@ -212,5 +213,7 @@ namespace ControlDeTesisV4.Models
                 connection.Close();
             }
         }
+
+
     }
 }
