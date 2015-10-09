@@ -73,9 +73,10 @@ namespace ControlDeTesisV4.Reportes.Proyectos
         {
             int numTesis = 0;
             int instancia = 1;
-
+            int idTesis = 0;
             try
             {
+                
                 while (instancia < 5)
                 {
                     List<ProyectosTesis> listaImprimir = (from n in listaTesis
@@ -85,6 +86,8 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
                     foreach (ProyectosTesis tesis in listaImprimir)
                     {
+
+                        idTesis = tesis.IdTesis;
                         Word.Range wrdRng = oDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
 
                         Word.Table oTable = oDoc.Tables.Add(wrdRng, 3, 3, ref oMissing, ref oMissing);
@@ -183,7 +186,8 @@ namespace ControlDeTesisV4.Reportes.Proyectos
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                MessageBox.Show("Error ({0}) : {1}" + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error ({0}) : {1} "  + ex.Source + ex.Message, methodName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(idTesis.ToString());
             }
 
         }

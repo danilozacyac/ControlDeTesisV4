@@ -63,6 +63,26 @@ namespace ControlDeTesisV4.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1Ccst {
+            get {
+                object obj = ResourceManager.GetObject("_1Ccst", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _2Ccst {
+            get {
+                object obj = ResourceManager.GetObject("_2Ccst", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _char {
             get {
                 object obj = ResourceManager.GetObject("_char", resourceCulture);
@@ -173,6 +193,16 @@ namespace ControlDeTesisV4.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Letter_P_icon {
+            get {
+                object obj = ResourceManager.GetObject("Letter_P_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lista {
             get {
                 object obj = ResourceManager.GetObject("lista", resourceCulture);
@@ -246,6 +276,36 @@ namespace ControlDeTesisV4.Properties {
         internal static System.Drawing.Bitmap mailSend {
             get {
                 object obj = ResourceManager.GetObject("mailSend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_1_icon {
+            get {
+                object obj = ResourceManager.GetObject("Number_1_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_2_icon {
+            get {
+                object obj = ResourceManager.GetObject("Number_2_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PCcst {
+            get {
+                object obj = ResourceManager.GetObject("PCcst", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

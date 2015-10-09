@@ -15,12 +15,16 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
     /// </summary>
     public partial class ListaProyectosCcst : UserControl
     {
+        private int idInstancia;
+
         private ObservableCollection<ProyectoPreview> listaProyectos;
         private ProyectoPreview selectedTesis;
 
-        public ListaProyectosCcst()
+        public ListaProyectosCcst(int idInstancia)
         {
             InitializeComponent();
+            this.idInstancia = idInstancia;
+
             worker.DoWork += this.WorkerDoWork;
             worker.RunWorkerCompleted += WorkerRunWorkerCompleted;
         }
@@ -121,7 +125,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
         private BackgroundWorker worker = new BackgroundWorker();
         private void WorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(2);
+            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(2,idInstancia);
         }
 
         void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

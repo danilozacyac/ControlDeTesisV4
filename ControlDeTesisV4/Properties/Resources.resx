@@ -214,4 +214,22 @@
   <data name="tesis_del" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tesis_del.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Letter_P_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Letter-P-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Number_1_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Number-1-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Number_2_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Number-2-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PCcst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PCcst.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1Ccst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1Ccst.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2Ccst" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2Ccst.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

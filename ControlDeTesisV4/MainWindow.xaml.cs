@@ -301,11 +301,34 @@ namespace ControlDeTesisV4
         }
 
         ListaProyectoSalas panelProyectosSalas;
-        private void BtnListadoProyS_Click(object sender, RoutedEventArgs e)
+        private void ListadoProyectos(object sender, RoutedEventArgs e)
         {
+            RadRibbonButton push = sender as RadRibbonButton;
+
+            string quienLanza = push.Tag.ToString();
+
+            int instancia = 0;
+            string paneTitle = String.Empty;
+
+            switch (quienLanza)
+            {
+                case "P": instancia = 1;
+                    paneTitle = "Listado de Proyectos del Pleno";
+                    break;
+                case "1": instancia = 2;
+                    paneTitle = "Listado de Proyectos de la Primera Sala";
+                    break;
+                case "2": instancia = 3;
+                    paneTitle = "Listado de Proyectos de la Segunda Sala";
+                    break;
+                case "C": instancia = 4;
+                    paneTitle = "Listado de Proyectos de Plenos de Circuito";
+                    break;
+            }
+
             RadPane pane = new RadPane();
-            pane.Header = "Listado de proyectos Salas";
-            panelProyectosSalas = new ListaProyectoSalas();
+            pane.Header = paneTitle;
+            panelProyectosSalas = new ListaProyectoSalas(instancia);
             pane.Content = panelProyectosSalas;
 
             PanelCentral.AddItem(pane, DockPosition.Center);
@@ -315,9 +338,32 @@ namespace ControlDeTesisV4
         ListaProyectosCcst panelProyectosCcst;
         private void BtnListadoCcst_Click(object sender, RoutedEventArgs e)
         {
+            RadRibbonButton push = sender as RadRibbonButton;
+
+            string quienLanza = push.Tag.ToString();
+
+            int instancia = 0;
+            string paneTitle = String.Empty;
+
+            switch (quienLanza)
+            {
+                case "P": instancia = 1;
+                    paneTitle = "CCST Proyectos del Pleno";
+                    break;
+                case "1": instancia = 2;
+                    paneTitle = "CCST Proyectos de la Primera Sala";
+                    break;
+                case "2": instancia = 3;
+                    paneTitle = "CCST Proyectos de la Segunda Sala";
+                    break;
+                case "C": instancia = 4;
+                    paneTitle = "CCST Proyectos de Plenos de Circuito";
+                    break;
+            }
+
             RadPane pane = new RadPane();
-            pane.Header = "Listado de proyectos CCST";
-            panelProyectosCcst = new ListaProyectosCcst();
+            pane.Header = paneTitle;
+            panelProyectosCcst = new ListaProyectosCcst(instancia);
             pane.Content = panelProyectosCcst;
 
             PanelCentral.AddItem(pane, DockPosition.Center);

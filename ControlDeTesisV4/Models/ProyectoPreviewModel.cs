@@ -18,7 +18,7 @@ namespace ControlDeTesisV4.Models
         /// </summary>
         /// <param name="idTipoProyecto"></param>
         /// <returns></returns>
-        public ObservableCollection<ProyectoPreview> GetPreviewSalasSinTurnar(int idTipoProyecto)
+        public ObservableCollection<ProyectoPreview> GetPreviewSalasSinTurnar(int idTipoProyecto,int idInstancia)
         {
             ObservableCollection<ProyectoPreview> listaProyectosSalas = new ObservableCollection<ProyectoPreview>();
 
@@ -26,7 +26,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT IdTesis,IdProyecto,Rubro,tatj,EstadoTesis,IdAbogado FROM ProyectosTesis WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto";
+            String sqlCadena = "SELECT IdTesis,IdProyecto,Rubro,tatj,EstadoTesis,IdAbogado FROM ProyectosTesis WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto AND IdInstancia = @IdInstancias";
             
             try
             {
@@ -34,6 +34,7 @@ namespace ControlDeTesisV4.Models
 
                 cmd = new OleDbCommand(sqlCadena, connection);
                 cmd.Parameters.AddWithValue("@IdTipoProyecto", idTipoProyecto);
+                cmd.Parameters.AddWithValue("@IdInstancias", idInstancia);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)

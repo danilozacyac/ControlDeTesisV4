@@ -15,12 +15,15 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
     /// </summary>
     public partial class ListaProyectoSalas : UserControl
     {
+        private int idInstancia;
+
         private ObservableCollection<ProyectoPreview> listaProyectos;
         private ProyectoPreview selectedTesis;
 
-        public ListaProyectoSalas()
+        public ListaProyectoSalas(int idInstancia)
         {
             InitializeComponent();
+            this.idInstancia = idInstancia;
             worker.DoWork += this.WorkerDoWork;
             worker.RunWorkerCompleted += WorkerRunWorkerCompleted;
         }
@@ -95,6 +98,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             String tempString = ((TextBox)sender).Text.ToUpper();
 
+            
+
             if (!String.IsNullOrEmpty(tempString))
                 GListado.DataContext = (from n in listaProyectos
                                         where n.Asunto.ToUpper().Contains(tempString) || n.Rubro.ToUpper().Contains(tempString)
@@ -138,7 +143,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         private BackgroundWorker worker = new BackgroundWorker();
         private void WorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1);
+            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1,idInstancia);
         }
 
         void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
