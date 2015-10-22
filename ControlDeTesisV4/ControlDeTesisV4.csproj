@@ -29,7 +29,7 @@
     <PublisherName>Suprema Corte de Justicia de la Nación</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -578,6 +578,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\2Ccst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\questionSquare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

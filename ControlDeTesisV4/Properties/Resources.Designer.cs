@@ -343,6 +343,16 @@ namespace ControlDeTesisV4.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap questionSquare {
+            get {
+                object obj = ResourceManager.GetObject("questionSquare", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recibir {
             get {
                 object obj = ResourceManager.GetObject("recibir", resourceCulture);

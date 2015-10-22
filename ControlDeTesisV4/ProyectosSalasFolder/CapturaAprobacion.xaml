@@ -108,6 +108,7 @@
                            VerticalAlignment="Top"
                            Click="BtnGuardar_Click"
                            Content="Guardar" />
+        <Image HorizontalAlignment="Left" Height="23" Margin="224,98,0,0" VerticalAlignment="Top" Width="24" Source="/ControlDeTesisV4;component/Resources/questionSquare.png" ToolTip="Puede ser arábigo o romano de acuerdo al tipo de tesis. Ingresar de acuerdo a la clave de tesis"/>
 
     </Grid>
 

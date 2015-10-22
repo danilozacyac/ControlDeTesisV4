@@ -4,7 +4,7 @@
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                    Width="800"
                    Height="280"
-                   Header="DatosLlegadaSalas"
+                   Header="Información general del oficio de llegada"
                    Loaded="RadWindow_Loaded"
                    ResizeMode="NoResize"
                    WindowStartupLocation="CenterScreen">
@@ -125,6 +125,20 @@
                 HorizontalAlignment="Left"
                 Click="BtnSalir_Click"
                 Content="Salir" />
+        <Image Width="23"
+               Height="28"
+               Margin="340,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+               ToolTip="Registro que asigna Oficialia de Partes al recibir el documento" />
+        <Image Width="23"
+               Height="28"
+               Margin="658,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+               ToolTip="Fecha en que Oficialía de Partes recibe el oficio" />
     </Grid>
 
 </telerik:RadWindow>

@@ -3,12 +3,12 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:converter="clr-namespace:ControlDeTesisV4.Converter"
                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-                   WindowStartupLocation="CenterScreen"
                    Width="890"
                    Height="730"
                    MinHeight="700"
                    Header="Captura"
-                   Loaded="Window_Loaded">
+                   Loaded="Window_Loaded"
+                   WindowStartupLocation="CenterScreen">
 
     <telerik:RadWindow.Resources>
         <converter:PonentesConverter x:Key="PonenteConverter" />
@@ -23,9 +23,7 @@
 
         <Grid Grid.Row="0">
 
-            <GroupBox 
-                      
-                      Height="182"
+            <GroupBox Height="182"
                       Margin="21,25,15,0"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top"
@@ -73,8 +71,9 @@
                               VerticalAlignment="Top"
                               DisplayMemberPath="Descripcion"
                               IsEditable="True"
+                              IsEnabled="False"
                               ItemsSource="{Binding}"
-                              SelectedValuePath="IdDato" IsEnabled="False" />
+                              SelectedValuePath="IdDato" />
                     <Label Margin="458,120,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
@@ -86,8 +85,10 @@
                               VerticalAlignment="Top"
                               DisplayMemberPath="NombreCompleto"
                               IsEditable="True"
+                              IsEnabled="False"
                               ItemsSource="{Binding}"
-                              SelectedValuePath="IdFuncionario" KeyDown="CbxSignatario_KeyDown" IsEnabled="False" />
+                              KeyDown="CbxSignatario_KeyDown"
+                              SelectedValuePath="IdFuncionario" />
                     <Label Margin="455,47,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
@@ -142,6 +143,20 @@
                                Height="19"
                                Source="/ControlDeTesisV4;component/Resources/preview16.png" />
                     </Button>
+                    <Image Width="23"
+                           Height="28"
+                           Margin="343,7,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+                           ToolTip="Registro que asigna Oficialia de Partes al recibir el documento" />
+                    <Image Width="23"
+                           Height="28"
+                           Margin="725,9,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+                           ToolTip="Fecha en que Oficialía de Partes recibe el oficio" />
                 </Grid>
             </GroupBox>
         </Grid>
@@ -236,9 +251,11 @@
                          Margin="133,6,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsEnabled="False"
                          PreviewTextInput="TxtTotalProyectos_PreviewTextInput"
-                         Text="{Binding TotalProyectos,
-                                        Mode=TwoWay}" />
+                         Text="{Binding Items.Count,
+                                        ElementName=GProyectos,
+                                        Mode=OneWay}" />
                 <Button x:Name="BtnEliminar"
                         Grid.Row="2"
                         Width="75"
@@ -254,6 +271,14 @@
                         VerticalAlignment="Top"
                         Click="BtnAgregarProy_Click"
                         Content="Agregar " />
+                <Image Grid.Row="1"
+                       Width="23"
+                       Height="28"
+                       Margin="183,7,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+                       ToolTip="Número de tesis asociadas a un mismo oficio" />
 
             </Grid>
         </GroupBox>
