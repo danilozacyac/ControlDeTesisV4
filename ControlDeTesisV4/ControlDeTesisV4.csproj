@@ -29,7 +29,7 @@
     <PublisherName>Suprema Corte de Justicia de la Nación</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -68,7 +68,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -208,6 +208,9 @@
     <Compile Include="Reportes\Proyectos\TesisSalasRtfWordTable.cs" />
     <Compile Include="Reportes\SeleccionPeriodo.xaml.cs">
       <DependentUpon>SeleccionPeriodo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\TesisIncompletas.xaml.cs">
+      <DependentUpon>TesisIncompletas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Singletons\FuncionariosSingleton.cs" />
     <Compile Include="Singletons\OtrosDatosSingleton.cs" />
@@ -349,6 +352,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reportes\SeleccionPeriodo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reportes\TesisIncompletas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

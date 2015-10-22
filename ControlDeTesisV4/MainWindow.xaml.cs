@@ -398,15 +398,29 @@ namespace ControlDeTesisV4
 
         void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (tipoReporte == 1)
+            List<ProyectosTesis> canPrint = (from n in listaImprimir
+                                where n.FRecepcion == null
+                                select n).ToList();
+
+            if (canPrint.Count() > 0)
             {
-                TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
-                rtf.GeneraWord();
+                MessageBox.Show("Antes de generar el reporte complete los datos de las tesis que se mostrarán a continuación");
+                TesisIncompletas incompletas = new TesisIncompletas(canPrint );
+                incompletas.Show();
             }
             else
             {
-                TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
-                rtf.GeneraWord();
+
+                if (tipoReporte == 1)
+                {
+                    TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
+                    rtf.GeneraWord();
+                }
+                else
+                {
+                    TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
+                    rtf.GeneraWord();
+                }
             }
 
             //Dispatcher.BeginInvoke(new Action<ObservableCollection<Organismos>>(this.UpdateGridDataSource), e.Result);

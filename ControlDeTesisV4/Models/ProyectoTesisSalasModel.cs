@@ -551,6 +551,7 @@ namespace ControlDeTesisV4.Models
                 sqlCadena = "SELECT ProyectosTesis.*, Proyectos.FRecepcion, Proyectos.IdEmisor  " +
                             " FROM Proyectos INNER JOIN ProyectosTesis ON Proyectos.IdProyecto = ProyectosTesis.IdProyecto WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 1";
 
+            ProyectosTesis tesis = new ProyectosTesis();
             try
             {
                 connection.Open();
@@ -558,11 +559,13 @@ namespace ControlDeTesisV4.Models
                 cmd = new OleDbCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
+                
+
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        ProyectosTesis tesis = new ProyectosTesis();
+                        tesis = new ProyectosTesis();
 
                         tesis.IdTesis = Convert.ToInt32(reader["IdTesis"]);
                         tesis.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
@@ -599,11 +602,13 @@ namespace ControlDeTesisV4.Models
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+                MessageBox.Show(tesis.IdTesis.ToString());
             }
             catch (Exception ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+                MessageBox.Show(tesis.IdTesis.ToString());
             }
             finally
             {

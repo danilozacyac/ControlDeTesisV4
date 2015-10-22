@@ -256,7 +256,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         public void MuestraPonentes()
         {
-            int filter = (idInstancia == 4) ? 2 : 1;
+            int filter = (proyecto.IdInstancia == 4) ? 2 : 1;
 
             CbxPonentes.DataContext = (from n in FuncionariosSingleton.Ponentes
                                        where n.IdTipoFuncionario == filter && n.Estado == 1
