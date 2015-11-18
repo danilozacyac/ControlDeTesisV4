@@ -296,6 +296,83 @@ namespace ControlDeTesisV4.Models
             return listaDeTesis;
         }
 
+
+        public ObservableCollection<ProyectosTesis> GetTesisReportePlenos(int inicio, int fin)
+        {
+            ObservableCollection<ProyectosTesis> listaDeTesis = new ObservableCollection<ProyectosTesis>();
+
+
+            OleDbConnection connection = new OleDbConnection(connectionString);
+            OleDbCommand cmd = null;
+            OleDbDataReader reader = null;
+
+            String sqlCadena = "";
+
+            if (inicio == fin)
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE FechaEnvioOficioInt LIKE '" + inicio + "%' AND idTipoProyecto = 2";
+            else
+                sqlCadena = "SELECT * FROM ProyectosTesis WHERE (FechaEnvioOficioInt Between " + inicio + " and " + fin + ") AND idTipoProyecto = 2";
+
+            try
+            {
+                connection.Open();
+
+                cmd = new OleDbCommand(sqlCadena, connection);
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ProyectosTesis tesis = new ProyectosTesis();
+
+                        tesis.IdTesis = Convert.ToInt32(reader["IdTesis"]);
+                        tesis.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
+                        tesis.OficioEnvio = reader["OficioEnvio"].ToString();
+                        tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
+                        tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
+                        tesis.Rubro = reader["Rubro"].ToString();
+                        tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
+                        tesis.IdTipoJuris = Convert.ToInt32(reader["TipoJuris"]);
+                        tesis.NumPaginas = Convert.ToInt32(reader["NumPaginas"]);
+                        tesis.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
+                        tesis.IdInstancia = Convert.ToInt32(reader["Idinstancia"]);
+                        tesis.IdSubInstancia = Convert.ToInt32(reader["IdSubinstancia"]);
+                        tesis.Aprobada = Convert.ToInt32(reader["Aprobada"]);
+                        tesis.FAprobacion = DateTimeUtilities.GetDateFromReader(reader, "FAprobacion");
+                        tesis.NumTesis = reader["numTesis"].ToString();
+                        tesis.NumTesisInt = Convert.ToInt32(reader["NumTesisInt"]);
+                        tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
+                        tesis.ClaveTesis = reader["ClaveTesis"].ToString();
+                        tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
+                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
+                        tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
+                        tesis.ComparaTesis = GetTesisCompara(tesis.IdTesis);
+
+                        listaDeTesis.Add(tesis);
+                    }
+                }
+                cmd.Dispose();
+                reader.Close();
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisCcstModel", "ControlTesis");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return listaDeTesis;
+        }
+
         /// <summary>
         /// Elimina los datos de recepción de un proyecto
         /// </summary>

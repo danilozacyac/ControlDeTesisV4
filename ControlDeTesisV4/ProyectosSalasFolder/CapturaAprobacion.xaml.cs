@@ -32,6 +32,12 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
             if (!String.IsNullOrEmpty(tesis.ComparaTesis.TAprobada) && !String.IsNullOrWhiteSpace(tesis.ComparaTesis.TAprobada))
                 this.LoadRichTextBoxContent(TxtVistaPrevia, tesis.ComparaTesis.TAprobada);
+
+            if (tesis.IdInstancia != 4)
+            {
+                LblMes.Visibility = Visibility.Hidden;
+                CbxMPublish.Visibility = Visibility.Hidden;
+            }
         }
 
         private void TxtYearTesis_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -106,6 +112,12 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            if (tesis.IdInstancia == 4 && CbxMPublish.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debes de seleccionar el mes de publicación de la tesis");
+                return;
+            }
+
             int number;
             bool result = Int32.TryParse(tesis.NumTesis, out number);
             if (result)
@@ -117,13 +129,19 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 tesis.NumTesisInt = StringUtilities.RomanosADecimal(tesis.NumTesis);
             }
 
+           
+
             tesis.ComparaTesis.TAprobada = DocumentComparer.GetRtfString(TxtVistaPrevia);
             TextRange range = new TextRange(TxtVistaPrevia.Document.ContentStart, TxtVistaPrevia.Document.ContentEnd);
             tesis.ComparaTesis.TAprobadaPlano = range.Text;
             tesis.EstadoTesis = 3;
 
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
-            model.UpdateProyectoTesis(tesis);
+
+            if (tesis.IdInstancia != 4)
+                model.UpdateProyectoTesis(tesis);
+            else
+                model.UpdateProyectoTesis(tesis, CbxMPublish.SelectedIndex + 1);
 
             //MessageBoxResult qResult = MessageBox.Show("¿Deseas enviar esta tesis al listado de tesis pendientes de turno?", "Atención:", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -157,5 +175,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             ms.Seek(0, SeekOrigin.Begin);
             range.Load(ms, DataFormats.Rtf);
         }
+
+       
     }
 }

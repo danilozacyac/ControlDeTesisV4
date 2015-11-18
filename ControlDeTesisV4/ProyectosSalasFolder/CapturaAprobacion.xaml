@@ -8,58 +8,58 @@
                    Loaded="Window_Loaded"
                    ResizeMode="NoResize"
                    WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid >
         <DatePicker x:Name="DtpFAprobacion"
-                    Margin="147,50,0,0"
+                    Margin="147,27,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     SelectedDate="{Binding FAprobacion,
                                            Mode=TwoWay}" />
-        <Label Margin="38,54,0,0"
+        <Label Margin="38,31,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="F. de aprobación" />
-        <Label Margin="38,105,0,0"
+        <Label Margin="38,82,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Núm. Tesis" />
+               Content="Número de Tesis" />
         <TextBox x:Name="TxtNumTesis"
                  Width="72"
                  Height="23"
-                 Margin="147,98,0,0"
+                 Margin="147,75,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Text="{Binding NumTesis,
                                 Mode=TwoWay}"
                  TextWrapping="Wrap" />
-        <Label Margin="295,105,0,0"
+        <Label Margin="38,126,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Año tesis" />
+               Content="Año de la tesis" />
         <TextBox x:Name="TxtYearTesis"
                  Width="72"
                  Height="23"
-                 Margin="387,98,0,0"
+                 Margin="147,119,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  PreviewTextInput="TxtYearTesis_PreviewTextInput"
                  Text="{Binding YearTesis,
                                 Mode=TwoWay}"
                  TextWrapping="Wrap" />
-        <Label Margin="540,105,0,0"
+        <Label Margin="311,126,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Clave Tesis" />
+               Content="Clave de la Tesis" />
         <TextBox x:Name="TxtClaveTesis"
                  Width="174"
                  Height="23"
-                 Margin="635,98,0,0"
+                 Margin="402,119,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Text="{Binding ClaveTesis,
                                 Mode=TwoWay}"
                  TextWrapping="Wrap" />
-        <Label Margin="29,165,0,0"
+        <Label Margin="38,171,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Archivo:"
@@ -108,7 +108,28 @@
                            VerticalAlignment="Top"
                            Click="BtnGuardar_Click"
                            Content="Guardar" />
-        <Image HorizontalAlignment="Left" Height="23" Margin="224,98,0,0" VerticalAlignment="Top" Width="24" Source="/ControlDeTesisV4;component/Resources/questionSquare.png" ToolTip="Puede ser arábigo o romano de acuerdo al tipo de tesis. Ingresar de acuerdo a la clave de tesis"/>
+        <Image Width="24"
+               Height="23"
+               Margin="224,75,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
+               ToolTip="Puede ser arábigo o romano de acuerdo al tipo de tesis. Ingresar de acuerdo a la clave de tesis" />
+        <Label x:Name="LblMes" Content="M. de Publicación:" HorizontalAlignment="Left" Margin="480,31,0,0" VerticalAlignment="Top"/>
+        <telerik:RadComboBox x:Name="CbxMPublish" HorizontalAlignment="Left" Margin="581,25,0,0" VerticalAlignment="Top" Width="181" >
+            <telerik:RadComboBoxItem Tag="1" Content="Enero"/>
+            <telerik:RadComboBoxItem Tag="2" Content="Febrero"/>
+            <telerik:RadComboBoxItem Tag="3" Content="Marzo"/>
+            <telerik:RadComboBoxItem Tag="4" Content="Abril"/>
+            <telerik:RadComboBoxItem Tag="5" Content="Mayo"/>
+            <telerik:RadComboBoxItem Tag="6" Content="Junio"/>
+            <telerik:RadComboBoxItem Tag="7" Content="Julio"/>
+            <telerik:RadComboBoxItem Tag="8" Content="Agosto"/>
+            <telerik:RadComboBoxItem Tag="9" Content="Septiembre"/>
+            <telerik:RadComboBoxItem Tag="10" Content="Octubre"/>
+            <telerik:RadComboBoxItem Tag="11" Content="Noviembre"/>
+            <telerik:RadComboBoxItem Tag="12" Content="Diciembre"/>
+        </telerik:RadComboBox>
 
     </Grid>
 

@@ -266,6 +266,116 @@ namespace ControlDeTesisV4.Models
             }
         }
 
+        public void UpdateProyectoTesis(ProyectosTesis tesis,int mesPublicacion)
+        {
+            OleDbConnection connection = new OleDbConnection(connectionString);
+
+            string sSql;
+            OleDbDataAdapter dataAdapter;
+
+            DataSet dataSet = new DataSet();
+            DataRow dr;
+
+            try
+            {
+                string sqlCadena = "SELECT * FROM ProyectosTesis WHERE IdTesis = " + tesis.IdTesis;
+
+                dataAdapter = new OleDbDataAdapter();
+                dataAdapter.SelectCommand = new OleDbCommand(sqlCadena, connection);
+
+                dataAdapter.Fill(dataSet, "ProyectosTesis");
+
+                dr = dataSet.Tables["ProyectosTesis"].Rows[0];
+                dr.BeginEdit();
+                dr["OficioEnvio"] = tesis.OficioEnvio;
+
+                if (tesis.FEnvio != null)
+                {
+                    dr["FechaEnvioOficio"] = tesis.FEnvio;
+                    dr["FechaEnvioOficioInt"] = DateTimeUtilities.DateToInt(tesis.FEnvio);
+                }
+                else
+                {
+                    dr["FechaEnvioOficio"] = DBNull.Value;
+                    dr["FechaEnvioOficioInt"] = 0;
+                }
+
+                dr["OficioEnvioPathOrigen"] = tesis.OficioEnvioPathOrigen;
+                dr["OficioEnvioPathConten"] = tesis.OficioEnvioPathConten;
+
+                if (tesis.FAprobacion != null)
+                {
+                    dr["FAprobacion"] = tesis.FAprobacion;
+                    dr["FAprobacionInt"] = DateTimeUtilities.DateToInt(tesis.FAprobacion);
+                }
+                else
+                {
+                    dr["FAprobacion"] = DBNull.Value;
+                    dr["FAprobacionInt"] = 0;
+                }
+
+                dr["Rubro"] = tesis.Rubro;
+                dr["Tatj"] = tesis.Tatj;
+                dr["TipoJuris"] = tesis.IdTipoJuris;
+                dr["NumTesis"] = tesis.NumTesis;
+                dr["NumTesisInt"] = tesis.NumTesisInt;
+                dr["YearTesis"] = tesis.YearTesis;
+                dr["ClaveTesis"] = tesis.ClaveTesis;
+                dr["EstadoTesis"] = tesis.EstadoTesis;
+                dr["IdAbogado"] = tesis.IdAbogadoResponsable;
+
+                dr.EndEdit();
+
+                dataAdapter.UpdateCommand = connection.CreateCommand();
+
+                sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
+                       "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten,Rubro = @Rubro,Tatj = @Tatj, TipoJuris = @TipoJuris," +
+                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, " + 
+                       "YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado, MesPublica =  " + mesPublicacion + " " +
+                       " WHERE IdTesis = @IdTesis";
+                dataAdapter.UpdateCommand.CommandText = sSql;
+
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvio", OleDbType.VarChar, 0, "OficioEnvio");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficio", OleDbType.Date, 0, "FechaEnvioOficio");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaEnvioOficioInt", OleDbType.Numeric, 0, "FechaEnvioOficioInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathOrigen", OleDbType.VarChar, 0, "OficioEnvioPathOrigen");
+                dataAdapter.UpdateCommand.Parameters.Add("@OficioEnvioPathConten", OleDbType.VarChar, 0, "OficioEnvioPathConten");
+                dataAdapter.UpdateCommand.Parameters.Add("@Rubro", OleDbType.VarChar, 0, "Rubro");
+                dataAdapter.UpdateCommand.Parameters.Add("@Tatj", OleDbType.Numeric, 0, "Tatj");
+                dataAdapter.UpdateCommand.Parameters.Add("@TipoJuris", OleDbType.Numeric, 0, "TipoJuris");
+                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacion", OleDbType.Date, 0, "FAprobacion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FAprobacionInt", OleDbType.Numeric, 0, "FAprobacionInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@NumTesis", OleDbType.VarChar, 0, "NumTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@NumTesisInt", OleDbType.Numeric, 0, "NumTesisInt");
+                dataAdapter.UpdateCommand.Parameters.Add("@YearTesis", OleDbType.Numeric, 0, "YearTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdAbogado", OleDbType.Numeric, 0, "IdAbogado");
+                dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
+
+                dataAdapter.Update(dataSet, "ProyectosTesis");
+                dataSet.Dispose();
+                dataAdapter.Dispose();
+
+                this.UpdateTesisCompara(tesis.ComparaTesis);
+                this.UpdatePrecedentes(tesis.Precedente, tesis.IdTesis);
+            }
+            catch (OleDbException ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+            }
+            catch (Exception ex)
+            {
+                string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,ProyectoTesisSalasModel", "ControlTesis");
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         /// <summary>
         /// Elimina los datos de recepción de un proyecto
         /// </summary>

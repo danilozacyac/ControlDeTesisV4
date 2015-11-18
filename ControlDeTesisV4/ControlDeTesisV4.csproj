@@ -205,6 +205,7 @@
       <DependentUpon>ListaProyectoSalas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reportes\Proyectos\TesisCcstRtfWordTable.cs" />
+    <Compile Include="Reportes\Proyectos\TesisPlenosRtfWordTable.cs" />
     <Compile Include="Reportes\Proyectos\TesisSalasRtfWordTable.cs" />
     <Compile Include="Reportes\SeleccionPeriodo.xaml.cs">
       <DependentUpon>SeleccionPeriodo.xaml</DependentUpon>
