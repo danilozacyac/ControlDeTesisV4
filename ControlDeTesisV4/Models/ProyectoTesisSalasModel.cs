@@ -614,6 +614,7 @@ namespace ControlDeTesisV4.Models
                         tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = this.GetTesisCompara(idTesis);
                         tesis.Turno = new TurnoModel().GetTurno(tesis.IdTipoJuris + 1, tesis.IdTesis);
+                        tesis.MesPublica = reader["MesPublica"] as int? ?? -1;
                     }
                 }
                 cmd.Dispose();

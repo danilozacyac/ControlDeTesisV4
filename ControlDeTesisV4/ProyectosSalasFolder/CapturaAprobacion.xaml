@@ -8,7 +8,7 @@
                    Loaded="Window_Loaded"
                    ResizeMode="NoResize"
                    WindowStartupLocation="CenterScreen">
-    <Grid >
+    <Grid>
         <DatePicker x:Name="DtpFAprobacion"
                     Margin="147,27,0,0"
                     HorizontalAlignment="Left"
@@ -115,21 +115,19 @@
                VerticalAlignment="Top"
                Source="/ControlDeTesisV4;component/Resources/questionSquare.png"
                ToolTip="Puede ser arábigo o romano de acuerdo al tipo de tesis. Ingresar de acuerdo a la clave de tesis" />
-        <Label x:Name="LblMes" Content="M. de Publicación:" HorizontalAlignment="Left" Margin="480,31,0,0" VerticalAlignment="Top"/>
-        <telerik:RadComboBox x:Name="CbxMPublish" HorizontalAlignment="Left" Margin="581,25,0,0" VerticalAlignment="Top" Width="181" >
-            <telerik:RadComboBoxItem Tag="1" Content="Enero"/>
-            <telerik:RadComboBoxItem Tag="2" Content="Febrero"/>
-            <telerik:RadComboBoxItem Tag="3" Content="Marzo"/>
-            <telerik:RadComboBoxItem Tag="4" Content="Abril"/>
-            <telerik:RadComboBoxItem Tag="5" Content="Mayo"/>
-            <telerik:RadComboBoxItem Tag="6" Content="Junio"/>
-            <telerik:RadComboBoxItem Tag="7" Content="Julio"/>
-            <telerik:RadComboBoxItem Tag="8" Content="Agosto"/>
-            <telerik:RadComboBoxItem Tag="9" Content="Septiembre"/>
-            <telerik:RadComboBoxItem Tag="10" Content="Octubre"/>
-            <telerik:RadComboBoxItem Tag="11" Content="Noviembre"/>
-            <telerik:RadComboBoxItem Tag="12" Content="Diciembre"/>
-        </telerik:RadComboBox>
+        <Label x:Name="LblMes"
+               Margin="480,31,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="M. de Publicación:" />
+        <telerik:RadComboBox x:Name="CbxMPublish"
+                             Width="181"
+                             Margin="581,25,0,0"
+                             ItemsSource="{Binding}"
+                             DisplayMemberPath="Descripcion"
+                             SelectedValuePath="IdDato"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top" />
 
     </Grid>
 

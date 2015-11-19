@@ -41,6 +41,22 @@ namespace ControlDeTesisV4.Dao
         private int estadoTesis;
         private int idEmisor;
 
+        /// <summary>
+        /// Indica el mes de publicación de la tesis
+        /// </summary>
+        private int mesPublica;
+
+        public int MesPublica
+        {
+            get
+            {
+                return this.mesPublica;
+            }
+            set
+            {
+                this.mesPublica = value;
+            }
+        }
 
         public int IdEmisor
         {

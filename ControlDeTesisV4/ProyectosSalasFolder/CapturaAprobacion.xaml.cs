@@ -38,6 +38,12 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 LblMes.Visibility = Visibility.Hidden;
                 CbxMPublish.Visibility = Visibility.Hidden;
             }
+            else
+            {
+                CbxMPublish.DataContext = new OtrosDatosModel().GetMeses();
+                if (tesis.MesPublica > 0)
+                    CbxMPublish.SelectedValue = tesis.MesPublica;
+            }
         }
 
         private void TxtYearTesis_PreviewTextInput(object sender, TextCompositionEventArgs e)

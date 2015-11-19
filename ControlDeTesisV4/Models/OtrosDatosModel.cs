@@ -329,5 +329,27 @@ namespace ControlDeTesisV4.Models
 
 
         #endregion
+
+
+
+        public ObservableCollection<OtrosDatos> GetMeses()
+        {
+            ObservableCollection<OtrosDatos> meses = new ObservableCollection<OtrosDatos>();
+
+            meses.Add(new OtrosDatos(1, "Enero"));
+            meses.Add(new OtrosDatos(2, "Febrero"));
+            meses.Add(new OtrosDatos(3, "Marzo"));
+            meses.Add(new OtrosDatos(4, "Abril"));
+            meses.Add(new OtrosDatos(5, "Mayo"));
+            meses.Add(new OtrosDatos(6, "Junio"));
+            meses.Add(new OtrosDatos(7, "Julio"));
+            meses.Add(new OtrosDatos(8, "Agosto"));
+            meses.Add(new OtrosDatos(9, "Septiembre"));
+            meses.Add(new OtrosDatos(10, "Octubre"));
+            meses.Add(new OtrosDatos(11, "Noviembre"));
+            meses.Add(new OtrosDatos(12, "Diciembre"));
+
+            return meses;
+        }
     }
 }
