@@ -28,9 +28,9 @@
                                    VerticalAlignment="Top"
                                    ApplicationName=" Módulo de Interconexión de la CCST">
                 <telerik:RadRibbonTab x:Name="Proyectos" Header="Proyectos">
-                    <telerik:RadRibbonGroup x:Name="GPObservaciones"
-                                            Header="Proyectos para Observaciones"
-                                            Uid="1">
+                    <telerik:RadRibbonGroup Uid="1"
+                                            x:Name="GPObservaciones"
+                                            Header="Proyectos para Observaciones">
                         <telerik:RadRibbonButton x:Name="BtnListadoProyPleno"
                                                  Click="ListadoProyectos"
                                                  Content="Pleno"
@@ -85,9 +85,9 @@
                         </StackPanel>
 
                     </telerik:RadRibbonGroup>
-                    <telerik:RadRibbonGroup x:Name="GpoCcst"
-                                            Header="Proyectos de la CCST"
-                                            Uid="2">
+                    <telerik:RadRibbonGroup Uid="2"
+                                            x:Name="GpoCcst"
+                                            Header="Proyectos de la CCST">
                         <telerik:RadRibbonButton x:Name="BtnListadoCcstPleno"
                                                  Click="BtnListadoCcst_Click"
                                                  Content="Listado Pleno"
@@ -143,9 +143,9 @@
 
                 </telerik:RadRibbonTab>
                 <telerik:RadRibbonTab x:Name="Publicar" Header="Para publicar">
-                    <telerik:RadRibbonGroup x:Name="GpoPublicar"
-                                            Header="Llegan para publicar"
-                                            Uid="20">
+                    <telerik:RadRibbonGroup Uid="20"
+                                            x:Name="GpoPublicar"
+                                            Header="Llegan para publicar">
                         <telerik:RadRibbonButton x:Name="BtnTesisPublica"
                                                  Click="BtnTesisPublica_Click"
                                                  LargeImage="Resources/tesis.png"
@@ -180,78 +180,78 @@
                 <telerik:RadRibbonTab Header="Turno">
                     <telerik:RadRibbonGroup Header="Tesis">
 
-                        <telerik:RadRibbonButton x:Name="BtnPorTurnar"
+                        <telerik:RadRibbonButton Uid="40"
+                                                 x:Name="BtnPorTurnar"
                                                  Click="BtnPorTurnar_Click"
                                                  LargeImage="Resources/Login.png"
-                                                 Size="Large"
-                                                 Uid="40">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="  Listado" />
                                 <TextBlock Text=" de tesis " />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="TurnaTesis"
+                        <telerik:RadRibbonButton Uid="41"
+                                                 x:Name="TurnaTesis"
                                                  Click="TurnaTesis_Click"
                                                  Content="Turnar tesis"
                                                  LargeImage="Resources/tesisTurno.png"
-                                                 Size="Large"
-                                                 Uid="41" />
+                                                 Size="Large" />
 
 
-                        <telerik:RadRibbonButton x:Name="ReturnaTesis"
+                        <telerik:RadRibbonButton Uid="42"
+                                                 x:Name="ReturnaTesis"
                                                  Content="Returnar tesis"
                                                  LargeImage="Resources/reload.png"
-                                                 Size="Large"
-                                                 Uid="42" />
+                                                 Size="Large" />
 
                         <StackPanel Orientation="Vertical">
 
-                            <telerik:RadRibbonButton x:Name="BtnEntregarTesis"
+                            <telerik:RadRibbonButton Uid="43"
+                                                     x:Name="BtnEntregarTesis"
                                                      Click="BtnEntregarTesis_Click"
                                                      Content="Entregar tesis"
                                                      LargeImage="Resources/entregar.png"
-                                                     Size="Medium"
-                                                     Uid="43" />
-                            <telerik:RadRibbonButton x:Name="BtnRecibirTesis"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="44"
+                                                     x:Name="BtnRecibirTesis"
                                                      Click="BtnRecibirTesis_Click"
                                                      Content="Validar entrega"
                                                      LargeImage="Resources/recibir.png"
-                                                     Size="Medium"
-                                                     Uid="44" />
-                            <telerik:RadRibbonButton x:Name="BtnPublicarTesis"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="45"
+                                                     x:Name="BtnPublicarTesis"
                                                      Content="Publicar tesis"
                                                      LargeImage="Resources/publicar.png"
-                                                     Size="Medium"
-                                                     Uid="45" />
+                                                     Size="Medium" />
                         </StackPanel>
 
 
                     </telerik:RadRibbonGroup>
                     <telerik:RadRibbonGroup Header="Ejecutorias">
-                        <telerik:RadRibbonButton x:Name="BtnListaEjecutoria"
+                        <telerik:RadRibbonButton Uid="46"
+                                                 x:Name="BtnListaEjecutoria"
                                                  Click="BtnListaEjecutoria_Click"
                                                  LargeImage="Resources/ejecutoria.png"
-                                                 Size="Large"
-                                                 Uid="46">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Listado" />
                                 <TextBlock Text="de ejecutorias" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="BtnTurnaEjecutoria"
+                        <telerik:RadRibbonButton Uid="47"
+                                                 x:Name="BtnTurnaEjecutoria"
                                                  Click="BtnTurnaEjecutoria_Click"
                                                  LargeImage="Resources/tesisTurno.png"
-                                                 Size="Large"
-                                                 Uid="47">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Turnar" />
                                 <TextBlock Text=" ejecutoria" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="BtnReTurnaEjecutoria"
+                        <telerik:RadRibbonButton Uid="48"
+                                                 x:Name="BtnReTurnaEjecutoria"
                                                  LargeImage="Resources/reload.png"
-                                                 Size="Large"
-                                                 Uid="48">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Returnar" />
                                 <TextBlock Text=" ejecutoria" />
@@ -260,49 +260,49 @@
 
                         <StackPanel Orientation="Vertical">
 
-                            <telerik:RadRibbonButton x:Name="BtnEntregarEjecutoria"
+                            <telerik:RadRibbonButton Uid="49"
+                                                     x:Name="BtnEntregarEjecutoria"
                                                      Click="BtnEntregarEjecutoria_Click"
                                                      Content="Entregar ejecutoria"
                                                      LargeImage="Resources/entregar.png"
-                                                     Size="Medium"
-                                                     Uid="49" />
-                            <telerik:RadRibbonButton x:Name="BtnRecibirEjecutoria"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="50"
+                                                     x:Name="BtnRecibirEjecutoria"
                                                      Click="BtnRecibirEjecutoria_Click"
                                                      Content="Validar entrega"
                                                      LargeImage="Resources/recibir.png"
-                                                     Size="Medium"
-                                                     Uid="50" />
-                            <telerik:RadRibbonButton x:Name="BtnPublicaEjecutoria"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="51"
+                                                     x:Name="BtnPublicaEjecutoria"
                                                      Content="Publicar tesis"
                                                      LargeImage="Resources/publicar.png"
-                                                     Size="Medium"
-                                                     Uid="51" />
+                                                     Size="Medium" />
                         </StackPanel>
                     </telerik:RadRibbonGroup>
                     <telerik:RadRibbonGroup Header="Votos">
-                        <telerik:RadRibbonButton x:Name="BtnListaVotos"
+                        <telerik:RadRibbonButton Uid="52"
+                                                 x:Name="BtnListaVotos"
                                                  Click="BtnListaVotos_Click"
                                                  LargeImage="Resources/ejecutoria.png"
-                                                 Size="Large"
-                                                 Uid="52">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Listado" />
                                 <TextBlock Text="de votos" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="BtnTurnaVoto"
+                        <telerik:RadRibbonButton Uid="53"
+                                                 x:Name="BtnTurnaVoto"
                                                  LargeImage="Resources/tesisTurno.png"
-                                                 Size="Large"
-                                                 Uid="53">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Turnar" />
                                 <TextBlock Text=" Voto" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="BtnReTurnaVoto"
+                        <telerik:RadRibbonButton Uid="54"
+                                                 x:Name="BtnReTurnaVoto"
                                                  LargeImage="Resources/reload.png"
-                                                 Size="Large"
-                                                 Uid="54">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="    Returnar" />
                                 <TextBlock Text=" Voto" />
@@ -311,58 +311,67 @@
 
                         <StackPanel Orientation="Vertical">
 
-                            <telerik:RadRibbonButton x:Name="BtnEntregarVoto"
+                            <telerik:RadRibbonButton Uid="55"
+                                                     x:Name="BtnEntregarVoto"
                                                      Click="BtnEntregarVoto_Click"
                                                      Content="Entregar voto"
                                                      LargeImage="Resources/entregar.png"
-                                                     Size="Medium"
-                                                     Uid="55" />
-                            <telerik:RadRibbonButton x:Name="BtnRecibirVoto"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="56"
+                                                     x:Name="BtnRecibirVoto"
                                                      Click="BtnRecibirVoto_Click"
                                                      Content="Validar entrega"
                                                      LargeImage="Resources/recibir.png"
-                                                     Size="Medium"
-                                                     Uid="56" />
-                            <telerik:RadRibbonButton x:Name="BtnPublicaVoto"
+                                                     Size="Medium" />
+                            <telerik:RadRibbonButton Uid="57"
+                                                     x:Name="BtnPublicaVoto"
                                                      Content="Publicar voto"
                                                      LargeImage="Resources/publicar.png"
-                                                     Size="Medium"
-                                                     Uid="57" />
+                                                     Size="Medium" />
                         </StackPanel>
                     </telerik:RadRibbonGroup>
 
                 </telerik:RadRibbonTab>
                 <telerik:RadRibbonTab Header="Estadísticas">
                     <telerik:RadRibbonGroup Header="">
-                        <telerik:RadRibbonButton x:Name="BtnCargas"
+                        <telerik:RadRibbonButton Uid="80"
+                                                 x:Name="BtnCargas"
                                                  Click="BtnCargas_Click"
                                                  Content="Carga de trabajo"
                                                  LargeImage="Resources/char.png"
-                                                 Size="Large"
-                                                 Uid="80" />
+                                                 Size="Large" />
                     </telerik:RadRibbonGroup>
 
                 </telerik:RadRibbonTab>
                 <telerik:RadRibbonTab Header="Reportes">
                     <telerik:RadRibbonGroup>
-                        <telerik:RadRibbonButton x:Name="BtnProyectosSalas"
+                        <telerik:RadRibbonButton Uid="100"
+                                                 x:Name="BtnProyectosSalas"
                                                  Click="BtnProyectosSalas_Click"
                                                  LargeImage="Resources/tesis.png"
-                                                 Size="Large"
-                                                 Uid="100">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="  Observaciones " />
                                 <TextBlock Text="  Proyectos Salas" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
-                        <telerik:RadRibbonButton x:Name="BtnProyectosCcst"
+                        <telerik:RadRibbonButton Uid="101"
+                                                 x:Name="BtnProyectosCcst"
                                                  Click="BtnProyectosCcst_Click"
                                                  LargeImage="Resources/tesis.png"
-                                                 Size="Large"
-                                                 Uid="101">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="  Observaciones " />
                                 <TextBlock Text="  Proyectos CCST" />
+                            </StackPanel>
+                        </telerik:RadRibbonButton>
+                        <telerik:RadRibbonButton Uid="101"
+                                                 x:Name="BtnPlenosReport"
+                                                 LargeImage="Resources/tesis.png"
+                                                 Size="Large" Click="BtnPlenosReport_Click">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="Center" Text="Plenos de" />
+                                <TextBlock HorizontalAlignment="Center" Text="Circuito" />
                             </StackPanel>
                         </telerik:RadRibbonButton>
                     </telerik:RadRibbonGroup>

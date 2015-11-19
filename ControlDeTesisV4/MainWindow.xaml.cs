@@ -300,6 +300,16 @@ namespace ControlDeTesisV4
                 LaunchBusyIndicator();
         }
 
+        private void BtnPlenosReport_Click(object sender, RoutedEventArgs e)
+        {
+            tipoReporte = 4;
+            SeleccionPeriodo periodo = new SeleccionPeriodo(4);
+            periodo.ShowDialog();
+
+            if (periodo.DialogResult == true)
+                LaunchBusyIndicator();
+        }
+
         ListaProyectoSalas panelProyectosSalas;
         private void ListadoProyectos(object sender, RoutedEventArgs e)
         {
@@ -390,9 +400,13 @@ namespace ControlDeTesisV4
             {
                 listaImprimir = new ProyectoTesisSalasModel().GetProyectoTesis(MainWindow.InicioPeriodo, MainWindow.FinalPeriodo);
             }
-            else
+            else if(tipoReporte == 2)
             {
                 listaImprimir = new ProyectoTesisCcstModel().GetProyectoTesis(MainWindow.InicioPeriodo, MainWindow.FinalPeriodo);
+            }
+            else if (tipoReporte == 4)
+            {
+                listaImprimir = new ProyectoTesisSalasModel().GetTesisReportePlenos(MainWindow.InicioPeriodo, MainWindow.FinalPeriodo);
             }
         }
 
@@ -416,9 +430,14 @@ namespace ControlDeTesisV4
                     TesisSalasRtfWordTable rtf = new TesisSalasRtfWordTable(listaImprimir);
                     rtf.GeneraWord();
                 }
-                else
+                else if (tipoReporte == 2)
                 {
                     TesisCcstRtfWordTable rtf = new TesisCcstRtfWordTable(listaImprimir);
+                    rtf.GeneraWord();
+                }
+                else if (tipoReporte == 4)
+                {
+                    TesisPlenosRtfWordTable rtf = new TesisPlenosRtfWordTable(listaImprimir);
                     rtf.GeneraWord();
                 }
             }
@@ -438,6 +457,8 @@ namespace ControlDeTesisV4
         }
 
         #endregion
+
+        
 
         
     }

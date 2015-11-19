@@ -75,7 +75,7 @@ namespace ControlDeTesisV4.Reportes.Proyectos
 
             try
             {
-                while (instancia < 5)
+                while (instancia < 4)
                 {
                     List<ProyectosTesis> listaImprimir = (from n in listaTesis
                                                           where n.IdInstancia == instancia
