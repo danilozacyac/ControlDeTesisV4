@@ -13,7 +13,6 @@ using ControlDeTesisV4.Reportes;
 using ControlDeTesisV4.Reportes.Proyectos;
 using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
-using DocumentMgmtApi;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
@@ -285,6 +284,7 @@ namespace ControlDeTesisV4
         {
             tipoReporte = 1;
             SeleccionPeriodo periodo = new SeleccionPeriodo(1);
+            periodo.Owner = this;
             periodo.ShowDialog();
 
             if (periodo.DialogResult == true)
@@ -295,6 +295,7 @@ namespace ControlDeTesisV4
         {
             tipoReporte = 2;
             SeleccionPeriodo periodo = new SeleccionPeriodo(2);
+            periodo.Owner = this;
             periodo.ShowDialog();
             if (periodo.DialogResult == true)
                 LaunchBusyIndicator();
@@ -304,6 +305,7 @@ namespace ControlDeTesisV4
         {
             tipoReporte = 4;
             SeleccionPeriodo periodo = new SeleccionPeriodo(4);
+            periodo.Owner = this;
             periodo.ShowDialog();
 
             if (periodo.DialogResult == true)
