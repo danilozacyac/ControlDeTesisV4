@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <converter:PonentesConverter x:Key="PonenteConverter" />
         <converter:TipoTesisConverter x:Key="TipoTesis" />
+        <converter:EmisorConverter x:Key="EmisorConverter"/>
     </UserControl.Resources>
     <telerik:RadBusyIndicator x:Name="BusyIndicator"
                               IsIndeterminate="True"
@@ -78,6 +79,11 @@
                             </DataTemplate>
                         </telerik:GridViewDataColumn.CellTemplate>
                     </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn Width="150"
+                                                DataMemberBinding="{Binding IdEmisor,Converter={StaticResource EmisorConverter}}"
+                                                Header="Área emisora" 
+                                                IsReadOnly="True"
+                                                IsVisible="True" />
                     <telerik:GridViewDataColumn Width="100"
                                                 DataMemberBinding="{Binding FResolucion,
                                                                             StringFormat={}{0:dd/MM/yyyy},

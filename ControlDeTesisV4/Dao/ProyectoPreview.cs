@@ -19,7 +19,20 @@ namespace ControlDeTesisV4.Dao
         private int idPonente;
         private int estadoTesis;
         private int idAbogadoResponsable;
+        private int idEmisor;
         private readonly string comparativoImage = "/ControlDeTesis2;component/Resources/compare.png";
+
+        public int IdEmisor
+        {
+            get
+            {
+                return this.idEmisor;
+            }
+            set
+            {
+                this.idEmisor = value;
+            }
+        }
 
         public int IdTipoProyecto
         {

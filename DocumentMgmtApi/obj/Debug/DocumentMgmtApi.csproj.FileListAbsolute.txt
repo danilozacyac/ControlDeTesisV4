@@ -28,3 +28,9 @@ C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\DocumentM
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.pdb
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\DocumentMgmtApi\bin\Debug\ScjnUtilities.dll
 C:\Users\lavega\Documents\Visual Studio 2012\Projects\ControlDeTesisV4\DocumentMgmtApi\bin\Debug\ScjnUtilities.pdb
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.dll
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\bin\Debug\DocumentMgmtApi.pdb
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\bin\Debug\ScjnUtilities.pdb
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.csprojResolveAssemblyReference.cache
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.dll
+C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\DocumentMgmtApi\obj\Debug\DocumentMgmtApi.pdb

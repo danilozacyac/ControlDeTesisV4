@@ -26,7 +26,8 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT IdTesis,IdProyecto,Rubro,tatj,EstadoTesis,IdAbogado FROM ProyectosTesis WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto AND IdInstancia = @IdInstancias";
+            String sqlCadena = "SELECT PT.IdTesis, PT.IdProyecto AS ProyectoID, PT.Rubro, PT.Tatj, PT.EstadoTesis, PT.IdAbogado, P.IdEmisor " +
+                               "FROM ProyectosTesis PT INNER JOIN Proyectos P ON PT.IdProyecto = P.IdProyecto WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto AND PT.IdInstancia = @IdInstancias";
             
             try
             {
@@ -43,12 +44,13 @@ namespace ControlDeTesisV4.Models
                     {
                         ProyectoPreview preview = new ProyectoPreview();
                         preview.IdTesis = Convert.ToInt32(reader["IdTesis"]);
-                        preview.IdProyecto = Convert.ToInt32(reader["IdProyecto"]);
+                        preview.IdProyecto = Convert.ToInt32(reader["ProyectoID"]);
                         preview.IdTipoProyecto = idTipoProyecto;
                         preview.Rubro = reader["Rubro"].ToString();
                         preview.Tatj = Convert.ToInt32(reader["tatj"]);
                         preview.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
                         preview.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
+                        preview.IdEmisor = Convert.ToInt32(reader["IdEmisor"]);
 
                         if (idTipoProyecto == 1)
                             this.GetProyectoInfoPreview(preview);

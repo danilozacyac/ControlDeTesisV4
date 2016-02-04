@@ -46,7 +46,11 @@ namespace ControlDeTesisV4.Singletons
             get
             {
                 if (areasEmisoras == null)
+                {
                     areasEmisoras = new OtrosDatosModel().GetAreasEmisoras();
+
+                    areasEmisoras = new ObservableCollection<OtrosDatos>(areasEmisoras.Union(AreasEmisorasPlenos));
+                }
 
                 return areasEmisoras;
             }

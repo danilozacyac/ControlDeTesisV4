@@ -29,7 +29,7 @@
     <PublisherName>Suprema Corte de Justicia de la Nación</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -135,6 +135,7 @@
       <DependentUpon>AddNombre.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\DisidentesConverter.cs" />
+    <Compile Include="Converter\EmisorConverter.cs" />
     <Compile Include="Converter\EstadoTesisConverter.cs" />
     <Compile Include="Converter\TipoVotoConverter.cs" />
     <Compile Include="Dao\AccesoUsuarios.cs" />
