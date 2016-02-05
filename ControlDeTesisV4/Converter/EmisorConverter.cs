@@ -14,7 +14,7 @@ namespace ControlDeTesisV4.Converter
         {
             int idEmisor = value as int? ?? 0;
 
-            return (from n in OtrosDatosSingleton.AreasEmisoras
+            return (from n in OtrosDatosSingleton.AreasEmisorasGrid
                     where n.IdDato == idEmisor
                     select n.Descripcion).ToList()[0];
 
