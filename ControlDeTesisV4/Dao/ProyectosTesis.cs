@@ -40,6 +40,7 @@ namespace ControlDeTesisV4.Dao
         private TurnoDao turno;
         private int estadoTesis;
         private int idEmisor;
+        private DateTime? fPublicacion;
 
         /// <summary>
         /// Indica el mes de publicación de la tesis
@@ -410,6 +411,20 @@ namespace ControlDeTesisV4.Dao
                 this.OnPropertyChanged("EstadoTesis");
             }
         }
+
+        public DateTime? FPublicacion
+        {
+            get
+            {
+                return this.fPublicacion;
+            }
+            set
+            {
+                this.fPublicacion = value;
+            }
+        }
+
+        
 
         #region INotifyPropertyChanged Members
 

@@ -123,11 +123,23 @@
         <telerik:RadComboBox x:Name="CbxMPublish"
                              Width="181"
                              Margin="581,25,0,0"
-                             ItemsSource="{Binding}"
-                             DisplayMemberPath="Descripcion"
-                             SelectedValuePath="IdDato"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Top" />
+                             VerticalAlignment="Top"
+                             DisplayMemberPath="Descripcion"
+                             ItemsSource="{Binding}"
+                             SelectedValuePath="IdDato" />
+        <DatePicker x:Name="DtpFPublicacion"
+                    Width="165"
+                    Margin="597,71,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    SelectedDate="{Binding FPublicacion,
+                                           Mode=TwoWay}" />
+        <Label x:Name="LblFPublica"
+               Margin="488,75,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="F. de publicación" />
 
     </Grid>
 

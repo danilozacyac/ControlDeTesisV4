@@ -26,7 +26,7 @@ namespace ControlDeTesisV4.Models
             OleDbCommand cmd = null;
             OleDbDataReader reader = null;
 
-            String sqlCadena = "SELECT PT.IdTesis, PT.IdProyecto AS ProyectoID, PT.Rubro, PT.Tatj, PT.EstadoTesis, PT.IdAbogado, P.IdEmisor " +
+            String sqlCadena = "SELECT PT.IdTesis, PT.IdProyecto AS ProyectoID, PT.Rubro, PT.Tatj, PT.EstadoTesis, PT.IdAbogado, P.IdEmisor, PT.MesPublica, PT.FechaPublicacion " +
                                "FROM ProyectosTesis PT INNER JOIN Proyectos P ON PT.IdProyecto = P.IdProyecto WHERE EstadoTesis < 4 AND IdTipoProyecto = @IdTipoProyecto AND PT.IdInstancia = @IdInstancias";
             
             try
@@ -51,6 +51,8 @@ namespace ControlDeTesisV4.Models
                         preview.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
                         preview.IdAbogadoResponsable = Convert.ToInt32(reader["IdAbogado"]);
                         preview.IdEmisor = Convert.ToInt32(reader["IdEmisor"]);
+                        preview.MesPublica = Convert.ToInt16(reader["MesPublica"]);
+                        preview.FPublicacion = DateTimeUtilities.GetDateFromReader(reader, "FechaPublicacion");
 
                         if (idTipoProyecto == 1)
                             this.GetProyectoInfoPreview(preview);

@@ -21,6 +21,10 @@ namespace ControlDeTesisV4.Dao
         private int idAbogadoResponsable;
         private int idEmisor;
         private readonly string comparativoImage = "/ControlDeTesis2;component/Resources/compare.png";
+        private int mesPublica;
+        private DateTime? fPublicacion;
+        
+        
 
         public int IdEmisor
         {
@@ -188,6 +192,32 @@ namespace ControlDeTesisV4.Dao
                 this.idAbogadoResponsable = value;
             }
         }
+
+        public int MesPublica
+        {
+            get
+            {
+                return this.mesPublica;
+            }
+            set
+            {
+                this.mesPublica = value;
+            }
+        }
+
+        public DateTime? FPublicacion
+        {
+            get
+            {
+                return this.fPublicacion;
+            }
+            set
+            {
+                this.fPublicacion = value;
+            }
+        }
+
+        
 
         #region INotifyPropertyChanged Members
 

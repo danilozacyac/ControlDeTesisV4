@@ -37,6 +37,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             {
                 LblMes.Visibility = Visibility.Hidden;
                 CbxMPublish.Visibility = Visibility.Hidden;
+                LblFPublica.Visibility = Visibility.Hidden;
+                DtpFPublicacion.Visibility = Visibility.Hidden;
             }
             else
             {

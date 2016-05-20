@@ -323,6 +323,18 @@ namespace ControlDeTesisV4.Models
                 dr["ClaveTesis"] = tesis.ClaveTesis;
                 dr["EstadoTesis"] = tesis.EstadoTesis;
                 dr["IdAbogado"] = tesis.IdAbogadoResponsable;
+                dr["MesPublica"] = mesPublicacion;
+
+                if (tesis.FPublicacion != null)
+                {
+                    dr["FechaPublicacion"] = tesis.FPublicacion;
+                    dr["FechaPublicacionInt"] = DateTimeUtilities.DateToInt(tesis.FPublicacion);
+                }
+                else
+                {
+                    dr["FechaPublicacion"] = DBNull.Value;
+                    dr["FechaPublicacionInt"] = 0;
+                }
 
                 dr.EndEdit();
 
@@ -330,8 +342,8 @@ namespace ControlDeTesisV4.Models
 
                 sSql = "UPDATE ProyectosTesis SET OficioEnvio = @OficioEnvio, FechaEnvioOficio = @FechaEnvioOficio,FechaEnvioOficioInt = @FechaEnvioOficioInt," +
                        "OficioEnvioPathOrigen = @OficioEnvioPathOrigen,OficioEnvioPathConten = @OficioEnvioPathConten,Rubro = @Rubro,Tatj = @Tatj, TipoJuris = @TipoJuris," +
-                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, " + 
-                       "YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado, MesPublica =  " + mesPublicacion + " " +
+                       "FAprobacion = @FAprobacion, FAprobacionInt = @FAprobacionInt, NumTesis = @NumTesis, NumTesisInt = @NumTesisInt, " +
+                       "YearTesis = @YearTesis, ClaveTesis = @ClaveTesis, EstadoTesis = @EstadoTesis, IdAbogado = @IdAbogado, MesPublica = @MesPublica, FechaPublicacion = @FechaPublicacion, FechaPublicacionInt = @FechaPublicacionInt " +
                        " WHERE IdTesis = @IdTesis";
                 dataAdapter.UpdateCommand.CommandText = sSql;
 
@@ -351,6 +363,9 @@ namespace ControlDeTesisV4.Models
                 dataAdapter.UpdateCommand.Parameters.Add("@ClaveTesis", OleDbType.VarChar, 0, "ClaveTesis");
                 dataAdapter.UpdateCommand.Parameters.Add("@EstadoTesis", OleDbType.Numeric, 0, "EstadoTesis");
                 dataAdapter.UpdateCommand.Parameters.Add("@IdAbogado", OleDbType.Numeric, 0, "IdAbogado");
+                dataAdapter.UpdateCommand.Parameters.Add("@MesPublica", OleDbType.Numeric, 0, "MesPublica");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaPublicacion", OleDbType.Date, 0, "FechaPublicacion");
+                dataAdapter.UpdateCommand.Parameters.Add("@FechaPublicacionInt", OleDbType.Numeric, 0, "FechaPublicacionInt");
                 dataAdapter.UpdateCommand.Parameters.Add("@IdTesis", OleDbType.Numeric, 0, "IdTesis");
 
                 dataAdapter.Update(dataSet, "ProyectosTesis");

@@ -12,9 +12,9 @@
         Loaded="Window_Loaded"
         WindowState="Maximized">
     <telerik:RadBusyIndicator x:Name="BusyIndicator"
+                              telerik:StyleManager.Theme="Windows8"
                               BusyContent="Generando reporte ..."
-                              IsIndeterminate="True"
-                              telerik:StyleManager.Theme="Windows8">
+                              IsIndeterminate="True">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -367,8 +367,9 @@
                         </telerik:RadRibbonButton>
                         <telerik:RadRibbonButton Uid="101"
                                                  x:Name="BtnPlenosReport"
+                                                 Click="BtnPlenosReport_Click"
                                                  LargeImage="Resources/tesis.png"
-                                                 Size="Large" Click="BtnPlenosReport_Click">
+                                                 Size="Large">
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center" Text="Plenos de" />
                                 <TextBlock HorizontalAlignment="Center" Text="Circuito" />
