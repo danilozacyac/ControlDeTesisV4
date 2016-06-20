@@ -10,6 +10,7 @@ using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
+using System.Configuration;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -104,6 +105,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             proyecto.IdSignatario = Convert.ToInt32(CbxSignatario.SelectedValue);
             proyecto.IdEmisor = Convert.ToInt32(CbxEmisores.SelectedValue);
+
+            proyecto.OfRecepcionPathOrigen = proyecto.OfRecepcionPathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
             new ProyectoTesisSalasModel().UpdateDatosLlegada(proyecto);
             this.Close();
         }

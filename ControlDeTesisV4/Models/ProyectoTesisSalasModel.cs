@@ -607,7 +607,7 @@ namespace ControlDeTesisV4.Models
                         tesis.IdTesis = idTesis;
                         tesis.OficioEnvio = reader["OficioEnvio"].ToString();
                         tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
-                        tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
+                        tesis.OficioEnvioPathOrigen = (String.IsNullOrEmpty(reader["OficioEnvioPathOrigen"].ToString())) ? String.Empty : ConfigurationManager.AppSettings["ArchivosSoporte"] + reader["OficioEnvioPathOrigen"].ToString();
                         tesis.Rubro = reader["Rubro"].ToString();
                         tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
                         tesis.IdTipoJuris = Convert.ToInt32(reader["TipoJuris"]);
@@ -696,7 +696,7 @@ namespace ControlDeTesisV4.Models
                         tesis.OficioEnvio = reader["OficioEnvio"].ToString();
                         tesis.FRecepcion = DateTimeUtilities.GetDateFromReader(reader, "FRecepcion");
                         tesis.FEnvio = DateTimeUtilities.GetDateFromReader(reader, "FechaEnvioOficio");
-                        tesis.OficioEnvioPathOrigen = reader["OficioEnvioPathOrigen"].ToString();
+                        tesis.OficioEnvioPathOrigen = (String.IsNullOrEmpty(reader["OficioEnvioPathOrigen"].ToString())) ? String.Empty : ConfigurationManager.AppSettings["ArchivosSoporte"] + reader["OficioEnvioPathOrigen"].ToString();
                         tesis.Rubro = reader["Rubro"].ToString();
                         tesis.Tatj = Convert.ToInt16(reader["Tatj"]);
                         tesis.IdTipoJuris = Convert.ToInt32(reader["TipoJuris"]);

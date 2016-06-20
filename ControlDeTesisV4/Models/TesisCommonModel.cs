@@ -380,9 +380,9 @@ namespace ControlDeTesisV4.Models
                         tesis.TObservacionesPlano = reader["TR1Plano"].ToString();
                         tesis.TAprobada = reader["TextoRevision2"].ToString();
                         tesis.TAprobadaPlano = reader["TR2Plano"].ToString();
-                        tesis.ToFilePathOrigen = reader["ToFilePathOrigen"].ToString();
-                        tesis.TObsFilePathOrigen = reader["TobsFilePathOrigen"].ToString();
-                        tesis.TAprobFilePathOrigen = reader["TAprobFilePathOrigen"].ToString();
+                        tesis.ToFilePathOrigen = (String.IsNullOrEmpty(reader["ToFilePathOrigen"].ToString())) ? String.Empty : ConfigurationManager.AppSettings["ArchivosSoporte"] + reader["ToFilePathOrigen"].ToString();
+                        tesis.TObsFilePathOrigen = (String.IsNullOrEmpty(reader["TobsFilePathOrigen"].ToString())) ? String.Empty : ConfigurationManager.AppSettings["ArchivosSoporte"] + reader["TobsFilePathOrigen"].ToString();
+                        tesis.TAprobFilePathOrigen = (String.IsNullOrEmpty(reader["TAprobFilePathOrigen"].ToString())) ? String.Empty : ConfigurationManager.AppSettings["ArchivosSoporte"] + reader["TAprobFilePathOrigen"].ToString();
 
                     }
                 }

@@ -13,6 +13,7 @@ using ControlDeTesisV4.Singletons;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
+using System.Configuration;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -161,6 +162,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             TextRange range = new TextRange(TxtVistaPrevia.Document.ContentStart, TxtVistaPrevia.Document.ContentEnd);
             proyecto.ComparaTesis.TOPlano = range.Text;
             proyecto.ComparaTesis.TextoOriginal = DocumentComparer.GetRtfString(TxtVistaPrevia);
+            proyecto.ComparaTesis.ToFilePathOrigen = proyecto.ComparaTesis.ToFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
 
             if (!isUpdating)
                 proyectosSalas.Add(proyecto);

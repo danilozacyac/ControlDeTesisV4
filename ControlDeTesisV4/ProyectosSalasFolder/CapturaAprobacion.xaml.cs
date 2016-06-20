@@ -10,6 +10,7 @@ using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using DocumentMgmtApi;
 using ScjnUtilities;
+using System.Configuration;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -145,6 +146,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             tesis.EstadoTesis = 3;
 
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
+
+            tesis.ComparaTesis.TAprobFilePathOrigen = tesis.ComparaTesis.TAprobFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
 
             if (tesis.IdInstancia != 4)
                 model.UpdateProyectoTesis(tesis);

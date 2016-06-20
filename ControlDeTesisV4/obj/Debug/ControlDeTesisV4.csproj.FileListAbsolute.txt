@@ -498,4 +498,3 @@ C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\Con
 C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ControlDeTesisV4.csproj.GenerateResource.Cache
 C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ControlDeTesisV4.exe.manifest
 C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\ControlDeTesisV4\obj\Debug\ControlDeTesisV4.application
-C:\Users\lavega\Documents\GitHub\ControlDeTesisV4\ControlDeTesisV4\bin\Debug\ScjnUtilities.dll

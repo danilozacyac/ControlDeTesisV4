@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Win32;
 using Word = Microsoft.Office.Interop.Word;
+using System.Configuration;
 
 namespace DocumentMgmtApi
 {
@@ -91,7 +92,7 @@ namespace DocumentMgmtApi
 
             dialog.Filter = "Office Documents|*.doc;*.docx| RichTextFiles |*.rtf";
 
-            dialog.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\Documents";
+            dialog.InitialDirectory = ConfigurationManager.AppSettings["ArchivosSoporte"];
             dialog.Title = "Selecciona el archivo del proyecto";
             dialog.ShowDialog();
 

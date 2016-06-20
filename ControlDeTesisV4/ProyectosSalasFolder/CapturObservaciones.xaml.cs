@@ -8,6 +8,7 @@ using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using DocumentMgmtApi;
+using System.Configuration;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -102,6 +103,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             tesis.ComparaTesis.TObservaciones = DocumentComparer.GetRtfString(TxtVistaPrevia);
             tesis.EstadoTesis = 2;
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
+            tesis.ComparaTesis.TObsFilePathOrigen = tesis.ComparaTesis.TObsFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
             model.UpdateProyectoTesis(tesis);
 
             this.Close();
