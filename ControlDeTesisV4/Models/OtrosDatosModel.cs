@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using ControlDeTesisV4.Dao;
 using ScjnUtilities;
+using System.Data.SqlClient;
 
 namespace ControlDeTesisV4.Models
 {
@@ -177,24 +178,24 @@ namespace ControlDeTesisV4.Models
         {
             ObservableCollection<OtrosDatos> plenosDeCircuito = new ObservableCollection<OtrosDatos>();
 
-            OleDbConnection connection = new OleDbConnection(connectionStringDirectorio);
-            OleDbCommand cmd = null;
-            OleDbDataReader reader = null;
+            SqlConnection connection = new SqlConnection(connectionStringDirectorio);
+            SqlCommand cmd = null;
+            SqlDataReader reader = null;
 
-            String sqlCadena = "SELECT IdOrg,Organismo,TpoOrg FROM Organismos WHERE TpoOrg = 4 ORDER BY Organismo";
+            String sqlCadena = "SELECT IdOrganismo,Organismo,IdTpoOrg FROM Organismos WHERE IdTpoOrg = 4 ORDER BY Organismo";
 
             try
             {
                 connection.Open();
 
-                cmd = new OleDbCommand(sqlCadena, connection);
+                cmd = new SqlCommand(sqlCadena, connection);
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        plenosDeCircuito.Add(new OtrosDatos(Convert.ToInt32(reader["IdOrg"]), 
+                        plenosDeCircuito.Add(new OtrosDatos(Convert.ToInt32(reader["IdOrganismo"]), 
                             4,
                             reader["Organismo"].ToString()));
                     }
@@ -203,7 +204,7 @@ namespace ControlDeTesisV4.Models
                 cmd.Dispose();
                 reader.Close();
             }
-            catch (OleDbException ex)
+            catch (SqlException ex)
             {
                 string methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 ErrorUtilities.SetNewErrorMessage(ex, methodName + " Exception,OtrosDatosModel", "ControlTesis");
