@@ -55,13 +55,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         {
             Button but = sender as Button;
             idTesis = Convert.ToInt32(but.Uid);
-
-            
-
-            if (lastProyecto == null || idTesis != lastProyecto.IdTesis)
-            {
-                lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
-            }
+            lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
 
             DatosProyectoSalas obs = new DatosProyectoSalas(lastProyecto);
             obs.ShowDialog();
@@ -72,10 +66,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             Button but = sender as Button;
             idTesis = Convert.ToInt32(but.Uid);
 
-            if (lastProyecto == null || idTesis != lastProyecto.IdTesis)
-            {
-                lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
-            }
+            lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
 
             CapturObservaciones obs = new CapturObservaciones(lastProyecto);
             obs.ShowDialog();
@@ -86,10 +77,8 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             Button but = sender as Button;
             idTesis = Convert.ToInt32(but.Uid);
 
-            if (lastProyecto == null || idTesis != lastProyecto.IdTesis)
-            {
-                lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
-            }
+            lastProyecto = new ProyectoTesisSalasModel().GetProyectoTesis(idTesis);
+
             CapturaAprobacion aprob = new CapturaAprobacion(lastProyecto);
             aprob.ShowDialog();
         }
@@ -97,8 +86,6 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         private void SearchTextBox_Search(object sender, RoutedEventArgs e)
         {
             String tempString = ((TextBox)sender).Text.ToUpper();
-
-            
 
             if (!String.IsNullOrEmpty(tempString))
                 GListado.DataContext = (from n in listaProyectos
@@ -109,7 +96,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         }
 
 
-        
+
         private void GListado_SelectionChanged(object sender, Telerik.Windows.Controls.SelectionChangeEventArgs e)
         {
             selectedTesis = GListado.SelectedItem as ProyectoPreview;
@@ -143,7 +130,7 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
         private BackgroundWorker worker = new BackgroundWorker();
         private void WorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1,idInstancia);
+            listaProyectos = new ProyectoPreviewModel().GetPreviewSalasSinTurnar(1, idInstancia);
         }
 
         void WorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

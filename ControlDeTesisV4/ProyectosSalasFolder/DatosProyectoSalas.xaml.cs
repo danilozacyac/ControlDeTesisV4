@@ -162,7 +162,13 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             TextRange range = new TextRange(TxtVistaPrevia.Document.ContentStart, TxtVistaPrevia.Document.ContentEnd);
             proyecto.ComparaTesis.TOPlano = range.Text;
             proyecto.ComparaTesis.TextoOriginal = DocumentComparer.GetRtfString(TxtVistaPrevia);
-            proyecto.ComparaTesis.ToFilePathOrigen = proyecto.ComparaTesis.ToFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
+
+            int indexOf = proyecto.ComparaTesis.ToFilePathOrigen.ToUpper().IndexOf(@"PLENO_Y_SALAS");
+            string ruta = proyecto.ComparaTesis.ToFilePathOrigen.Substring(indexOf);
+
+
+            proyecto.ComparaTesis.ToFilePathOrigen = ruta;
+            
 
             if (!isUpdating)
                 proyectosSalas.Add(proyecto);

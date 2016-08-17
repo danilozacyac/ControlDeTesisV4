@@ -80,8 +80,10 @@ namespace ControlDeTesisV4.Models
             {
                 connection.Close();
             }
-            
-            return listaProyectosSalas;
+
+            return new ObservableCollection<ProyectoPreview>(from n in listaProyectosSalas
+                                                             orderby n.FRecepcion descending
+                                                             select n); 
         }
 
         private void GetProyectoInfoPreview(ProyectoPreview preview)

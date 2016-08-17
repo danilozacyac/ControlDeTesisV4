@@ -147,7 +147,13 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
 
-            tesis.ComparaTesis.TAprobFilePathOrigen = tesis.ComparaTesis.TAprobFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
+           // tesis.ComparaTesis.TAprobFilePathOrigen = tesis.ComparaTesis.TAprobFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
+
+            int indexOf = tesis.ComparaTesis.TAprobFilePathOrigen.ToUpper().IndexOf(@"PLENO_Y_SALAS");
+            string ruta = tesis.ComparaTesis.TAprobFilePathOrigen.Substring(indexOf);
+
+            tesis.ComparaTesis.TObsFilePathOrigen = ruta;
+
 
             if (tesis.IdInstancia != 4)
                 model.UpdateProyectoTesis(tesis);

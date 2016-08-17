@@ -103,7 +103,14 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             tesis.ComparaTesis.TObservaciones = DocumentComparer.GetRtfString(TxtVistaPrevia);
             tesis.EstadoTesis = 2;
             ProyectoTesisSalasModel model = new ProyectoTesisSalasModel();
-            tesis.ComparaTesis.TObsFilePathOrigen = tesis.ComparaTesis.TObsFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
+            //tesis.ComparaTesis.TObsFilePathOrigen = tesis.ComparaTesis.TObsFilePathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
+
+            int indexOf = tesis.ComparaTesis.ToFilePathOrigen.ToUpper().IndexOf(@"PLENO_Y_SALAS");
+            string ruta = tesis.ComparaTesis.ToFilePathOrigen.Substring(indexOf);
+
+            tesis.ComparaTesis.TObsFilePathOrigen = ruta;
+
+            tesis.OficioEnvioPathOrigen = tesis.OficioEnvioPathOrigen.Replace(ConfigurationManager.AppSettings["ArchivosSoporte"], "");
             model.UpdateProyectoTesis(tesis);
 
             this.Close();
