@@ -542,7 +542,6 @@ namespace ControlDeTesisV4.Models
                 this.SetTesisCompara(tesis.ComparaTesis, tesis.IdTesis);
                 this.SetPrecedentes(tesis.Precedente, tesis.IdTesis);
 
-                AddNewProyectToList(tesis);
             }
             catch (OleDbException ex)
             {
@@ -560,21 +559,7 @@ namespace ControlDeTesisV4.Models
             }
         }
 
-        private void AddNewProyectToList(ProyectosTesis proyecto)
-        {
-            TesisTurnadaPreview tesis = new TesisTurnadaPreview();
-            tesis.IdTesis = proyecto.IdTesis;
-            tesis.Idabogado = proyecto.IdAbogadoResponsable;
-            tesis.ClaveTesis = proyecto.ClaveTesis;
-            tesis.Rubro = proyecto.Rubro;
-            tesis.IdTipoAsunto = proyecto.Precedente.TipoAsunto;
-            tesis.NumAsunto = proyecto.Precedente.NumAsunto;
-            tesis.YearAsunto = proyecto.Precedente.YearAsunto;
-            tesis.IdInstancia = proyecto.IdInstancia;
-            tesis.EstadoTesis = 4;
-
-            Constants.ListadoDeTesis.Add(tesis);
-        }
+        
 
         /// <summary>
         /// Devueleve el proyecto de tesis completo de la tesis seleccionada
@@ -622,10 +607,8 @@ namespace ControlDeTesisV4.Models
                         tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
                         tesis.ClaveTesis = reader["ClaveTesis"].ToString();
                         tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
-                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
                         tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = this.GetTesisCompara(idTesis);
-                        tesis.Turno = new TurnoModel().GetTurno(tesis.IdTipoJuris + 1, tesis.IdTesis);
                         tesis.MesPublica = reader["MesPublica"] as int? ?? -1; 
                     }
                 }
@@ -711,7 +694,6 @@ namespace ControlDeTesisV4.Models
                         tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
                         tesis.ClaveTesis = reader["ClaveTesis"].ToString();
                         tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
-                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
                         tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = this.GetTesisCompara(tesis.IdTesis);
 
@@ -800,7 +782,6 @@ namespace ControlDeTesisV4.Models
                         tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
                         tesis.ClaveTesis = reader["ClaveTesis"].ToString();
                         tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
-                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
                         tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = this.GetTesisCompara(tesis.IdTesis);
 

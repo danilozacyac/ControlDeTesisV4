@@ -33,37 +33,37 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
                 this.LoadRichTextBoxContent(TxtVistaPrevia, tesis.ComparaTesis.TObservaciones);
         }
 
-        private void TextBoxPath_PreviewDragOver(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effects = DragDropEffects.Copy;
-                var listbox = sender as TextBox;
-                listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
+        //private void TextBoxPath_PreviewDragOver(object sender, DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        e.Effects = DragDropEffects.Copy;
+        //        var listbox = sender as TextBox;
+        //        listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
+        //    }
+        //    else
+        //    {
+        //        e.Effects = DragDropEffects.None;
+        //    }
 
-            e.Handled = true;
-        }
+        //    e.Handled = true;
+        //}
 
-        private void TextBoxPath_PreviewDrop(object sender, DragEventArgs e)
-        {
-            var listbox = sender as TextBox;
-            string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+        //private void TextBoxPath_PreviewDrop(object sender, DragEventArgs e)
+        //{
+        //    var listbox = sender as TextBox;
+        //    string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
 
-            foreach (string filename in filenames)
-                listbox.Text = filename;
-            //TxtProyFilePath.Text +=  File.ReadAllText(filename);
+        //    foreach (string filename in filenames)
+        //        listbox.Text = filename;
+        //    //TxtProyFilePath.Text +=  File.ReadAllText(filename);
 
-            listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        //    listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
-            e.Handled = true;
+        //    e.Handled = true;
 
-            this.PreviewChanges(sender);
-        }
+        //    this.PreviewChanges(sender);
+        //}
 
         private void TxtOficioPathOrigen_TextChanged(object sender, TextChangedEventArgs e)
         {

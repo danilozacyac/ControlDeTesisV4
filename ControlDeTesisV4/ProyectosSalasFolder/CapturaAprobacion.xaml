@@ -73,8 +73,6 @@
                  AcceptsReturn="True"
                  AllowDrop="True"
                  IsEnabled="False"
-                 PreviewDragOver="TxtDrag_PreviewDragOver"
-                 PreviewDrop="TxtDrop_PreviewDrop"
                  Text="{Binding ComparaTesis.TAprobFilePathOrigen,
                                 Mode=TwoWay}"
                  TextChanged="TxtProyFilePath_TextChanged" />

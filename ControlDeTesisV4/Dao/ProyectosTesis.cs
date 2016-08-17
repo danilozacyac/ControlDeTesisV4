@@ -36,8 +36,6 @@ namespace ControlDeTesisV4.Dao
         private int idSubInstancia;
         private TesisCompara comparaTesis;
         private PrecedentesTesis precedente;
-        private Ejecutorias ejecutoria;
-        private TurnoDao turno;
         private int estadoTesis;
         private int idEmisor;
         private DateTime? fPublicacion;
@@ -374,30 +372,7 @@ namespace ControlDeTesisV4.Dao
             }
         }
 
-        public Ejecutorias Ejecutoria
-        {
-            get
-            {
-                return this.ejecutoria;
-            }
-            set
-            {
-                this.ejecutoria = value;
-            }
-        }
-
-        public TurnoDao Turno
-        {
-            get
-            {
-                return this.turno;
-            }
-            set
-            {
-                this.turno = value;
-                this.OnPropertyChanged("Turno");
-            }
-        }
+        
 
         public int EstadoTesis
         {

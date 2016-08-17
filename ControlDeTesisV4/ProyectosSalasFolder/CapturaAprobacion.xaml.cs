@@ -5,12 +5,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using ControlDeTesisV4.Dao;
 using ControlDeTesisV4.Models;
 using DocumentMgmtApi;
 using ScjnUtilities;
-using System.Configuration;
 
 namespace ControlDeTesisV4.ProyectosSalasFolder
 {
@@ -54,39 +52,39 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
             e.Handled = StringUtilities.IsTextAllowed(e.Text);
         }
 
-        private void TxtDrag_PreviewDragOver(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effects = DragDropEffects.Copy;
-                var listbox = sender as TextBox;
-                listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
+        //private void TxtDrag_PreviewDragOver(object sender, DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        e.Effects = DragDropEffects.Copy;
+        //        var listbox = sender as TextBox;
+        //        listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
+        //    }
+        //    else
+        //    {
+        //        e.Effects = DragDropEffects.None;
+        //    }
 
-            e.Handled = true;
-        }
+        //    e.Handled = true;
+        //}
 
-        private void TxtDrop_PreviewDrop(object sender, DragEventArgs e)
-        {
-            TextBox txt = sender as TextBox;
+        //private void TxtDrop_PreviewDrop(object sender, DragEventArgs e)
+        //{
+        //    TextBox txt = sender as TextBox;
 
-            string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+        //    string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
 
-            foreach (string filename in filenames)
-                txt.Text = filename;
-            //TxtProyFilePath.Text +=  File.ReadAllText(filename);
+        //    foreach (string filename in filenames)
+        //        txt.Text = filename;
+        //    //TxtProyFilePath.Text +=  File.ReadAllText(filename);
 
-            var listbox = sender as TextBox;
-            listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        //    var listbox = sender as TextBox;
+        //    listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
-            e.Handled = true;
+        //    e.Handled = true;
 
-            this.PreviewChanges();
-        }
+        //    this.PreviewChanges();
+        //}
 
         private void TxtProyFilePath_TextChanged(object sender, TextChangedEventArgs e)
         {

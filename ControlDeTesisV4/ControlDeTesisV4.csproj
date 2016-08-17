@@ -140,35 +140,8 @@
     <Compile Include="Converter\TipoVotoConverter.cs" />
     <Compile Include="Dao\AccesoUsuarios.cs" />
     <Compile Include="Dao\AuxiliarModel.cs" />
-    <Compile Include="Dao\Votos.cs" />
-    <Compile Include="EjecutoriasVotos\CapturaEjecutoria.xaml.cs">
-      <DependentUpon>CapturaEjecutoria.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\CapturaObservaciones.xaml.cs">
-      <DependentUpon>CapturaObservaciones.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\CapturaVotos.xaml.cs">
-      <DependentUpon>CapturaVotos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\DetalleVotos.xaml.cs">
-      <DependentUpon>DetalleVotos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\DiceSugiere.xaml.cs">
-      <DependentUpon>DiceSugiere.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\ListadoEjecutorias.xaml.cs">
-      <DependentUpon>ListadoEjecutorias.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\ListadoVotos.xaml.cs">
-      <DependentUpon>ListadoVotos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EjecutoriasVotos\VotoSencillo.xaml.cs">
-      <DependentUpon>VotoSencillo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccesoUsuariosModel.cs" />
-    <Compile Include="Models\EjecutoriasModel.cs" />
     <Compile Include="Models\TesisCommonModel.cs" />
-    <Compile Include="Models\VotosModel.cs" />
     <Compile Include="ProyectosCcstFolder\CapturaAprobacionCcst.xaml.cs">
       <DependentUpon>CapturaAprobacionCcst.xaml</DependentUpon>
     </Compile>
@@ -216,20 +189,6 @@
     </Compile>
     <Compile Include="Singletons\FuncionariosSingleton.cs" />
     <Compile Include="Singletons\OtrosDatosSingleton.cs" />
-    <Compile Include="Turno\AbogadoTotal.xaml.cs">
-      <DependentUpon>AbogadoTotal.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Turno\CargaTrabajo.cs" />
-    <Compile Include="Turno\CargaTrabajoModel.cs" />
-    <Compile Include="Turno\ListaTurnadas.xaml.cs">
-      <DependentUpon>ListaTurnadas.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Turno\StatTurno.xaml.cs">
-      <DependentUpon>StatTurno.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Turno\TurnarWin.xaml.cs">
-      <DependentUpon>TurnarWin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UtilitiesFolder\Constants.cs" />
     <Compile Include="UtilitiesWin\GuiaColores.xaml.cs">
       <DependentUpon>GuiaColores.xaml</DependentUpon>
@@ -241,38 +200,6 @@
       <DependentUpon>SalasCompare.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNombre.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\CapturaEjecutoria.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\CapturaObservaciones.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\CapturaVotos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\DetalleVotos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\DiceSugiere.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EjecutoriasVotos\ListadoEjecutorias.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EjecutoriasVotos\ListadoVotos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EjecutoriasVotos\VotoSencillo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -290,7 +217,6 @@
     <Compile Include="Converter\PonentesConverter.cs" />
     <Compile Include="Converter\SemaforoConverter.cs" />
     <Compile Include="Converter\TipoTesisConverter.cs" />
-    <Compile Include="Dao\Ejecutorias.cs" />
     <Compile Include="Dao\Funcionarios.cs" />
     <Compile Include="Dao\OtrosDatos.cs" />
     <Compile Include="Dao\PrecedentesTesis.cs" />
@@ -299,8 +225,6 @@
     <Compile Include="Dao\ProyectosSalas.cs" />
     <Compile Include="Dao\ProyectosTesis.cs" />
     <Compile Include="Dao\TesisCompara.cs" />
-    <Compile Include="Dao\TesisTurnadaPreview.cs" />
-    <Compile Include="Dao\TurnoDao.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -373,22 +297,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Turno\AbogadoTotal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Turno\ListaTurnadas.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Turno\StatTurno.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Turno\TurnarWin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UtilitiesWin\GuiaColores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -403,15 +311,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CargasDeTrabajoModel.cs" />
     <Compile Include="Models\FuncionariosModel.cs" />
     <Compile Include="Models\IProyecto.cs" />
     <Compile Include="Models\OtrosDatosModel.cs" />
     <Compile Include="Models\ProyectoPreviewModel.cs" />
     <Compile Include="Models\ProyectoTesisCcstModel.cs" />
     <Compile Include="Models\ProyectoTesisSalasModel.cs" />
-    <Compile Include="Models\TesisTurnadasModel.cs" />
-    <Compile Include="Models\TurnoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

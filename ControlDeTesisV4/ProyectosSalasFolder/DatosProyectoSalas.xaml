@@ -136,10 +136,6 @@
                  Margin="133,311,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 AcceptsReturn="True"
-                 AllowDrop="True"
-                 PreviewDragOver="TxtProyFilePath_PreviewDragOver"
-                 PreviewDrop="TxtProyFilePath_PreviewDrop"
                  Text="{Binding ComparaTesis.ToFilePathOrigen,
                                 Mode=TwoWay}"
                  TextChanged="TxtProyFilePath_TextChanged" />

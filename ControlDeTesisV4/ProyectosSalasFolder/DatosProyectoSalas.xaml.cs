@@ -181,35 +181,35 @@ namespace ControlDeTesisV4.ProyectosSalasFolder
 
         }
 
-        private void TxtProyFilePath_PreviewDragOver(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effects = DragDropEffects.Copy;
-                var listbox = sender as TextBox;
-                listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
-            }
-            else
-            {
-                e.Effects = DragDropEffects.None;
-            }
+        //private void TxtProyFilePath_PreviewDragOver(object sender, DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        e.Effects = DragDropEffects.Copy;
+        //        var listbox = sender as TextBox;
+        //        listbox.Background = new SolidColorBrush(Color.FromRgb(155, 155, 155));
+        //    }
+        //    else
+        //    {
+        //        e.Effects = DragDropEffects.None;
+        //    }
 
-            e.Handled = true;
-        }
+        //    e.Handled = true;
+        //}
 
-        private void TxtProyFilePath_PreviewDrop(object sender, DragEventArgs e)
-        {
-            string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
+        //private void TxtProyFilePath_PreviewDrop(object sender, DragEventArgs e)
+        //{
+        //    string[] filenames = (string[])e.Data.GetData(DataFormats.FileDrop, true);
 
-            foreach (string filename in filenames)
-                TxtProyFilePath.Text = filename;
-            //TxtProyFilePath.Text +=  File.ReadAllText(filename);
+        //    foreach (string filename in filenames)
+        //        TxtProyFilePath.Text = filename;
+        //    //TxtProyFilePath.Text +=  File.ReadAllText(filename);
 
-            var listbox = sender as TextBox;
-            listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        //    var listbox = sender as TextBox;
+        //    listbox.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
-            e.Handled = true;
-        }
+        //    e.Handled = true;
+        //}
 
         private void TxtProyFilePath_TextChanged(object sender, TextChangedEventArgs e)
         {

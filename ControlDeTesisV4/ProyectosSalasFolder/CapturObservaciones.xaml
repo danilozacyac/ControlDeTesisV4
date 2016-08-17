@@ -41,8 +41,6 @@
                  Margin="582,85,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 PreviewDragOver="TextBoxPath_PreviewDragOver"
-                 PreviewDrop="TextBoxPath_PreviewDrop"
                  Text="{Binding OficioEnvioPathOrigen,
                                 Mode=TwoWay}"
                  TextChanged="TxtOficioPathOrigen_TextChanged"
@@ -80,8 +78,6 @@
                  VerticalAlignment="Top"
                  AcceptsReturn="True"
                  AllowDrop="True"
-                 PreviewDragOver="TextBoxPath_PreviewDragOver"
-                 PreviewDrop="TextBoxPath_PreviewDrop"
                  Text="{Binding ComparaTesis.TObsFilePathOrigen,
                                 Mode=TwoWay}"
                  TextChanged="TxtProyFilePath_TextChanged" />

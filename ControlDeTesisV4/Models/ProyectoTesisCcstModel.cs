@@ -268,7 +268,6 @@ namespace ControlDeTesisV4.Models
                         tesis.YearTesis = Convert.ToInt32(reader["YearTesis"]);
                         tesis.ClaveTesis = reader["ClaveTesis"].ToString();
                         tesis.EstadoTesis = Convert.ToInt32(reader["EstadoTesis"]);
-                        tesis.Ejecutoria = new EjecutoriasModel().GetEjecutorias(tesis.IdTesis);
                         tesis.Precedente = this.GetPrecedenteTesis(tesis.IdTesis);
                         tesis.ComparaTesis = GetTesisCompara(tesis.IdTesis);
 

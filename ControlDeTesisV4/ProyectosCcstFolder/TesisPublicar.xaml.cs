@@ -6,10 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ControlDeTesisV4.Dao;
-using ControlDeTesisV4.EjecutoriasVotos;
 using ControlDeTesisV4.Models;
 using ControlDeTesisV4.Singletons;
-using ControlDeTesisV4.Turno;
 using ControlDeTesisV4.UtilitiesFolder;
 using DocumentMgmtApi;
 using ScjnUtilities;
@@ -156,11 +154,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void BtnGuardarTurnar_Click(object sender, RoutedEventArgs e)
         {
-            if (ChkEjecutoria.IsChecked == true && proyecto.Proyecto.Ejecutoria == null)
-            {
-                MessageBox.Show("Seleccionaste la casilla de ejecutoria pero no hay ninguna ejecutoria asociada");
-                return;
-            }
+            
 
             proyecto.IdEmisor = Convert.ToInt16(CbxEmisores.SelectedValue);
             proyecto.Proyecto.IdInstancia = Convert.ToInt16(CbxInstancia.SelectedValue);
@@ -174,8 +168,7 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
             new ProyectoTesisSalasModel(proyecto).SetNewProyecto();
 
 
-            TurnarWin turnar = new TurnarWin(proyecto.Proyecto, proyecto.Proyecto.Tatj + 1);
-            turnar.ShowDialog();
+            
 
             this.Close();
         }
@@ -187,22 +180,13 @@ namespace ControlDeTesisV4.ProyectosCcstFolder
 
         private void ChkEjecutoria_Unchecked(object sender, RoutedEventArgs e)
         {
-            BtnEjecutoria.Visibility = Visibility.Collapsed;
-
-            MessageBoxResult result = MessageBox.Show("¿Estas seguro de eliminar la ejecutoria asociada con todos sus datos",
-                                                        "ATENCION", MessageBoxButton.YesNo, MessageBoxImage.Question);
             
-            if(result == MessageBoxResult.Yes)
-                proyecto.Proyecto.Ejecutoria = null;
         }
 
         private void BtnEjecutoria_Click(object sender, RoutedEventArgs e)
         {
-            proyecto.Proyecto.Ejecutoria = new Ejecutorias();
-            proyecto.Proyecto.Ejecutoria.ForObservaciones = 0;
-            proyecto.Proyecto.Ejecutoria.Precedente = proyecto.Proyecto.Precedente;
-            CapturaEjecutoria ejecutoriaCapt = new CapturaEjecutoria(proyecto.Proyecto.Ejecutoria);
-            ejecutoriaCapt.ShowDialog();
+           
+           
 
         }
 
