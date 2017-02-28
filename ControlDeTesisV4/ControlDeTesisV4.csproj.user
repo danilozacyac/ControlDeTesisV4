@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>\\172.28.33.24\ModulodeInterconexion\Updates\|C:\Users\lavega\Desktop\Carpeta Prueba Apps\Control de Tesis\Updates\|\\ctsem-26872-gmh\ModulodeInterconexion\Updates\|\\ctsem-26872-gmh\ModuloInterconexion\V2\Updates\|\\ctsem-18530-lap\ModuloInterconexion\Updates\</PublishUrlHistory>
+    <PublishUrlHistory>\\172.28.51.17\ModuloIntercomunicacion\Updates\|\\172.28.33.24\ModulodeInterconexion\Updates\|C:\Users\lavega\Desktop\Carpeta Prueba Apps\Control de Tesis\Updates\|\\ctsem-26872-gmh\ModulodeInterconexion\Updates\|\\ctsem-26872-gmh\ModuloInterconexion\V2\Updates\</PublishUrlHistory>
     <InstallUrlHistory>\\172.28.33.218\ModuloInterconexion\V2\Updates\|\\ctsem-26872-gmh\ModuloInterconexion\V2\Updates\</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>\\ctsem-26872-gmh\ModulodeInterconexion\Updates\|\\ctsem-26872-gmh\ModuloInterconexion\V2\Updates\</UpdateUrlHistory>
+    <UpdateUrlHistory>\\172.28.33.24\ModulodeInterconexion\Updates\|\\ctsem-26872-gmh\ModulodeInterconexion\Updates\|\\ctsem-26872-gmh\ModuloInterconexion\V2\Updates\</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>es-ES</FallbackCulture>
